@@ -6,9 +6,7 @@ import {NumericDirective} from './directives/numeric/numeric.directive';
     NumericDirective,
   ],
   imports: [],
-  exports: [
-    NumericDirective,
-  ]
+  exports: []
 })
 export class LsnLibsModule {
 }
