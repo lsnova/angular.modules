@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "pub": "cd projects/lsn-modules && ng build lsn-modules && cd ../../ && mv dist/lsn-modules/* lib/"
   },
   "private": true,
   "dependencies": {
@@ -50,5 +51,9 @@
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
     "typescript": "~3.1.1"
-  }
+  },
+  "files": [
+    "README.md",
+    "lib"
+  ]
 }

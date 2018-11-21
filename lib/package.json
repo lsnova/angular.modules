@@ -1,0 +1,21 @@
+{
+  "name": "lsn-modules",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0"
+  },
+  "main": "bundles/lsn-modules.umd.js",
+  "module": "fesm5/lsn-modules.js",
+  "es2015": "fesm2015/lsn-modules.js",
+  "esm5": "esm5/lsn-modules.js",
+  "esm2015": "esm2015/lsn-modules.js",
+  "fesm5": "fesm5/lsn-modules.js",
+  "fesm2015": "fesm2015/lsn-modules.js",
+  "typings": "lsn-modules.d.ts",
+  "metadata": "lsn-modules.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}
