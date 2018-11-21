@@ -134,6 +134,41 @@
           }
         }
       }
+    },
+    "lsn-modules": {
+      "root": "projects/lsn-modules",
+      "sourceRoot": "projects/lsn-modules/src",
+      "projectType": "library",
+      "prefix": "lsn",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/lsn-modules/tsconfig.lib.json",
+            "project": "projects/lsn-modules/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lsn-modules/src/test.ts",
+            "tsConfig": "projects/lsn-modules/tsconfig.spec.json",
+            "karmaConfig": "projects/lsn-modules/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/lsn-modules/tsconfig.lib.json",
+              "projects/lsn-modules/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angularmodules"

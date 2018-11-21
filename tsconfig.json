@@ -16,6 +16,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "lsn-modules": [
+        "dist/lsn-modules"
+      ],
+      "lsn-modules/*": [
+        "dist/lsn-modules/*"
+      ]
+    }
   }
 }
