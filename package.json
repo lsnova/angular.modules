@@ -1,6 +1,6 @@
 {
-  "name": "lsn-modules",
-  "version": "0.0.0",
+  "name": "@lsnova/angularmodules",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
