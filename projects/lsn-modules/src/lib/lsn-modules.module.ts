@@ -1,10 +1,17 @@
-import { NgModule } from '@angular/core';
-import { LsnModulesComponent } from './lsn-modules.component';
+import {NgModule} from '@angular/core';
+import {LsnModulesComponent} from './lsn-modules.component';
+import {NumericDirective} from './directives/numeric/numeric.directive';
 
 @NgModule({
-  declarations: [LsnModulesComponent],
-  imports: [
+  declarations: [
+    LsnModulesComponent,
+    NumericDirective,
   ],
-  exports: [LsnModulesComponent]
+  imports: [],
+  exports: [
+    LsnModulesComponent,
+    NumericDirective,
+  ]
 })
-export class LsnModulesModule { }
+export class LsnModulesModule {
+}
