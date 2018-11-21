@@ -19,7 +19,7 @@ class NumericConfig {
   selector: '[lsnNumeric]'
 })
 export class NumericDirective implements OnChanges {
-  @Input() appNumeric = {};
+  @Input() lsnNumeric = {};
   element: any;
   protected config: NumericConfig;
   private defaultConfig: NumericConfig = new NumericConfig();
@@ -29,7 +29,7 @@ export class NumericDirective implements OnChanges {
   }
 
   ngOnChanges() {
-    this.config = Object.assign({...this.defaultConfig, ...this.appNumeric});
+    this.config = Object.assign({...this.defaultConfig, ...this.lsnNumeric});
   }
 
   @HostListener('input', ['$event'])
