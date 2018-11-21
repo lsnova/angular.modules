@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "pub": "rm -rf lib/* && cd projects/lsn-modules && ng build lsn-modules && cd ../../ && mv dist/lsn-modules/* lib/"
+    "pub": "rm -rf lib/* && cd projects/lsn-libs && ng build lsn-libs && cd ../../ && mv dist/lsn-libs/* lib/"
   },
   "private": true,
   "dependencies": {
@@ -54,7 +54,6 @@
   },
   "files": [
     "README.md",
-    "public_api.d.ts",
     "index.d.ts",
     "lib/"
   ]

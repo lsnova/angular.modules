@@ -18,11 +18,11 @@
       "dom"
     ],
     "paths": {
-      "lsn-modules": [
-        "dist/lsn-modules"
+      "lsn-libs": [
+        "dist/lsn-libs"
       ],
-      "lsn-modules/*": [
-        "dist/lsn-modules/*"
+      "lsn-libs/*": [
+        "dist/lsn-libs/*"
       ]
     }
   }
