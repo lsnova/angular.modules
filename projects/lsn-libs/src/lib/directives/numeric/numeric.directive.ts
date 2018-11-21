@@ -14,7 +14,6 @@ class NumericConfig {
   separator: NumericSeparator = NumericSeparator.PERIOD;
 }
 
-
 @Directive({
   selector: '[lsnNumeric]'
 })
