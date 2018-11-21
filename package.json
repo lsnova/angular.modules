@@ -55,6 +55,7 @@
   "files": [
     "README.md",
     "public_api.d.ts",
+    "index.d.ts",
     "lib/"
   ]
 }
