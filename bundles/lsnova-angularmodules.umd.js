@@ -298,7 +298,7 @@
      */
 
     exports.LsnLibsModule = LsnLibsModule;
-    exports.NumericDirective = NumericDirective;
+    exports.NumpadDirective = NumericDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

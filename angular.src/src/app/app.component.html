@@ -17,7 +17,11 @@
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
   <li>
-    <input lsnNumeric [(ngModel)]="mynumber" />
+    <input lsnNumeric [(ngModel)]="luckyNumber" />
+  </li>
+  <li>
+    <input [lsnNumPad]="{maxlength: 4}" [(ngModel)]="numpadValue" />
+    <input [lsnNumPad]="{maxlength: 11, allowLeadingZeros: true}" />
   </li>
 </ul>
 

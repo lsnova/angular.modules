@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angularmodules';
-  mynumber:number = 0;
+  luckyNumber = 0;
+  numpadValue = 0;
 }
