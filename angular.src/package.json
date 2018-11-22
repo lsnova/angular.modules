@@ -8,7 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build_libs": "cd projects/lsn-libs && ng build lsn-libs && cd ../../ && rsync -a dist/lsn-libs/* ../"
+    "build:libs": "cd projects/lsn-libs && ng build lsn-libs",
+    "package": "npm run build:libs && rsync -a dist/lsn-libs/* ../",
+    "postinstall": "npm run build:libs && npm install -S file:dist/lsn-libs"
   },
   "private": true,
   "dependencies": {
@@ -23,10 +25,10 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
+    "@lsnova/angularmodules": "file:dist/lsn-libs",
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",
-    "zone.js": "~0.8.26",
-    "lsn-libs": "file:./lsn-libs-0.0.1.tgz"
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.0",
