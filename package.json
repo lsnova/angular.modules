@@ -8,7 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:libs": "rm -rf lib/* && cd projects/lsn-libs && ng build lsn-libs && cd ../../ && mv dist/lsn-libs/* lib/"
+    "build_libs": "rm -rf lib/* && cd projects/lsn-libs && ng build lsn-libs && cd ../../ && mv dist/lsn-libs/* lib/",
+    "pack_libs": "cd lib/ && npm pack",
+    "package": "npm run build_libs && npm run pack_libs"
   },
   "private": true,
 
@@ -57,8 +59,6 @@
   },
   "main": "lib/public_api.ts",
   "files": [
-    "index.d.ts",
-    "README.md",
-    "lib/"
+    "lsn-libs.0.0.1.tgz"
   ]
 }
