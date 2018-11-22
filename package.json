@@ -59,6 +59,6 @@
   },
   "main": "lib/public_api.ts",
   "files": [
-    "lsn-libs.0.0.1.tgz"
+    "lsn-libs-0.0.1.tgz"
   ]
 }
