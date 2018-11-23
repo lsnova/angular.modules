@@ -1,27 +1,31 @@
-# Angularmodules
+# @lsnova/angularmodules
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
+This project contains a set of Angular components and directives to be used among @lsnova's applications.
 
-## Development server
+## Installation and usage
+Install the package with: 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+`npm install -S git+ssh://git@github.com:lsnova/angular.modules.git`
 
-## Code scaffolding
+Now, in your Angular application import the whole module:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+`import {LsnLibsModule} from '@lsnova/angularmodules';`
 
-## Build
+or a single feature:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+`import {NumericDirective} from '@lsnova/angularmodules';`
 
-## Running unit tests
+#### Available features
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+| Feature          | Notes                                                  | Docs         |
+|------------------|--------------------------------------------------------|--------------|
+| NumericDirective | Input directive for number values                      |   [Docs][0] |
+| NumPadDirective  | Input directive for digits only                        |   [Docs][1] |
 
-## Running end-to-end tests
+ [0]: https://github.com/lsnova/angular.modules/tree/master/angular.src/projects/lsn-libs/src/lib/directives/numeric
+ [1]: https://github.com/lsnova/angular.modules/tree/master/angular.src/projects/lsn-libs/src/lib/directives/numpad
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Contributing
 
-## Further help
+This project is still evolving to a stable version. Contributing rules coming soon. Be patient!
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
