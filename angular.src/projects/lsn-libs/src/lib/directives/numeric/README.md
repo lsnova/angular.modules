@@ -25,4 +25,4 @@ where for example: `const numericConfig = { precision:2 }`
 | `precision`      | Number of decimals allowed after a separator           |   0          |
 | `max`            | Allowed max value of input                             |   undefined  |
 | `min`            | Allowed min value of input                             |   undefined  |
-| `separator`      | Wholes and decimals separator (allowed `.` and `,`)    |   '.'        |
+| `separator`      | Wholes and decimals separator (allowed `.` and `,`)    |   `.`        |
