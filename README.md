@@ -17,15 +17,18 @@ or a single feature:
 
 #### Available features
 
-| Feature          | Notes                                                  | Docs         |
-|------------------|--------------------------------------------------------|--------------|
-| NumericDirective | Input directive for number values                      |   [Docs][0] |
-| NumPadDirective  | Input directive for digits only                        |   [Docs][1] |
+| Feature               | Notes                                                  | Docs         |
+|-----------------------|--------------------------------------------------------|--------------|
+| CapitalizeDirective   | Capitalize input value                                 |   [Docs][2]  |
+| LatinToGreekDirective | Translate input characters from latin to greek         |   [Docs][3]  |
+| NumericDirective      | Input directive for number values                      |   [Docs][0]  |
+| NumPadDirective       | Input directive for digits only                        |   [Docs][1]  |
 
  [0]: https://github.com/lsnova/angular.modules/tree/master/angular.src/projects/lsn-libs/src/lib/directives/numeric
  [1]: https://github.com/lsnova/angular.modules/tree/master/angular.src/projects/lsn-libs/src/lib/directives/numpad
+ [2]: https://github.com/lsnova/angular.modules/tree/master/angular.src/projects/lsn-libs/src/lib/directives/capitalize
+ [3]: https://github.com/lsnova/angular.modules/tree/master/angular.src/projects/lsn-libs/src/lib/directives/latin-to-greek
 
 ## Contributing
 
 This project is still evolving to a stable version. Contributing rules coming soon. Be patient!
-

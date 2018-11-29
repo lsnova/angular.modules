@@ -5,7 +5,7 @@ This directive controls the input's value and allows the user to only input digi
 ## Installation
 Either import whole LsnLibsModule or: 
 
-`import {NumPadDirective} from '@lsnova/angularmodules';`
+`import {LatinToGreekDirective} from '@lsnova/angularmodules';`
 
 ## Usage
 In your template file:
