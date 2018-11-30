@@ -1,4 +1,4 @@
-import {Directive, HostListener} from '@angular/core';
+import {Directive, ElementRef, HostListener} from '@angular/core';
 import {NgModel} from '@angular/forms';
 
 
@@ -37,16 +37,33 @@ export class LatinToGreekDirective {
     [/Q/ig, 'Q']
   ];
 
-  constructor(private model: NgModel) {
+  constructor(private model: NgModel, private el: ElementRef) {
   }
+
+  private getCaret() {
+    return {
+      start: this.el.nativeElement.selectionStart,
+      end: this.el.nativeElement.selectionEnd,
+    };
+  }
+
+  private setCaret(start, end) {
+    this.el.nativeElement.selectionStart = start;
+    this.el.nativeElement.selectionEnd = end;
+    this.el.nativeElement.focus();
+  }
+
 
   @HostListener('ngModelChange', ['$event'])
   onInputChange($event) {
+    const {start, end} = this.getCaret();
+
     let translated = $event;
     this.latinToGreek.forEach(replace => {
       translated = translated.replace(replace[0], replace[1]);
     });
     this.model.valueAccessor.writeValue(translated);
+    this.setCaret(start, end);
   }
 
 }
