@@ -58,7 +58,7 @@ export class LatinToGreekDirective {
   onInputChange($event) {
     const {start, end} = this.getCaret();
 
-    let translated = $event;
+    let translated = $event.toLocaleUpperCase();
     this.latinToGreek.forEach(replace => {
       translated = translated.replace(replace[0], replace[1]);
     });
