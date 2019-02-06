@@ -11,7 +11,7 @@
   <li>
     <input lsnNumeric [(ngModel)]="numeric1" />
   </li>
-  <li> precision: <br/>
+  <li> precision with separators: <br/>
     <input
       [lsnNumeric]="{precision:2, decimals: ',', thousands: ' '}"
       [(ngModel)]="numeric2"

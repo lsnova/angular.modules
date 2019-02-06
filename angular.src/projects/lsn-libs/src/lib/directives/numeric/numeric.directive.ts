@@ -31,6 +31,7 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
   element: ElementRef;
   protected config: NumericConfig;
   private defaultConfig: NumericConfig = new NumericConfig();
+  private modelValue: number;
   public onChange = (_: any) => {
   }
   public onTouch = () => {
@@ -44,9 +45,36 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     this.config = Object.assign({...this.defaultConfig, ...this.lsnNumeric});
   }
 
+  @HostListener('input', ['$event'])
+  inputHandler($event) {
+    if ($event.target.value === '-') {
+      return;
+    }
+    const parsedValue = this.parseValue($event.target.value);
+    const rangeValue = this.handleRange(parsedValue);
+    if (parsedValue === rangeValue) {
+      this.displayValue = $event.target.value.replace(/[,|.]/, this.config.decimals);
+      this.onChange(parsedValue);
+    } else {
+      this.displayValue = rangeValue.toString().replace(/[,|.]/, this.config.decimals);
+      this.onChange(rangeValue);
+    }
+  }
+
+  @HostListener('focus', ['$event'])
+  focusHandler() {
+    this.setEditMode();
+  }
+
+  @HostListener('blur', ['$event'])
+  blurHandler() {
+    this.displayValue = this.prepareDisplayValue(this.element.nativeElement.value);
+  }
+
   public async writeValue(modelValue: string): Promise<void> {
-    this.element.nativeElement.value = modelValue;
-    this.addThousandsSepartor();
+    const parsedValue = this.parseValue(modelValue);
+    this.element.nativeElement.value = this.handleRange(parsedValue);
+    this.displayValue = this.prepareDisplayValue(this.element.nativeElement.value);
   }
 
   public registerOnChange(fn: any): void {
@@ -65,47 +93,45 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     this.element.nativeElement.value = value;
   }
 
-  @HostListener('input', ['$event'])
-  inputHandler($event) {
-    const currentValue = $event.target.value;
-    const newValue = currentValue.replace(/[,|.]/, '.');
-    let parsedValue = this.config.precision > 0
+  parseValue(value) {
+    if (!value && value !== 0) {
+      return undefined;
+    }
+    const newValue = value.toString().replace(/[,|.]/, '.');
+    const parsedValue = this.config.precision > 0
       ? parseFloat(newValue)
       : parseInt(newValue, 10);
-    if (this.config.max !== undefined && parsedValue > this.config.max) {
-      parsedValue = this.config.max;
-    } else if (this.config.min !== undefined && parsedValue < this.config.min) {
-      parsedValue = this.config.min;
+    return isNaN(parsedValue) ? undefined : parsedValue;
+  }
+
+  handleRange(value) {
+    if (this.config.max !== undefined && value > this.config.max) {
+      return this.config.max;
+    } else if (this.config.min !== undefined && value < this.config.min) {
+      return this.config.min;
     }
-    if (this.config.decimals) {
-      this.displayValue = newValue.replace(/[.]/, this.config.decimals);
+    return value;
+  }
+
+  prepareDisplayValue(value) {
+    if (!value && value !== 0) {
+      return value;
     }
-    this.onChange(parsedValue);
-  }
-
-  @HostListener('focus', ['$event'])
-  focusHandler() {
-    this.removeThousandsSepartor();
-  }
-
-  @HostListener('blur', ['$event'])
-  blurHandler() {
-    this.addThousandsSepartor();
-  }
-
-  addThousandsSepartor() {
+    const [whole, decimals] = value.toString().split(this.config.decimals);
+    const isNegative = whole[0] === '-';
+    let result = whole === '-' || !whole
+      ? '0'
+      : Math.abs(parseInt(whole, 10)).toString();
     if (this.config.thousands) {
-      const currentValue = this.element.nativeElement.value;
-      const [whole, decimals] = currentValue.split(this.config.decimals);
-      let result = whole.replace(/\B(?=(\d{3})+(?!\d))/g, this.config.thousands);
-      if (decimals && this.config.precision && this.config.decimals) {
-        result = result + this.config.decimals + decimals;
-      }
-      this.displayValue = result;
+      result = result.replace(/\B(?=(\d{3})+(?!\d))/g, this.config.thousands);
     }
+    if (decimals && this.config.precision && this.config.decimals) {
+      result = result + this.config.decimals + decimals;
+    }
+    return isNegative && result !== '0' ? '-' + result : result;
   }
 
-  removeThousandsSepartor() {
+  setEditMode() {
     if (this.config.thousands) {
       const currentValue = this.element.nativeElement.value;
       const [whole, decimals] = currentValue.split(this.config.decimals);
@@ -154,7 +180,6 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
       [keyboard.DASH, keyboard.NUMPAD_MINUS].indexOf(e.keyCode) !== -1
       && this.element.nativeElement.selectionStart === 0
       && ((this.config.min !== undefined && this.config.min < 0) || this.config.min === undefined)
-      && ((this.config.max !== undefined && this.config.max < 0) || this.config.max === undefined)
       && currentValue.indexOf('-') === -1
     ) {
       return;
