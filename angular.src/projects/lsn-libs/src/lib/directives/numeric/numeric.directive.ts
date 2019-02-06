@@ -1,29 +1,42 @@
-import {Directive, ElementRef, HostListener, Input, OnChanges} from '@angular/core';
+import {Directive, ElementRef, forwardRef, HostListener, Input, OnChanges} from '@angular/core';
 import * as keyboard from '@angular/cdk/keycodes';
-import {NgControl} from '@angular/forms';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
 
 enum NumericSeparator {
   COMMA = ',',
-  PERIOD = '.'
+  PERIOD = '.',
+  SPACE = ' '
 }
 
 class NumericConfig {
   min: number;
   max: number;
   precision = 0;
-  separator: NumericSeparator = NumericSeparator.PERIOD;
+  decimals: NumericSeparator = NumericSeparator.PERIOD;
+  thousands: NumericSeparator;
 }
 
 @Directive({
-  selector: '[lsnNumeric]'
+  selector: '[lsnNumeric]',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NumericDirective),
+      multi: true
+    },
+  ]
 })
-export class NumericDirective implements OnChanges {
+export class NumericDirective implements OnChanges, ControlValueAccessor {
   @Input() lsnNumeric = {};
-  element: any;
+  element: ElementRef;
   protected config: NumericConfig;
   private defaultConfig: NumericConfig = new NumericConfig();
+  public onChange = (_: any) => {
+  }
+  public onTouch = () => {
+  }
 
-  constructor(private el: ElementRef, private ngControl: NgControl) {
+  constructor(private el: ElementRef) {
     this.element = el;
   }
 
@@ -31,41 +44,78 @@ export class NumericDirective implements OnChanges {
     this.config = Object.assign({...this.defaultConfig, ...this.lsnNumeric});
   }
 
+  public async writeValue(modelValue: string): Promise<void> {
+    this.element.nativeElement.value = modelValue;
+    this.addThousandsSepartor();
+  }
+
+  public registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  public registerOnTouched(fn: any): void {
+    this.onTouch = fn;
+  }
+
+  get displayValue() {
+    return this.element.nativeElement.value;
+  }
+
+  set displayValue(value) {
+    this.element.nativeElement.value = value;
+  }
+
   @HostListener('input', ['$event'])
   inputHandler($event) {
     const currentValue = $event.target.value;
-    this.ngControl.control.setValue(this.parseNewValue(currentValue));
+    const newValue = currentValue.replace(/[,|.]/, '.');
+    let parsedValue = this.config.precision > 0
+      ? parseFloat(newValue)
+      : parseInt(newValue, 10);
+    if (this.config.max !== undefined && parsedValue > this.config.max) {
+      parsedValue = this.config.max;
+    } else if (this.config.min !== undefined && parsedValue < this.config.min) {
+      parsedValue = this.config.min;
+    }
+    if (this.config.decimals) {
+      this.displayValue = newValue.replace(/[.]/, this.config.decimals);
+    }
+    this.onChange(parsedValue);
+  }
+
+  @HostListener('focus', ['$event'])
+  focusHandler() {
+    this.removeThousandsSepartor();
   }
 
   @HostListener('blur', ['$event'])
-  blurHandler($event) {
-    const currentValue = $event.target.value;
-    this.ngControl.control.setValue(this.parseNewValue(currentValue, true));
+  blurHandler() {
+    this.addThousandsSepartor();
   }
 
-  protected parseNewValue(value, blurEvent = false) {
-    let newValue = value;
-    if (newValue === '' || newValue === '-') {
-      return blurEvent ? '' : newValue;
-    }
-    if (this.config.precision > 0) {
-      newValue = newValue.replace(/[,|.]/, this.config.separator);
-      if (
-        [this.config.separator, '0'].indexOf(newValue.slice(-1)) > -1
-        && !blurEvent
-      ) {
-        return newValue;
+  addThousandsSepartor() {
+    if (this.config.thousands) {
+      const currentValue = this.element.nativeElement.value;
+      const [whole, decimals] = currentValue.split(this.config.decimals);
+      let result = whole.replace(/\B(?=(\d{3})+(?!\d))/g, this.config.thousands);
+      if (decimals && this.config.precision && this.config.decimals) {
+        result = result + this.config.decimals + decimals;
       }
-      newValue = parseFloat(newValue);
-    } else {
-      newValue = parseInt(newValue, 10);
+      this.displayValue = result;
     }
-    if (this.config.max !== undefined && newValue > this.config.max) {
-      newValue = this.config.max;
-    } else if (this.config.min !== undefined && newValue < this.config.min) {
-      newValue = this.config.min;
+  }
+
+  removeThousandsSepartor() {
+    if (this.config.thousands) {
+      const currentValue = this.element.nativeElement.value;
+      const [whole, decimals] = currentValue.split(this.config.decimals);
+      const regex = new RegExp(this.config.thousands, 'g');
+      let result = whole.replace(regex, '');
+      if (decimals && this.config.precision && this.config.decimals) {
+        result = result + this.config.decimals + decimals;
+      }
+      this.displayValue = result;
     }
-    return isNaN(newValue) ? '' : newValue;
   }
 
   @HostListener('keydown', ['$event'])
@@ -116,7 +166,8 @@ export class NumericDirective implements OnChanges {
       && [keyboard.COMMA, keyboard.NUMPAD_PERIOD, 190].indexOf(e.keyCode) !== -1
       && this.element.nativeElement.selectionStart > 0
       && currentValue.length
-      && currentValue.indexOf(this.config.separator) === -1
+      && currentValue.indexOf('.') === -1
+      && currentValue.indexOf(',') === -1
     ) {
       return;
     }
@@ -124,10 +175,10 @@ export class NumericDirective implements OnChanges {
     // Handle key after separator
     if (
       this.config.precision > 0
-      && currentValue.indexOf(this.config.separator) > -1
-      && this.element.nativeElement.selectionStart > currentValue.indexOf(this.config.separator)
+      && currentValue.indexOf(this.config.decimals) > -1
+      && this.element.nativeElement.selectionStart > currentValue.indexOf(this.config.decimals)
     ) {
-      const [, decimals] = currentValue.split(this.config.separator);
+      const [, decimals] = currentValue.split(this.config.decimals);
       if (decimals && decimals.length >= this.config.precision) {
         e.preventDefault();
       }
