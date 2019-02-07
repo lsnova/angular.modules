@@ -10,6 +10,6 @@ export class AppComponent {
   title = 'angularmodules';
   numeric1 = 10;
   numeric2 = 123456.789;
-  numeric3 = 234567.89;
+  numeric3 = undefined;
   numpadValue = 0;
 }

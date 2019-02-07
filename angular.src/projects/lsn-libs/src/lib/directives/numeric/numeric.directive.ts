@@ -112,7 +112,7 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
 
   prepareDisplayValue(value) {
     if (!value && value !== 0) {
-      return value;
+      return '';
     }
     const [whole, decimals] = typeof value === 'number'
       ? value.toString().split('.')
