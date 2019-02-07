@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'angularmodules';
   numeric1 = 10;
-  numeric2 = 20000;
+  numeric2 = 123456.789;
   numeric3 = 0;
   numpadValue = 0;
 }

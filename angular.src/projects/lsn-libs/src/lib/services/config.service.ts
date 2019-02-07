@@ -12,6 +12,7 @@ export interface NumericConfig {
   precision?: number;
   decimals?: string;
   thousands?: string;
+  config?: string;
 }
 
 export class DefaultNumericConfig implements NumericConfig {
@@ -28,6 +29,7 @@ export class DefaultNumericConfig implements NumericConfig {
 
 export class CustomConfig {
   numeric?: NumericConfig;
+  custom?: {[key: string]: NumericConfig};
 
   constructor(props = {}) {
     Object.assign(this, props);
@@ -40,12 +42,18 @@ export class ConfigService {
 
   constructor(config: CustomConfig) {
     const numericConfig = config.numeric || {};
+    const customConfig = config.custom || {};
     this.config = new CustomConfig({
-      numeric: new DefaultNumericConfig(numericConfig)
+      numeric: new DefaultNumericConfig(numericConfig),
+      custom: customConfig,
     });
   }
 
   getNumericConfig() {
     return this.config.numeric;
+  }
+
+  getCustomConfig(key) {
+    return this.config.custom[key] || {};
   }
 }

@@ -8,14 +8,21 @@
 <h2>Here are some working examples: </h2>
 <h3>[lsnNumeric]:</h3>
 <ul>
-  <li>
+  <li> default config: <br/>
     <input lsnNumeric [(ngModel)]="numeric1" />
+    model value: {{numeric1}}
   </li>
   <li> precision with separators: <br/>
     <input
-      [lsnNumeric]="{precision:2, decimals: ',', thousands: ' '}"
+      [lsnNumeric]="{precision:3, decimals: ',', thousands: ','}"
       [(ngModel)]="numeric2"
     /> model value: {{numeric2}}
+  </li>
+  <li> custom configuration: <br/>
+    <input
+      [lsnNumeric]="{config:'currency'}"
+      [(ngModel)]="numeric3"
+    /> model value: {{numeric3}}
   </li>
 </ul>
 <h3>[lsnNumPad]:</h3>

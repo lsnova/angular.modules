@@ -14,11 +14,10 @@ import {ConfigService, DefaultNumericConfig, NumericConfig} from '../../services
   ]
 })
 export class NumericDirective implements OnChanges, ControlValueAccessor {
-  @Input() lsnNumeric = {};
+  @Input() lsnNumeric: NumericConfig = {};
   element: ElementRef;
   protected config: NumericConfig;
-  private defaultConfig: NumericConfig = new DefaultNumericConfig();
-  private modelValue: number;
+  // private modelValue: number;
   public onChange = (_: any) => {
   }
   public onTouch = () => {
@@ -26,11 +25,13 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
 
   constructor(private el: ElementRef, private configService: ConfigService) {
     this.element = el;
-    this.defaultConfig = configService.getNumericConfig();
   }
 
   ngOnChanges() {
-    this.config = Object.assign({...this.defaultConfig, ...this.lsnNumeric});
+    const defaultConfig = this.lsnNumeric.config
+      ? this.configService.getCustomConfig(this.lsnNumeric.config)
+      : this.configService.getNumericConfig();
+    this.config = Object.assign({...defaultConfig, ...this.lsnNumeric});
     if (this.config.decimals && this.config.thousands && this.config.decimals === this.config.thousands) {
       this.config.thousands = undefined;
     }

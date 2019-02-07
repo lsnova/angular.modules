@@ -16,8 +16,14 @@ import {AppComponent} from './app.component';
     LsnLibsModule.forRoot({
       numeric: {
         decimals: '.',
-        thousands: ',',
         precision: 4,
+      },
+      custom: {
+        currency: {
+          decimals: ',',
+          thousands: ' ',
+          precision: 2,
+        }
       }
     }),
   ],
