@@ -25,16 +25,11 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
 
   constructor(private el: ElementRef, private configService: ConfigService) {
     this.element = el;
+    this.setConfig();
   }
 
   ngOnChanges() {
-    const defaultConfig = this.lsnNumeric.config
-      ? this.configService.getCustomConfig(this.lsnNumeric.config)
-      : this.configService.getNumericConfig();
-    this.config = Object.assign({...defaultConfig, ...this.lsnNumeric});
-    if (this.config.decimals && this.config.thousands && this.config.decimals === this.config.thousands) {
-      this.config.thousands = undefined;
-    }
+    this.setConfig();
   }
 
   @HostListener('input', ['$event'])
@@ -64,9 +59,9 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
   }
 
   public async writeValue(modelValue: string): Promise<void> {
-    const parsedValue = this.parseValue(modelValue);
-    this.element.nativeElement.value = this.handleRange(parsedValue);
-    this.displayValue = this.prepareDisplayValue(this.element.nativeElement.value);
+    let parsedValue = this.parseValue(modelValue);
+    parsedValue = this.handleRange(parsedValue);
+    this.displayValue = this.prepareDisplayValue(parsedValue);
   }
 
   public registerOnChange(fn: any): void {
@@ -83,6 +78,16 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
 
   set displayValue(value) {
     this.element.nativeElement.value = value;
+  }
+
+  setConfig() {
+    const defaultConfig = this.lsnNumeric.config
+      ? this.configService.getCustomConfig(this.lsnNumeric.config)
+      : this.configService.getNumericConfig();
+    this.config = Object.assign({...defaultConfig, ...this.lsnNumeric});
+    if (this.config.decimals && this.config.thousands && this.config.decimals === this.config.thousands) {
+      this.config.thousands = undefined;
+    }
   }
 
   parseValue(value) {
@@ -109,7 +114,9 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     if (!value && value !== 0) {
       return value;
     }
-    const [whole, decimals] = value.toString().split(this.config.decimals);
+    const [whole, decimals] = typeof value === 'number'
+      ? value.toString().split('.')
+      : value.toString().split(this.config.decimals);
     const isNegative = whole[0] === '-';
     let result = whole === '-' || !whole
       ? '0'
@@ -127,7 +134,7 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     if (this.config.thousands) {
       const currentValue = this.element.nativeElement.value;
       const [whole, decimals] = currentValue.split(this.config.decimals);
-      const regex = new RegExp(this.config.thousands, 'g');
+      const regex = new RegExp('\\' + this.config.thousands, 'g');
       let result = whole.replace(regex, '');
       if (decimals && this.config.precision && this.config.decimals) {
         result = result + this.config.decimals + decimals;
