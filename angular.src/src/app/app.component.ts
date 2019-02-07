@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styles: []
 })
+
 export class AppComponent {
   title = 'angularmodules';
   numeric1 = 10;

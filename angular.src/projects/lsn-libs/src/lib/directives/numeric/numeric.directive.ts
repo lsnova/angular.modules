@@ -1,20 +1,7 @@
 import {Directive, ElementRef, forwardRef, HostListener, Input, OnChanges} from '@angular/core';
 import * as keyboard from '@angular/cdk/keycodes';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
-
-enum NumericSeparator {
-  COMMA = ',',
-  PERIOD = '.',
-  SPACE = ' '
-}
-
-class NumericConfig {
-  min: number;
-  max: number;
-  precision = 0;
-  decimals: NumericSeparator = NumericSeparator.PERIOD;
-  thousands: NumericSeparator;
-}
+import {ConfigService, DefaultNumericConfig, NumericConfig} from '../../services/config.service';
 
 @Directive({
   selector: '[lsnNumeric]',
@@ -30,19 +17,23 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
   @Input() lsnNumeric = {};
   element: ElementRef;
   protected config: NumericConfig;
-  private defaultConfig: NumericConfig = new NumericConfig();
+  private defaultConfig: NumericConfig = new DefaultNumericConfig();
   private modelValue: number;
   public onChange = (_: any) => {
   }
   public onTouch = () => {
   }
 
-  constructor(private el: ElementRef) {
+  constructor(private el: ElementRef, private configService: ConfigService) {
     this.element = el;
+    this.defaultConfig = configService.getNumericConfig();
   }
 
   ngOnChanges() {
     this.config = Object.assign({...this.defaultConfig, ...this.lsnNumeric});
+    if (this.config.decimals && this.config.thousands && this.config.decimals === this.config.thousands) {
+      this.config.thousands = undefined;
+    }
   }
 
   @HostListener('input', ['$event'])

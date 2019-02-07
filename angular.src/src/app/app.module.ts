@@ -13,7 +13,13 @@ import {AppComponent} from './app.component';
   imports: [
     BrowserModule,
     FormsModule,
-    LsnLibsModule,
+    LsnLibsModule.forRoot({
+      numeric: {
+        decimals: '.',
+        thousands: ',',
+        precision: 4,
+      }
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
