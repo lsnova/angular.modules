@@ -1,27 +1,27 @@
 import { ElementRef, OnChanges } from '@angular/core';
-import { NgControl } from '@angular/forms';
-declare enum NumericSeparator {
-    COMMA = ",",
-    PERIOD = "."
-}
-declare class NumericConfig {
-    min: number;
-    max: number;
-    precision: number;
-    separator: NumericSeparator;
-}
-export declare class NumericDirective implements OnChanges {
+import { ControlValueAccessor } from '@angular/forms';
+import { ConfigService, NumericConfig } from '../../services/config.service';
+export declare class NumericDirective implements OnChanges, ControlValueAccessor {
     private el;
-    private ngControl;
-    lsnNumeric: {};
-    element: any;
+    private configService;
+    lsnNumeric: NumericConfig;
+    element: ElementRef;
     protected config: NumericConfig;
-    private defaultConfig;
-    constructor(el: ElementRef, ngControl: NgControl);
+    onChange: (_: any) => void;
+    onTouch: () => void;
+    constructor(el: ElementRef, configService: ConfigService);
     ngOnChanges(): void;
     inputHandler($event: any): void;
-    blurHandler($event: any): void;
-    protected parseNewValue(value: any, blurEvent?: boolean): any;
+    focusHandler(): void;
+    blurHandler(): void;
+    writeValue(modelValue: string): Promise<void>;
+    registerOnChange(fn: any): void;
+    registerOnTouched(fn: any): void;
+    displayValue: any;
+    setConfig(): void;
+    parseValue(value: any): number;
+    handleRange(value: any): any;
+    prepareDisplayValue(value: any): any;
+    setEditMode(): void;
     keyDownHandler(e: KeyboardEvent): void;
 }
-export {};
