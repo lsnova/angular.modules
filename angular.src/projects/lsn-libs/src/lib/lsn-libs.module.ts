@@ -22,15 +22,11 @@ import {ConfigService, CustomConfig} from './services/config.service';
 })
 export class LsnLibsModule {
   static forRoot(config?: CustomConfig): ModuleWithProviders {
-    let moduleConfig = new CustomConfig();
-    if (config) {
-      moduleConfig = Object.assign(moduleConfig, config);
-    }
     return {
       ngModule: LsnLibsModule,
       providers: [
         ConfigService,
-        {provide: CustomConfig, useValue: moduleConfig }
+        {provide: CustomConfig, useValue: config}
       ]
     };
   }

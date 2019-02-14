@@ -29,7 +29,7 @@ export class DefaultNumericConfig implements NumericConfig {
 
 export class CustomConfig {
   numeric?: NumericConfig;
-  custom?: {[key: string]: NumericConfig};
+  custom?: { [key: string]: NumericConfig };
 
   constructor(props = {}) {
     Object.assign(this, props);
@@ -41,8 +41,14 @@ export class ConfigService {
   private config: CustomConfig;
 
   constructor(config: CustomConfig) {
-    const numericConfig = config.numeric || {};
-    const customConfig = config.custom || {};
+
+    let moduleConfig = new CustomConfig();
+    if (config) {
+      moduleConfig = Object.assign(moduleConfig, config);
+    }
+
+    const numericConfig = moduleConfig.numeric || {};
+    const customConfig = moduleConfig.custom || {};
     this.config = new CustomConfig({
       numeric: new DefaultNumericConfig(numericConfig),
       custom: customConfig,
