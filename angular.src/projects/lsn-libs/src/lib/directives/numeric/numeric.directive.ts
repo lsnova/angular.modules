@@ -1,7 +1,7 @@
 import {Directive, ElementRef, forwardRef, HostListener, Input, OnChanges} from '@angular/core';
 import * as keyboard from '@angular/cdk/keycodes';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
-import {ConfigService, DefaultNumericConfig, NumericConfig} from '../../services/config.service';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ConfigService, NumericConfig} from '../../services/config.service';
 
 @Directive({
   selector: '[lsnNumeric]',
@@ -18,10 +18,8 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
   element: ElementRef;
   protected config: NumericConfig;
   // private modelValue: number;
-  public onChange = (_: any) => {
-  }
-  public onTouch = () => {
-  }
+  public onChange = (_: any) => {};
+  public onTouch = () => {};
 
   constructor(private el: ElementRef, private configService: ConfigService) {
     this.element = el;
@@ -37,10 +35,11 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     if ($event.target.value === '-') {
       return;
     }
-    const parsedValue = this.parseValue($event.target.value);
+    const value = this.handleLength($event.target.value);
+    const parsedValue = this.parseValue(value);
     const rangeValue = this.handleRange(parsedValue);
     if (parsedValue === rangeValue) {
-      this.displayValue = $event.target.value.replace(/[,|.]/, this.config.decimals);
+      this.displayValue = value.replace(/[,|.]/, this.config.decimals);
       this.onChange(parsedValue);
     } else {
       this.displayValue = rangeValue.toString().replace(/[,|.]/, this.config.decimals);
@@ -88,6 +87,9 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     if (this.config.decimals && this.config.thousands && this.config.decimals === this.config.thousands) {
       this.config.thousands = undefined;
     }
+    if (this.config.max !== undefined && this.config.maxLength !== undefined) {
+      console.warn('[lsnNumeric] Setting `maxLength` makes `max` redundant.');
+    }
   }
 
   parseValue(value) {
@@ -101,8 +103,18 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     return isNaN(parsedValue) ? undefined : parsedValue;
   }
 
+  handleLength(value) {
+    if (
+      this.config.maxLength
+      && value.toString().length > this.config.maxLength
+    ) {
+      return value.toString().substr(0, this.config.maxLength);
+    }
+    return value;
+  }
+
   handleRange(value) {
-    if (this.config.max !== undefined && value > this.config.max) {
+    if (!this.config.maxLength && this.config.max !== undefined && value > this.config.max) {
       return this.config.max;
     } else if (this.config.min !== undefined && value < this.config.min) {
       return this.config.min;
@@ -172,6 +184,14 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
       )
     ) {
       return;  // let it happen, don't do anything
+    }
+
+    // Handle maxLength
+    if (
+      this.config.maxLength !== undefined
+      && currentValue.toString().length >= this.config.maxLength
+    ) {
+      e.preventDefault();
     }
 
     // Handle minus

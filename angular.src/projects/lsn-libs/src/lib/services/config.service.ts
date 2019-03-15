@@ -9,6 +9,7 @@ enum NumericSeparator {
 export interface NumericConfig {
   min?: number;
   max?: number;
+  maxLength?: number;
   precision?: number;
   decimals?: string;
   thousands?: string;
@@ -18,6 +19,7 @@ export interface NumericConfig {
 export class DefaultNumericConfig implements NumericConfig {
   min: number;
   max: number;
+  maxLength: number;
   precision = 0;
   decimals: string = NumericSeparator.PERIOD;
   thousands: string;

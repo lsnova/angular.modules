@@ -11,5 +11,6 @@ export class AppComponent {
   numeric1 = 10;
   numeric2 = 123456.789;
   numeric3 = undefined;
+  numeric4 = 1;
   numpadValue = 0;
 }
