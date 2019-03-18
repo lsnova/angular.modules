@@ -190,6 +190,7 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     if (
       this.config.maxLength !== undefined
       && currentValue.toString().length >= this.config.maxLength
+      && this.element.nativeElement.selectionEnd - this.element.nativeElement.selectionStart === 0
     ) {
       e.preventDefault();
     }
