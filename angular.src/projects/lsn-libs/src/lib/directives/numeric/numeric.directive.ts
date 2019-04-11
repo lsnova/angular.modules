@@ -3,15 +3,15 @@ import * as keyboard from '@angular/cdk/keycodes';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ConfigService, NumericConfig} from '../../services/config.service';
 
+const CUSTOM_SELECT_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => NumericDirective),
+  multi: true
+};
+
 @Directive({
   selector: '[lsnNumeric]',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => NumericDirective),
-      multi: true
-    },
-  ]
+  providers: [CUSTOM_SELECT_VALUE_ACCESSOR]
 })
 export class NumericDirective implements OnChanges, ControlValueAccessor {
   @Input() lsnNumeric: NumericConfig = {};
@@ -21,7 +21,10 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
   public onChange = (_: any) => {};
   public onTouch = () => {};
 
-  constructor(private el: ElementRef, private configService: ConfigService) {
+  constructor(
+    private el: ElementRef,
+    private configService: ConfigService
+  ) {
     this.element = el;
     this.setConfig();
   }
