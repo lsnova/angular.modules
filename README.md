@@ -7,22 +7,40 @@ Install the package with:
 
 `npm install -S git+ssh://git@github.com:lsnova/angular.modules.git`
 
+or e.g.
+
+`npm install -S git+ssh://git@github.com:lsnova/angular.modules.git#0.4.1`
+
+for specific version number (check the repo's tags).
+
+Since this is not a public npm package (yet?), **it is recommended to use a specific version number**.
+
 Now, in your Angular application import the whole module:
+```
+import {LsnLibsModule} from '@lsnova/angularmodules';
 
-`import {LsnLibsModule} from '@lsnova/angularmodules';`
+@NgModule({
+  ...
+  imports: [
+    ...,
+    LsnLibsModule
+  ],
+  ...
+})
+export class AppModule {
+}
+```
 
-or a single feature:
-
-`import {NumericDirective} from '@lsnova/angularmodules';`
+For importing a single feature see its docs for details.
 
 #### Available features
 
-| Feature               | Notes                                                  | Docs         |
-|-----------------------|--------------------------------------------------------|--------------|
-| CapitalizeDirective   | Capitalize input value                                 |   [Docs][2]  |
-| LatinToGreekDirective | Translate input characters from latin to greek         |   [Docs][3]  |
-| NumericDirective      | Input directive for number values                      |   [Docs][0]  |
-| NumPadDirective       | Input directive for digits only                        |   [Docs][1]  |
+| Feature               | Type      | Notes                                                  | Docs         |
+|-----------------------|-----------|--------------------------------------------------------|--------------|
+| CapitalizeDirective   | directive | Capitalize input value                                 |   [Docs][2]  |
+| LatinToGreekDirective | directive | Translate input characters from latin to greek         |   [Docs][3]  |
+| NumericDirective      | directive | Input directive for number values                      |   [Docs][0]  |
+| NumPadDirective       | directive | Input directive for digits only                        |   [Docs][1]  |
 
  [0]: https://github.com/lsnova/angular.modules/tree/master/angular.src/projects/lsn-libs/src/lib/directives/numeric
  [1]: https://github.com/lsnova/angular.modules/tree/master/angular.src/projects/lsn-libs/src/lib/directives/numpad

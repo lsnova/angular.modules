@@ -3,16 +3,20 @@
 This directive controls the input's value and allows the user to only input numbers.
 
 ## Installation
-Import LsnLibsModule to your app: 
-
-`import {LsnLibsModule} from '@lsnova/angularmodules';`
-
+Either import whole LsnLibsModule or: 
 ```
+import {LsnNumericModule} from '@lsnova/angularmodules';
+
 @NgModule({
-    imports: [
-        LsnLibsModule.forRoot()
-    ],
+  ...
+  imports: [
+    ...,
+    LsnNumericModule.forRoot()
+  ],
+  ...
 })
+export class AppModule {
+}
 ```
 
 ## Usage
@@ -59,8 +63,8 @@ You can define custom configurations
 @NgModule({
     imports: [
         ...
-        LsnLibsModule.forRoot({
-            numeric: {
+        LsnNumericModule.forRoot({
+            default: {
                 decimals: '.',
                 precision: 4,
             },
@@ -80,5 +84,3 @@ You can define custom configurations
 and make component use it:
 
 `<input [lsnNumeric]="{config:'currency'}" [(ngModel)]="myValue" /> `
-
-

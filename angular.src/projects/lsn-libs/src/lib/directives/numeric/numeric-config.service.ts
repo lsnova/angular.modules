@@ -29,8 +29,8 @@ export class DefaultNumericConfig implements NumericConfig {
   }
 }
 
-export class CustomConfig {
-  numeric?: NumericConfig;
+export class CustomNumericConfig {
+  default?: NumericConfig;
   custom?: { [key: string]: NumericConfig };
 
   constructor(props = {}) {
@@ -39,29 +39,32 @@ export class CustomConfig {
 }
 
 @Injectable()
-export class ConfigService {
-  private config: CustomConfig;
+export class NumericConfigService {
+  private config: CustomNumericConfig;
 
-  constructor(config: CustomConfig) {
+  constructor(config: CustomNumericConfig) {
 
-    let moduleConfig = new CustomConfig();
+    let moduleConfig = new CustomNumericConfig();
     if (config) {
       moduleConfig = Object.assign(moduleConfig, config);
     }
 
-    const numericConfig = moduleConfig.numeric || {};
+    const numericConfig = moduleConfig.default || {};
     const customConfig = moduleConfig.custom || {};
-    this.config = new CustomConfig({
-      numeric: new DefaultNumericConfig(numericConfig),
+    this.config = new CustomNumericConfig({
+      default: new DefaultNumericConfig(numericConfig),
       custom: customConfig,
     });
   }
 
-  getNumericConfig() {
-    return this.config.numeric;
+  getDefaultConfig() {
+    return this.config.default;
   }
 
   getCustomConfig(key) {
+    if (!this.config.custom[key]) {
+      console.warn('[lsnNumeric] Invalid config key provided.');
+    }
     return this.config.custom[key] || {};
   }
 }

@@ -1,7 +1,7 @@
 import {Directive, ElementRef, forwardRef, HostListener, Input, OnChanges} from '@angular/core';
 import * as keyboard from '@angular/cdk/keycodes';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {ConfigService, NumericConfig} from '../../services/config.service';
+import {NumericConfigService, NumericConfig} from './numeric-config.service';
 
 const CUSTOM_SELECT_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -22,7 +22,7 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
 
   constructor(
     private el: ElementRef,
-    private configService: ConfigService
+    private configService: NumericConfigService
   ) {
     this.element = el;
     this.setConfig();
@@ -84,7 +84,7 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
   setConfig() {
     const defaultConfig = this.lsnNumeric.config
       ? this.configService.getCustomConfig(this.lsnNumeric.config)
-      : this.configService.getNumericConfig();
+      : this.configService.getDefaultConfig();
     this.config = Object.assign({...defaultConfig, ...this.lsnNumeric});
     if (this.config.decimals && this.config.thousands && this.config.decimals === this.config.thousands) {
       this.config.thousands = undefined;

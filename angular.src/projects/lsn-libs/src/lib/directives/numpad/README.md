@@ -4,8 +4,20 @@ This directive controls the input's value and allows the user to only input digi
 
 ## Installation
 Either import whole LsnLibsModule or: 
+```
+import {LsnNumpadModule} from '@lsnova/angularmodules';
 
-`import {LatinToGreekDirective} from '@lsnova/angularmodules';`
+@NgModule({
+  ...
+  imports: [
+    ...,
+    LsnNumpadModule
+  ],
+  ...
+})
+export class AppModule {
+}
+```
 
 ## Usage
 In your template file:

@@ -1,6 +1,6 @@
 import { ElementRef, OnChanges } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import { ConfigService, NumericConfig } from '../../services/config.service';
+import { NumericConfigService, NumericConfig } from './numeric-config.service';
 export declare class NumericDirective implements OnChanges, ControlValueAccessor {
     private el;
     private configService;
@@ -9,7 +9,7 @@ export declare class NumericDirective implements OnChanges, ControlValueAccessor
     protected config: NumericConfig;
     onChange: (_: any) => void;
     onTouch: () => void;
-    constructor(el: ElementRef, configService: ConfigService);
+    constructor(el: ElementRef, configService: NumericConfigService);
     ngOnChanges(): void;
     inputHandler($event: any): void;
     focusHandler(): void;

@@ -1,6 +1,6 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {NumericDirective} from './numeric.directive';
-import {ConfigService, CustomConfig} from '../../services/config.service';
+import {NumericConfigService, CustomNumericConfig} from './numeric-config.service';
 
 @NgModule({
   declarations: [
@@ -11,12 +11,12 @@ import {ConfigService, CustomConfig} from '../../services/config.service';
   ]
 })
 export class LsnNumericModule {
-  static forRoot(config?: CustomConfig): ModuleWithProviders {
+  static forRoot(config?: CustomNumericConfig): ModuleWithProviders {
     return {
       ngModule: LsnNumericModule,
       providers: [
-        ConfigService,
-        {provide: CustomConfig, useValue: config}
+        NumericConfigService,
+        {provide: CustomNumericConfig, useValue: config}
       ]
     };
   }
