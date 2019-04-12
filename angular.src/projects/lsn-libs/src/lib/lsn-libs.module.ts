@@ -1,33 +1,20 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import {CapitalizeDirective} from './directives/capitalize/capitalize.directive';
-import {LatinToGreekDirective} from './directives/latin-to-greek/latin-to-greek.directive';
-import {NumericDirective} from './directives/numeric/numeric.directive';
-import {NumPadDirective} from './directives/numpad/numpad.directive';
-import {ConfigService, CustomConfig} from './services/config.service';
+import {NgModule} from '@angular/core';
+import {LsnNumericModule} from './directives/numeric/numeric.module';
+import {LsnNumpadModule} from './directives/numpad/numpad.module';
+import {LsnLatinToGreekModule} from './directives/latin-to-greek/latin-to-greek.module';
+import {LsnCapitalizeModule} from './directives/capitalize/capitalize.module';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    CapitalizeDirective,
-    LatinToGreekDirective,
-    NumericDirective,
-    NumPadDirective,
+  declarations: [],
+  imports: [
+    FormsModule,
+    LsnCapitalizeModule,
+    LsnLatinToGreekModule,
+    LsnNumericModule.forRoot(),
+    LsnNumpadModule,
   ],
-  imports: [],
-  exports: [
-    CapitalizeDirective,
-    LatinToGreekDirective,
-    NumericDirective,
-    NumPadDirective,
-  ]
+  exports: []
 })
 export class LsnLibsModule {
-  static forRoot(config?: CustomConfig): ModuleWithProviders {
-    return {
-      ngModule: LsnLibsModule,
-      providers: [
-        ConfigService,
-        {provide: CustomConfig, useValue: config}
-      ]
-    };
-  }
 }

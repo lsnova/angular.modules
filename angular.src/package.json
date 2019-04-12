@@ -8,9 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:libs": "cd projects/lsn-libs && ng build lsn-libs",
-    "package": "npm run build:libs && rsync -a dist/lsn-libs/* ../",
-    "postinstall": "npm run build:libs && npm install -S file:dist/lsn-libs"
+    "libs:build": "cd projects/lsn-libs && ng build lsn-libs",
+    "libs:test": "ng test lsn-libs",
+    "package": "npm run libs:build && rsync -a dist/lsn-libs/* ../",
+    "postinstall": "npm run libs:build && npm install -S file:dist/lsn-libs"
   },
   "private": true,
   "dependencies": {
