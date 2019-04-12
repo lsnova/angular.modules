@@ -14,7 +14,12 @@ import {FormsModule} from '@angular/forms';
     LsnNumericModule.forRoot(),
     LsnNumpadModule,
   ],
-  exports: []
+  exports: [
+    LsnCapitalizeModule,
+    LsnLatinToGreekModule,
+    LsnNumericModule,
+    LsnNumpadModule,
+  ]
 })
 export class LsnLibsModule {
 }

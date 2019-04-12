@@ -2,12 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
-import {
-  LsnCapitalizeModule,
-  LsnLatinToGreekModule,
-  LsnNumericModule,
-  LsnNumpadModule,
-} from '@lsnova/angularmodules';
+import {LsnLibsModule} from '@lsnova/angularmodules';
 
 import {AppComponent} from './app.component';
 
@@ -19,10 +14,7 @@ import {AppComponent} from './app.component';
     BrowserModule,
     FormsModule,
     // lib modules
-    LsnCapitalizeModule,
-    LsnLatinToGreekModule,
-    LsnNumericModule.forRoot(),
-    LsnNumpadModule,
+    LsnLibsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
