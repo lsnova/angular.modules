@@ -31,8 +31,8 @@ const SELECT_SEARCHABLE_MIN_LIMIT = 8;
 
 @Component({
   selector: 'lsn-mat-select',
-  templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss'],
+  templateUrl: './mat-select.component.html',
+  styleUrls: ['./mat-select.component.scss'],
   providers: [CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.Emulated
 })
