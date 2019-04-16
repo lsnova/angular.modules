@@ -7,11 +7,11 @@ import {
   MatSelectModule,
   MatTooltipModule
 } from '@angular/material';
-import {SelectComponent} from './select.component';
+import {MatSelectComponent} from './mat-select.component';
 
 @NgModule({
   declarations: [
-    SelectComponent,
+    MatSelectComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,8 +23,8 @@ import {SelectComponent} from './select.component';
     MatTooltipModule
   ],
   exports: [
-    SelectComponent,
+    MatSelectComponent,
   ]
 })
-export class LsnSelectModule {
+export class LsnMatSelectModule {
 }

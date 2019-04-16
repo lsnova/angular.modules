@@ -19,7 +19,7 @@ import {takeUntil} from 'rxjs/operators';
 /* tslint:disable:no-use-before-declare */
 export const CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => SelectComponent),
+  useExisting: forwardRef(() => MatSelectComponent),
   multi: true
 };
 /* tslint:enable:no-use-before-declare */
@@ -30,13 +30,13 @@ const noop = () => {
 const SELECT_SEARCHABLE_MIN_LIMIT = 8;
 
 @Component({
-  selector: 'lsn-select',
+  selector: 'lsn-mat-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
   providers: [CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.Emulated
 })
-export class SelectComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
+export class MatSelectComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
   @Input() control: FormControl = new FormControl();
   @Input() options: any[] = [];
   @Input() placeholder: string;

@@ -4,7 +4,7 @@ import {LsnNumpadModule} from './directives/numpad/numpad.module';
 import {LsnLatinToGreekModule} from './directives/latin-to-greek/latin-to-greek.module';
 import {LsnCapitalizeModule} from './directives/capitalize/capitalize.module';
 
-import {LsnSelectModule} from './components/select/select.module';
+import {LsnMatSelectModule} from './components/mat-select/mat-select.module';
 import {FormsModule} from '@angular/forms';
 
 @NgModule({
@@ -28,14 +28,14 @@ import {FormsModule} from '@angular/forms';
     }),
 
     LsnNumpadModule,
-    LsnSelectModule,
+    LsnMatSelectModule,
   ],
   exports: [
     LsnCapitalizeModule,
     LsnLatinToGreekModule,
     LsnNumericModule,
     LsnNumpadModule,
-    LsnSelectModule,
+    LsnMatSelectModule,
   ]
 })
 export class LsnLibsModule {
