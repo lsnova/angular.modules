@@ -16,7 +16,7 @@ export declare class DefaultNumericConfig implements NumericConfig {
     thousands: string;
     constructor(props?: {});
 }
-export declare class CustomConfig {
+export declare class CustomNumericConfig {
     default?: NumericConfig;
     custom?: {
         [key: string]: NumericConfig;
@@ -25,7 +25,7 @@ export declare class CustomConfig {
 }
 export declare class NumericConfigService {
     private config;
-    constructor(config: CustomConfig);
+    constructor(config: CustomNumericConfig);
     getDefaultConfig(): NumericConfig;
     getCustomConfig(key: any): NumericConfig;
 }
