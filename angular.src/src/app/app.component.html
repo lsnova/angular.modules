@@ -1,41 +1,6 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    LSN Angular Modules
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<app-navbar></app-navbar>
+<div class="app-content">
+  <app-numeric-card></app-numeric-card>
+  <app-numpad-card></app-numpad-card>
+  <app-select-card></app-select-card>
 </div>
-<h2>Here are some working examples: </h2>
-<h3>[lsnNumeric]:</h3>
-<ul>
-  <li> default config: <br/>
-    <input lsnNumeric [(ngModel)]="numeric1" />
-    model value: {{numeric1}}
-  </li>
-  <li> precision with separators: <br/>
-    <input
-      [lsnNumeric]="{precision:3, decimals: ',', thousands: '.'}"
-      [(ngModel)]="numeric2"
-    /> model value: {{numeric2}}
-  </li>
-  <li> custom configuration: <br/>
-    <input
-      [lsnNumeric]="{config:'currency'}"
-      [(ngModel)]="numeric3"
-    /> model value: {{numeric3}}
-  </li>
-  <li> maxlength: <br/>
-    <input
-      [lsnNumeric]="{maxLength:3}"
-      [(ngModel)]="numeric4"
-    /> model value: {{numeric4}}
-  </li>
-</ul>
-<h3>[lsnNumPad]:</h3>
-<ul>
-  <li>
-    <input [lsnNumPad]="{maxlength: 4}" [(ngModel)]="numpadValue" />
-    <input [lsnNumPad]="{maxlength: 11, allowLeadingZeros: true}" />
-  </li>
-</ul>
-

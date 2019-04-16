@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-title>lsnNumeric</mat-card-title>
+  <mat-card-subtitle>directive | selector: 'app-numeric-card'</mat-card-subtitle>
+  <mat-card-content>
+    <section>
+      <p>default config:</p>
+      <input lsnNumeric [(ngModel)]="numeric1" />
+      model value: {{numeric1}}
+    </section>
+    <section>
+      <p>precision with separators:</p>
+      <input
+        [lsnNumeric]="{precision:3, decimals: ',', thousands: '.'}"
+        [(ngModel)]="numeric2"
+      /> model value: {{numeric2}}
+    </section>
+    <section>
+      <p>custom configuration: </p>
+      <input
+        [lsnNumeric]="{config:'currency'}"
+        [(ngModel)]="numeric3"
+      /> model value: {{numeric3}}
+    </section>
+    <section>
+      <p>maxlength: </p>
+      <input
+        [lsnNumeric]="{maxLength:3}"
+        [(ngModel)]="numeric4"
+      /> model value: {{numeric4}}
+    </section>
+  </mat-card-content>
+</mat-card>

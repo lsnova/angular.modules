@@ -1,16 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styles: []
+  styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class AppComponent {
-  title = 'angularmodules';
-  numeric1 = 10;
-  numeric2 = 123456.789;
-  numeric3 = undefined;
-  numeric4 = 1;
-  numpadValue = 0;
 }

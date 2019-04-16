@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-title>lsnSelect</mat-card-title>
+  <mat-card-subtitle>component | selector: 'lsn-select'</mat-card-subtitle>
+  <mat-card-content>
+    <lsn-select
+      placeholder="Country"
+      [options]="options"
+      [(ngModel)]="selectedOption"
+      bindLabel="description"
+      bindBy="code"
+    ></lsn-select>
+  </mat-card-content>
+</mat-card>

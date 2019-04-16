@@ -48,5 +48,10 @@ For importing a single feature see its docs for details.
  [3]: https://github.com/lsnova/angular.modules/tree/master/angular.src/projects/lsn-libs/src/lib/directives/latin-to-greek
 
 ## Contributing
-
-This project is still evolving to a stable version. Contributing rules coming soon. Be patient!
+If you are a contributor, you will be interested in the `angular.src` directory. It contains:
+ - Angular application configured to build the lsn-libs project and also showcase LsnLibsModule usage (`/angular.src/src` dir)
+ - Angular library project which contains the sources for the features (`/angular.src/projects/lsn-libs` dir)
+ 
+ See the [angular.src/README](https://github.com/lsnova/angular.modules/tree/master/angular.src) to see how to build and develop `@lsnova/angularmodules` library.
+ 
+**Other files in the root directory are generated automatically and should not be modified manually!**

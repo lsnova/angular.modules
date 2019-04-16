@@ -1,27 +1,46 @@
-# Angularmodules
+# @lsnova/angularmodules
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
 
-## Development server
+### First things first
+All the subsequent instructions will assume you are in the `angular.src` dir so:
+1. Clone the repo
+1. `cd angular.src`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Getting started
+1. `npm install`
+1. `ng serve`
+1. Open http://localhost:4200 in browser. This is the **showcase app**.
 
-## Code scaffolding
+### Showcase app development
+Modify the sources in `./src` directory. If `ng serve` is running the app should be recompiled automatically.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**Important**
 
-## Build
+- Keep the showcase app up-to-date. 
+- Include examples that might help the users to handle different kinds of feature's configurations (if any).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Library development
+To build the `lsn-libs` library project run:
 
-## Running unit tests
+`npm run libs:build`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+or 
 
-## Running end-to-end tests
+`npm run libs:build-watch`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+to keep watching for changes.
 
-## Further help
+#### Adding features
+- Add the features in respective subdirectories in `./projects/lsn-libs/src/lib` (components | directives).
+- Each feature should have its own module, readme file and unit tests.
+- Export the features module in `./projects/lsn-libs/src/lib/public_api.ts`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+#### Unit testing
+To run the library's unit test run `npm run libs:test`
+
+#### Building package
+1. Set a proper *version* in `./projects/lsn-libs/package.json`.
+1. Run `npm run package`. This will build the library and copy the compiled files to root directory.
+1. Commit changed files to PR in repository.
+1. Once the PR is merged, tag the proper commit with the same version number as in `./projects/lsn-libs/package.json`.
