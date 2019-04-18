@@ -34,12 +34,13 @@ const SELECT_SEARCHABLE_MIN_LIMIT = 8;
   templateUrl: './mat-select.component.html',
   styleUrls: ['./mat-select.component.scss'],
   providers: [CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR],
-  encapsulation: ViewEncapsulation.Emulated
+  encapsulation: ViewEncapsulation.None
 })
 export class MatSelectComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
   @Input() control: FormControl = new FormControl();
   @Input() options: any[] = [];
   @Input() placeholder: string;
+  @Input() clearLabel: string;
   @Input() bindLabel: string;
   @Input() bindBy: string;
   @Input() bindValue: string;
@@ -90,7 +91,7 @@ export class MatSelectComponent implements ControlValueAccessor, OnInit, OnChang
 
   setSingleValue(value: any) {
     if (Array.isArray(value)) {
-      console.warn('[app-select] Given value is an array. Should `multiple = true`?');
+      console.warn('[lsn-mat-select] Given value is an array. Should `multiple = true`?');
     }
     const correspondingOption = this.findOption(value);
     this.changeValue(correspondingOption);
@@ -176,9 +177,6 @@ export class MatSelectComponent implements ControlValueAccessor, OnInit, OnChang
       if (selected) {
         this.selectedOptions.push(value);
       } else {
-        // _remove(this.selectedOptions, (item) => {
-        //   return this.bindValue ? item[this.bindValue] === value[this.bindValue] : item === value;
-        // });
         this.selectedOptions = this.selectedOptions.filter((item) => {
           return this.bindValue ? item[this.bindValue] !== value[this.bindValue] : item !== value;
         });
@@ -189,6 +187,9 @@ export class MatSelectComponent implements ControlValueAccessor, OnInit, OnChang
   }
 
   resetOptions() {
+    if (!Array.isArray(this.options)) {
+      this.options = [];
+    }
     this.searchTerm = '';
     this.filteredOptions = [...this.options];
     this.optionChanges$.next();

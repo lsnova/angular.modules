@@ -26,7 +26,6 @@ import {FormsModule} from '@angular/forms';
         }
       }
     }),
-
     LsnNumpadModule,
     LsnMatSelectModule,
   ],

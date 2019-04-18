@@ -1,49 +1,48 @@
 <mat-form-field>
-    <mat-select
-        [formControl]="control"
-        [placeholder]="placeholder"
-        [errorStateMatcher]="errorStateMatcher"
-        [multiple]="multiple"
-        [disableOptionCentering]="true"
-        panelClass="app-select-panel"
-        (blur)="onBlur()"
-        (openedChange)="openedChange($event)"
-    >
-        <input
-            #searchInput
-            *ngIf="isSearchEnabled"
-            matInput
-            type="text"
-            class="input-filter mat-select-search"
-            autocomplete="off"
-            [ngModel]="searchTerm"
-            (ngModelChange)="filterOptions($event)"
-            [placeholder]="'FILTER'"
-            (keydown)="handleKeydown($event)"
-        />
-        <div [ngClass]="{'app-select__options': true, 'app-select__options--searchable': isSearchEnabled}">
-            <mat-option *ngIf="!options.length"></mat-option>
-            <mat-option
-                *ngFor="let option of filteredOptions"
-                [value]="option"
-                [title]="bindLabel ? option[bindLabel] : option"
-            >
-                <span *ngIf="!optionTemplate">{{ bindLabel ? option[bindLabel] : option }}</span>
-                <span *ngIf="optionTemplate">
-                <ng-container *ngTemplateOutlet="optionTemplate; context:{option: option}"></ng-container>
-            </span>
-            </mat-option>
-        </div>
-    </mat-select>
-    <mat-icon class="mat-select-clear" *ngIf="isClearEnabled">
-        <button
-            class="btn btn-basic-icon pr-0 pl-0"
-            [matTooltip]="'BUTTON.DELETE'"
-            (click)="clearValue($event)">
-            <i class="icon-close"></i>
-        </button>
-    </mat-icon>
-    <mat-error appScrollTo="" *ngFor="let error of errors">
-        {{ error.description }}
-    </mat-error>
+  <mat-select
+    [formControl]="control"
+    [placeholder]="placeholder"
+    [errorStateMatcher]="errorStateMatcher"
+    [multiple]="multiple"
+    [disableOptionCentering]="true"
+    panelClass="lsn-mat-select-panel"
+    (blur)="onBlur()"
+    (openedChange)="openedChange($event)"
+  >
+    <input
+      #searchInput
+      *ngIf="isSearchEnabled"
+      type="text"
+      class="input-filter mat-select-search mat-input-element"
+      autocomplete="off"
+      [ngModel]="searchTerm"
+      (ngModelChange)="filterOptions($event)"
+      [placeholder]="placeholder"
+      (keydown)="handleKeydown($event)"
+    />
+    <div [ngClass]="{'lsn-mat-select__options': true, 'lsn-mat-select__options--searchable': isSearchEnabled}">
+      <mat-option *ngIf="!options.length"></mat-option>
+      <mat-option
+        *ngFor="let option of filteredOptions"
+        [value]="option"
+        [title]="bindLabel ? option[bindLabel] : option"
+      >
+        <span *ngIf="!optionTemplate">{{ bindLabel ? option[bindLabel] : option }}</span>
+        <span *ngIf="optionTemplate">
+          <ng-container *ngTemplateOutlet="optionTemplate; context:{option: option}"></ng-container>
+        </span>
+      </mat-option>
+    </div>
+  </mat-select>
+  <mat-icon class="mat-select-clear" *ngIf="isClearEnabled">
+    <button
+      class="mat-select-clear-btn"
+      [matTooltip]="clearLabel"
+      (click)="clearValue($event)">
+      <i class="mat-select-clear-btn-icon"></i>
+    </button>
+  </mat-icon>
+  <mat-error appScrollTo="" *ngFor="let error of errors">
+    {{ error.description }}
+  </mat-error>
 </mat-form-field>

@@ -37,6 +37,7 @@ For importing a single feature see its docs for details.
 
 | Feature               | Type      | Notes                                                  | Docs         |
 |-----------------------|-----------|--------------------------------------------------------|--------------|
+| MatSelectComponent    | component | Extended MatSelect implementation with search input    |   [Docs][4]  |
 | CapitalizeDirective   | directive | Capitalize input value                                 |   [Docs][2]  |
 | LatinToGreekDirective | directive | Translate input characters from latin to greek         |   [Docs][3]  |
 | NumericDirective      | directive | Input directive for number values                      |   [Docs][0]  |
@@ -46,6 +47,7 @@ For importing a single feature see its docs for details.
  [1]: https://github.com/lsnova/angular.modules/tree/master/angular.src/projects/lsn-libs/src/lib/directives/numpad
  [2]: https://github.com/lsnova/angular.modules/tree/master/angular.src/projects/lsn-libs/src/lib/directives/capitalize
  [3]: https://github.com/lsnova/angular.modules/tree/master/angular.src/projects/lsn-libs/src/lib/directives/latin-to-greek
+ [4]: https://github.com/lsnova/angular.modules/tree/master/angular.src/projects/lsn-libs/src/lib/components/mat-select
 
 ## Contributing
 If you are a contributor, you will be interested in the `angular.src` directory. It contains:

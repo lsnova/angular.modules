@@ -4,10 +4,24 @@
   <mat-card-content>
     <lsn-mat-select
       placeholder="Country"
+      clearLabel="Clear"
       [options]="options"
-      [(ngModel)]="selectedOption"
+      [(ngModel)]="singleOption"
       bindLabel="description"
       bindBy="code"
     ></lsn-mat-select>
+    Model value: {{singleOption | json}}
+
+    <br/>
+    <lsn-mat-select
+      placeholder="Countries"
+      clearLabel="Clear"
+      [options]="options"
+      [(ngModel)]="multipleOptions"
+      bindLabel="description"
+      bindBy="code"
+      multiple
+    ></lsn-mat-select>
+    Model value: {{multipleOptions | json}}
   </mat-card-content>
 </mat-card>

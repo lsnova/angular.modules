@@ -19,5 +19,7 @@ export class SelectCardComponent {
     {code: 'POL', description: 'Poland'},
   ];
 
-  selectedOption = null;
+  singleOption = null;
+
+  multipleOptions = [];
 }
