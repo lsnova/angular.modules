@@ -19,9 +19,9 @@
       [(ngModel)]="singleOptionCode"
       bindLabel="description"
       bindValue="code"
+      [errorStateMatcher]="countryCodeErrorStateMatcher"
     ></lsn-mat-select>
     Model value (bindValue="code"): {{singleOptionCode | json}}
-
     <br/>
     <lsn-mat-select
       placeholder="Countries"

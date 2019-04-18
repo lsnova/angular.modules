@@ -42,7 +42,7 @@
       <i class="mat-select-clear-btn-icon"></i>
     </button>
   </mat-icon>
-  <mat-error appScrollTo="" *ngFor="let error of errors">
-    {{ error.description }}
+  <mat-error *ngFor="let error of errorList">
+    {{ error }}
   </mat-error>
 </mat-form-field>

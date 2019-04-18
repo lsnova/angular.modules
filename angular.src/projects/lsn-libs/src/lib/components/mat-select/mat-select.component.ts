@@ -49,6 +49,7 @@ export class MatSelectComponent implements ControlValueAccessor, OnInit, OnChang
   @Input() multiple = false;
   @Input() errorStateMatcher: ErrorStateMatcher;
   @Input() errors: any[] = [];
+  @Input() errorLabel: string;
 
   @ContentChild(TemplateRef) optionTemplate;
   @ViewChild(MatSelect) matSelect;
@@ -279,6 +280,17 @@ export class MatSelectComponent implements ControlValueAccessor, OnInit, OnChang
     } else {
       this.panelClosed$.next();
       this.resetOptions();
+    }
+  }
+
+  get errorList() {
+    if (Array.isArray(this.errors) && this.errors.length) {
+      return this.errors.map(item => {
+        return this.errorLabel ? item[this.errorLabel] : item;
+      });
+    }
+    if (this.control.errors) {
+      return Object.values(this.control.errors);
     }
   }
 }
