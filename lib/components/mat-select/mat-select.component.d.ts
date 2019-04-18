@@ -10,10 +10,12 @@ export declare class MatSelectComponent implements ControlValueAccessor, OnInit,
     bindBy: string;
     bindValue: string;
     clear: boolean;
+    clearLabel: string;
     disabled: boolean;
     multiple: boolean;
     errorStateMatcher: ErrorStateMatcher;
     errors: any[];
+    errorLabel: string;
     optionTemplate: any;
     matSelect: any;
     searchInput: any;
@@ -48,4 +50,5 @@ export declare class MatSelectComponent implements ControlValueAccessor, OnInit,
     handleDisabled(): void;
     scrollToActiveItem(): void;
     openedChange(isOpen: any): void;
+    readonly errorList: any[];
 }
