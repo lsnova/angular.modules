@@ -40,11 +40,11 @@ export class MatSelectComponent implements ControlValueAccessor, OnInit, OnChang
   @Input() control: FormControl = new FormControl();
   @Input() options: any[] = [];
   @Input() placeholder: string;
-  @Input() clearLabel: string;
   @Input() bindLabel: string;
   @Input() bindBy: string;
   @Input() bindValue: string;
   @Input() clear = true;
+  @Input() clearLabel: string;
   @Input() disabled = false;
   @Input() multiple = false;
   @Input() errorStateMatcher: ErrorStateMatcher;

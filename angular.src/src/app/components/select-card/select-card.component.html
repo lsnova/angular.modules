@@ -11,6 +11,16 @@
       bindBy="code"
     ></lsn-mat-select>
     Model value: {{singleOption | json}}
+    <br/>
+    <lsn-mat-select
+      placeholder="Country"
+      clearLabel="Clear"
+      [options]="options"
+      [(ngModel)]="singleOptionCode"
+      bindLabel="description"
+      bindValue="code"
+    ></lsn-mat-select>
+    Model value (bindValue="code"): {{singleOptionCode | json}}
 
     <br/>
     <lsn-mat-select
@@ -20,7 +30,7 @@
       [(ngModel)]="multipleOptions"
       bindLabel="description"
       bindBy="code"
-      multiple
+      [multiple]="true"
     ></lsn-mat-select>
     Model value: {{multipleOptions | json}}
   </mat-card-content>

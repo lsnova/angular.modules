@@ -20,6 +20,6 @@ export class SelectCardComponent {
   ];
 
   singleOption = null;
-
+  singleOptionCode = null;
   multipleOptions = [];
 }
