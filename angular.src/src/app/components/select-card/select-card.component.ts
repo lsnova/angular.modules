@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {ErrorStateMatcher} from '@angular/material';
 import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
+import {MatSelectComponent} from '@lsnova/angularmodules';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   control: FormControl;
