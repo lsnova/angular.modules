@@ -206,7 +206,6 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
       e.preventDefault();
     }
 
-
     // Handle minus
     if (
       [keyboard.DASH, keyboard.NUMPAD_MINUS].indexOf(e.keyCode) !== -1
