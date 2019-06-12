@@ -37,7 +37,7 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     if ($event.target.value === '-') {
       return;
     }
-    const value = this.handleLength($event.target.value);
+    const value = this.handleWholesLength($event.target.value);
     const parsedValue = this.parseValue(value);
     const rangeValue = this.handleRange(parsedValue);
     if (parsedValue === rangeValue) {
@@ -105,11 +105,12 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     return isNaN(parsedValue) ? undefined : parsedValue;
   }
 
-  handleLength(value) {
-    if (
-      this.config.maxLength
-      && value.toString().length > this.config.maxLength
-    ) {
+  handleWholesLength(value) {
+    if (this.config.maxLength) {
+      if (value.toString().includes(this.config.decimals)) {
+        const [wholes, decimals] = value.toString().split(this.config.decimals);
+        return wholes.substr(0, this.config.maxLength) + this.config.decimals + decimals;
+      }
       return value.toString().substr(0, this.config.maxLength);
     }
     return value;
