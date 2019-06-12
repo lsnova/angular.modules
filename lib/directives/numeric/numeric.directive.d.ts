@@ -20,7 +20,7 @@ export declare class NumericDirective implements OnChanges, ControlValueAccessor
     displayValue: any;
     setConfig(): void;
     parseValue(value: any): number;
-    handleLength(value: any): any;
+    handleWholesLength(value: any): any;
     handleRange(value: any): any;
     prepareDisplayValue(value: any): string;
     setEditMode(): void;
