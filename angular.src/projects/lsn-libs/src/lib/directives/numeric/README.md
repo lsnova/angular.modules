@@ -32,13 +32,14 @@ where for example: `const numericConfig = { precision:2 }`
 
 #### Available config options
 
-| Feature          | Notes                                                                  | Default      |
-|------------------|------------------------------------------------------------------------|--------------|
-| `precision`      | Number of decimals allowed after a separator                           |   0          |
-| `max`            | Allowed max value of input                                             |   undefined  |
-| `min`            | Allowed min value of input                                             |   undefined  |
-| `decimals`       | Wholes and decimals separator (allowed `.` and `,`)                    |   `.`        |
-| `thousands`      | Thousands separator (allowed `.` and `,`) removed if same as decimals  |   undefine   |
+| Feature          | Notes                                                                         | Default      |
+|------------------|-------------------------------------------------------------------------------|--------------|
+| `precision`      | Number of decimals allowed after a separator                                  |   0          |
+| `max`            | Allowed max value of input                                                    |   undefined  |
+| `min`            | Allowed min value of input                                                    |   undefined  |
+| `decimals`       | Wholes and decimals separator (allowed `.` and `,`)                           |   `.`        |
+| `thousands`      | Thousands separator (allowed `.` and `,`) removed if same as decimals         |   undefined  |
+| `maxLength`      | The maximum length of the wholes part (not including minus), overrides `max`  |   undefined  |
 
 ## Global configuration
 When importing the module you can set global default configuration:
