@@ -24,7 +24,7 @@
     <section>
       <p>maxlength: </p>
       <input
-        [lsnNumeric]="{maxLength:3}"
+        [lsnNumeric]="{maxLength: 7, precision: 2, thousands: ' '}"
         [(ngModel)]="numeric4"
       /> model value: {{numeric4}}
     </section>

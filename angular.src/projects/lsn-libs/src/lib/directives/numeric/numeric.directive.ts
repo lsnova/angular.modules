@@ -107,11 +107,13 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
 
   handleWholesLength(value) {
     if (this.config.maxLength) {
-      if (value.toString().includes(this.config.decimals)) {
-        const [wholes, decimals] = value.toString().split(this.config.decimals);
-        return wholes.substr(0, this.config.maxLength) + this.config.decimals + decimals;
+      const negativeSign = value.toString().startsWith('-') ? '-' : '';
+      const absoluteValue = value.toString().replace(/^-/, '');
+      if (absoluteValue.toString().includes(this.config.decimals)) {
+        const [wholes, decimals] = absoluteValue.toString().split(this.config.decimals);
+        return negativeSign + wholes.substr(0, this.config.maxLength) + this.config.decimals + decimals;
       }
-      return value.toString().substr(0, this.config.maxLength);
+      return negativeSign + absoluteValue.toString().substr(0, this.config.maxLength);
     }
     return value;
   }
@@ -190,13 +192,20 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     }
 
     // Handle maxLength
+    const absoluteValue = currentValue.toString().replace(/^-/, '');
+    const [wholes] = absoluteValue.toString().split(this.config.decimals);
     if (
       this.config.maxLength !== undefined
-      && currentValue.toString().length >= this.config.maxLength
+      && (
+        this.element.nativeElement.selectionStart <= currentValue.indexOf(this.config.decimals)
+        && wholes.length >= this.config.maxLength
+        || [keyboard.DASH, keyboard.NUMPAD_MINUS].indexOf(e.keyCode) !== -1
+      )
       && this.element.nativeElement.selectionEnd - this.element.nativeElement.selectionStart === 0
     ) {
       e.preventDefault();
     }
+
 
     // Handle minus
     if (
