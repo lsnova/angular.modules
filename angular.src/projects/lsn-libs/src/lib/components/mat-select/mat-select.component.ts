@@ -51,9 +51,9 @@ export class MatSelectComponent implements ControlValueAccessor, OnInit, OnChang
   @Input() errors: any[] = [];
   @Input() errorLabel: string;
 
-  @ContentChild(TemplateRef) optionTemplate;
-  @ViewChild(MatSelect) matSelect;
-  @ViewChild('searchInput') searchInput;
+  @ContentChild(TemplateRef, {static: false}) optionTemplate;
+  @ViewChild(MatSelect, { static: true }) matSelect;
+  @ViewChild('searchInput', { static: false }) searchInput;
 
   private destroy$ = new Subject();
   private panelClosed$ = new Subject();
