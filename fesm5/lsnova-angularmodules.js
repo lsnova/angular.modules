@@ -1,5 +1,5 @@
 import { Injectable, forwardRef, Directive, ElementRef, Input, HostListener, NgModule, Optional, Component, ViewEncapsulation, ContentChild, TemplateRef, ViewChild } from '@angular/core';
-import { __awaiter, __generator, __assign, __read, __spread } from 'tslib';
+import { __assign, __awaiter, __generator, __read, __spread } from 'tslib';
 import { LEFT_ARROW, RIGHT_ARROW, BACKSPACE, DELETE, END, ENTER, ESCAPE, HOME, TAB, A, C, R, V, X, DASH, NUMPAD_MINUS, COMMA, NUMPAD_PERIOD, ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, NUMPAD_ZERO, NUMPAD_ONE, NUMPAD_TWO, NUMPAD_THREE, NUMPAD_FOUR, NUMPAD_FIVE, NUMPAD_SIX, NUMPAD_SEVEN, NUMPAD_EIGHT, NUMPAD_NINE, DOWN_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
 import { NG_VALUE_ACCESSOR, NgControl, NgModel, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -70,7 +70,7 @@ var NumericConfigService = /** @class */ (function () {
         if (!this.config.custom[key]) {
             console.warn('[lsnNumeric] Invalid config key provided.');
         }
-        return this.config.custom[key] || {};
+        return __assign({}, this.getDefaultConfig(), this.config.custom[key]) || this.getDefaultConfig();
     };
     NumericConfigService.decorators = [
         { type: Injectable }

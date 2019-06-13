@@ -153,7 +153,7 @@
             if (!this.config.custom[key]) {
                 console.warn('[lsnNumeric] Invalid config key provided.');
             }
-            return this.config.custom[key] || {};
+            return __assign({}, this.getDefaultConfig(), this.config.custom[key]) || this.getDefaultConfig();
         };
         NumericConfigService.decorators = [
             { type: core.Injectable }

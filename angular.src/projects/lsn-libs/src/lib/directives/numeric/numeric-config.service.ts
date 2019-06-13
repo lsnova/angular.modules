@@ -65,6 +65,6 @@ export class NumericConfigService {
     if (!this.config.custom[key]) {
       console.warn('[lsnNumeric] Invalid config key provided.');
     }
-    return this.config.custom[key] || {};
+    return {...this.getDefaultConfig(), ...this.config.custom[key]} || this.getDefaultConfig();
   }
 }
