@@ -349,7 +349,9 @@
                 /** @type {?} */
                 var negativeSign = value.toString().startsWith('-') ? '-' : '';
                 /** @type {?} */
-                var absoluteValue = value.toString().replace(/^-/, '');
+                var absoluteValue = value.toString()
+                    .replace(/^-/, '')
+                    .replace(/[,|.]/, this.config.decimals);
                 if (absoluteValue.toString().includes(this.config.decimals)) {
                     var _a = __read(absoluteValue.toString().split(this.config.decimals), 2), wholes = _a[0], decimals = _a[1];
                     return negativeSign + wholes.substr(0, this.config.maxLength) + this.config.decimals + decimals;
@@ -465,9 +467,9 @@
             var absoluteValue = currentValue.toString().replace(/^-/, '');
             var _a = __read(absoluteValue.toString().split(this.config.decimals), 1), wholes = _a[0];
             if (this.config.maxLength !== undefined
-                && (this.element.nativeElement.selectionStart <= currentValue.indexOf(this.config.decimals)
+                && (this.element.nativeElement.selectionStart < wholes.length
                     && wholes.length >= this.config.maxLength
-                    || [keycodes.DASH, keycodes.NUMPAD_MINUS].indexOf(e.keyCode) !== -1)
+                    && [keycodes.DASH, keycodes.NUMPAD_MINUS].indexOf(e.keyCode) === -1)
                 && this.element.nativeElement.selectionEnd - this.element.nativeElement.selectionStart === 0) {
                 e.preventDefault();
             }

@@ -224,7 +224,9 @@ class NumericDirective {
             /** @type {?} */
             const negativeSign = value.toString().startsWith('-') ? '-' : '';
             /** @type {?} */
-            const absoluteValue = value.toString().replace(/^-/, '');
+            const absoluteValue = value.toString()
+                .replace(/^-/, '')
+                .replace(/[,|.]/, this.config.decimals);
             if (absoluteValue.toString().includes(this.config.decimals)) {
                 const [wholes, decimals] = absoluteValue.toString().split(this.config.decimals);
                 return negativeSign + wholes.substr(0, this.config.maxLength) + this.config.decimals + decimals;
@@ -325,9 +327,9 @@ class NumericDirective {
         const absoluteValue = currentValue.toString().replace(/^-/, '');
         const [wholes] = absoluteValue.toString().split(this.config.decimals);
         if (this.config.maxLength !== undefined
-            && (this.element.nativeElement.selectionStart <= currentValue.indexOf(this.config.decimals)
+            && (this.element.nativeElement.selectionStart < wholes.length
                 && wholes.length >= this.config.maxLength
-                || [DASH, NUMPAD_MINUS].indexOf(e.keyCode) !== -1)
+                && [DASH, NUMPAD_MINUS].indexOf(e.keyCode) === -1)
             && this.element.nativeElement.selectionEnd - this.element.nativeElement.selectionStart === 0) {
             e.preventDefault();
         }

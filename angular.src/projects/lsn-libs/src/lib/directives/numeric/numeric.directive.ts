@@ -108,7 +108,9 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
   handleWholesLength(value) {
     if (this.config.maxLength) {
       const negativeSign = value.toString().startsWith('-') ? '-' : '';
-      const absoluteValue = value.toString().replace(/^-/, '');
+      const absoluteValue = value.toString()
+        .replace(/^-/, '')
+        .replace(/[,|.]/, this.config.decimals);
       if (absoluteValue.toString().includes(this.config.decimals)) {
         const [wholes, decimals] = absoluteValue.toString().split(this.config.decimals);
         return negativeSign + wholes.substr(0, this.config.maxLength) + this.config.decimals + decimals;
@@ -197,9 +199,9 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     if (
       this.config.maxLength !== undefined
       && (
-        this.element.nativeElement.selectionStart <= currentValue.indexOf(this.config.decimals)
+        this.element.nativeElement.selectionStart < wholes.length
         && wholes.length >= this.config.maxLength
-        || [keyboard.DASH, keyboard.NUMPAD_MINUS].indexOf(e.keyCode) !== -1
+        && [keyboard.DASH, keyboard.NUMPAD_MINUS].indexOf(e.keyCode) === -1
       )
       && this.element.nativeElement.selectionEnd - this.element.nativeElement.selectionStart === 0
     ) {
