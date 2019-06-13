@@ -1216,55 +1216,5 @@ LsnLibsModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-export { CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR, CapitalizeDirective, LatinToGreekDirective, LsnCapitalizeModule, LsnLatinToGreekModule, LsnLibsModule, LsnMatSelectModule, LsnNumericModule, LsnNumpadModule, MatSelectComponent, NumPadDirective, NumericDirective, LsnCapitalizeModule as ɵa, CapitalizeDirective as ɵb, LsnLatinToGreekModule as ɵc, LatinToGreekDirective as ɵd, LsnNumericModule as ɵe, NumericDirective as ɵf, CustomNumericConfig as ɵg, NumericConfigService as ɵh, LsnNumpadModule as ɵi, NumPadDirective as ɵj, LsnMatSelectModule as ɵk, CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR as ɵl, MatSelectComponent as ɵm };
+export { LsnCapitalizeModule, LsnLatinToGreekModule, LsnLibsModule, LsnMatSelectModule, LsnNumericModule, LsnNumpadModule, CapitalizeDirective as ɵa, LatinToGreekDirective as ɵb, NumericDirective as ɵc, CustomNumericConfig as ɵd, NumericConfigService as ɵe, NumPadDirective as ɵf, CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR as ɵg, MatSelectComponent as ɵh };
 //# sourceMappingURL=lsnova-angularmodules.js.map
