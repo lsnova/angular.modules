@@ -11,6 +11,7 @@ import {NumericCardComponent} from './components/numeric-card/numeric-card.compo
 import {SelectCardComponent} from './components/select-card/select-card.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {NumpadCardComponent} from './components/numpad-card/numpad-card.component';
+import { ScrollSpyComponent } from './components/scroll-spy/scroll-spy.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {NumpadCardComponent} from './components/numpad-card/numpad-card.componen
     NavbarComponent,
     NumericCardComponent,
     NumpadCardComponent,
-    SelectCardComponent
+    SelectCardComponent,
+    ScrollSpyComponent
   ],
   imports: [
     BrowserModule,
