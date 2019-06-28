@@ -3,111 +3,113 @@ import { Observable, Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, filter, tap } from 'rxjs/operators';
 
 @Directive({
-    selector: '[lsnScrollSpy]'
+  selector: '[lsnScrollSpy]'
 })
 export class ScrollSpyDirective implements OnInit, OnDestroy {
 
-    @Input()
-    spySelector: string;
+  @Input()
+  spySelector: string;
 
-    @Input()
-    scrollToSection: Observable<string>;
+  @Input()
+  scrollToSection: Observable<string>;
 
-    @Output()
-    spySectionChange = new EventEmitter<string>();
+  @Output()
+  spySectionChange = new EventEmitter<string>();
 
-    private scrollOffset: number;
-    private currentSection$: Subject<string>;
-    private disableEmitter = false;
+  private scrollOffset: number;
+  private currentSection$: Subject<string>;
+  private disableEmitter = false;
 
-    subscriptions: Subscription[] = [];
+  subscriptions: Subscription[] = [];
 
-    constructor(private elementRef: ElementRef) {
-        this.currentSection$ = new Subject();
+  constructor(private elementRef: ElementRef) {
+    this.currentSection$ = new Subject();
+  }
+
+  ngOnInit(): void {
+    this.scrollOffset = this.nativeElement().offsetTop;
+
+    // emit event on section change
+    const sectionChangeSub = this.currentSection$.pipe(
+      distinctUntilChanged(),
+      tap((sectionId) => this.spySectionChange.emit(sectionId))
+    ).subscribe();
+
+    // scroll to given section
+    const scrollToSub = this.scrollToSection.pipe(
+      filter((section) => !!section),
+      tap((section) => this.scrollTo(section))
+    ).subscribe();
+
+    this.subscriptions.push(sectionChangeSub, scrollToSub);
+  }
+
+  @HostListener('scroll')
+  private onScroll() {
+    const section: HTMLElement = this.findCurrentSection();
+    if (section) {
+      this.setCurrentSection(section.id);
     }
+  }
 
-    ngOnInit(): void {
-        this.scrollOffset = this.nativeElement().offsetTop;
+  @HostListener('window:resize')
+  private onResize() {
+    this.onScroll();
+  }
 
-        // emit event on section change
-        const sectionChangeSub = this.currentSection$.pipe(
-            distinctUntilChanged(),
-            tap((sectionId) => this.spySectionChange.emit(sectionId))
-        ).subscribe();
+  private scrollTo(sectionId) {
+    this.disableEmitter = true;
 
-        // scroll to given section
-        const scrollToSub = this.scrollToSection.pipe(
-            filter((section) => !!section),
-            tap((section) => this.scrollTo(section))
-        ).subscribe();
+    this.nativeElement().querySelector('#' + sectionId).scrollIntoView();
 
-        this.subscriptions.push(sectionChangeSub, scrollToSub);
+    // set timeout to enforce scroll event execute before enabling back the emitter
+    setTimeout(() => {
+      this.disableEmitter = false;
+    }, 0);
+  }
+
+  private findCurrentSection(): HTMLElement {
+    const scrollMiddle = (this.scrollTopPosition() + this.scrollBottomPosition()) / 2;
+    const spiedSections = this.getSpiedSections();
+    return spiedSections.find((section) => this.isCurrentSection(section, scrollMiddle));
+  }
+
+  private getSpiedSections(): HTMLElement[] {
+    return Array.from(this.nativeElement().querySelectorAll(this.spySelector));
+  }
+
+  private isCurrentSection(section: HTMLElement, scrollMiddle: number): boolean {
+    return this.sectionTopPosition(section) <= scrollMiddle
+      && this.sectionBottomPosition(section) > scrollMiddle;
+  }
+
+  private setCurrentSection(sectionId: string) {
+    if (!this.disableEmitter) {
+      this.currentSection$.next(sectionId);
     }
+  }
 
-    @HostListener('scroll')
-    private onScroll() {
-        const section: HTMLElement = this.findCurrentSection();
-        this.setCurrentSection(section.id);
-    }
+  private sectionTopPosition(section: HTMLElement) {
+    return section.offsetTop;
+  }
 
-    @HostListener('window:resize')
-    private onResize() {
-        this.onScroll();
-    }
+  private sectionBottomPosition(section: HTMLElement) {
+    return section.offsetTop + section.offsetHeight;
+  }
 
-    private scrollTo(sectionId) {
-        this.disableEmitter = true;
+  private scrollTopPosition() {
+    return this.scrollOffset + this.nativeElement().scrollTop;
+  }
 
-        this.nativeElement().querySelector('#' + sectionId).scrollIntoView();
+  private scrollBottomPosition() {
+    return this.scrollOffset + this.nativeElement().scrollTop + this.nativeElement().offsetHeight;
+  }
 
-        // set timeout to enforce scroll event execute before enabling back the emitter
-        setTimeout(() => {
-            this.disableEmitter = false;
-        }, 0);
-    }
+  private nativeElement(): HTMLElement {
+    return this.elementRef.nativeElement;
+  }
 
-    private findCurrentSection(): HTMLElement {
-        const scrollMiddle = (this.scrollTopPosition() + this.scrollBottomPosition()) / 2;
-        const spiedSections = this.getSpiedSections();
-        return spiedSections.find((section) => this.isCurrentSection(section, scrollMiddle));
-    }
-
-    private getSpiedSections(): HTMLElement[] {
-        return Array.from(this.nativeElement().querySelectorAll(this.spySelector));
-    }
-
-    private isCurrentSection(section: HTMLElement, scrollMiddle: number): boolean {
-        return this.sectionTopPosition(section) <= scrollMiddle
-            && this.sectionBottomPosition(section) > scrollMiddle;
-    }
-
-    private setCurrentSection(sectionId: string) {
-        if (!this.disableEmitter) {
-            this.currentSection$.next(sectionId);
-        }
-    }
-
-    private sectionTopPosition(section: HTMLElement) {
-        return section.offsetTop;
-    }
-
-    private sectionBottomPosition(section: HTMLElement) {
-        return section.offsetTop + section.offsetHeight;
-    }
-
-    private scrollTopPosition() {
-        return this.scrollOffset + this.nativeElement().scrollTop;
-    }
-
-    private scrollBottomPosition() {
-        return this.scrollOffset + this.nativeElement().scrollTop + this.nativeElement().offsetHeight;
-    }
-
-    private nativeElement(): HTMLElement {
-        return this.elementRef.nativeElement;
-    }
-
-    ngOnDestroy(): void {
-        this.subscriptions.forEach(sub => sub.unsubscribe());
-    }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
 }

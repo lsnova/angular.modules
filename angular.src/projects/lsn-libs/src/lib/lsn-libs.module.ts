@@ -6,6 +6,7 @@ import {LsnCapitalizeModule} from './directives/capitalize/capitalize.module';
 
 import {LsnMatSelectModule} from './components/mat-select/mat-select.module';
 import {FormsModule} from '@angular/forms';
+import { LsnScrollSpyModule } from './directives/scroll-spy';
 
 @NgModule({
   declarations: [],
@@ -28,6 +29,7 @@ import {FormsModule} from '@angular/forms';
     }),
     LsnNumpadModule,
     LsnMatSelectModule,
+    LsnScrollSpyModule
   ],
   exports: [
     LsnCapitalizeModule,
@@ -35,6 +37,7 @@ import {FormsModule} from '@angular/forms';
     LsnNumericModule,
     LsnNumpadModule,
     LsnMatSelectModule,
+    LsnScrollSpyModule
   ]
 })
 export class LsnLibsModule {

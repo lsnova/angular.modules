@@ -1468,6 +1468,254 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var ScrollSpyDirective = /** @class */ (function () {
+        function ScrollSpyDirective(elementRef) {
+            this.elementRef = elementRef;
+            this.spySectionChange = new core.EventEmitter();
+            this.disableEmitter = false;
+            this.subscriptions = [];
+            this.currentSection$ = new rxjs.Subject();
+        }
+        /**
+         * @return {?}
+         */
+        ScrollSpyDirective.prototype.ngOnInit = /**
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            this.scrollOffset = this.nativeElement().offsetTop;
+            // emit event on section change
+            /** @type {?} */
+            var sectionChangeSub = this.currentSection$.pipe(operators.distinctUntilChanged(), operators.tap(function (sectionId) { return _this.spySectionChange.emit(sectionId); })).subscribe();
+            // scroll to given section
+            /** @type {?} */
+            var scrollToSub = this.scrollToSection.pipe(operators.filter(function (section) { return !!section; }), operators.tap(function (section) { return _this.scrollTo(section); })).subscribe();
+            this.subscriptions.push(sectionChangeSub, scrollToSub);
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        ScrollSpyDirective.prototype.onScroll = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            /** @type {?} */
+            var section = this.findCurrentSection();
+            this.setCurrentSection(section.id);
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        ScrollSpyDirective.prototype.onResize = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            this.onScroll();
+        };
+        /**
+         * @private
+         * @param {?} sectionId
+         * @return {?}
+         */
+        ScrollSpyDirective.prototype.scrollTo = /**
+         * @private
+         * @param {?} sectionId
+         * @return {?}
+         */
+        function (sectionId) {
+            var _this = this;
+            this.disableEmitter = true;
+            this.nativeElement().querySelector('#' + sectionId).scrollIntoView();
+            // set timeout to enforce scroll event execute before enabling back the emitter
+            setTimeout(function () {
+                _this.disableEmitter = false;
+            }, 0);
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        ScrollSpyDirective.prototype.findCurrentSection = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            /** @type {?} */
+            var scrollMiddle = (this.scrollTopPosition() + this.scrollBottomPosition()) / 2;
+            /** @type {?} */
+            var spiedSections = this.getSpiedSections();
+            return spiedSections.find(function (section) { return _this.isCurrentSection(section, scrollMiddle); });
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        ScrollSpyDirective.prototype.getSpiedSections = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            return Array.from(this.nativeElement().querySelectorAll(this.spySelector));
+        };
+        /**
+         * @private
+         * @param {?} section
+         * @param {?} scrollMiddle
+         * @return {?}
+         */
+        ScrollSpyDirective.prototype.isCurrentSection = /**
+         * @private
+         * @param {?} section
+         * @param {?} scrollMiddle
+         * @return {?}
+         */
+        function (section, scrollMiddle) {
+            return this.sectionTopPosition(section) <= scrollMiddle
+                && this.sectionBottomPosition(section) > scrollMiddle;
+        };
+        /**
+         * @private
+         * @param {?} sectionId
+         * @return {?}
+         */
+        ScrollSpyDirective.prototype.setCurrentSection = /**
+         * @private
+         * @param {?} sectionId
+         * @return {?}
+         */
+        function (sectionId) {
+            if (!this.disableEmitter) {
+                this.currentSection$.next(sectionId);
+            }
+        };
+        /**
+         * @private
+         * @param {?} section
+         * @return {?}
+         */
+        ScrollSpyDirective.prototype.sectionTopPosition = /**
+         * @private
+         * @param {?} section
+         * @return {?}
+         */
+        function (section) {
+            return section.offsetTop;
+        };
+        /**
+         * @private
+         * @param {?} section
+         * @return {?}
+         */
+        ScrollSpyDirective.prototype.sectionBottomPosition = /**
+         * @private
+         * @param {?} section
+         * @return {?}
+         */
+        function (section) {
+            return section.offsetTop + section.offsetHeight;
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        ScrollSpyDirective.prototype.scrollTopPosition = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            return this.scrollOffset + this.nativeElement().scrollTop;
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        ScrollSpyDirective.prototype.scrollBottomPosition = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            return this.scrollOffset + this.nativeElement().scrollTop + this.nativeElement().offsetHeight;
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        ScrollSpyDirective.prototype.nativeElement = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            return this.elementRef.nativeElement;
+        };
+        /**
+         * @return {?}
+         */
+        ScrollSpyDirective.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+        function () {
+            this.subscriptions.forEach(function (sub) { return sub.unsubscribe(); });
+        };
+        ScrollSpyDirective.decorators = [
+            { type: core.Directive, args: [{
+                        selector: '[lsnScrollSpy]'
+                    },] }
+        ];
+        /** @nocollapse */
+        ScrollSpyDirective.ctorParameters = function () { return [
+            { type: core.ElementRef }
+        ]; };
+        ScrollSpyDirective.propDecorators = {
+            spySelector: [{ type: core.Input }],
+            scrollToSection: [{ type: core.Input }],
+            spySectionChange: [{ type: core.Output }],
+            onScroll: [{ type: core.HostListener, args: ['scroll',] }],
+            onResize: [{ type: core.HostListener, args: ['window:resize',] }]
+        };
+        return ScrollSpyDirective;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LsnScrollSpyModule = /** @class */ (function () {
+        function LsnScrollSpyModule() {
+        }
+        LsnScrollSpyModule.decorators = [
+            { type: core.NgModule, args: [{
+                        declarations: [
+                            ScrollSpyDirective,
+                        ],
+                        imports: [],
+                        exports: [
+                            ScrollSpyDirective,
+                        ]
+                    },] }
+        ];
+        return LsnScrollSpyModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var LsnLibsModule = /** @class */ (function () {
         function LsnLibsModule() {
         }
@@ -1493,6 +1741,7 @@
                             }),
                             LsnNumpadModule,
                             LsnMatSelectModule,
+                            LsnScrollSpyModule
                         ],
                         exports: [
                             LsnCapitalizeModule,
@@ -1500,6 +1749,7 @@
                             LsnNumericModule,
                             LsnNumpadModule,
                             LsnMatSelectModule,
+                            LsnScrollSpyModule
                         ]
                     },] }
         ];
@@ -1512,6 +1762,7 @@
     exports.LsnMatSelectModule = LsnMatSelectModule;
     exports.LsnNumericModule = LsnNumericModule;
     exports.LsnNumpadModule = LsnNumpadModule;
+    exports.LsnScrollSpyModule = LsnScrollSpyModule;
     exports.ɵa = CapitalizeDirective;
     exports.ɵb = LatinToGreekDirective;
     exports.ɵc = NumericDirective;
@@ -1520,6 +1771,8 @@
     exports.ɵf = NumPadDirective;
     exports.ɵg = CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR;
     exports.ɵh = MatSelectComponent;
+    exports.ɵi = LsnScrollSpyModule;
+    exports.ɵj = ScrollSpyDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

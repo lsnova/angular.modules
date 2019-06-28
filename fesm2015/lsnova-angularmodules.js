@@ -1,11 +1,11 @@
-import { Injectable, forwardRef, Directive, ElementRef, Input, HostListener, NgModule, Optional, Component, ViewEncapsulation, ContentChild, TemplateRef, ViewChild } from '@angular/core';
+import { Injectable, forwardRef, Directive, ElementRef, Input, HostListener, NgModule, Optional, Component, ViewEncapsulation, ContentChild, TemplateRef, ViewChild, EventEmitter, Output } from '@angular/core';
 import { __awaiter } from 'tslib';
 import { LEFT_ARROW, RIGHT_ARROW, BACKSPACE, DELETE, END, ENTER, ESCAPE, HOME, TAB, A, C, R, V, X, DASH, NUMPAD_MINUS, COMMA, NUMPAD_PERIOD, ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, NUMPAD_ZERO, NUMPAD_ONE, NUMPAD_TWO, NUMPAD_THREE, NUMPAD_FOUR, NUMPAD_FIVE, NUMPAD_SIX, NUMPAD_SEVEN, NUMPAD_EIGHT, NUMPAD_NINE, DOWN_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
 import { NG_VALUE_ACCESSOR, NgControl, NgModel, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatSelect, MatIconModule, MatInputModule, MatSelectModule, MatTooltipModule } from '@angular/material';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, distinctUntilChanged, tap, filter } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
@@ -1171,6 +1171,190 @@ LsnMatSelectModule.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class ScrollSpyDirective {
+    /**
+     * @param {?} elementRef
+     */
+    constructor(elementRef) {
+        this.elementRef = elementRef;
+        this.spySectionChange = new EventEmitter();
+        this.disableEmitter = false;
+        this.subscriptions = [];
+        this.currentSection$ = new Subject();
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.scrollOffset = this.nativeElement().offsetTop;
+        // emit event on section change
+        /** @type {?} */
+        const sectionChangeSub = this.currentSection$.pipe(distinctUntilChanged(), tap((sectionId) => this.spySectionChange.emit(sectionId))).subscribe();
+        // scroll to given section
+        /** @type {?} */
+        const scrollToSub = this.scrollToSection.pipe(filter((section) => !!section), tap((section) => this.scrollTo(section))).subscribe();
+        this.subscriptions.push(sectionChangeSub, scrollToSub);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    onScroll() {
+        /** @type {?} */
+        const section = this.findCurrentSection();
+        this.setCurrentSection(section.id);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    onResize() {
+        this.onScroll();
+    }
+    /**
+     * @private
+     * @param {?} sectionId
+     * @return {?}
+     */
+    scrollTo(sectionId) {
+        this.disableEmitter = true;
+        this.nativeElement().querySelector('#' + sectionId).scrollIntoView();
+        // set timeout to enforce scroll event execute before enabling back the emitter
+        setTimeout(() => {
+            this.disableEmitter = false;
+        }, 0);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    findCurrentSection() {
+        /** @type {?} */
+        const scrollMiddle = (this.scrollTopPosition() + this.scrollBottomPosition()) / 2;
+        /** @type {?} */
+        const spiedSections = this.getSpiedSections();
+        return spiedSections.find((section) => this.isCurrentSection(section, scrollMiddle));
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    getSpiedSections() {
+        return Array.from(this.nativeElement().querySelectorAll(this.spySelector));
+    }
+    /**
+     * @private
+     * @param {?} section
+     * @param {?} scrollMiddle
+     * @return {?}
+     */
+    isCurrentSection(section, scrollMiddle) {
+        return this.sectionTopPosition(section) <= scrollMiddle
+            && this.sectionBottomPosition(section) > scrollMiddle;
+    }
+    /**
+     * @private
+     * @param {?} sectionId
+     * @return {?}
+     */
+    setCurrentSection(sectionId) {
+        if (!this.disableEmitter) {
+            this.currentSection$.next(sectionId);
+        }
+    }
+    /**
+     * @private
+     * @param {?} section
+     * @return {?}
+     */
+    sectionTopPosition(section) {
+        return section.offsetTop;
+    }
+    /**
+     * @private
+     * @param {?} section
+     * @return {?}
+     */
+    sectionBottomPosition(section) {
+        return section.offsetTop + section.offsetHeight;
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    scrollTopPosition() {
+        return this.scrollOffset + this.nativeElement().scrollTop;
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    scrollBottomPosition() {
+        return this.scrollOffset + this.nativeElement().scrollTop + this.nativeElement().offsetHeight;
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    nativeElement() {
+        return this.elementRef.nativeElement;
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.subscriptions.forEach(sub => sub.unsubscribe());
+    }
+}
+ScrollSpyDirective.decorators = [
+    { type: Directive, args: [{
+                selector: '[lsnScrollSpy]'
+            },] }
+];
+/** @nocollapse */
+ScrollSpyDirective.ctorParameters = () => [
+    { type: ElementRef }
+];
+ScrollSpyDirective.propDecorators = {
+    spySelector: [{ type: Input }],
+    scrollToSection: [{ type: Input }],
+    spySectionChange: [{ type: Output }],
+    onScroll: [{ type: HostListener, args: ['scroll',] }],
+    onResize: [{ type: HostListener, args: ['window:resize',] }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class LsnScrollSpyModule {
+}
+LsnScrollSpyModule.decorators = [
+    { type: NgModule, args: [{
+                declarations: [
+                    ScrollSpyDirective,
+                ],
+                imports: [],
+                exports: [
+                    ScrollSpyDirective,
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class LsnLibsModule {
 }
 LsnLibsModule.decorators = [
@@ -1195,6 +1379,7 @@ LsnLibsModule.decorators = [
                     }),
                     LsnNumpadModule,
                     LsnMatSelectModule,
+                    LsnScrollSpyModule
                 ],
                 exports: [
                     LsnCapitalizeModule,
@@ -1202,6 +1387,7 @@ LsnLibsModule.decorators = [
                     LsnNumericModule,
                     LsnNumpadModule,
                     LsnMatSelectModule,
+                    LsnScrollSpyModule
                 ]
             },] }
 ];
@@ -1216,5 +1402,5 @@ LsnLibsModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { LsnCapitalizeModule, LsnLatinToGreekModule, LsnLibsModule, LsnMatSelectModule, LsnNumericModule, LsnNumpadModule, CapitalizeDirective as ɵa, LatinToGreekDirective as ɵb, NumericDirective as ɵc, CustomNumericConfig as ɵd, NumericConfigService as ɵe, NumPadDirective as ɵf, CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR as ɵg, MatSelectComponent as ɵh };
+export { LsnCapitalizeModule, LsnLatinToGreekModule, LsnLibsModule, LsnMatSelectModule, LsnNumericModule, LsnNumpadModule, LsnScrollSpyModule, CapitalizeDirective as ɵa, LatinToGreekDirective as ɵb, NumericDirective as ɵc, CustomNumericConfig as ɵd, NumericConfigService as ɵe, NumPadDirective as ɵf, CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR as ɵg, MatSelectComponent as ɵh, LsnScrollSpyModule as ɵi, ScrollSpyDirective as ɵj };
 //# sourceMappingURL=lsnova-angularmodules.js.map

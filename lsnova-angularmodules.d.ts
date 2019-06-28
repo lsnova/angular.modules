@@ -8,3 +8,5 @@ export { LatinToGreekDirective as ɵb } from './lib/directives/latin-to-greek/la
 export { CustomNumericConfig as ɵd, NumericConfigService as ɵe } from './lib/directives/numeric/numeric-config.service';
 export { NumericDirective as ɵc } from './lib/directives/numeric/numeric.directive';
 export { NumPadDirective as ɵf } from './lib/directives/numpad/numpad.directive';
+export { LsnScrollSpyModule as ɵi } from './lib/directives/scroll-spy';
+export { ScrollSpyDirective as ɵj } from './lib/directives/scroll-spy/scroll-spy.directive';
