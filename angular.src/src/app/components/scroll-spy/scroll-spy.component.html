@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-card-title>lsnScrollSpy</mat-card-title>
+  <mat-card-subtitle>directive | selector: 'lsnScrollSpy'</mat-card-subtitle>
+  <mat-card-content>
+
+    <div>
+      <div class="nav-menu">
+        <ul id="nav-ul">
+          <li *ngFor="let section of sections()" (click)="goToSection(section.id)"
+              [id]="section.id" [ngClass]="{'selected': section.selected }">
+            {{ section.id }}
+          </li>
+        </ul>
+      </div>
+
+      <div lsnScrollSpy [spySelector]="'div.spiedSection'" (spySectionChange)="sectionChanged($event)"
+           [scrollToSection]="scrollToSection$" class="scrollableElem">
+
+        <div *ngFor="let section of sections()"
+             class="spiedSection" [id]="section.id">
+          {{ section.id }}
+        </div>
+
+      </div>
+
+    </div>
+
+  </mat-card-content>
+</mat-card>
