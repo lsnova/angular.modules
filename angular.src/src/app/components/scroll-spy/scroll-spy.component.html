@@ -6,8 +6,8 @@
     <div>
       <div class="nav-menu">
         <ul id="nav-ul">
-          <li *ngFor="let section of sections()" (click)="goToSection(section.id)"
-              [id]="section.id" [ngClass]="{'selected': section.selected }">
+          <li *ngFor="let section of sections" (click)="goToSection(section.id)"
+              [ngClass]="{'selected': section.selected }">
             {{ section.id }}
           </li>
         </ul>
@@ -16,7 +16,7 @@
       <div lsnScrollSpy [spySelector]="'div.spiedSection'" (spySectionChange)="sectionChanged($event)"
            [scrollToSection]="scrollToSection$" class="scrollableElem">
 
-        <div *ngFor="let section of sections()"
+        <div *ngFor="let section of sections"
              class="spiedSection" [id]="section.id">
           {{ section.id }}
         </div>

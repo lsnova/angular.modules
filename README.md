@@ -42,7 +42,7 @@ For importing a single feature see its docs for details.
 | LatinToGreekDirective | directive | Translate input characters from latin to greek              |   [Docs][3]  |
 | NumericDirective      | directive | Input directive for number values                           |   [Docs][0]  |
 | NumPadDirective       | directive | Input directive for digits only                             |   [Docs][1]  |
-| ScrollSpyDirective    | directive | Detects element currently displayed inside the parent <br> scrollable element |   [Docs][5]  |
+| ScrollSpyDirective    | directive | Detects element currently displayed inside the parent scrollable element |   [Docs][5]  |
 
  [0]: https://github.com/lsnova/angular.modules/tree/master/angular.src/projects/lsn-libs/src/lib/directives/numeric
  [1]: https://github.com/lsnova/angular.modules/tree/master/angular.src/projects/lsn-libs/src/lib/directives/numpad

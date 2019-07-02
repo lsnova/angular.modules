@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Component } from '@angular/core';
+import { Subject } from 'rxjs';
 
 interface ISection {
   id: string;
@@ -21,31 +21,26 @@ const SECTIONS: ISection[] = [
   templateUrl: './scroll-spy.component.html',
   styleUrls: ['./scroll-spy.component.scss']
 })
-export class ScrollSpyComponent implements OnInit {
+export class ScrollSpyComponent {
   scrollToSection$: Subject<string>;
+  sections: ISection[];
 
   constructor() {
-      this.scrollToSection$ = new Subject<string>();
-  }
-
-  ngOnInit() {
+    this.scrollToSection$ = new Subject<string>();
+    this.sections = [...SECTIONS];
   }
 
   sectionChanged(sectionId: string) {
-    this.sections()
-      .forEach(section => section.selected = false);
+    this.sections = [...SECTIONS];
 
-    const section = this.sections()
-      .find(section => section.id === sectionId);
-    section.selected = true;
-  }
-
-  sections() {
-    return SECTIONS;
+    this.sections = this.sections.map(section => ({
+      ...section,
+      selected: section.id === sectionId
+    }));
   }
 
   goToSection(sectionId: string) {
-      this.scrollToSection$.next(sectionId);
-      this.sectionChanged(sectionId);
+    this.scrollToSection$.next(sectionId);
+    this.sectionChanged(sectionId);
   }
 }
