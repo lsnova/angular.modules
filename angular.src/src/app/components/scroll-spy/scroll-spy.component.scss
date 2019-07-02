@@ -1,0 +1,31 @@
+.nav-menu {
+  float: left;
+  padding-right: 25px;
+}
+
+li.selected {
+  font-weight: bold;
+}
+
+li {
+  cursor: pointer;
+}
+
+.scrollableElem {
+  overflow-y: auto;
+  height: 500px;
+}
+
+.spiedSection {
+  min-height: 300px;
+  width: 100%;
+}
+
+.spiedSection:nth-child(odd) {
+  background-color: #f0f0f0;
+}
+
+.spiedSection:nth-child(even) {
+  background-color: #a0a0a0;
+}
+
