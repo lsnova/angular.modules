@@ -12,6 +12,7 @@ import {SelectCardComponent} from './components/select-card/select-card.componen
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {NumpadCardComponent} from './components/numpad-card/numpad-card.component';
 import { ScrollSpyComponent } from './components/scroll-spy/scroll-spy.component';
+import {CrossTabModule} from './components/cross-tab/cross-tab.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ScrollSpyComponent } from './components/scroll-spy/scroll-spy.component
     MaterialModule,
     // lib modules
     LsnLibsModule,
+    CrossTabModule
   ],
   providers: [],
   bootstrap: [AppComponent]
