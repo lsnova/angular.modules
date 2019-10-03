@@ -1,3 +1,25 @@
-<p>
-  cross-tab works!
-</p>
+<div style="display: flex; flex-direction: row; justify-content: space-around; height: 100%">
+  <mat-card style="width: 100%; margin-right: 1rem">
+    <mat-card-title>lsnCrossTabService</mat-card-title>
+    <mat-card-subtitle>service | selector: lsnCrossTabService</mat-card-subtitle>
+    <mat-card-actions>
+      <button mat-button (click)="printCookie()">Print cookie</button>
+    </mat-card-actions>
+    <mat-card-content>
+      <form action="#" [formGroup]="form" (ngSubmit)="sendMessage()">
+        <mat-form-field>
+          <input matInput type="text" formControlName="message" autocomplete="off">
+        </mat-form-field>
+        <button mat-button>Send</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <mat-card style="width: 100%">
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let message of messagesReceived">{{message | json}}</mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>
+

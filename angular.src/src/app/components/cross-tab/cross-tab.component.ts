@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LsnCrossTabService} from '../../../../projects/lsn-libs/src/lib/services/lsn-cross-tab/lsn-cross-tab.service';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-cross-tab',
@@ -8,19 +8,32 @@ import {BehaviorSubject, Observable} from 'rxjs';
   styles: []
 })
 export class CrossTabComponent implements OnInit {
+  form = new FormGroup({
+    message: new FormControl('')
+  });
 
-  private cookiesSubject: BehaviorSubject<any>;
-  cookies$: Observable<any>;
+  readonly messagesReceived: Array<object>;
+
   constructor(private lsnCrossTabService: LsnCrossTabService) {
+    this.messagesReceived = [];
   }
 
-  ngOnInit() {
-    this.cookiesSubject = new BehaviorSubject<any>(null);
-    this.cookies$ = this.cookiesSubject.asObservable();
-    this.loadCookies();
-  }
-  loadCookies() {
-    this.lsnCrossTabService.sendMessage('some message');
+  ngOnInit(): void {
+    this.lsnCrossTabService.messages$.subscribe((message) =>
+      this.messagesReceived.push(message));
   }
 
+
+  get message() {
+    return this.form.get('message');
+  }
+
+  sendMessage() {
+    this.lsnCrossTabService.sendMessage(this.message.value);
+    this.message.reset();
+  }
+
+  printCookie() {
+    console.log(this.lsnCrossTabService.getCookie());
+  }
 }
