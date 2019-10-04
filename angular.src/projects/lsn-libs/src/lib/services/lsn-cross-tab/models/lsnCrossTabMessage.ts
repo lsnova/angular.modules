@@ -10,4 +10,17 @@ export class LsnCrossTabMessage {
     this.tabId = tabId;
     this.attrs = attrs;
   }
+
+  static compare(firstMessage: LsnCrossTabMessage, secondMessage: LsnCrossTabMessage) {
+    if (!firstMessage || !secondMessage) {
+      return false;
+    }
+    if (firstMessage.created !== secondMessage.created) {
+      return false;
+    }
+    if (firstMessage.code !== secondMessage.code) {
+      return false;
+    }
+    return firstMessage.tabId !== secondMessage.tabId;
+  }
 }

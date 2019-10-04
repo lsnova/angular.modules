@@ -100,9 +100,8 @@ export class LsnCrossTabService implements OnDestroy {
     const cleanedCookie = currentCookie.filter(cookieItem => {
       return timestamp - cookieItem.created <= this.crossTabConfig.MSG_TTL;
     });
-
     // w miedzyczasie ktoś zmodyfikowal ciasteczko - mógł tylko dodać jakiś message (asynchronicznie do tego)
-    if (currentCookie.length !== this.cookie.length) {
+    if (!this.areCookiesEqual(currentCookie, this.cookie)) {
       return;
     }
 
@@ -132,5 +131,41 @@ export class LsnCrossTabService implements OnDestroy {
     this.unsubscribe();
   }
 
+  /**
+   * Sorts two cookie arrays and compares each element
+   */
+  private areCookiesEqual(firstCookie: Array<LsnCrossTabMessage>, secondCookie: Array<LsnCrossTabMessage>) {
+    if (firstCookie.length !== secondCookie.length) {
+      return false;
+    } else if (firstCookie.length === 0 && secondCookie.length === 0) {
+      return true;
+    }
+    firstCookie.sort(this.messageComparer);
+    secondCookie.sort(this.messageComparer);
+    let index = 0;
+    let areCookiesEqual = true;
+    for (const message of firstCookie) {
+      if (LsnCrossTabMessage.compare(message, secondCookie[index])) {
+        areCookiesEqual = false;
+      } else {
+        ++index;
+      }
+    }
+    return areCookiesEqual;
+  }
+
+  /**
+   * Compares two messages by properties in order: 'created', 'code', 'tabId';
+   */
+  private messageComparer(firstCookieValue: LsnCrossTabMessage, secondCookieValue: LsnCrossTabMessage) {
+    let result = firstCookieValue.created < secondCookieValue.created ? -1 : secondCookieValue.created < firstCookieValue.created ? 1 : 0;
+    if (result === 0) {
+      result = firstCookieValue.code < secondCookieValue.code ? -1 : secondCookieValue.code < firstCookieValue.code ? 1 : 0;
+      if (result === 0) {
+        result = firstCookieValue.tabId < secondCookieValue.tabId ? -1 : secondCookieValue.tabId < firstCookieValue.tabId ? 1 : 0;
+      }
+    }
+    return result;
+  }
 
 }
