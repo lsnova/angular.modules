@@ -1,18 +1,18 @@
 import {InjectionToken} from '@angular/core';
 
 export class LsnCrossTabConfig {
-  COOKIE_CLEAN_FREQ: number;
-  COOKIE_READ_FREQ: number;
-  MSG_TTL: number;
-  ROOT_DOMAIN: string;
-  SSO_REFRESH_URL: string;
+  cookieCleanFreq: number;
+  cookieReadFreq: number;
+  msgTtl: number; // represents duration of existence of given cross tab message, after this period from message creation, the message will be deleted from cookie
+  rootDomain: string;
+  crossTabCookieName: string;
 
-  constructor({COOKIE_CLEAN_FREQ = null, COOKIE_READ_FREQ = null, MSG_TTL = null, ROOT_DOMAIN = null, SSO_REFRESH_URL = null} = {}) {
-    this.COOKIE_CLEAN_FREQ = COOKIE_CLEAN_FREQ;
-    this.COOKIE_READ_FREQ = COOKIE_READ_FREQ;
-    this.MSG_TTL = MSG_TTL;
-    this.ROOT_DOMAIN = ROOT_DOMAIN;
-    this.SSO_REFRESH_URL = SSO_REFRESH_URL;
+  constructor({cookieCleanFreq = null, cookieReadFreq = null, msgTtl = null, rootDomain = null, crossTabCookieName = null} = {}) {
+    this.cookieCleanFreq = cookieCleanFreq;
+    this.cookieReadFreq = cookieReadFreq;
+    this.msgTtl = msgTtl;
+    this.rootDomain = rootDomain;
+    this.crossTabCookieName = crossTabCookieName;
   }
 }
 

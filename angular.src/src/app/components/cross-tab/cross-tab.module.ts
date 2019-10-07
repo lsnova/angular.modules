@@ -25,14 +25,14 @@ function crossTabServiceFactory(lsnCrossTabService: LsnCrossTabService) {
   providers: [
     {
       provide: LSN_CROSS_TAB_CONFIG, useValue: new LsnCrossTabConfig({
-        COOKIE_CLEAN_FREQ: 5000,
-        COOKIE_READ_FREQ: 100,
-        MSG_TTL: 15000,
-        ROOT_DOMAIN: 'localhost:4200',
-        SSO_REFRESH_URL: '/api/apm/v1/touch.php3'
+        cookieCleanFreq: 5000,
+        cookieReadFreq: 100,
+        msgTtl: 15000,
+        rootDomain: 'localhost:4200',
+        crossTabCookieName: 'ih-crosstab-data'
       })
     },
-    {provide: LSN_COOKIE_CONFIG, useValue: new LsnCookieConfig({CROSS_TAB: 'ih-crosstab-data'})},
+    {provide: LSN_COOKIE_CONFIG, useValue: new LsnCookieConfig()},
     {
       provide: APP_INITIALIZER,
       deps: [LsnCrossTabService],

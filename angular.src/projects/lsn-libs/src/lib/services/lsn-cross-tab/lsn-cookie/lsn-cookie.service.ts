@@ -2,7 +2,7 @@ import {Inject, Injectable} from '@angular/core';
 import {LSN_COOKIE_CONFIG, LsnCookieConfig} from '../models/lsnCookieConfig';
 import {DOCUMENT} from '@angular/common';
 
-interface CookieOptions {
+export interface CookieOptions {
   expires?: number | Date;
   expirationUnit?: string;
   path?: string;
@@ -10,10 +10,18 @@ interface CookieOptions {
   secure?: boolean;
 }
 
+export interface CookieService {
+  set(cookieKey: string, cookieValue, cookieOptions: CookieOptions): void;
+
+  get(cookieKey?: string): any;
+
+  remove(cookieKey: string, cookieOptions: CookieOptions): void;
+}
+
 @Injectable({
   providedIn: 'root'
 })
-export class LsnCookieService {
+export class LsnCookieService implements CookieService {
 
   constructor(@Inject(LSN_COOKIE_CONFIG) private cookieConfig: LsnCookieConfig, @Inject(DOCUMENT) readonly document: Document) {
   }
