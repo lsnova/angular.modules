@@ -207,7 +207,8 @@
                 return;
             }
             /** @type {?} */
-            var value = this.handleWholesLength($event.target.value);
+            var value = this.removeInvalidCharacters($event.target.value);
+            value = this.handleWholesLength(value);
             /** @type {?} */
             var parsedValue = this.parseValue(value);
             /** @type {?} */
@@ -354,11 +355,29 @@
                     .replace(/[,|.]/, this.config.decimals);
                 if (absoluteValue.toString().includes(this.config.decimals)) {
                     var _a = __read(absoluteValue.toString().split(this.config.decimals), 2), wholes = _a[0], decimals = _a[1];
-                    return negativeSign + wholes.substr(0, this.config.maxLength) + this.config.decimals + decimals;
+                    /** @type {?} */
+                    var properDecimals = this.removeInvalidCharacters(decimals, true);
+                    return negativeSign + wholes.substr(0, this.config.maxLength) + this.config.decimals + properDecimals;
                 }
                 return negativeSign + absoluteValue.toString().substr(0, this.config.maxLength);
             }
             return value;
+        };
+        /**
+         * @param {?} value
+         * @param {?=} allowDecimalsOnly
+         * @return {?}
+         */
+        NumericDirective.prototype.removeInvalidCharacters = /**
+         * @param {?} value
+         * @param {?=} allowDecimalsOnly
+         * @return {?}
+         */
+        function (value, allowDecimalsOnly) {
+            if (allowDecimalsOnly === void 0) { allowDecimalsOnly = false; }
+            return allowDecimalsOnly
+                ? value.replace(/[^0-9]/g, '')
+                : value.replace(/[^\-0-9,.]/g, '');
         };
         /**
          * @param {?} value
@@ -1504,7 +1523,9 @@
         function () {
             /** @type {?} */
             var section = this.findCurrentSection();
-            this.setCurrentSection(section.id);
+            if (section) {
+                this.setCurrentSection(section.id);
+            }
         };
         /**
          * @private

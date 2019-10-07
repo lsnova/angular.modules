@@ -118,7 +118,8 @@ class NumericDirective {
             return;
         }
         /** @type {?} */
-        const value = this.handleWholesLength($event.target.value);
+        let value = this.removeInvalidCharacters($event.target.value);
+        value = this.handleWholesLength(value);
         /** @type {?} */
         const parsedValue = this.parseValue(value);
         /** @type {?} */
@@ -229,11 +230,23 @@ class NumericDirective {
                 .replace(/[,|.]/, this.config.decimals);
             if (absoluteValue.toString().includes(this.config.decimals)) {
                 const [wholes, decimals] = absoluteValue.toString().split(this.config.decimals);
-                return negativeSign + wholes.substr(0, this.config.maxLength) + this.config.decimals + decimals;
+                /** @type {?} */
+                const properDecimals = this.removeInvalidCharacters(decimals, true);
+                return negativeSign + wholes.substr(0, this.config.maxLength) + this.config.decimals + properDecimals;
             }
             return negativeSign + absoluteValue.toString().substr(0, this.config.maxLength);
         }
         return value;
+    }
+    /**
+     * @param {?} value
+     * @param {?=} allowDecimalsOnly
+     * @return {?}
+     */
+    removeInvalidCharacters(value, allowDecimalsOnly = false) {
+        return allowDecimalsOnly
+            ? value.replace(/[^0-9]/g, '')
+            : value.replace(/[^\-0-9,.]/g, '');
     }
     /**
      * @param {?} value
@@ -1202,7 +1215,9 @@ class ScrollSpyDirective {
     onScroll() {
         /** @type {?} */
         const section = this.findCurrentSection();
-        this.setCurrentSection(section.id);
+        if (section) {
+            this.setCurrentSection(section.id);
+        }
     }
     /**
      * @private

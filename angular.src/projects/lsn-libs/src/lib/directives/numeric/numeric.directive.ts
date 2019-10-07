@@ -37,7 +37,8 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     if ($event.target.value === '-') {
       return;
     }
-    const value = this.handleWholesLength($event.target.value);
+    let value = this.removeInvalidCharacters($event.target.value);
+    value = this.handleWholesLength(value);
     const parsedValue = this.parseValue(value);
     const rangeValue = this.handleRange(parsedValue);
     if (parsedValue === rangeValue) {
@@ -113,11 +114,18 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
         .replace(/[,|.]/, this.config.decimals);
       if (absoluteValue.toString().includes(this.config.decimals)) {
         const [wholes, decimals] = absoluteValue.toString().split(this.config.decimals);
-        return negativeSign + wholes.substr(0, this.config.maxLength) + this.config.decimals + decimals;
+        const properDecimals = this.removeInvalidCharacters(decimals, true);
+        return negativeSign + wholes.substr(0, this.config.maxLength) + this.config.decimals + properDecimals;
       }
       return negativeSign + absoluteValue.toString().substr(0, this.config.maxLength);
     }
     return value;
+  }
+
+  removeInvalidCharacters(value, allowDecimalsOnly = false) {
+    return allowDecimalsOnly
+      ? value.replace(/[^0-9]/g, '')
+      : value.replace(/[^\-0-9,.]/g, '');
   }
 
   handleRange(value) {
