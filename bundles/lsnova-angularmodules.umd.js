@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/keycodes'), require('@angular/forms'), require('@angular/common'), require('@angular/material'), require('rxjs'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('@lsnova/angularmodules', ['exports', '@angular/core', '@angular/cdk/keycodes', '@angular/forms', '@angular/common', '@angular/material', 'rxjs', 'rxjs/operators'], factory) :
-    (global = global || self, factory((global.lsnova = global.lsnova || {}, global.lsnova.angularmodules = {}), global.ng.core, global.ng.cdk.keycodes, global.ng.forms, global.ng.common, global.ng.material, global.rxjs, global.rxjs.operators));
-}(this, function (exports, core, keycodes, forms, common, material, rxjs, operators) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/cdk/keycodes'), require('@angular/common'), require('@angular/material'), require('rxjs'), require('rxjs/operators')) :
+    typeof define === 'function' && define.amd ? define('@lsnova/angularmodules', ['exports', '@angular/core', '@angular/forms', '@angular/cdk/keycodes', '@angular/common', '@angular/material', 'rxjs', 'rxjs/operators'], factory) :
+    (global = global || self, factory((global.lsnova = global.lsnova || {}, global.lsnova.angularmodules = {}), global.ng.core, global.ng.forms, global.ng.cdk.keycodes, global.ng.common, global.ng.material, global.rxjs, global.rxjs.operators));
+}(this, function (exports, core, forms, keycodes, common, material, rxjs, operators) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -207,7 +207,8 @@
                 return;
             }
             /** @type {?} */
-            var value = this.handleWholesLength($event.target.value);
+            var value = this.removeInvalidCharacters($event.target.value);
+            value = this.handleWholesLength(value);
             /** @type {?} */
             var parsedValue = this.parseValue(value);
             /** @type {?} */
@@ -354,11 +355,29 @@
                     .replace(/[,|.]/, this.config.decimals);
                 if (absoluteValue.toString().includes(this.config.decimals)) {
                     var _a = __read(absoluteValue.toString().split(this.config.decimals), 2), wholes = _a[0], decimals = _a[1];
-                    return negativeSign + wholes.substr(0, this.config.maxLength) + this.config.decimals + decimals;
+                    /** @type {?} */
+                    var properDecimals = this.removeInvalidCharacters(decimals, true);
+                    return negativeSign + wholes.substr(0, this.config.maxLength) + this.config.decimals + properDecimals;
                 }
                 return negativeSign + absoluteValue.toString().substr(0, this.config.maxLength);
             }
             return value;
+        };
+        /**
+         * @param {?} value
+         * @param {?=} allowDecimalsOnly
+         * @return {?}
+         */
+        NumericDirective.prototype.removeInvalidCharacters = /**
+         * @param {?} value
+         * @param {?=} allowDecimalsOnly
+         * @return {?}
+         */
+        function (value, allowDecimalsOnly) {
+            if (allowDecimalsOnly === void 0) { allowDecimalsOnly = false; }
+            return allowDecimalsOnly
+                ? value.replace(/[^0-9]/g, '')
+                : value.replace(/[^\-0-9,.]/g, '');
         };
         /**
          * @param {?} value
@@ -1504,7 +1523,9 @@
         function () {
             /** @type {?} */
             var section = this.findCurrentSection();
-            this.setCurrentSection(section.id);
+            if (section) {
+                this.setCurrentSection(section.id);
+            }
         };
         /**
          * @private
@@ -1706,16 +1727,6 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var LsnLibsModule = /** @class */ (function () {
         function LsnLibsModule() {
         }
@@ -1771,8 +1782,7 @@
     exports.ɵf = NumPadDirective;
     exports.ɵg = CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR;
     exports.ɵh = MatSelectComponent;
-    exports.ɵi = LsnScrollSpyModule;
-    exports.ɵj = ScrollSpyDirective;
+    exports.ɵi = ScrollSpyDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

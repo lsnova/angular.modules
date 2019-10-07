@@ -1,7 +1,7 @@
 import { Injectable, forwardRef, Directive, ElementRef, Input, HostListener, NgModule, Optional, Component, ViewEncapsulation, ContentChild, TemplateRef, ViewChild, EventEmitter, Output } from '@angular/core';
+import { NG_VALUE_ACCESSOR, NgControl, NgModel, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { __awaiter } from 'tslib';
 import { LEFT_ARROW, RIGHT_ARROW, BACKSPACE, DELETE, END, ENTER, ESCAPE, HOME, TAB, A, C, R, V, X, DASH, NUMPAD_MINUS, COMMA, NUMPAD_PERIOD, ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, NUMPAD_ZERO, NUMPAD_ONE, NUMPAD_TWO, NUMPAD_THREE, NUMPAD_FOUR, NUMPAD_FIVE, NUMPAD_SIX, NUMPAD_SEVEN, NUMPAD_EIGHT, NUMPAD_NINE, DOWN_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
-import { NG_VALUE_ACCESSOR, NgControl, NgModel, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatSelect, MatIconModule, MatInputModule, MatSelectModule, MatTooltipModule } from '@angular/material';
 import { Subject } from 'rxjs';
@@ -118,7 +118,8 @@ class NumericDirective {
             return;
         }
         /** @type {?} */
-        const value = this.handleWholesLength($event.target.value);
+        let value = this.removeInvalidCharacters($event.target.value);
+        value = this.handleWholesLength(value);
         /** @type {?} */
         const parsedValue = this.parseValue(value);
         /** @type {?} */
@@ -229,11 +230,23 @@ class NumericDirective {
                 .replace(/[,|.]/, this.config.decimals);
             if (absoluteValue.toString().includes(this.config.decimals)) {
                 const [wholes, decimals] = absoluteValue.toString().split(this.config.decimals);
-                return negativeSign + wholes.substr(0, this.config.maxLength) + this.config.decimals + decimals;
+                /** @type {?} */
+                const properDecimals = this.removeInvalidCharacters(decimals, true);
+                return negativeSign + wholes.substr(0, this.config.maxLength) + this.config.decimals + properDecimals;
             }
             return negativeSign + absoluteValue.toString().substr(0, this.config.maxLength);
         }
         return value;
+    }
+    /**
+     * @param {?} value
+     * @param {?=} allowDecimalsOnly
+     * @return {?}
+     */
+    removeInvalidCharacters(value, allowDecimalsOnly = false) {
+        return allowDecimalsOnly
+            ? value.replace(/[^0-9]/g, '')
+            : value.replace(/[^\-0-9,.]/g, '');
     }
     /**
      * @param {?} value
@@ -1202,7 +1215,9 @@ class ScrollSpyDirective {
     onScroll() {
         /** @type {?} */
         const section = this.findCurrentSection();
-        this.setCurrentSection(section.id);
+        if (section) {
+            this.setCurrentSection(section.id);
+        }
     }
     /**
      * @private
@@ -1345,16 +1360,6 @@ LsnScrollSpyModule.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class LsnLibsModule {
 }
 LsnLibsModule.decorators = [
@@ -1402,5 +1407,5 @@ LsnLibsModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { LsnCapitalizeModule, LsnLatinToGreekModule, LsnLibsModule, LsnMatSelectModule, LsnNumericModule, LsnNumpadModule, LsnScrollSpyModule, CapitalizeDirective as ɵa, LatinToGreekDirective as ɵb, NumericDirective as ɵc, CustomNumericConfig as ɵd, NumericConfigService as ɵe, NumPadDirective as ɵf, CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR as ɵg, MatSelectComponent as ɵh, LsnScrollSpyModule as ɵi, ScrollSpyDirective as ɵj };
+export { LsnCapitalizeModule, LsnLatinToGreekModule, LsnLibsModule, LsnMatSelectModule, LsnNumericModule, LsnNumpadModule, LsnScrollSpyModule, CapitalizeDirective as ɵa, LatinToGreekDirective as ɵb, NumericDirective as ɵc, CustomNumericConfig as ɵd, NumericConfigService as ɵe, NumPadDirective as ɵf, CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR as ɵg, MatSelectComponent as ɵh, ScrollSpyDirective as ɵi };
 //# sourceMappingURL=lsnova-angularmodules.js.map
