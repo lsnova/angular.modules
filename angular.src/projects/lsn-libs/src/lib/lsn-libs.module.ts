@@ -30,7 +30,9 @@ import {LsnCrossTabModule} from './services/lsn-cross-tab/lsn-cross-tab.module';
     }),
     LsnNumpadModule,
     LsnMatSelectModule,
-    LsnScrollSpyModule
+    LsnScrollSpyModule,
+    LsnCookieModule,
+    LsnCrossTabModule
   ],
   exports: [
     LsnCapitalizeModule,

@@ -12,4 +12,4 @@ export class LsnCookieConfig {
   }
 }
 
-export const LSN_COOKIE_CONFIG = new InjectionToken<LsnCookieConfig>('LsnCookieConfig')
+export const LSN_COOKIE_CONFIG = new InjectionToken<LsnCookieConfig>('LsnCookieConfig');

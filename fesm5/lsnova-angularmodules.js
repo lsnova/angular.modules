@@ -1891,7 +1891,9 @@ var LsnLibsModule = /** @class */ (function () {
                         }),
                         LsnNumpadModule,
                         LsnMatSelectModule,
-                        LsnScrollSpyModule
+                        LsnScrollSpyModule,
+                        LsnCookieModule,
+                        LsnCrossTabModule
                     ],
                     exports: [
                         LsnCapitalizeModule,

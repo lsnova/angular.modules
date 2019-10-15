@@ -1574,7 +1574,9 @@ LsnLibsModule.decorators = [
                     }),
                     LsnNumpadModule,
                     LsnMatSelectModule,
-                    LsnScrollSpyModule
+                    LsnScrollSpyModule,
+                    LsnCookieModule,
+                    LsnCrossTabModule
                 ],
                 exports: [
                     LsnCapitalizeModule,
