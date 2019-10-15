@@ -3,7 +3,8 @@
   "version": "0.6.3",
   "peerDependencies": {
     "@angular/common": "^8.0.0",
-    "@angular/core": "^8.0.0"
+    "@angular/core": "^8.0.0",
+    "@angular/forms": "^8.0.0"
   },
   "main": "bundles/lsnova-angularmodules.umd.js",
   "module": "fesm5/lsnova-angularmodules.js",

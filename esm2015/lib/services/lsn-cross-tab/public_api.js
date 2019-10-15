@@ -1,0 +1,8 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { LsnCrossTabModule } from './lsn-cross-tab.module';
+export { LsnCrossTabConfig, LSN_CROSS_TAB_CONFIG } from './models/lsnCrossTabConfig';
+export { LsnCrossTabService } from './lsn-cross-tab.service';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0Bsc25vdmEvYW5ndWxhcm1vZHVsZXMvIiwic291cmNlcyI6WyJsaWIvc2VydmljZXMvbHNuLWNyb3NzLXRhYi9wdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxrQ0FBYyx3QkFBd0IsQ0FBQztBQUN2Qyx3REFBYyw0QkFBNEIsQ0FBQztBQUMzQyxtQ0FBYyx5QkFBeUIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCAqIGZyb20gJy4vbHNuLWNyb3NzLXRhYi5tb2R1bGUnO1xuZXhwb3J0ICogZnJvbSAnLi9tb2RlbHMvbHNuQ3Jvc3NUYWJDb25maWcnO1xuZXhwb3J0ICogZnJvbSAnLi9sc24tY3Jvc3MtdGFiLnNlcnZpY2UnO1xuIl19

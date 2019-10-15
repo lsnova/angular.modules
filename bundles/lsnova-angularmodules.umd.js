@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/cdk/keycodes'), require('@angular/common'), require('@angular/material'), require('rxjs'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('@lsnova/angularmodules', ['exports', '@angular/core', '@angular/forms', '@angular/cdk/keycodes', '@angular/common', '@angular/material', 'rxjs', 'rxjs/operators'], factory) :
-    (global = global || self, factory((global.lsnova = global.lsnova || {}, global.lsnova.angularmodules = {}), global.ng.core, global.ng.forms, global.ng.cdk.keycodes, global.ng.common, global.ng.material, global.rxjs, global.rxjs.operators));
-}(this, function (exports, core, forms, keycodes, common, material, rxjs, operators) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/keycodes'), require('@angular/forms'), require('@angular/common'), require('@angular/material'), require('rxjs'), require('rxjs/operators')) :
+    typeof define === 'function' && define.amd ? define('@lsnova/angularmodules', ['exports', '@angular/core', '@angular/cdk/keycodes', '@angular/forms', '@angular/common', '@angular/material', 'rxjs', 'rxjs/operators'], factory) :
+    (global = global || self, factory((global.lsnova = global.lsnova || {}, global.lsnova.angularmodules = {}), global.ng.core, global.ng.cdk.keycodes, global.ng.forms, global.ng.common, global.ng.material, global.rxjs, global.rxjs.operators));
+}(this, function (exports, core, keycodes, forms, common, material, rxjs, operators) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -65,6 +65,17 @@
             } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
             if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
         }
+    }
+
+    function __values(o) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+        if (m) return m.call(o);
+        return {
+            next: function () {
+                if (o && i >= o.length) o = void 0;
+                return { value: o && o[i++], done: !o };
+            }
+        };
     }
 
     function __read(o, n) {
@@ -1727,6 +1738,206 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LsnCookieConfig = /** @class */ (function () {
+        function LsnCookieConfig(_a) {
+            var _b = _a === void 0 ? {} : _a, _c = _b.secureCookies, secureCookies = _c === void 0 ? null : _c, _d = _b.domainCookies, domainCookies = _d === void 0 ? null : _d;
+            this.secureCookies = secureCookies;
+            this.domainCookies = domainCookies;
+        }
+        return LsnCookieConfig;
+    }());
+    /** @type {?} */
+    var LSN_COOKIE_CONFIG = new core.InjectionToken('LsnCookieConfig');
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LsnCookieService = /** @class */ (function () {
+        function LsnCookieService(cookieConfig, document) {
+            this.cookieConfig = cookieConfig;
+            this.document = document;
+        }
+        /**
+         * @param {?} cookieKey
+         * @param {?} cookieValue
+         * @param {?} cookieOptions
+         * @return {?}
+         */
+        LsnCookieService.prototype.set = /**
+         * @param {?} cookieKey
+         * @param {?} cookieValue
+         * @param {?} cookieOptions
+         * @return {?}
+         */
+        function (cookieKey, cookieValue, cookieOptions) {
+            /** @type {?} */
+            var options = __assign({ secure: this.cookieConfig.secureCookies, domain: this.cookieConfig.domainCookies || false }, cookieOptions);
+            /** @type {?} */
+            var value = JSON.stringify(cookieValue);
+            /** @type {?} */
+            var expiresFor;
+            if (typeof options.expires === 'number') {
+                expiresFor = options.expires;
+                options.expires = new Date();
+                // Trying to delete a cookie; set a date far in the past
+                if (expiresFor === -1) {
+                    options.expires = new Date('Thu, 01 Jan 1970 00:00:00 GMT');
+                }
+                else if (options.expirationUnit) {
+                    if (options.expirationUnit === 'hours') {
+                        options.expires.setHours(options.expires.getHours() + expiresFor);
+                    }
+                    else if (options.expirationUnit === 'minutes') {
+                        options.expires.setMinutes(options.expires.getMinutes() + expiresFor);
+                    }
+                    else if (options.expirationUnit === 'seconds') {
+                        options.expires.setSeconds(options.expires.getSeconds() + expiresFor);
+                    }
+                    else if (options.expirationUnit === 'milliseconds') {
+                        options.expires.setMilliseconds(options.expires.getMilliseconds() + expiresFor);
+                    }
+                    else {
+                        options.expires.setDate(options.expires.getDate() + expiresFor);
+                    }
+                }
+                else {
+                    options.expires.setDate(options.expires.getDate() + expiresFor);
+                }
+            }
+            return (this.document.cookie = [
+                encodeURIComponent(cookieKey),
+                '=',
+                encodeURIComponent(value),
+                options.expires ? '; expires=' + options.expires.toUTCString() : '',
+                options.path ? '; path=' + options.path : '',
+                options.domain ? '; domain=' + options.domain : '',
+                options.secure ? '; secure' : ''
+            ].join(''));
+        };
+        /**
+         * @param {?=} cookieKey
+         * @return {?}
+         */
+        LsnCookieService.prototype.get = /**
+         * @param {?=} cookieKey
+         * @return {?}
+         */
+        function (cookieKey) {
+            /** @type {?} */
+            var cookieStringList = this.document.cookie ? this.document.cookie.split('; ') : [];
+            /** @type {?} */
+            var cookieObject = cookieStringList
+                .map(function (cookieString) {
+                /** @type {?} */
+                var pos = cookieString.indexOf('=');
+                return {
+                    name: cookieString.substr(0, pos),
+                    value: decodeURIComponent(cookieString.substr(pos + 1))
+                };
+            }).filter(function (cookie) {
+                return typeof cookie.value !== 'undefined' && (cookieKey === undefined || cookieKey === cookie.name);
+            }).reduce(function (previousValue, currentValue) {
+                /** @type {?} */
+                var value = null;
+                try {
+                    value = JSON.parse(currentValue.value);
+                }
+                catch (e) {
+                    value = currentValue.value;
+                }
+                previousValue[currentValue.name] = value;
+                return previousValue;
+            }, {});
+            return cookieKey ? cookieObject[cookieKey] : Object.keys(cookieObject).length > 0 ? cookieObject : null;
+        };
+        /**
+         * @param {?} cookieKey
+         * @param {?=} cookieOptions
+         * @return {?}
+         */
+        LsnCookieService.prototype.remove = /**
+         * @param {?} cookieKey
+         * @param {?=} cookieOptions
+         * @return {?}
+         */
+        function (cookieKey, cookieOptions) {
+            if (cookieOptions === void 0) { cookieOptions = {}; }
+            /** @type {?} */
+            var cookie = this.get(cookieKey);
+            if (cookie) {
+                cookieOptions.expires = -1;
+                this.set(cookieKey, '', cookieOptions);
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
+        LsnCookieService.decorators = [
+            { type: core.Injectable, args: [{
+                        providedIn: 'root'
+                    },] }
+        ];
+        /** @nocollapse */
+        LsnCookieService.ctorParameters = function () { return [
+            { type: LsnCookieConfig, decorators: [{ type: core.Inject, args: [LSN_COOKIE_CONFIG,] }] },
+            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
+        ]; };
+        /** @nocollapse */ LsnCookieService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LsnCookieService_Factory() { return new LsnCookieService(core.ɵɵinject(LSN_COOKIE_CONFIG), core.ɵɵinject(common.DOCUMENT)); }, token: LsnCookieService, providedIn: "root" });
+        return LsnCookieService;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LsnCookieModule = /** @class */ (function () {
+        function LsnCookieModule() {
+        }
+        LsnCookieModule.decorators = [
+            { type: core.NgModule, args: [{
+                        declarations: [],
+                        providers: [LsnCookieService],
+                        imports: [
+                            common.CommonModule
+                        ]
+                    },] }
+        ];
+        return LsnCookieModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LsnCrossTabModule = /** @class */ (function () {
+        function LsnCrossTabModule() {
+        }
+        LsnCrossTabModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [
+                            common.CommonModule
+                        ]
+                    },] }
+        ];
+        return LsnCrossTabModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var LsnLibsModule = /** @class */ (function () {
         function LsnLibsModule() {
         }
@@ -1760,14 +1971,430 @@
                             LsnNumericModule,
                             LsnNumpadModule,
                             LsnMatSelectModule,
-                            LsnScrollSpyModule
+                            LsnScrollSpyModule,
+                            LsnCookieModule,
+                            LsnCrossTabModule
                         ]
                     },] }
         ];
         return LsnLibsModule;
     }());
 
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LsnCrossTabConfig = /** @class */ (function () {
+        function LsnCrossTabConfig(_a) {
+            var _b = _a === void 0 ? {} : _a, _c = _b.cookieCleanFreq, cookieCleanFreq = _c === void 0 ? null : _c, _d = _b.cookieReadFreq, cookieReadFreq = _d === void 0 ? null : _d, _e = _b.msgTtl, msgTtl = _e === void 0 ? null : _e, _f = _b.rootDomain, rootDomain = _f === void 0 ? null : _f, _g = _b.crossTabCookieName, crossTabCookieName = _g === void 0 ? null : _g;
+            this.cookieCleanFreq = cookieCleanFreq;
+            this.cookieReadFreq = cookieReadFreq;
+            this.msgTtl = msgTtl;
+            this.rootDomain = rootDomain;
+            this.crossTabCookieName = crossTabCookieName;
+        }
+        return LsnCrossTabConfig;
+    }());
+    /** @type {?} */
+    var LSN_CROSS_TAB_CONFIG = new core.InjectionToken('LsnCrossTabConfig');
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LsnCrossTabMessage = /** @class */ (function () {
+        function LsnCrossTabMessage(_a) {
+            var _b = _a === void 0 ? {} : _a, _c = _b.created, created = _c === void 0 ? null : _c, _d = _b.code, code = _d === void 0 ? null : _d, _e = _b.tabId, tabId = _e === void 0 ? null : _e, _f = _b.attrs, attrs = _f === void 0 ? null : _f;
+            this.created = created;
+            this.code = code;
+            this.tabId = tabId;
+            this.attrs = attrs;
+        }
+        /**
+         * @param {?} firstMessage
+         * @param {?} secondMessage
+         * @return {?}
+         */
+        LsnCrossTabMessage.compare = /**
+         * @param {?} firstMessage
+         * @param {?} secondMessage
+         * @return {?}
+         */
+        function (firstMessage, secondMessage) {
+            if (!firstMessage || !secondMessage) {
+                return false;
+            }
+            if (firstMessage.created !== secondMessage.created) {
+                return false;
+            }
+            if (firstMessage.code !== secondMessage.code) {
+                return false;
+            }
+            return firstMessage.tabId !== secondMessage.tabId;
+        };
+        return LsnCrossTabMessage;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LsnCrossTabService = /** @class */ (function () {
+        function LsnCrossTabService(lsnCookieService, crossTabConfig) {
+            var _this = this;
+            this.lsnCookieService = lsnCookieService;
+            this.crossTabConfig = crossTabConfig;
+            /**
+             * Checks if message with given id was already read
+             */
+            this.messageWasRead = function (msg) { return _this.messagesReadSet.has(_this.getMessageId(msg)); };
+            this.getMessageId = function (message) { return message.tabId + message.created + message.code; };
+            this.messageToPlainObject = function (msg) { return Object.keys(msg)
+                .reduce(function (minifiedObj, key) {
+                /** @type {?} */
+                var value = msg[key];
+                if (key !== 'attrs' && value !== null && value !== {}) {
+                    minifiedObj[key] = value;
+                    return minifiedObj;
+                }
+                else {
+                    return minifiedObj;
+                } // tslint:disable
+            }, {}); }; // tslint:enable
+            this.getCookie = function () { return _this.cookie; };
+            this.crossTabCookieName = crossTabConfig.crossTabCookieName;
+            this.messageSubject = new rxjs.Subject();
+            this.tabId = Math.random() + '';
+            this.messagesReadSet = new Set();
+            this.tabOpenTime = Date.now();
+        }
+        /**
+         * This function sets up subscriptions for reading and cleaning cross tab cookie
+         */
+        /**
+         * This function sets up subscriptions for reading and cleaning cross tab cookie
+         * @return {?}
+         */
+        LsnCrossTabService.prototype.run = /**
+         * This function sets up subscriptions for reading and cleaning cross tab cookie
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            if (!this.cookieReadSubscription) {
+                this.cookieReadSubscription = rxjs.interval(this.crossTabConfig.cookieReadFreq)
+                    .subscribe(function () { return _this.readMessages(); });
+            }
+            if (!this.cookieCleanSubscription) {
+                this.cookieCleanSubscription = rxjs.interval(this.crossTabConfig.cookieCleanFreq)
+                    .subscribe(function () { return _this.cleanCookie(); });
+            }
+        };
+        Object.defineProperty(LsnCrossTabService.prototype, "messages$", {
+            /**
+             * This Observable emits messages that were sent by other tabs
+             */
+            get: /**
+             * This Observable emits messages that were sent by other tabs
+             * @return {?}
+             */
+            function () {
+                return this.messageSubject;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**
+         * Sends message to other tabs by adding this message to cross tab cookie
+         */
+        /**
+         * Sends message to other tabs by adding this message to cross tab cookie
+         * @param {?} data
+         * @return {?}
+         */
+        LsnCrossTabService.prototype.sendMessage = /**
+         * Sends message to other tabs by adding this message to cross tab cookie
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
+            /** @type {?} */
+            var message;
+            if (typeof data === 'string') {
+                message = new LsnCrossTabMessage({ code: data });
+            }
+            else if (data instanceof LsnCrossTabMessage) {
+                message = data;
+            }
+            else if (!!data && typeof data === 'object' && !Array.isArray(data)) {
+                message = new LsnCrossTabMessage(__assign({}, data));
+            }
+            else {
+                return;
+            }
+            // previous implementation, message.created is always overridden
+            message.created = new Date().getTime();
+            message.tabId = this.tabId;
+            this.messagesReadSet.add(this.getMessageId(message));
+            this.updateCookie(this.messageToPlainObject(message));
+        };
+        /**
+         * Appends given message to cross tab cookie value
+         */
+        // tslint:enable
+        /**
+         * Appends given message to cross tab cookie value
+         * @private
+         * @param {?} msg
+         * @return {?}
+         */
+        LsnCrossTabService.prototype.updateCookie = 
+        // tslint:enable
+        /**
+         * Appends given message to cross tab cookie value
+         * @private
+         * @param {?} msg
+         * @return {?}
+         */
+        function (msg) {
+            /** @type {?} */
+            var cookieData = this.cookie;
+            cookieData.push(msg);
+            this.cookie = cookieData;
+        };
+        Object.defineProperty(LsnCrossTabService.prototype, "cookie", {
+            get: /**
+             * @private
+             * @return {?}
+             */
+            function () {
+                return this.lsnCookieService.get(this.crossTabConfig.crossTabCookieName) || [];
+            },
+            set: /**
+             * @private
+             * @param {?} cookieData
+             * @return {?}
+             */
+            function (cookieData) {
+                this.lsnCookieService.set(this.crossTabCookieName, cookieData, {
+                    domain: this.crossTabConfig.rootDomain,
+                    path: '/'
+                });
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**
+         * Removes messages from cross tab cookie that are older than supplied config.msgTtl time
+         */
+        /**
+         * Removes messages from cross tab cookie that are older than supplied config.msgTtl time
+         * @private
+         * @return {?}
+         */
+        LsnCrossTabService.prototype.cleanCookie = /**
+         * Removes messages from cross tab cookie that are older than supplied config.msgTtl time
+         * @private
+         * @return {?}
+         */
+        function () {
+            /** @type {?} */
+            var currentCookie = this.cookie;
+            if (currentCookie === null) {
+                return;
+            }
+            /** @type {?} */
+            var timestamp = new Date().getTime();
+            /** @type {?} */
+            var cleanedCookie = currentCookie.filter(this.cleanCookieFilter(timestamp, this.crossTabConfig.msgTtl));
+            // previous implementation, cookie might have been modified in the other tab?
+            if (!this.areCookiesEqual(currentCookie, this.cookie)) {
+                return;
+            }
+            this.cookie = cleanedCookie;
+        };
+        /**
+         * Callback invoked after every cookie read interval
+         */
+        /**
+         * Callback invoked after every cookie read interval
+         * @private
+         * @return {?}
+         */
+        LsnCrossTabService.prototype.readMessages = /**
+         * Callback invoked after every cookie read interval
+         * @private
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            if (this.cookie) {
+                this.cookie.forEach(function (msgData) {
+                    /** @type {?} */
+                    var msgCopy = __assign({}, msgData);
+                    if (!_this.messageWasRead(msgCopy)) {
+                        _this.messagesReadSet.add(_this.getMessageId(msgCopy));
+                        _this.messageSubject.next(msgCopy);
+                    }
+                });
+            }
+        };
+        /**
+         * Removes all subscriptions that this service is subscribe to (intervals are cleared)
+         */
+        /**
+         * Removes all subscriptions that this service is subscribe to (intervals are cleared)
+         * @return {?}
+         */
+        LsnCrossTabService.prototype.unsubscribe = /**
+         * Removes all subscriptions that this service is subscribe to (intervals are cleared)
+         * @return {?}
+         */
+        function () {
+            this.cookieReadSubscription.unsubscribe();
+            this.cookieCleanSubscription.unsubscribe();
+        };
+        /**
+         * @return {?}
+         */
+        LsnCrossTabService.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+        function () {
+            this.unsubscribe();
+        };
+        /**
+         * Sorts two cookie arrays and compares each element
+         */
+        /**
+         * Sorts two cookie arrays and compares each element
+         * @private
+         * @param {?} firstCookie
+         * @param {?} secondCookie
+         * @return {?}
+         */
+        LsnCrossTabService.prototype.areCookiesEqual = /**
+         * Sorts two cookie arrays and compares each element
+         * @private
+         * @param {?} firstCookie
+         * @param {?} secondCookie
+         * @return {?}
+         */
+        function (firstCookie, secondCookie) {
+            var e_1, _a;
+            if (firstCookie.length !== secondCookie.length) {
+                return false;
+            }
+            else if (firstCookie.length === 0 && secondCookie.length === 0) {
+                return true;
+            }
+            firstCookie.sort(this.messageComparer);
+            secondCookie.sort(this.messageComparer);
+            /** @type {?} */
+            var index = 0;
+            /** @type {?} */
+            var areCookiesEqual = true;
+            try {
+                for (var firstCookie_1 = __values(firstCookie), firstCookie_1_1 = firstCookie_1.next(); !firstCookie_1_1.done; firstCookie_1_1 = firstCookie_1.next()) {
+                    var message = firstCookie_1_1.value;
+                    if (LsnCrossTabMessage.compare(message, secondCookie[index])) {
+                        areCookiesEqual = false;
+                    }
+                    else {
+                        ++index;
+                    }
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (firstCookie_1_1 && !firstCookie_1_1.done && (_a = firstCookie_1.return)) _a.call(firstCookie_1);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+            return areCookiesEqual;
+        };
+        /**
+         * Compares two messages by properties in order: 'created', 'code', 'tabId';
+         */
+        /**
+         * Compares two messages by properties in order: 'created', 'code', 'tabId';
+         * @private
+         * @param {?} firstCookieValue
+         * @param {?} secondCookieValue
+         * @return {?}
+         */
+        LsnCrossTabService.prototype.messageComparer = /**
+         * Compares two messages by properties in order: 'created', 'code', 'tabId';
+         * @private
+         * @param {?} firstCookieValue
+         * @param {?} secondCookieValue
+         * @return {?}
+         */
+        function (firstCookieValue, secondCookieValue) {
+            /** @type {?} */
+            var result = firstCookieValue.created < secondCookieValue.created ? -1 : secondCookieValue.created < firstCookieValue.created ? 1 : 0;
+            if (result === 0) {
+                result = firstCookieValue.code < secondCookieValue.code ? -1 : secondCookieValue.code < firstCookieValue.code ? 1 : 0;
+                if (result === 0) {
+                    result = firstCookieValue.tabId < secondCookieValue.tabId ? -1 : secondCookieValue.tabId < firstCookieValue.tabId ? 1 : 0;
+                }
+            }
+            return result;
+        };
+        /**
+         * Function determines whether given message is to be removed from the cross tab cookie
+         */
+        /**
+         * Function determines whether given message is to be removed from the cross tab cookie
+         * @private
+         * @param {?} timestamp
+         * @param {?} msgTtl
+         * @return {?}
+         */
+        LsnCrossTabService.prototype.cleanCookieFilter = /**
+         * Function determines whether given message is to be removed from the cross tab cookie
+         * @private
+         * @param {?} timestamp
+         * @param {?} msgTtl
+         * @return {?}
+         */
+        function (timestamp, msgTtl) {
+            return function (cookieMessage) { return timestamp - cookieMessage.created <= msgTtl; };
+        };
+        LsnCrossTabService.decorators = [
+            { type: core.Injectable, args: [{
+                        providedIn: 'root'
+                    },] }
+        ];
+        /** @nocollapse */
+        LsnCrossTabService.ctorParameters = function () { return [
+            { type: LsnCookieService },
+            { type: LsnCrossTabConfig, decorators: [{ type: core.Inject, args: [LSN_CROSS_TAB_CONFIG,] }] }
+        ]; };
+        /** @nocollapse */ LsnCrossTabService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LsnCrossTabService_Factory() { return new LsnCrossTabService(core.ɵɵinject(LsnCookieService), core.ɵɵinject(LSN_CROSS_TAB_CONFIG)); }, token: LsnCrossTabService, providedIn: "root" });
+        return LsnCrossTabService;
+    }());
+
+    exports.LSN_COOKIE_CONFIG = LSN_COOKIE_CONFIG;
+    exports.LSN_CROSS_TAB_CONFIG = LSN_CROSS_TAB_CONFIG;
     exports.LsnCapitalizeModule = LsnCapitalizeModule;
+    exports.LsnCookieConfig = LsnCookieConfig;
+    exports.LsnCookieModule = LsnCookieModule;
+    exports.LsnCookieService = LsnCookieService;
+    exports.LsnCrossTabConfig = LsnCrossTabConfig;
+    exports.LsnCrossTabModule = LsnCrossTabModule;
+    exports.LsnCrossTabService = LsnCrossTabService;
     exports.LsnLatinToGreekModule = LsnLatinToGreekModule;
     exports.LsnLibsModule = LsnLibsModule;
     exports.LsnMatSelectModule = LsnMatSelectModule;
@@ -1782,7 +2409,8 @@
     exports.ɵf = NumPadDirective;
     exports.ɵg = CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR;
     exports.ɵh = MatSelectComponent;
-    exports.ɵi = ScrollSpyDirective;
+    exports.ɵi = LsnScrollSpyModule;
+    exports.ɵj = ScrollSpyDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
