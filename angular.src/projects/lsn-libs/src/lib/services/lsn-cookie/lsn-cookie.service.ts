@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {LSN_COOKIE_CONFIG, LsnCookieConfig} from '../models/lsnCookieConfig';
+import {LSN_COOKIE_CONFIG, LsnCookieConfig} from './models/lsnCookieConfig';
 import {DOCUMENT} from '@angular/common';
 
 export interface CookieOptions {

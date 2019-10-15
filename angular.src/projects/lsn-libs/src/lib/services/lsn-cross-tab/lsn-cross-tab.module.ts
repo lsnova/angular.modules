@@ -1,14 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {LsnCookieService} from './lsn-cookie/lsn-cookie.service';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule
-  ],
-  providers: [
-    LsnCookieService
   ]
 })
-export class LsnCrossTabModule { }
+export class LsnCrossTabModule {
+}

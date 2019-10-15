@@ -1,12 +1,8 @@
 import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {CrossTabComponent} from './cross-tab.component';
-import {
-  LSN_COOKIE_CONFIG,
-  LSN_CROSS_TAB_CONFIG,
-  LsnCookieConfig,
-  LsnCrossTabConfig
-} from '../../../../projects/lsn-libs/src/lib/services/lsn-cross-tab';
+import {LSN_CROSS_TAB_CONFIG, LsnCrossTabConfig} from '../../../../projects/lsn-libs/src/lib/services/lsn-cross-tab';
+import {LSN_COOKIE_CONFIG, LsnCookieConfig} from '../../../../projects/lsn-libs/src/lib/services/lsn-cookie';
 import {MaterialModule} from '../../modules/material.module';
 import {LsnCrossTabService} from '../../../../projects/lsn-libs/src/lib/services/lsn-cross-tab/lsn-cross-tab.service';
 import {ReactiveFormsModule} from '@angular/forms';

@@ -1,5 +1,5 @@
 import {Inject, Injectable, OnDestroy} from '@angular/core';
-import {LsnCookieService} from './lsn-cookie/lsn-cookie.service';
+import {LsnCookieService} from '../lsn-cookie/index';
 import {interval, Observable, Subject, Subscription} from 'rxjs';
 import {LsnCrossTabMessage} from './models/lsnCrossTabMessage';
 import {LSN_CROSS_TAB_CONFIG, LsnCrossTabConfig} from './models/lsnCrossTabConfig';
@@ -155,7 +155,7 @@ export class LsnCrossTabService implements OnDestroy {
   /**
    * Sorts two cookie arrays and compares each element
    */
-  areCookiesEqual(firstCookie: Array<LsnCrossTabMessage>, secondCookie: Array<LsnCrossTabMessage>) {
+  private areCookiesEqual(firstCookie: Array<LsnCrossTabMessage>, secondCookie: Array<LsnCrossTabMessage>) {
     if (firstCookie.length !== secondCookie.length) {
       return false;
     } else if (firstCookie.length === 0 && secondCookie.length === 0) {

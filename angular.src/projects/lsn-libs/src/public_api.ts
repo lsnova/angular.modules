@@ -14,3 +14,7 @@ export * from './lib/directives/latin-to-greek/latin-to-greek.module';
 export * from './lib/directives/numeric/numeric.module';
 export * from './lib/directives/numpad/numpad.module';
 export * from './lib/directives/scroll-spy/scroll-spy.module';
+
+// services
+export * from './lib/services/lsn-cookie/lsn-cookie.module';
+export * from './lib/services/lsn-cross-tab/lsn-cross-tab.module';

@@ -1,7 +1,7 @@
 import {TestBed} from '@angular/core/testing';
 
 import {LsnCookieService} from './lsn-cookie.service';
-import {LSN_COOKIE_CONFIG} from '../models/lsnCookieConfig';
+import {LSN_COOKIE_CONFIG} from './models/lsnCookieConfig';
 import {DOCUMENT} from '@angular/common';
 
 let mockDocument = {cookie: undefined};
