@@ -23,7 +23,7 @@ export interface CookieService {
 })
 export class LsnCookieService implements CookieService {
 
-  constructor(@Inject(LSN_COOKIE_CONFIG) private cookieConfig: LsnCookieConfig, @Inject(DOCUMENT) readonly document: Document) {
+  constructor(@Inject(LSN_COOKIE_CONFIG) private cookieConfig: LsnCookieConfig, @Inject(DOCUMENT) readonly document: any) {
   }
 
   set(cookieKey: string, cookieValue: any, cookieOptions: CookieOptions) {
