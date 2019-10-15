@@ -28,9 +28,9 @@ export class LsnCookieService implements CookieService {
 
   set(cookieKey: string, cookieValue: any, cookieOptions: CookieOptions) {
     const options = {
-      ...cookieOptions,
       secure: this.cookieConfig.secureCookies,
-      domain: this.cookieConfig.domainCookies || false
+      domain: this.cookieConfig.domainCookies || false,
+      ...cookieOptions,
     };
     const value = JSON.stringify(cookieValue);
     let expiresFor;
