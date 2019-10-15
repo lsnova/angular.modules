@@ -6,7 +6,7 @@ export interface CookieOptions {
   expires?: number | Date;
   expirationUnit?: string;
   path?: string;
-  domain?: string;
+  domain?: string | boolean;
   secure?: boolean;
 }
 
@@ -26,12 +26,18 @@ export class LsnCookieService implements CookieService {
   constructor(@Inject(LSN_COOKIE_CONFIG) private cookieConfig: LsnCookieConfig, @Inject(DOCUMENT) readonly document: any) {
   }
 
-  set(cookieKey: string, cookieValue: any, cookieOptions: CookieOptions) {
+  /**
+   * Sets cookie with given key to given value, cookie options are optional, if not set, some properties
+   * (secure and domain) will be set from global cookie config
+   */
+  set(cookieKey: string, cookieValue: any, cookieOptions?: CookieOptions) {
     const options = {
-      secure: this.cookieConfig.secureCookies,
-      domain: this.cookieConfig.domainCookies || false,
       ...cookieOptions,
+      secure: cookieOptions && cookieOptions.secure ? cookieOptions.secure : this.cookieConfig.secureCookies
     };
+    if (!this.cookieConfig.domainCookies) {
+      options.domain = false;
+    }
     const value = JSON.stringify(cookieValue);
     let expiresFor;
 
@@ -68,6 +74,9 @@ export class LsnCookieService implements CookieService {
     ].join(''));
   }
 
+  /**
+   * if no key provided, returns all cookies
+   */
   get(cookieKey?: string): any {
     const cookieStringList: Array<String> = this.document.cookie ? this.document.cookie.split('; ') : [];
 

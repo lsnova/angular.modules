@@ -24,7 +24,7 @@ function crossTabServiceFactory(lsnCrossTabService: LsnCrossTabService) {
         cookieCleanFreq: 5000,
         cookieReadFreq: 100,
         msgTtl: 15000,
-        rootDomain: 'localhost:4200',
+        rootDomain: 'localhost',
         crossTabCookieName: 'ih-crosstab-data'
       })
     },
