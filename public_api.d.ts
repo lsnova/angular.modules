@@ -5,5 +5,5 @@ export * from './lib/directives/latin-to-greek/latin-to-greek.module';
 export * from './lib/directives/numeric/numeric.module';
 export * from './lib/directives/numpad/numpad.module';
 export * from './lib/directives/scroll-spy/scroll-spy.module';
-export * from './lib/services/lsn-cookie/index';
-export * from './lib/services/lsn-cross-tab/index';
+export * from './lib/services/lsn-cookie';
+export * from './lib/services/lsn-cross-tab';

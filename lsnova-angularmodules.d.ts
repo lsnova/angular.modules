@@ -9,4 +9,8 @@ export { CustomNumericConfig as ɵd, NumericConfigService as ɵe } from './lib/d
 export { NumericDirective as ɵc } from './lib/directives/numeric/numeric.directive';
 export { NumPadDirective as ɵf } from './lib/directives/numpad/numpad.directive';
 export { LsnScrollSpyModule as ɵi } from './lib/directives/scroll-spy';
-export { ScrollSpyDirective as ɵj } from './lib/directives/scroll-spy/scroll-spy.directive';
+export { ScrollSpyDirective as ɵo } from './lib/directives/scroll-spy/scroll-spy.directive';
+export { LsnCookieModule as ɵj } from './lib/services/lsn-cookie/lsn-cookie.module';
+export { LsnCookieService as ɵk } from './lib/services/lsn-cookie/lsn-cookie.service';
+export { LSN_COOKIE_CONFIG as ɵm, LsnCookieConfig as ɵl } from './lib/services/lsn-cookie/models/lsnCookieConfig';
+export { LsnCrossTabModule as ɵn } from './lib/services/lsn-cross-tab/lsn-cross-tab.module';

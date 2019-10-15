@@ -63,7 +63,7 @@ export class LsnCookieService implements CookieService {
         options.expires.setDate(options.expires.getDate() + expiresFor);
       }
     }
-    return (this.document.cookie = [
+    this.document.cookie = [
       encodeURIComponent(cookieKey),
       '=',
       encodeURIComponent(value),
@@ -71,11 +71,13 @@ export class LsnCookieService implements CookieService {
       options.path ? '; path=' + options.path : '',
       options.domain ? '; domain=' + options.domain : '',
       options.secure ? '; secure' : ''
-    ].join(''));
+    ].join('');
   }
 
   /**
-   * if no key provided, returns all cookies
+   * Key provided - returns value of given cookie or undefined if non existent
+   * Key not provided - returns all cookies as Object or undefined if there are no cookies
+   * Cookie values are JSON.parsed, if error occurs during parsing, string value is assigned
    */
   get(cookieKey?: string): any {
     const cookieStringList: Array<String> = this.document.cookie ? this.document.cookie.split('; ') : [];
@@ -99,7 +101,7 @@ export class LsnCookieService implements CookieService {
         previousValue[currentValue.name] = value;
         return previousValue;
       }, {});
-    return cookieKey ? cookieObject[cookieKey] : Object.keys(cookieObject).length > 0 ? cookieObject : null;
+    return cookieKey ? cookieObject[cookieKey] : Object.keys(cookieObject).length > 0 ? cookieObject : undefined;
   }
 
   remove(cookieKey: string, cookieOptions: CookieOptions = {}) {

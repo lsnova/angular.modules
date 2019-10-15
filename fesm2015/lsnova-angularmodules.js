@@ -1396,14 +1396,19 @@ class LsnCookieService {
         this.document = document;
     }
     /**
+     * Sets cookie with given key to given value, cookie options are optional, if not set, some properties
+     * (secure and domain) will be set from global cookie config
      * @param {?} cookieKey
      * @param {?} cookieValue
-     * @param {?} cookieOptions
+     * @param {?=} cookieOptions
      * @return {?}
      */
     set(cookieKey, cookieValue, cookieOptions) {
         /** @type {?} */
-        const options = Object.assign({ secure: this.cookieConfig.secureCookies, domain: this.cookieConfig.domainCookies || false }, cookieOptions);
+        const options = Object.assign({}, cookieOptions, { secure: cookieOptions && cookieOptions.secure ? cookieOptions.secure : this.cookieConfig.secureCookies });
+        if (!this.cookieConfig.domainCookies) {
+            options.domain = false;
+        }
         /** @type {?} */
         const value = JSON.stringify(cookieValue);
         /** @type {?} */
@@ -1436,7 +1441,7 @@ class LsnCookieService {
                 options.expires.setDate(options.expires.getDate() + expiresFor);
             }
         }
-        return (this.document.cookie = [
+        this.document.cookie = [
             encodeURIComponent(cookieKey),
             '=',
             encodeURIComponent(value),
@@ -1444,9 +1449,12 @@ class LsnCookieService {
             options.path ? '; path=' + options.path : '',
             options.domain ? '; domain=' + options.domain : '',
             options.secure ? '; secure' : ''
-        ].join(''));
+        ].join('');
     }
     /**
+     * Key provided - returns value of given cookie or undefined if non existent
+     * Key not provided - returns all cookies as Object or undefined if there are no cookies
+     * Cookie values are JSON.parsed, if error occurs during parsing, string value is assigned
      * @param {?=} cookieKey
      * @return {?}
      */
@@ -1476,7 +1484,7 @@ class LsnCookieService {
             previousValue[currentValue.name] = value;
             return previousValue;
         }, {});
-        return cookieKey ? cookieObject[cookieKey] : Object.keys(cookieObject).length > 0 ? cookieObject : null;
+        return cookieKey ? cookieObject[cookieKey] : Object.keys(cookieObject).length > 0 ? cookieObject : undefined;
     }
     /**
      * @param {?} cookieKey
@@ -1900,5 +1908,5 @@ LsnCrossTabService.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { LSN_COOKIE_CONFIG, LSN_CROSS_TAB_CONFIG, LsnCapitalizeModule, LsnCookieConfig, LsnCookieModule, LsnCookieService, LsnCrossTabConfig, LsnCrossTabModule, LsnCrossTabService, LsnLatinToGreekModule, LsnLibsModule, LsnMatSelectModule, LsnNumericModule, LsnNumpadModule, LsnScrollSpyModule, CapitalizeDirective as ɵa, LatinToGreekDirective as ɵb, NumericDirective as ɵc, CustomNumericConfig as ɵd, NumericConfigService as ɵe, NumPadDirective as ɵf, CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR as ɵg, MatSelectComponent as ɵh, LsnScrollSpyModule as ɵi, ScrollSpyDirective as ɵj };
+export { LSN_COOKIE_CONFIG, LSN_CROSS_TAB_CONFIG, LsnCapitalizeModule, LsnCookieConfig, LsnCookieModule, LsnCookieService, LsnCrossTabConfig, LsnCrossTabModule, LsnCrossTabService, LsnLatinToGreekModule, LsnLibsModule, LsnMatSelectModule, LsnNumericModule, LsnNumpadModule, LsnScrollSpyModule, CapitalizeDirective as ɵa, LatinToGreekDirective as ɵb, NumericDirective as ɵc, CustomNumericConfig as ɵd, NumericConfigService as ɵe, NumPadDirective as ɵf, CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR as ɵg, MatSelectComponent as ɵh, LsnScrollSpyModule as ɵi, LsnCookieModule as ɵj, LsnCookieService as ɵk, LsnCookieConfig as ɵl, LSN_COOKIE_CONFIG as ɵm, LsnCrossTabModule as ɵn, ScrollSpyDirective as ɵo };
 //# sourceMappingURL=lsnova-angularmodules.js.map

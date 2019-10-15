@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LsnCrossTabService} from '../../../../projects/lsn-libs/src/lib/services/lsn-cross-tab/lsn-cross-tab.service';
 import {FormControl, FormGroup} from '@angular/forms';
+import {LsnCookieService} from "../../../../projects/lsn-libs/src/lib/services/lsn-cookie/lsn-cookie.service";
 
 @Component({
   selector: 'app-cross-tab',
@@ -14,7 +15,7 @@ export class CrossTabComponent implements OnInit {
 
   readonly messagesReceived: Array<object>;
 
-  constructor(private lsnCrossTabService: LsnCrossTabService) {
+  constructor(private lsnCrossTabService: LsnCrossTabService, private lsnCookieService: LsnCookieService) {
     this.messagesReceived = [];
   }
 

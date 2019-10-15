@@ -1769,20 +1769,31 @@
             this.document = document;
         }
         /**
+         * Sets cookie with given key to given value, cookie options are optional, if not set, some properties
+         * (secure and domain) will be set from global cookie config
+         */
+        /**
+         * Sets cookie with given key to given value, cookie options are optional, if not set, some properties
+         * (secure and domain) will be set from global cookie config
          * @param {?} cookieKey
          * @param {?} cookieValue
-         * @param {?} cookieOptions
+         * @param {?=} cookieOptions
          * @return {?}
          */
         LsnCookieService.prototype.set = /**
+         * Sets cookie with given key to given value, cookie options are optional, if not set, some properties
+         * (secure and domain) will be set from global cookie config
          * @param {?} cookieKey
          * @param {?} cookieValue
-         * @param {?} cookieOptions
+         * @param {?=} cookieOptions
          * @return {?}
          */
         function (cookieKey, cookieValue, cookieOptions) {
             /** @type {?} */
-            var options = __assign({ secure: this.cookieConfig.secureCookies, domain: this.cookieConfig.domainCookies || false }, cookieOptions);
+            var options = __assign({}, cookieOptions, { secure: cookieOptions && cookieOptions.secure ? cookieOptions.secure : this.cookieConfig.secureCookies });
+            if (!this.cookieConfig.domainCookies) {
+                options.domain = false;
+            }
             /** @type {?} */
             var value = JSON.stringify(cookieValue);
             /** @type {?} */
@@ -1815,7 +1826,7 @@
                     options.expires.setDate(options.expires.getDate() + expiresFor);
                 }
             }
-            return (this.document.cookie = [
+            this.document.cookie = [
                 encodeURIComponent(cookieKey),
                 '=',
                 encodeURIComponent(value),
@@ -1823,13 +1834,24 @@
                 options.path ? '; path=' + options.path : '',
                 options.domain ? '; domain=' + options.domain : '',
                 options.secure ? '; secure' : ''
-            ].join(''));
+            ].join('');
         };
         /**
+         * Key provided - returns value of given cookie or undefined if non existent
+         * Key not provided - returns all cookies as Object or undefined if there are no cookies
+         * Cookie values are JSON.parsed, if error occurs during parsing, string value is assigned
+         */
+        /**
+         * Key provided - returns value of given cookie or undefined if non existent
+         * Key not provided - returns all cookies as Object or undefined if there are no cookies
+         * Cookie values are JSON.parsed, if error occurs during parsing, string value is assigned
          * @param {?=} cookieKey
          * @return {?}
          */
         LsnCookieService.prototype.get = /**
+         * Key provided - returns value of given cookie or undefined if non existent
+         * Key not provided - returns all cookies as Object or undefined if there are no cookies
+         * Cookie values are JSON.parsed, if error occurs during parsing, string value is assigned
          * @param {?=} cookieKey
          * @return {?}
          */
@@ -1859,7 +1881,7 @@
                 previousValue[currentValue.name] = value;
                 return previousValue;
             }, {});
-            return cookieKey ? cookieObject[cookieKey] : Object.keys(cookieObject).length > 0 ? cookieObject : null;
+            return cookieKey ? cookieObject[cookieKey] : Object.keys(cookieObject).length > 0 ? cookieObject : undefined;
         };
         /**
          * @param {?} cookieKey
@@ -2410,7 +2432,12 @@
     exports.ɵg = CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR;
     exports.ɵh = MatSelectComponent;
     exports.ɵi = LsnScrollSpyModule;
-    exports.ɵj = ScrollSpyDirective;
+    exports.ɵj = LsnCookieModule;
+    exports.ɵk = LsnCookieService;
+    exports.ɵl = LsnCookieConfig;
+    exports.ɵm = LSN_COOKIE_CONFIG;
+    exports.ɵn = LsnCrossTabModule;
+    exports.ɵo = ScrollSpyDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
