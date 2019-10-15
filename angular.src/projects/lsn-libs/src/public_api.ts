@@ -17,4 +17,6 @@ export * from './lib/directives/scroll-spy/scroll-spy.module';
 
 // services
 export * from './lib/services/lsn-cookie/lsn-cookie.module';
+export * from './lib/services/lsn-cookie/lsn-cookie.service';
 export * from './lib/services/lsn-cross-tab/lsn-cross-tab.module';
+export * from './lib/services/lsn-cross-tab/lsn-cross-tab.service';
