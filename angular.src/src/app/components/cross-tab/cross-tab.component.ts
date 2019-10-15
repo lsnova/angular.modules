@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {LsnCrossTabService} from '../../../../projects/lsn-libs/src/lib/services/lsn-cross-tab/lsn-cross-tab.service';
+import {LsnCrossTabService} from '../../../../projects/lsn-libs/src/lib/services/lsn-cross-tab';
 import {FormControl, FormGroup} from '@angular/forms';
-import {LsnCookieService} from '../../../../../lib/services/lsn-cookie/lsn-cookie.service';
+import {LsnCookieService} from '../../../../projects/lsn-libs/src/lib/services/lsn-cookie';
 
 @Component({
   selector: 'app-cross-tab',
