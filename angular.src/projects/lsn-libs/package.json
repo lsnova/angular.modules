@@ -1,9 +1,10 @@
 {
   "name": "@lsnova/angularmodules",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "peerDependencies": {
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0",
-    "@angular/forms": "^8.0.0"
+    "@angular/forms": "^8.0.0",
+    "@angular/material": "~8.2.3"
   }
 }

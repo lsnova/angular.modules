@@ -1943,94 +1943,11 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var LsnCrossTabModule = /** @class */ (function () {
-        function LsnCrossTabModule() {
-        }
-        LsnCrossTabModule.decorators = [
-            { type: core.NgModule, args: [{
-                        imports: [
-                            common.CommonModule
-                        ]
-                    },] }
-        ];
-        return LsnCrossTabModule;
-    }());
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var LsnLibsModule = /** @class */ (function () {
-        function LsnLibsModule() {
-        }
-        LsnLibsModule.decorators = [
-            { type: core.NgModule, args: [{
-                        declarations: [],
-                        imports: [
-                            forms.FormsModule,
-                            LsnCapitalizeModule,
-                            LsnLatinToGreekModule,
-                            LsnNumericModule.forRoot({
-                                default: {
-                                    decimals: '.',
-                                    precision: 4,
-                                },
-                                custom: {
-                                    currency: {
-                                        decimals: ',',
-                                        thousands: ' ',
-                                        precision: 2,
-                                    }
-                                }
-                            }),
-                            LsnNumpadModule,
-                            LsnMatSelectModule,
-                            LsnScrollSpyModule,
-                            LsnCookieModule,
-                            LsnCrossTabModule
-                        ],
-                        exports: [
-                            LsnCapitalizeModule,
-                            LsnLatinToGreekModule,
-                            LsnNumericModule,
-                            LsnNumpadModule,
-                            LsnMatSelectModule,
-                            LsnScrollSpyModule,
-                            LsnCookieModule,
-                            LsnCrossTabModule
-                        ]
-                    },] }
-        ];
-        return LsnLibsModule;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var LsnCrossTabConfig = /** @class */ (function () {
-        function LsnCrossTabConfig(_a) {
-            var _b = _a === void 0 ? {} : _a, _c = _b.cookieCleanFreq, cookieCleanFreq = _c === void 0 ? null : _c, _d = _b.cookieReadFreq, cookieReadFreq = _d === void 0 ? null : _d, _e = _b.msgTtl, msgTtl = _e === void 0 ? null : _e, _f = _b.rootDomain, rootDomain = _f === void 0 ? null : _f, _g = _b.crossTabCookieName, crossTabCookieName = _g === void 0 ? null : _g;
-            this.cookieCleanFreq = cookieCleanFreq;
-            this.cookieReadFreq = cookieReadFreq;
-            this.msgTtl = msgTtl;
-            this.rootDomain = rootDomain;
-            this.crossTabCookieName = crossTabCookieName;
-        }
-        return LsnCrossTabConfig;
-    }());
-    /** @type {?} */
-    var LSN_CROSS_TAB_CONFIG = new core.InjectionToken('LsnCrossTabConfig');
 
     /**
      * @fileoverview added by tsickle
@@ -2068,6 +1985,24 @@
         };
         return LsnCrossTabMessage;
     }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LsnCrossTabConfig = /** @class */ (function () {
+        function LsnCrossTabConfig(_a) {
+            var _b = _a === void 0 ? {} : _a, _c = _b.cookieCleanFreq, cookieCleanFreq = _c === void 0 ? null : _c, _d = _b.cookieReadFreq, cookieReadFreq = _d === void 0 ? null : _d, _e = _b.msgTtl, msgTtl = _e === void 0 ? null : _e, _f = _b.rootDomain, rootDomain = _f === void 0 ? null : _f, _g = _b.crossTabCookieName, crossTabCookieName = _g === void 0 ? null : _g;
+            this.cookieCleanFreq = cookieCleanFreq;
+            this.cookieReadFreq = cookieReadFreq;
+            this.msgTtl = msgTtl;
+            this.rootDomain = rootDomain;
+            this.crossTabCookieName = crossTabCookieName;
+        }
+        return LsnCrossTabConfig;
+    }());
+    /** @type {?} */
+    var LSN_CROSS_TAB_CONFIG = new core.InjectionToken('LsnCrossTabConfig');
 
     /**
      * @fileoverview added by tsickle
@@ -2410,6 +2345,73 @@
         return LsnCrossTabService;
     }());
 
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LsnCrossTabModule = /** @class */ (function () {
+        function LsnCrossTabModule() {
+        }
+        LsnCrossTabModule.decorators = [
+            { type: core.NgModule, args: [{
+                        providers: [LsnCrossTabService],
+                        imports: [
+                            common.CommonModule,
+                            LsnCookieModule
+                        ]
+                    },] }
+        ];
+        return LsnCrossTabModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LsnLibsModule = /** @class */ (function () {
+        function LsnLibsModule() {
+        }
+        LsnLibsModule.decorators = [
+            { type: core.NgModule, args: [{
+                        declarations: [],
+                        imports: [
+                            forms.FormsModule,
+                            LsnCapitalizeModule,
+                            LsnLatinToGreekModule,
+                            LsnNumericModule.forRoot({
+                                default: {
+                                    decimals: '.',
+                                    precision: 4,
+                                },
+                                custom: {
+                                    currency: {
+                                        decimals: ',',
+                                        thousands: ' ',
+                                        precision: 2,
+                                    }
+                                }
+                            }),
+                            LsnNumpadModule,
+                            LsnMatSelectModule,
+                            LsnScrollSpyModule,
+                            LsnCookieModule,
+                            LsnCrossTabModule
+                        ],
+                        exports: [
+                            LsnCapitalizeModule,
+                            LsnLatinToGreekModule,
+                            LsnNumericModule,
+                            LsnNumpadModule,
+                            LsnMatSelectModule,
+                            LsnScrollSpyModule,
+                            LsnCookieModule,
+                            LsnCrossTabModule
+                        ]
+                    },] }
+        ];
+        return LsnLibsModule;
+    }());
+
     exports.LSN_COOKIE_CONFIG = LSN_COOKIE_CONFIG;
     exports.LSN_CROSS_TAB_CONFIG = LSN_CROSS_TAB_CONFIG;
     exports.LsnCapitalizeModule = LsnCapitalizeModule;
@@ -2417,6 +2419,7 @@
     exports.LsnCookieModule = LsnCookieModule;
     exports.LsnCookieService = LsnCookieService;
     exports.LsnCrossTabConfig = LsnCrossTabConfig;
+    exports.LsnCrossTabMessage = LsnCrossTabMessage;
     exports.LsnCrossTabModule = LsnCrossTabModule;
     exports.LsnCrossTabService = LsnCrossTabService;
     exports.LsnLatinToGreekModule = LsnLatinToGreekModule;
@@ -2435,11 +2438,7 @@
     exports.ɵh = MatSelectComponent;
     exports.ɵi = LsnScrollSpyModule;
     exports.ɵj = LsnCookieModule;
-    exports.ɵk = LsnCookieService;
-    exports.ɵl = LsnCookieConfig;
-    exports.ɵm = LSN_COOKIE_CONFIG;
-    exports.ɵn = LsnCrossTabModule;
-    exports.ɵo = ScrollSpyDirective;
+    exports.ɵk = ScrollSpyDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
