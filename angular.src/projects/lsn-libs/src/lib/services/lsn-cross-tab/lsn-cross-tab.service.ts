@@ -1,8 +1,8 @@
 import {Inject, Injectable, OnDestroy} from '@angular/core';
-import {LsnCookieService} from '../lsn-cookie/index';
 import {interval, Observable, Subject, Subscription} from 'rxjs';
 import {LsnCrossTabMessage} from './models/lsnCrossTabMessage';
 import {LSN_CROSS_TAB_CONFIG, LsnCrossTabConfig} from './models/lsnCrossTabConfig';
+import {LsnCookieService} from './lsn-cookie/lsn-cookie.service';
 
 @Injectable({
   providedIn: 'root'

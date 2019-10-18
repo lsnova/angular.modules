@@ -16,5 +16,4 @@ export * from './lib/directives/numpad/numpad.module';
 export * from './lib/directives/scroll-spy/scroll-spy.module';
 
 // services
-export * from './lib/services/lsn-cookie/public_api';
 export * from './lib/services/lsn-cross-tab/public_api';

@@ -1,7 +1,7 @@
 import {async, fakeAsync, TestBed, tick} from '@angular/core/testing';
 
 import {LsnCrossTabService} from './lsn-cross-tab.service';
-import {CookieOptions, CookieService, LsnCookieService} from '../lsn-cookie/lsn-cookie.service';
+import {CookieOptions, CookieService, LsnCookieService} from './lsn-cookie/lsn-cookie.service';
 import {LSN_CROSS_TAB_CONFIG, LsnCrossTabConfig} from './models/lsnCrossTabConfig';
 import {LsnCrossTabMessage} from './models/lsnCrossTabMessage';
 
