@@ -7,6 +7,7 @@ import {LsnMatSelectModule} from './components/mat-select/mat-select.module';
 import {LsnScrollSpyModule} from './directives/scroll-spy';
 import {FormsModule} from '@angular/forms';
 import {LsnCrossTabModule} from './services/lsn-cross-tab/lsn-cross-tab.module';
+import {LsnCookieModule} from "./services/lsn-cookie/lsn-cookie.module";
 
 @NgModule({
   declarations: [],
@@ -30,6 +31,7 @@ import {LsnCrossTabModule} from './services/lsn-cross-tab/lsn-cross-tab.module';
     LsnNumpadModule,
     LsnMatSelectModule,
     LsnScrollSpyModule,
+    LsnCookieModule,
     LsnCrossTabModule
   ],
   exports: [
@@ -39,6 +41,7 @@ import {LsnCrossTabModule} from './services/lsn-cross-tab/lsn-cross-tab.module';
     LsnNumpadModule,
     LsnMatSelectModule,
     LsnScrollSpyModule,
+    LsnCookieModule,
     LsnCrossTabModule
   ]
 })

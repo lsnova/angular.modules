@@ -3,7 +3,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
-import {LsnLibsModule} from '@lsnova/angularmodules';
+import {LsnLibsModule} from 'lsn-libs';
 
 import {MaterialModule} from './modules/material.module';
 import {AppComponent} from './app.component';

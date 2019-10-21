@@ -1,39 +1,39 @@
 import {Component, OnInit} from '@angular/core';
-import {LsnCrossTabService, LsnCookieService} from '@lsnova/angularmodules';
+import {LsnCookieService, LsnCrossTabService} from 'lsn-libs';
 import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
-    selector: 'app-cross-tab',
-    templateUrl: './cross-tab.component.html',
-    styles: []
+  selector: 'app-cross-tab',
+  templateUrl: './cross-tab.component.html',
+  styles: []
 })
 export class CrossTabComponent implements OnInit {
-    form = new FormGroup({
-        message: new FormControl('')
-    });
+  form = new FormGroup({
+    message: new FormControl('')
+  });
 
-    readonly messagesReceived: Array<object>;
+  readonly messagesReceived: Array<object>;
 
-    constructor(private lsnCrossTabService: LsnCrossTabService, private lsnCookieService: LsnCookieService) {
-        this.messagesReceived = [];
-    }
+  constructor(private lsnCrossTabService: LsnCrossTabService) {
+    this.messagesReceived = [];
+  }
 
-    ngOnInit(): void {
-        this.lsnCrossTabService.messages$.subscribe((message) =>
-            this.messagesReceived.push(message));
-    }
+  ngOnInit(): void {
+    this.lsnCrossTabService.messages$.subscribe((message) =>
+      this.messagesReceived.push(message));
+  }
 
 
-    get message() {
-        return this.form.get('message');
-    }
+  get message() {
+    return this.form.get('message');
+  }
 
-    sendMessage() {
-        this.lsnCrossTabService.sendMessage(this.message.value);
-        this.message.reset();
-    }
+  sendMessage() {
+    this.lsnCrossTabService.sendMessage(this.message.value);
+    this.message.reset();
+  }
 
-    printCookie() {
-        console.log(this.lsnCrossTabService.getCookie());
-    }
+  printCookie() {
+    console.log(this.lsnCrossTabService.getCookie());
+  }
 }

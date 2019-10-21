@@ -1,8 +1,8 @@
 import { OnDestroy } from '@angular/core';
-import { LsnCookieService } from '../lsn-cookie/index';
 import { Observable } from 'rxjs';
 import { LsnCrossTabMessage } from './models/lsnCrossTabMessage';
 import { LsnCrossTabConfig } from './models/lsnCrossTabConfig';
+import { LsnCookieService } from '../lsn-cookie/lsn-cookie.service';
 export declare class LsnCrossTabService implements OnDestroy {
     private lsnCookieService;
     private crossTabConfig;

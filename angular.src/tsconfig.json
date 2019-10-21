@@ -26,9 +26,6 @@
       ],
       "@angular/*": [
         "./node_modules/@angular/*"
-      ],
-      "@lsnova/*": [
-        "./node_modules/@lsnova/*"
       ]
     }
   }

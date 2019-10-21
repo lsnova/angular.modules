@@ -9,5 +9,4 @@ export { CustomNumericConfig as ɵd, NumericConfigService as ɵe } from './lib/d
 export { NumericDirective as ɵc } from './lib/directives/numeric/numeric.directive';
 export { NumPadDirective as ɵf } from './lib/directives/numpad/numpad.directive';
 export { LsnScrollSpyModule as ɵi } from './lib/directives/scroll-spy';
-export { ScrollSpyDirective as ɵk } from './lib/directives/scroll-spy/scroll-spy.directive';
-export { LsnCookieModule as ɵj } from './lib/services/lsn-cookie';
+export { ScrollSpyDirective as ɵj } from './lib/directives/scroll-spy/scroll-spy.directive';

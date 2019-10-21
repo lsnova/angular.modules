@@ -1,5 +1,5 @@
-import { LsnCookieConfig } from './models/lsnCookieConfig';
-export interface CookieOptions {
+import { LsnCookieConfig } from './lsnCookieConfig';
+export interface LsnCookieOptions {
     expires?: number | Date;
     expirationUnit?: string;
     path?: string;
@@ -7,9 +7,9 @@ export interface CookieOptions {
     secure?: boolean;
 }
 export interface CookieService {
-    set(cookieKey: string, cookieValue: any, cookieOptions: CookieOptions): void;
+    set(cookieKey: string, cookieValue: any, cookieOptions: LsnCookieOptions): void;
     get(cookieKey?: string): any;
-    remove(cookieKey: string, cookieOptions: CookieOptions): void;
+    remove(cookieKey: string, cookieOptions: LsnCookieOptions): void;
 }
 export declare class LsnCookieService implements CookieService {
     private cookieConfig;
@@ -19,12 +19,12 @@ export declare class LsnCookieService implements CookieService {
      * Sets cookie with given key to given value, cookie options are optional, if not set, some properties
      * (secure and domain) will be set from global cookie config
      */
-    set(cookieKey: string, cookieValue: any, cookieOptions?: CookieOptions): void;
+    set(cookieKey: string, cookieValue: any, cookieOptions?: LsnCookieOptions): void;
     /**
      * Key provided - returns value of given cookie or undefined if non existent
      * Key not provided - returns all cookies as Object or undefined if there are no cookies
      * Cookie values are JSON.parsed, if error occurs during parsing, string value is assigned
      */
     get(cookieKey?: string): any;
-    remove(cookieKey: string, cookieOptions?: CookieOptions): boolean;
+    remove(cookieKey: string, cookieOptions?: LsnCookieOptions): boolean;
 }

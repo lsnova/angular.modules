@@ -1370,6 +1370,58 @@ LsnScrollSpyModule.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class LsnCrossTabMessage {
+    /**
+     * @param {?=} __0
+     */
+    constructor({ created = null, code = null, tabId = null, attrs = null } = {}) {
+        this.created = created;
+        this.code = code;
+        this.tabId = tabId;
+        this.attrs = attrs;
+    }
+    /**
+     * @param {?} firstMessage
+     * @param {?} secondMessage
+     * @return {?}
+     */
+    static compare(firstMessage, secondMessage) {
+        if (!firstMessage || !secondMessage) {
+            return false;
+        }
+        if (firstMessage.created !== secondMessage.created) {
+            return false;
+        }
+        if (firstMessage.code !== secondMessage.code) {
+            return false;
+        }
+        return firstMessage.tabId !== secondMessage.tabId;
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class LsnCrossTabConfig {
+    /**
+     * @param {?=} __0
+     */
+    constructor({ cookieCleanFreq = null, cookieReadFreq = null, msgTtl = null, rootDomain = null, crossTabCookieName = null } = {}) {
+        this.cookieCleanFreq = cookieCleanFreq;
+        this.cookieReadFreq = cookieReadFreq;
+        this.msgTtl = msgTtl;
+        this.rootDomain = rootDomain;
+        this.crossTabCookieName = crossTabCookieName;
+    }
+}
+/** @type {?} */
+const LSN_CROSS_TAB_CONFIG = new InjectionToken('LsnCrossTabConfig');
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class LsnCookieConfig {
     /**
      * @param {?=} __0
@@ -1515,84 +1567,6 @@ LsnCookieService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
 /** @nocollapse */ LsnCookieService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LsnCookieService_Factory() { return new LsnCookieService(ɵɵinject(LSN_COOKIE_CONFIG), ɵɵinject(DOCUMENT)); }, token: LsnCookieService, providedIn: "root" });
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class LsnCookieModule {
-}
-LsnCookieModule.decorators = [
-    { type: NgModule, args: [{
-                declarations: [],
-                providers: [LsnCookieService],
-                imports: [
-                    CommonModule
-                ]
-            },] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class LsnCrossTabMessage {
-    /**
-     * @param {?=} __0
-     */
-    constructor({ created = null, code = null, tabId = null, attrs = null } = {}) {
-        this.created = created;
-        this.code = code;
-        this.tabId = tabId;
-        this.attrs = attrs;
-    }
-    /**
-     * @param {?} firstMessage
-     * @param {?} secondMessage
-     * @return {?}
-     */
-    static compare(firstMessage, secondMessage) {
-        if (!firstMessage || !secondMessage) {
-            return false;
-        }
-        if (firstMessage.created !== secondMessage.created) {
-            return false;
-        }
-        if (firstMessage.code !== secondMessage.code) {
-            return false;
-        }
-        return firstMessage.tabId !== secondMessage.tabId;
-    }
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class LsnCrossTabConfig {
-    /**
-     * @param {?=} __0
-     */
-    constructor({ cookieCleanFreq = null, cookieReadFreq = null, msgTtl = null, rootDomain = null, crossTabCookieName = null } = {}) {
-        this.cookieCleanFreq = cookieCleanFreq;
-        this.cookieReadFreq = cookieReadFreq;
-        this.msgTtl = msgTtl;
-        this.rootDomain = rootDomain;
-        this.crossTabCookieName = crossTabCookieName;
-    }
-}
-/** @type {?} */
-const LSN_CROSS_TAB_CONFIG = new InjectionToken('LsnCrossTabConfig');
 
 /**
  * @fileoverview added by tsickle
@@ -1839,10 +1813,24 @@ class LsnCrossTabModule {
 }
 LsnCrossTabModule.decorators = [
     { type: NgModule, args: [{
-                providers: [LsnCrossTabService],
+                providers: [LsnCrossTabService, LsnCookieService],
                 imports: [
-                    CommonModule,
-                    LsnCookieModule
+                    CommonModule
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class LsnCookieModule {
+}
+LsnCookieModule.decorators = [
+    { type: NgModule, args: [{
+                declarations: [],
+                imports: [
+                    CommonModule
                 ]
             },] }
 ];
@@ -1907,5 +1895,10 @@ LsnLibsModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { LSN_COOKIE_CONFIG, LSN_CROSS_TAB_CONFIG, LsnCapitalizeModule, LsnCookieConfig, LsnCookieModule, LsnCookieService, LsnCrossTabConfig, LsnCrossTabMessage, LsnCrossTabModule, LsnCrossTabService, LsnLatinToGreekModule, LsnLibsModule, LsnMatSelectModule, LsnNumericModule, LsnNumpadModule, LsnScrollSpyModule, CapitalizeDirective as ɵa, LatinToGreekDirective as ɵb, NumericDirective as ɵc, CustomNumericConfig as ɵd, NumericConfigService as ɵe, NumPadDirective as ɵf, CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR as ɵg, MatSelectComponent as ɵh, LsnScrollSpyModule as ɵi, LsnCookieModule as ɵj, ScrollSpyDirective as ɵk };
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+export { LSN_COOKIE_CONFIG, LSN_CROSS_TAB_CONFIG, LsnCapitalizeModule, LsnCookieConfig, LsnCookieModule, LsnCookieService, LsnCrossTabConfig, LsnCrossTabMessage, LsnCrossTabModule, LsnCrossTabService, LsnLatinToGreekModule, LsnLibsModule, LsnMatSelectModule, LsnNumericModule, LsnNumpadModule, LsnScrollSpyModule, CapitalizeDirective as ɵa, LatinToGreekDirective as ɵb, NumericDirective as ɵc, CustomNumericConfig as ɵd, NumericConfigService as ɵe, NumPadDirective as ɵf, CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR as ɵg, MatSelectComponent as ɵh, LsnScrollSpyModule as ɵi, ScrollSpyDirective as ɵj };
 //# sourceMappingURL=lsnova-angularmodules.js.map

@@ -1748,6 +1748,61 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var LsnCrossTabMessage = /** @class */ (function () {
+        function LsnCrossTabMessage(_a) {
+            var _b = _a === void 0 ? {} : _a, _c = _b.created, created = _c === void 0 ? null : _c, _d = _b.code, code = _d === void 0 ? null : _d, _e = _b.tabId, tabId = _e === void 0 ? null : _e, _f = _b.attrs, attrs = _f === void 0 ? null : _f;
+            this.created = created;
+            this.code = code;
+            this.tabId = tabId;
+            this.attrs = attrs;
+        }
+        /**
+         * @param {?} firstMessage
+         * @param {?} secondMessage
+         * @return {?}
+         */
+        LsnCrossTabMessage.compare = /**
+         * @param {?} firstMessage
+         * @param {?} secondMessage
+         * @return {?}
+         */
+        function (firstMessage, secondMessage) {
+            if (!firstMessage || !secondMessage) {
+                return false;
+            }
+            if (firstMessage.created !== secondMessage.created) {
+                return false;
+            }
+            if (firstMessage.code !== secondMessage.code) {
+                return false;
+            }
+            return firstMessage.tabId !== secondMessage.tabId;
+        };
+        return LsnCrossTabMessage;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LsnCrossTabConfig = /** @class */ (function () {
+        function LsnCrossTabConfig(_a) {
+            var _b = _a === void 0 ? {} : _a, _c = _b.cookieCleanFreq, cookieCleanFreq = _c === void 0 ? null : _c, _d = _b.cookieReadFreq, cookieReadFreq = _d === void 0 ? null : _d, _e = _b.msgTtl, msgTtl = _e === void 0 ? null : _e, _f = _b.rootDomain, rootDomain = _f === void 0 ? null : _f, _g = _b.crossTabCookieName, crossTabCookieName = _g === void 0 ? null : _g;
+            this.cookieCleanFreq = cookieCleanFreq;
+            this.cookieReadFreq = cookieReadFreq;
+            this.msgTtl = msgTtl;
+            this.rootDomain = rootDomain;
+            this.crossTabCookieName = crossTabCookieName;
+        }
+        return LsnCrossTabConfig;
+    }());
+    /** @type {?} */
+    var LSN_CROSS_TAB_CONFIG = new core.InjectionToken('LsnCrossTabConfig');
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var LsnCookieConfig = /** @class */ (function () {
         function LsnCookieConfig(_a) {
             var _b = _a === void 0 ? {} : _a, _c = _b.secureCookies, secureCookies = _c === void 0 ? null : _c, _d = _b.domainCookies, domainCookies = _d === void 0 ? null : _d;
@@ -1919,90 +1974,6 @@
         /** @nocollapse */ LsnCookieService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LsnCookieService_Factory() { return new LsnCookieService(core.ɵɵinject(LSN_COOKIE_CONFIG), core.ɵɵinject(common.DOCUMENT)); }, token: LsnCookieService, providedIn: "root" });
         return LsnCookieService;
     }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var LsnCookieModule = /** @class */ (function () {
-        function LsnCookieModule() {
-        }
-        LsnCookieModule.decorators = [
-            { type: core.NgModule, args: [{
-                        declarations: [],
-                        providers: [LsnCookieService],
-                        imports: [
-                            common.CommonModule
-                        ]
-                    },] }
-        ];
-        return LsnCookieModule;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var LsnCrossTabMessage = /** @class */ (function () {
-        function LsnCrossTabMessage(_a) {
-            var _b = _a === void 0 ? {} : _a, _c = _b.created, created = _c === void 0 ? null : _c, _d = _b.code, code = _d === void 0 ? null : _d, _e = _b.tabId, tabId = _e === void 0 ? null : _e, _f = _b.attrs, attrs = _f === void 0 ? null : _f;
-            this.created = created;
-            this.code = code;
-            this.tabId = tabId;
-            this.attrs = attrs;
-        }
-        /**
-         * @param {?} firstMessage
-         * @param {?} secondMessage
-         * @return {?}
-         */
-        LsnCrossTabMessage.compare = /**
-         * @param {?} firstMessage
-         * @param {?} secondMessage
-         * @return {?}
-         */
-        function (firstMessage, secondMessage) {
-            if (!firstMessage || !secondMessage) {
-                return false;
-            }
-            if (firstMessage.created !== secondMessage.created) {
-                return false;
-            }
-            if (firstMessage.code !== secondMessage.code) {
-                return false;
-            }
-            return firstMessage.tabId !== secondMessage.tabId;
-        };
-        return LsnCrossTabMessage;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var LsnCrossTabConfig = /** @class */ (function () {
-        function LsnCrossTabConfig(_a) {
-            var _b = _a === void 0 ? {} : _a, _c = _b.cookieCleanFreq, cookieCleanFreq = _c === void 0 ? null : _c, _d = _b.cookieReadFreq, cookieReadFreq = _d === void 0 ? null : _d, _e = _b.msgTtl, msgTtl = _e === void 0 ? null : _e, _f = _b.rootDomain, rootDomain = _f === void 0 ? null : _f, _g = _b.crossTabCookieName, crossTabCookieName = _g === void 0 ? null : _g;
-            this.cookieCleanFreq = cookieCleanFreq;
-            this.cookieReadFreq = cookieReadFreq;
-            this.msgTtl = msgTtl;
-            this.rootDomain = rootDomain;
-            this.crossTabCookieName = crossTabCookieName;
-        }
-        return LsnCrossTabConfig;
-    }());
-    /** @type {?} */
-    var LSN_CROSS_TAB_CONFIG = new core.InjectionToken('LsnCrossTabConfig');
 
     /**
      * @fileoverview added by tsickle
@@ -2354,14 +2325,31 @@
         }
         LsnCrossTabModule.decorators = [
             { type: core.NgModule, args: [{
-                        providers: [LsnCrossTabService],
+                        providers: [LsnCrossTabService, LsnCookieService],
                         imports: [
-                            common.CommonModule,
-                            LsnCookieModule
+                            common.CommonModule
                         ]
                     },] }
         ];
         return LsnCrossTabModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LsnCookieModule = /** @class */ (function () {
+        function LsnCookieModule() {
+        }
+        LsnCookieModule.decorators = [
+            { type: core.NgModule, args: [{
+                        declarations: [],
+                        imports: [
+                            common.CommonModule
+                        ]
+                    },] }
+        ];
+        return LsnCookieModule;
     }());
 
     /**
@@ -2437,8 +2425,7 @@
     exports.ɵg = CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR;
     exports.ɵh = MatSelectComponent;
     exports.ɵi = LsnScrollSpyModule;
-    exports.ɵj = LsnCookieModule;
-    exports.ɵk = ScrollSpyDirective;
+    exports.ɵj = ScrollSpyDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
