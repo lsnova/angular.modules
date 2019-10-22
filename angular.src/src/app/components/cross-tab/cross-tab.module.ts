@@ -11,7 +11,7 @@ import {
 import {MaterialModule} from '../../modules/material.module';
 import {ReactiveFormsModule} from '@angular/forms';
 
-function crossTabServiceFactory(lsnCrossTabService: LsnCrossTabService) {
+export function crossTabServiceFactory(lsnCrossTabService: LsnCrossTabService) {
   return () => lsnCrossTabService.run();
 }
 

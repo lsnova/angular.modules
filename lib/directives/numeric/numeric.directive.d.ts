@@ -1,6 +1,6 @@
 import { ElementRef, OnChanges } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import { NumericConfigService, NumericConfig } from './numeric-config.service';
+import { NumericConfig, NumericConfigService } from './numeric-config.service';
 export declare class NumericDirective implements OnChanges, ControlValueAccessor {
     private el;
     private configService;

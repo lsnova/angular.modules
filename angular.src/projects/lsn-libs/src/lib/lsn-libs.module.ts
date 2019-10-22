@@ -4,10 +4,10 @@ import {LsnNumpadModule} from './directives/numpad/numpad.module';
 import {LsnLatinToGreekModule} from './directives/latin-to-greek/latin-to-greek.module';
 import {LsnCapitalizeModule} from './directives/capitalize/capitalize.module';
 import {LsnMatSelectModule} from './components/mat-select/mat-select.module';
-import {LsnScrollSpyModule} from './directives/scroll-spy';
+import {LsnScrollSpyModule} from './directives/scroll-spy/scroll-spy.module';
 import {FormsModule} from '@angular/forms';
 import {LsnCrossTabModule} from './services/lsn-cross-tab/lsn-cross-tab.module';
-import {LsnCookieModule} from "./services/lsn-cookie/lsn-cookie.module";
+import {LsnCookieModule} from './services/lsn-cookie/lsn-cookie.module';
 
 @NgModule({
   declarations: [],
@@ -30,9 +30,9 @@ import {LsnCookieModule} from "./services/lsn-cookie/lsn-cookie.module";
     }),
     LsnNumpadModule,
     LsnMatSelectModule,
-    LsnScrollSpyModule,
     LsnCookieModule,
-    LsnCrossTabModule
+    LsnCrossTabModule,
+    LsnScrollSpyModule
   ],
   exports: [
     LsnCapitalizeModule,
@@ -40,9 +40,9 @@ import {LsnCookieModule} from "./services/lsn-cookie/lsn-cookie.module";
     LsnNumericModule,
     LsnNumpadModule,
     LsnMatSelectModule,
-    LsnScrollSpyModule,
     LsnCookieModule,
-    LsnCrossTabModule
+    LsnCrossTabModule,
+    LsnScrollSpyModule
   ]
 })
 export class LsnLibsModule {

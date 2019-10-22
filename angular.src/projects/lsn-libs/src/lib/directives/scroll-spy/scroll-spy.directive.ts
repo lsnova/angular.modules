@@ -45,7 +45,7 @@ export class ScrollSpyDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('scroll')
-  private onScroll() {
+  onScroll() {
     const section: HTMLElement = this.findCurrentSection();
     if (section) {
       this.setCurrentSection(section.id);
@@ -53,7 +53,7 @@ export class ScrollSpyDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('window:resize')
-  private onResize() {
+  onResize() {
     this.onScroll();
   }
 

@@ -3,7 +3,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
-import {LsnLibsModule} from 'lsn-libs';
+import {LsnLibsModule, LsnScrollSpyModule} from '@lsnova/angularmodules';
 
 import {MaterialModule} from './modules/material.module';
 import {AppComponent} from './app.component';
@@ -11,8 +11,8 @@ import {NumericCardComponent} from './components/numeric-card/numeric-card.compo
 import {SelectCardComponent} from './components/select-card/select-card.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {NumpadCardComponent} from './components/numpad-card/numpad-card.component';
-import {ScrollSpyComponent} from './components/scroll-spy/scroll-spy.component';
 import {CrossTabModule} from './components/cross-tab/cross-tab.module';
+import {ScrollSpyComponent} from './components/scroll-spy/scroll-spy.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ import {CrossTabModule} from './components/cross-tab/cross-tab.module';
     MaterialModule,
     // lib modules
     LsnLibsModule,
-    CrossTabModule
+    CrossTabModule,
+    LsnScrollSpyModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -191,8 +191,10 @@
             this.el = el;
             this.configService = configService;
             this.lsnNumeric = {};
-            this.onChange = function (_) { };
-            this.onTouch = function () { };
+            this.onChange = function (_) {
+            };
+            this.onTouch = function () {
+            };
             this.element = el;
             this.setConfig();
         }
@@ -561,7 +563,7 @@
         };
         NumericDirective.decorators = [
             { type: core.Directive, args: [{
-                        selector: '[lsnNumeric][ngModel]',
+                        selector: '[ngModel][lsnNumeric]',
                         providers: [CUSTOM_SELECT_VALUE_ACCESSOR]
                     },] }
         ];
@@ -573,8 +575,8 @@
         NumericDirective.propDecorators = {
             lsnNumeric: [{ type: core.Input }],
             inputHandler: [{ type: core.HostListener, args: ['input', ['$event'],] }],
-            focusHandler: [{ type: core.HostListener, args: ['focus', ['$event'],] }],
-            blurHandler: [{ type: core.HostListener, args: ['blur', ['$event'],] }],
+            focusHandler: [{ type: core.HostListener, args: ['focus', [],] }],
+            blurHandler: [{ type: core.HostListener, args: ['blur', [],] }],
             keyDownHandler: [{ type: core.HostListener, args: ['keydown', ['$event'],] }]
         };
         return NumericDirective;
@@ -1524,11 +1526,9 @@
             this.subscriptions.push(sectionChangeSub, scrollToSub);
         };
         /**
-         * @private
          * @return {?}
          */
         ScrollSpyDirective.prototype.onScroll = /**
-         * @private
          * @return {?}
          */
         function () {
@@ -1539,11 +1539,9 @@
             }
         };
         /**
-         * @private
          * @return {?}
          */
         ScrollSpyDirective.prototype.onResize = /**
-         * @private
          * @return {?}
          */
         function () {
@@ -1733,16 +1731,6 @@
         ];
         return LsnScrollSpyModule;
     }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
 
     /**
      * @fileoverview added by tsickle
@@ -2381,9 +2369,9 @@
                             }),
                             LsnNumpadModule,
                             LsnMatSelectModule,
-                            LsnScrollSpyModule,
                             LsnCookieModule,
-                            LsnCrossTabModule
+                            LsnCrossTabModule,
+                            LsnScrollSpyModule
                         ],
                         exports: [
                             LsnCapitalizeModule,
@@ -2391,9 +2379,9 @@
                             LsnNumericModule,
                             LsnNumpadModule,
                             LsnMatSelectModule,
-                            LsnScrollSpyModule,
                             LsnCookieModule,
-                            LsnCrossTabModule
+                            LsnCrossTabModule,
+                            LsnScrollSpyModule
                         ]
                     },] }
         ];
@@ -2424,8 +2412,7 @@
     exports.ɵf = NumPadDirective;
     exports.ɵg = CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR;
     exports.ɵh = MatSelectComponent;
-    exports.ɵi = LsnScrollSpyModule;
-    exports.ɵj = ScrollSpyDirective;
+    exports.ɵi = ScrollSpyDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

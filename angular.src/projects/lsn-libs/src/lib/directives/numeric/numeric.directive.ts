@@ -1,7 +1,7 @@
 import {Directive, ElementRef, forwardRef, HostListener, Input, OnChanges} from '@angular/core';
 import * as keyboard from '@angular/cdk/keycodes';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {NumericConfigService, NumericConfig} from './numeric-config.service';
+import {NumericConfig, NumericConfigService} from './numeric-config.service';
 
 const CUSTOM_SELECT_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -10,15 +10,17 @@ const CUSTOM_SELECT_VALUE_ACCESSOR: any = {
 };
 
 @Directive({
-  selector: '[lsnNumeric][ngModel]',
+  selector: '[ngModel][lsnNumeric]',
   providers: [CUSTOM_SELECT_VALUE_ACCESSOR]
 })
 export class NumericDirective implements OnChanges, ControlValueAccessor {
   @Input() lsnNumeric: NumericConfig = {};
   element: ElementRef;
   protected config: NumericConfig;
-  public onChange = (_: any) => {};
-  public onTouch = () => {};
+  public onChange = (_: any) => {
+  };
+  public onTouch = () => {
+  };
 
   constructor(
     private el: ElementRef,
@@ -50,12 +52,12 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     }
   }
 
-  @HostListener('focus', ['$event'])
+  @HostListener('focus', [])
   focusHandler() {
     this.setEditMode();
   }
 
-  @HostListener('blur', ['$event'])
+  @HostListener('blur', [])
   blurHandler() {
     this.displayValue = this.prepareDisplayValue(this.element.nativeElement.value);
   }

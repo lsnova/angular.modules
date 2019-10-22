@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LsnCookieService, LsnCrossTabService} from 'lsn-libs';
+import {LsnCrossTabService} from 'lsn-libs';
 import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({

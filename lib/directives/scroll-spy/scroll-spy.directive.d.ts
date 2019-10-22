@@ -11,8 +11,8 @@ export declare class ScrollSpyDirective implements OnInit, OnDestroy {
     subscriptions: Subscription[];
     constructor(elementRef: ElementRef);
     ngOnInit(): void;
-    private onScroll;
-    private onResize;
+    onScroll(): void;
+    onResize(): void;
     private scrollTo;
     private findCurrentSection;
     private getSpiedSections;

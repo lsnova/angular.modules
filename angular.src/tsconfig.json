@@ -26,6 +26,9 @@
       ],
       "@angular/*": [
         "./node_modules/@angular/*"
+      ],
+      "@lsnova/angularmodules": [
+        "dist/lsn-libs"
       ]
     }
   }

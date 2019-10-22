@@ -98,8 +98,10 @@ class NumericDirective {
         this.el = el;
         this.configService = configService;
         this.lsnNumeric = {};
-        this.onChange = (_) => { };
-        this.onTouch = () => { };
+        this.onChange = (_) => {
+        };
+        this.onTouch = () => {
+        };
         this.element = el;
         this.setConfig();
     }
@@ -405,7 +407,7 @@ class NumericDirective {
 }
 NumericDirective.decorators = [
     { type: Directive, args: [{
-                selector: '[lsnNumeric][ngModel]',
+                selector: '[ngModel][lsnNumeric]',
                 providers: [CUSTOM_SELECT_VALUE_ACCESSOR]
             },] }
 ];
@@ -417,8 +419,8 @@ NumericDirective.ctorParameters = () => [
 NumericDirective.propDecorators = {
     lsnNumeric: [{ type: Input }],
     inputHandler: [{ type: HostListener, args: ['input', ['$event'],] }],
-    focusHandler: [{ type: HostListener, args: ['focus', ['$event'],] }],
-    blurHandler: [{ type: HostListener, args: ['blur', ['$event'],] }],
+    focusHandler: [{ type: HostListener, args: ['focus', [],] }],
+    blurHandler: [{ type: HostListener, args: ['blur', [],] }],
     keyDownHandler: [{ type: HostListener, args: ['keydown', ['$event'],] }]
 };
 
@@ -1209,7 +1211,6 @@ class ScrollSpyDirective {
         this.subscriptions.push(sectionChangeSub, scrollToSub);
     }
     /**
-     * @private
      * @return {?}
      */
     onScroll() {
@@ -1220,7 +1221,6 @@ class ScrollSpyDirective {
         }
     }
     /**
-     * @private
      * @return {?}
      */
     onResize() {
@@ -1355,16 +1355,6 @@ LsnScrollSpyModule.decorators = [
                 ]
             },] }
 ];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 
 /**
  * @fileoverview added by tsickle
@@ -1863,9 +1853,9 @@ LsnLibsModule.decorators = [
                     }),
                     LsnNumpadModule,
                     LsnMatSelectModule,
-                    LsnScrollSpyModule,
                     LsnCookieModule,
-                    LsnCrossTabModule
+                    LsnCrossTabModule,
+                    LsnScrollSpyModule
                 ],
                 exports: [
                     LsnCapitalizeModule,
@@ -1873,9 +1863,9 @@ LsnLibsModule.decorators = [
                     LsnNumericModule,
                     LsnNumpadModule,
                     LsnMatSelectModule,
-                    LsnScrollSpyModule,
                     LsnCookieModule,
-                    LsnCrossTabModule
+                    LsnCrossTabModule,
+                    LsnScrollSpyModule
                 ]
             },] }
 ];
@@ -1900,5 +1890,5 @@ LsnLibsModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { LSN_COOKIE_CONFIG, LSN_CROSS_TAB_CONFIG, LsnCapitalizeModule, LsnCookieConfig, LsnCookieModule, LsnCookieService, LsnCrossTabConfig, LsnCrossTabMessage, LsnCrossTabModule, LsnCrossTabService, LsnLatinToGreekModule, LsnLibsModule, LsnMatSelectModule, LsnNumericModule, LsnNumpadModule, LsnScrollSpyModule, CapitalizeDirective as ɵa, LatinToGreekDirective as ɵb, NumericDirective as ɵc, CustomNumericConfig as ɵd, NumericConfigService as ɵe, NumPadDirective as ɵf, CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR as ɵg, MatSelectComponent as ɵh, LsnScrollSpyModule as ɵi, ScrollSpyDirective as ɵj };
+export { LSN_COOKIE_CONFIG, LSN_CROSS_TAB_CONFIG, LsnCapitalizeModule, LsnCookieConfig, LsnCookieModule, LsnCookieService, LsnCrossTabConfig, LsnCrossTabMessage, LsnCrossTabModule, LsnCrossTabService, LsnLatinToGreekModule, LsnLibsModule, LsnMatSelectModule, LsnNumericModule, LsnNumpadModule, LsnScrollSpyModule, CapitalizeDirective as ɵa, LatinToGreekDirective as ɵb, NumericDirective as ɵc, CustomNumericConfig as ɵd, NumericConfigService as ɵe, NumPadDirective as ɵf, CUSTOM_SELECT_CONTROL_VALUE_ACCESSOR as ɵg, MatSelectComponent as ɵh, ScrollSpyDirective as ɵi };
 //# sourceMappingURL=lsnova-angularmodules.js.map
