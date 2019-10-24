@@ -7,7 +7,7 @@
     "@angular/forms": "^8.0.0",
     "@angular/material": "^8.2.3",
     "@angular/cdk": "^8.2.3"
-  }
+  },
   "main": "bundles/lsnova-angularmodules.umd.js",
   "module": "fesm5/lsnova-angularmodules.js",
   "es2015": "fesm2015/lsnova-angularmodules.js",
