@@ -1,0 +1,17 @@
+// Configuration for IDEs only.
+
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "paths": {
+      "@lsnova/angularmodules/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "include": [
+    "./**/*.ts"
+  ]
+}

@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "../../out-tsc/lib",
     "target": "es2015",
     "module": "es2015",
@@ -19,9 +20,6 @@
     "paths": {
       "@angular/*": [
         "./node_modules/@angular/*"
-      ],
-      "@lsnova/*": [
-        "./node_modules/@lsnova/*"
       ]
     }
   },

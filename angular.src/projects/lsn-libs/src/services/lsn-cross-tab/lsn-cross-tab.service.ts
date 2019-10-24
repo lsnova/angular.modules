@@ -2,7 +2,7 @@ import {Inject, Injectable, OnDestroy} from '@angular/core';
 import {interval, Observable, Subject, Subscription} from 'rxjs';
 import {LsnCrossTabMessage} from './models/lsnCrossTabMessage';
 import {LSN_CROSS_TAB_CONFIG, LsnCrossTabConfig} from './models/lsnCrossTabConfig';
-import {LsnCookieService} from '@lsnova/angularmodules/services/lsn-cookie';
+import {LsnCookieService} from 'projects/lsn-libs/src/services/lsn-cookie';
 
 @Injectable({
   providedIn: 'root'

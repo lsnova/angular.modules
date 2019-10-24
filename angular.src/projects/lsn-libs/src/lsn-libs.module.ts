@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
-import {LsnNumericModule} from './directives/numeric/numeric.module';
-import {LsnNumpadModule} from './directives/numpad/numpad.module';
-import {LsnLatinToGreekModule} from './directives/latin-to-greek/latin-to-greek.module';
-import {LsnCapitalizeModule} from './directives/capitalize/capitalize.module';
-import {LsnMatSelectModule} from './components/mat-select/mat-select.module';
-import {LsnScrollSpyModule} from './directives/scroll-spy/scroll-spy.module';
+import {LsnNumericModule} from '@lsnova/angularmodules/directives/numeric';
+import {LsnNumpadModule} from '@lsnova/angularmodules/directives/numpad';
+import {LsnLatinToGreekModule} from '@lsnova/angularmodules/directives/latin-to-greek';
+import {LsnCapitalizeModule} from '@lsnova/angularmodules/directives/capitalize';
+import {LsnMatSelectModule} from '@lsnova/angularmodules/components/mat-select';
+import {LsnScrollSpyModule} from '@lsnova/angularmodules/directives/scroll-spy';
 import {FormsModule} from '@angular/forms';
-import {LsnCrossTabModule} from './services/lsn-cross-tab/lsn-cross-tab.module';
-import {LsnCookieModule} from './services/lsn-cookie/lsn-cookie.module';
+import {LsnCrossTabModule} from '@lsnova/angularmodules/services/lsn-cross-tab';
+import {LsnCookieModule} from '@lsnova/angularmodules/services/lsn-cookie';
 
 @NgModule({
   declarations: [],

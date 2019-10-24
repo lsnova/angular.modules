@@ -1,6 +1,7 @@
 {
   "extends": "../../tslint.json",
   "rules": {
+    "no-duplicate-imports": true,
     "directive-selector": [
       true,
       "attribute",
@@ -13,5 +14,8 @@
       "lsn",
       "kebab-case"
     ]
+  },
+  "jsRules": {
+    "no-duplicate-imports": true
   }
 }

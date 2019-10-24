@@ -3,36 +3,22 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
     "module": "es2015",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "target": "es2015",
     "typeRoots": [
       "node_modules/@types"
     ],
     "lib": [
       "es2018",
       "dom"
-    ],
-    "paths": {
-      "lsn-libs": [
-        "dist/lsn-libs"
-      ],
-      "lsn-libs/*": [
-        "dist/lsn-libs/*"
-      ],
-      "@angular/*": [
-        "./node_modules/@angular/*"
-      ],
-      "@lsnova/angularmodules/*": [
-        "./projects/lsn-libs/src/lib/*"
-      ],
-      "@lsnova/angularmodules": [
-        "dist/lsn-libs"
-      ]
-    }
+    ]
   }
 }
