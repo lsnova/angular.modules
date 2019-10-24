@@ -1667,7 +1667,7 @@ class LsnCrossTabService {
             .reduce((minifiedObj, key) => {
             /** @type {?} */
             const value = msg[key];
-            if (key !== 'attrs' && value !== null && value !== {}) {
+            if (!(key === 'attrs' && (value === null || value === {}))) {
                 minifiedObj[key] = value;
                 return minifiedObj;
             }

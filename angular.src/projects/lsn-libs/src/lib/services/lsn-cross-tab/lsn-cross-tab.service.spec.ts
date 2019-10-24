@@ -1,7 +1,7 @@
 import {async, fakeAsync, TestBed, tick} from '@angular/core/testing';
 
 import {LsnCrossTabService} from './lsn-cross-tab.service';
-import {CookieOptions, CookieService, LsnCookieService} from '../lsn-cookie/lsn-cookie.service';
+import {CookieService, LsnCookieOptions, LsnCookieService} from '../lsn-cookie/lsn-cookie.service';
 import {LSN_CROSS_TAB_CONFIG, LsnCrossTabConfig} from './models/lsnCrossTabConfig';
 import {LsnCrossTabMessage} from './models/lsnCrossTabMessage';
 
@@ -9,10 +9,10 @@ class MockCookieService implements CookieService {
   cookie = [];
   get = (cookieKey?: string): any => this.cookie;
 
-  remove(cookieKey: string, cookieOptions: CookieOptions): void {
+  remove(cookieKey: string, cookieOptions: LsnCookieOptions): void {
   }
 
-  set(cookieKey: string, cookieValue, cookieOptions: CookieOptions): void {
+  set(cookieKey: string, cookieValue, cookieOptions: LsnCookieOptions): void {
     this.cookie = cookieValue;
   }
 
@@ -144,5 +144,20 @@ describe('LsnCrossTabService', () => {
     expect(areCookiesEqualSpy).toHaveBeenCalled();
     crossTabService.unsubscribe();
   }));
+
+  it('should correctly save and retrieve cookie value', () => {
+    const message = new LsnCrossTabMessage<{ characterCode: string }>({
+      code: 'characterCode',
+      tabId: crossTabService.tabId,
+      attrs: {
+        characterCode: 'character 1'
+      }
+    });
+    crossTabService.sendMessage(message);
+    expect(mockCookieService.cookie.length).toEqual(1);
+    expect(crossTabService.getCookie()[0].attrs).toBeDefined();
+    expect(crossTabService.getCookie()[0].attrs.characterCode).toBeDefined();
+    console.log(crossTabService.getCookie());
+  });
 
 });

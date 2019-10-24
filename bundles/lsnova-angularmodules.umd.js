@@ -2081,7 +2081,7 @@
                 .reduce(function (minifiedObj, key) {
                 /** @type {?} */
                 var value = msg[key];
-                if (key !== 'attrs' && value !== null && value !== {}) {
+                if (!(key === 'attrs' && (value === null || value === {}))) {
                     minifiedObj[key] = value;
                     return minifiedObj;
                 }
