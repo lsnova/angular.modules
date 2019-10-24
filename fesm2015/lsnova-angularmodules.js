@@ -1789,11 +1789,13 @@ class LsnCrossTabService {
     readMessages() {
         if (this.cookie) {
             this.cookie.forEach((msgData) => {
-                /** @type {?} */
-                const msgCopy = Object.assign({}, msgData);
-                if (!this.messageWasRead(msgCopy)) {
-                    this.messagesReadSet.add(this.getMessageId(msgCopy));
-                    this.messageSubject.next(msgCopy);
+                if (msgData.created > this.tabOpenTime) {
+                    /** @type {?} */
+                    const msgCopy = Object.assign({}, msgData);
+                    if (!this.messageWasRead(msgCopy)) {
+                        this.messagesReadSet.add(this.getMessageId(msgCopy));
+                        this.messageSubject.next(msgCopy);
+                    }
                 }
             });
         }

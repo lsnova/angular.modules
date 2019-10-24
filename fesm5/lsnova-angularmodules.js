@@ -2164,11 +2164,13 @@ var LsnCrossTabService = /** @class */ (function () {
         var _this = this;
         if (this.cookie) {
             this.cookie.forEach(function (msgData) {
-                /** @type {?} */
-                var msgCopy = __assign({}, msgData);
-                if (!_this.messageWasRead(msgCopy)) {
-                    _this.messagesReadSet.add(_this.getMessageId(msgCopy));
-                    _this.messageSubject.next(msgCopy);
+                if (msgData.created > _this.tabOpenTime) {
+                    /** @type {?} */
+                    var msgCopy = __assign({}, msgData);
+                    if (!_this.messageWasRead(msgCopy)) {
+                        _this.messagesReadSet.add(_this.getMessageId(msgCopy));
+                        _this.messageSubject.next(msgCopy);
+                    }
                 }
             });
         }

@@ -76,7 +76,7 @@ export class LsnCrossTabService implements OnDestroy {
   private messageToPlainObject = (msg: LsnCrossTabMessage): object => Object.keys(msg)
     .reduce((minifiedObj, key) => {
       const value = msg[key];
-      if (! (key === 'attrs' && (value === null || value === {}) )) {
+      if (!(key === 'attrs' && (value === null || value === {}))) {
         minifiedObj[key] = value;
         return minifiedObj;
       } else {
@@ -129,10 +129,12 @@ export class LsnCrossTabService implements OnDestroy {
   private readMessages() {
     if (this.cookie) {
       this.cookie.forEach((msgData: LsnCrossTabMessage) => {
+        if (msgData.created > this.tabOpenTime) {
         const msgCopy = {...msgData};
         if (!this.messageWasRead(msgCopy)) {
           this.messagesReadSet.add(this.getMessageId(msgCopy));
           this.messageSubject.next(msgCopy);
+        }
         }
       });
     }

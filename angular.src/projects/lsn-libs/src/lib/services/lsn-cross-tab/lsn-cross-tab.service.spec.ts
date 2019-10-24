@@ -160,4 +160,29 @@ describe('LsnCrossTabService', () => {
     console.log(crossTabService.getCookie());
   });
 
+  it('should only read messages newer than tabOpenTime', fakeAsync(() => {
+    // given
+    const oldMesssage = new LsnCrossTabMessage({
+      code: 'code',
+      created: Date.now()
+    });
+    const messageWasReadSpy = spyOn<any>(crossTabService, 'messageWasRead').and.callThrough();
+    const readMessagesSpy = spyOn<any>(crossTabService, 'readMessages').and.callThrough();
+
+    // when
+    crossTabService.sendMessage(oldMesssage);
+    // change tabId
+    (crossTabService as any)['tabId'] = Math.random() + '';
+    jasmine.clock().tick(100);
+    crossTabService.run();
+    jasmine.clock().tick(101);
+    (crossTabService as any)['tabOpenTime'] = Date.now();
+
+    // then
+    expect(crossTabService.getCookie()[0].created).toBeLessThan(Date.now());
+    expect(readMessagesSpy).toHaveBeenCalled();
+    expect(messageWasReadSpy).not.toHaveBeenCalled();
+    crossTabService.unsubscribe();
+  }));
+
 });
