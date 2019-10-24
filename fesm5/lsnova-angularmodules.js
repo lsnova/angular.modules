@@ -1642,6 +1642,111 @@ var LsnScrollSpyModule = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var LsnCookieModule = /** @class */ (function () {
+    function LsnCookieModule() {
+    }
+    LsnCookieModule.decorators = [
+        { type: NgModule, args: [{
+                    declarations: [],
+                    imports: [
+                        CommonModule
+                    ]
+                },] }
+    ];
+    return LsnCookieModule;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var LsnCrossTabModule = /** @class */ (function () {
+    function LsnCrossTabModule() {
+    }
+    LsnCrossTabModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        LsnCookieModule
+                    ],
+                    exports: [
+                        LsnCookieModule
+                    ]
+                },] }
+    ];
+    return LsnCrossTabModule;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var LsnLibsModule = /** @class */ (function () {
+    function LsnLibsModule() {
+    }
+    LsnLibsModule.decorators = [
+        { type: NgModule, args: [{
+                    declarations: [],
+                    imports: [
+                        FormsModule,
+                        LsnCapitalizeModule,
+                        LsnLatinToGreekModule,
+                        LsnNumericModule.forRoot({
+                            default: {
+                                decimals: '.',
+                                precision: 4,
+                            },
+                            custom: {
+                                currency: {
+                                    decimals: ',',
+                                    thousands: ' ',
+                                    precision: 2,
+                                }
+                            }
+                        }),
+                        LsnNumpadModule,
+                        LsnMatSelectModule,
+                        LsnCookieModule,
+                        LsnCrossTabModule,
+                        LsnScrollSpyModule
+                    ],
+                    exports: [
+                        LsnCapitalizeModule,
+                        LsnLatinToGreekModule,
+                        LsnNumericModule,
+                        LsnNumpadModule,
+                        LsnMatSelectModule,
+                        LsnCookieModule,
+                        LsnCrossTabModule,
+                        LsnScrollSpyModule
+                    ]
+                },] }
+    ];
+    return LsnLibsModule;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var LsnCrossTabConfig = /** @class */ (function () {
+    function LsnCrossTabConfig(_a) {
+        var _b = _a === void 0 ? {} : _a, _c = _b.cookieCleanFreq, cookieCleanFreq = _c === void 0 ? null : _c, _d = _b.cookieReadFreq, cookieReadFreq = _d === void 0 ? null : _d, _e = _b.msgTtl, msgTtl = _e === void 0 ? null : _e, _f = _b.rootDomain, rootDomain = _f === void 0 ? null : _f, _g = _b.crossTabCookieName, crossTabCookieName = _g === void 0 ? null : _g;
+        this.cookieCleanFreq = cookieCleanFreq;
+        this.cookieReadFreq = cookieReadFreq;
+        this.msgTtl = msgTtl;
+        this.rootDomain = rootDomain;
+        this.crossTabCookieName = crossTabCookieName;
+    }
+    return LsnCrossTabConfig;
+}());
+/** @type {?} */
+var LSN_CROSS_TAB_CONFIG = new InjectionToken('LsnCrossTabConfig');
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var LsnCrossTabMessage = /** @class */ (function () {
     function LsnCrossTabMessage(_a) {
         var _b = _a === void 0 ? {} : _a, _c = _b.created, created = _c === void 0 ? null : _c, _d = _b.code, code = _d === void 0 ? null : _d, _e = _b.tabId, tabId = _e === void 0 ? null : _e, _f = _b.attrs, attrs = _f === void 0 ? null : _f;
@@ -1674,24 +1779,6 @@ var LsnCrossTabMessage = /** @class */ (function () {
     };
     return LsnCrossTabMessage;
 }());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var LsnCrossTabConfig = /** @class */ (function () {
-    function LsnCrossTabConfig(_a) {
-        var _b = _a === void 0 ? {} : _a, _c = _b.cookieCleanFreq, cookieCleanFreq = _c === void 0 ? null : _c, _d = _b.cookieReadFreq, cookieReadFreq = _d === void 0 ? null : _d, _e = _b.msgTtl, msgTtl = _e === void 0 ? null : _e, _f = _b.rootDomain, rootDomain = _f === void 0 ? null : _f, _g = _b.crossTabCookieName, crossTabCookieName = _g === void 0 ? null : _g;
-        this.cookieCleanFreq = cookieCleanFreq;
-        this.cookieReadFreq = cookieReadFreq;
-        this.msgTtl = msgTtl;
-        this.rootDomain = rootDomain;
-        this.crossTabCookieName = crossTabCookieName;
-    }
-    return LsnCrossTabConfig;
-}());
-/** @type {?} */
-var LSN_CROSS_TAB_CONFIG = new InjectionToken('LsnCrossTabConfig');
 
 /**
  * @fileoverview added by tsickle
@@ -2208,90 +2295,6 @@ var LsnCrossTabService = /** @class */ (function () {
     ]; };
     /** @nocollapse */ LsnCrossTabService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LsnCrossTabService_Factory() { return new LsnCrossTabService(ɵɵinject(LsnCookieService), ɵɵinject(LSN_CROSS_TAB_CONFIG)); }, token: LsnCrossTabService, providedIn: "root" });
     return LsnCrossTabService;
-}());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var LsnCrossTabModule = /** @class */ (function () {
-    function LsnCrossTabModule() {
-    }
-    LsnCrossTabModule.decorators = [
-        { type: NgModule, args: [{
-                    providers: [LsnCrossTabService, LsnCookieService],
-                    imports: [
-                        CommonModule
-                    ]
-                },] }
-    ];
-    return LsnCrossTabModule;
-}());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var LsnCookieModule = /** @class */ (function () {
-    function LsnCookieModule() {
-    }
-    LsnCookieModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [],
-                    imports: [
-                        CommonModule
-                    ]
-                },] }
-    ];
-    return LsnCookieModule;
-}());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var LsnLibsModule = /** @class */ (function () {
-    function LsnLibsModule() {
-    }
-    LsnLibsModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [],
-                    imports: [
-                        FormsModule,
-                        LsnCapitalizeModule,
-                        LsnLatinToGreekModule,
-                        LsnNumericModule.forRoot({
-                            default: {
-                                decimals: '.',
-                                precision: 4,
-                            },
-                            custom: {
-                                currency: {
-                                    decimals: ',',
-                                    thousands: ' ',
-                                    precision: 2,
-                                }
-                            }
-                        }),
-                        LsnNumpadModule,
-                        LsnMatSelectModule,
-                        LsnCookieModule,
-                        LsnCrossTabModule,
-                        LsnScrollSpyModule
-                    ],
-                    exports: [
-                        LsnCapitalizeModule,
-                        LsnLatinToGreekModule,
-                        LsnNumericModule,
-                        LsnNumpadModule,
-                        LsnMatSelectModule,
-                        LsnCookieModule,
-                        LsnCrossTabModule,
-                        LsnScrollSpyModule
-                    ]
-                },] }
-    ];
-    return LsnLibsModule;
 }());
 
 /**

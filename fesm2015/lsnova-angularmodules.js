@@ -1360,6 +1360,103 @@ LsnScrollSpyModule.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class LsnCookieModule {
+}
+LsnCookieModule.decorators = [
+    { type: NgModule, args: [{
+                declarations: [],
+                imports: [
+                    CommonModule
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class LsnCrossTabModule {
+}
+LsnCrossTabModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    LsnCookieModule
+                ],
+                exports: [
+                    LsnCookieModule
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class LsnLibsModule {
+}
+LsnLibsModule.decorators = [
+    { type: NgModule, args: [{
+                declarations: [],
+                imports: [
+                    FormsModule,
+                    LsnCapitalizeModule,
+                    LsnLatinToGreekModule,
+                    LsnNumericModule.forRoot({
+                        default: {
+                            decimals: '.',
+                            precision: 4,
+                        },
+                        custom: {
+                            currency: {
+                                decimals: ',',
+                                thousands: ' ',
+                                precision: 2,
+                            }
+                        }
+                    }),
+                    LsnNumpadModule,
+                    LsnMatSelectModule,
+                    LsnCookieModule,
+                    LsnCrossTabModule,
+                    LsnScrollSpyModule
+                ],
+                exports: [
+                    LsnCapitalizeModule,
+                    LsnLatinToGreekModule,
+                    LsnNumericModule,
+                    LsnNumpadModule,
+                    LsnMatSelectModule,
+                    LsnCookieModule,
+                    LsnCrossTabModule,
+                    LsnScrollSpyModule
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class LsnCrossTabConfig {
+    /**
+     * @param {?=} __0
+     */
+    constructor({ cookieCleanFreq = null, cookieReadFreq = null, msgTtl = null, rootDomain = null, crossTabCookieName = null } = {}) {
+        this.cookieCleanFreq = cookieCleanFreq;
+        this.cookieReadFreq = cookieReadFreq;
+        this.msgTtl = msgTtl;
+        this.rootDomain = rootDomain;
+        this.crossTabCookieName = crossTabCookieName;
+    }
+}
+/** @type {?} */
+const LSN_CROSS_TAB_CONFIG = new InjectionToken('LsnCrossTabConfig');
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class LsnCrossTabMessage {
     /**
      * @param {?=} __0
@@ -1388,25 +1485,6 @@ class LsnCrossTabMessage {
         return firstMessage.tabId !== secondMessage.tabId;
     }
 }
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class LsnCrossTabConfig {
-    /**
-     * @param {?=} __0
-     */
-    constructor({ cookieCleanFreq = null, cookieReadFreq = null, msgTtl = null, rootDomain = null, crossTabCookieName = null } = {}) {
-        this.cookieCleanFreq = cookieCleanFreq;
-        this.cookieReadFreq = cookieReadFreq;
-        this.msgTtl = msgTtl;
-        this.rootDomain = rootDomain;
-        this.crossTabCookieName = crossTabCookieName;
-    }
-}
-/** @type {?} */
-const LSN_CROSS_TAB_CONFIG = new InjectionToken('LsnCrossTabConfig');
 
 /**
  * @fileoverview added by tsickle
@@ -1794,81 +1872,6 @@ LsnCrossTabService.ctorParameters = () => [
     { type: LsnCrossTabConfig, decorators: [{ type: Inject, args: [LSN_CROSS_TAB_CONFIG,] }] }
 ];
 /** @nocollapse */ LsnCrossTabService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LsnCrossTabService_Factory() { return new LsnCrossTabService(ɵɵinject(LsnCookieService), ɵɵinject(LSN_CROSS_TAB_CONFIG)); }, token: LsnCrossTabService, providedIn: "root" });
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class LsnCrossTabModule {
-}
-LsnCrossTabModule.decorators = [
-    { type: NgModule, args: [{
-                providers: [LsnCrossTabService, LsnCookieService],
-                imports: [
-                    CommonModule
-                ]
-            },] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class LsnCookieModule {
-}
-LsnCookieModule.decorators = [
-    { type: NgModule, args: [{
-                declarations: [],
-                imports: [
-                    CommonModule
-                ]
-            },] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class LsnLibsModule {
-}
-LsnLibsModule.decorators = [
-    { type: NgModule, args: [{
-                declarations: [],
-                imports: [
-                    FormsModule,
-                    LsnCapitalizeModule,
-                    LsnLatinToGreekModule,
-                    LsnNumericModule.forRoot({
-                        default: {
-                            decimals: '.',
-                            precision: 4,
-                        },
-                        custom: {
-                            currency: {
-                                decimals: ',',
-                                thousands: ' ',
-                                precision: 2,
-                            }
-                        }
-                    }),
-                    LsnNumpadModule,
-                    LsnMatSelectModule,
-                    LsnCookieModule,
-                    LsnCrossTabModule,
-                    LsnScrollSpyModule
-                ],
-                exports: [
-                    LsnCapitalizeModule,
-                    LsnLatinToGreekModule,
-                    LsnNumericModule,
-                    LsnNumpadModule,
-                    LsnMatSelectModule,
-                    LsnCookieModule,
-                    LsnCrossTabModule,
-                    LsnScrollSpyModule
-                ]
-            },] }
-];
 
 /**
  * @fileoverview added by tsickle
