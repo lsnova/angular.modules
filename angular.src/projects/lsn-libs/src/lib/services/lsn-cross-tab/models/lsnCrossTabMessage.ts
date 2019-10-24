@@ -1,10 +1,10 @@
-export class LsnCrossTabMessage {
+export class LsnCrossTabMessage<T extends object = any> {
   created?: number;
   code?: string;
   tabId?: string;
-  attrs?: object;
+  attrs?: T;
 
-  constructor({created = null, code = null, tabId = null, attrs = null} = {}) {
+  constructor({created = null, code = null, tabId = null, attrs = null}: LsnCrossTabMessage<T> = {}) {
     this.created = created;
     this.code = code;
     this.tabId = tabId;

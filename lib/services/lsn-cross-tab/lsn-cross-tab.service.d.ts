@@ -45,7 +45,7 @@ export declare class LsnCrossTabService implements OnDestroy {
      * Callback invoked after every cookie read interval
      */
     private readMessages;
-    getCookie: () => LsnCrossTabMessage[];
+    getCookie: () => LsnCrossTabMessage<any>[];
     /**
      * Removes all subscriptions that this service is subscribe to (intervals are cleared)
      */

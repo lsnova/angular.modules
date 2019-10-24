@@ -2,18 +2,15 @@ import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {CrossTabComponent} from './cross-tab.component';
 import {
-    LSN_COOKIE_CONFIG,
-    LSN_CROSS_TAB_CONFIG,
-    LsnCookieConfig,
-    LsnCrossTabConfig,
-    LsnCrossTabService
+  LSN_COOKIE_CONFIG,
+  LSN_CROSS_TAB_CONFIG,
+  LsnCookieConfig,
+  LsnCrossTabConfig,
+  LsnCrossTabService,
+  lsnCrossTabServiceFactory
 } from 'lsn-libs';
 import {MaterialModule} from '../../modules/material.module';
 import {ReactiveFormsModule} from '@angular/forms';
-
-export function crossTabServiceFactory(lsnCrossTabService: LsnCrossTabService) {
-  return () => lsnCrossTabService.run();
-}
 
 @NgModule({
   declarations: [CrossTabComponent],
@@ -36,7 +33,7 @@ export function crossTabServiceFactory(lsnCrossTabService: LsnCrossTabService) {
     {
       provide: APP_INITIALIZER,
       deps: [LsnCrossTabService],
-      useFactory: crossTabServiceFactory,
+      useFactory: lsnCrossTabServiceFactory,
       multi: true
     }
   ],

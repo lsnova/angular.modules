@@ -1,13 +1,8 @@
-export declare class LsnCrossTabMessage {
+export declare class LsnCrossTabMessage<T extends object = any> {
     created?: number;
     code?: string;
     tabId?: string;
-    attrs?: object;
-    constructor({ created, code, tabId, attrs }?: {
-        created?: any;
-        code?: any;
-        tabId?: any;
-        attrs?: any;
-    });
+    attrs?: T;
+    constructor({ created, code, tabId, attrs }?: LsnCrossTabMessage<T>);
     static compare(firstMessage: LsnCrossTabMessage, secondMessage: LsnCrossTabMessage): boolean;
 }

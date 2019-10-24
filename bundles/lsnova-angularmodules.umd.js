@@ -1754,6 +1754,13 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * @param {?} lsnCrossTabService
+     * @return {?}
+     */
+    function lsnCrossTabServiceFactory(lsnCrossTabService) {
+        return function () { return lsnCrossTabService.run(); };
+    }
     var LsnCrossTabModule = /** @class */ (function () {
         function LsnCrossTabModule() {
         }
@@ -1841,7 +1848,13 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var LsnCrossTabMessage = /** @class */ (function () {
+    /**
+     * @template T
+     */
+    var   /**
+     * @template T
+     */
+    LsnCrossTabMessage = /** @class */ (function () {
         function LsnCrossTabMessage(_a) {
             var _b = _a === void 0 ? {} : _a, _c = _b.created, created = _c === void 0 ? null : _c, _d = _b.code, code = _d === void 0 ? null : _d, _e = _b.tabId, tabId = _e === void 0 ? null : _e, _f = _b.attrs, attrs = _f === void 0 ? null : _f;
             this.created = created;
@@ -2407,6 +2420,7 @@
     exports.LsnNumericModule = LsnNumericModule;
     exports.LsnNumpadModule = LsnNumpadModule;
     exports.LsnScrollSpyModule = LsnScrollSpyModule;
+    exports.lsnCrossTabServiceFactory = lsnCrossTabServiceFactory;
     exports.ɵa = CapitalizeDirective;
     exports.ɵb = LatinToGreekDirective;
     exports.ɵc = NumericDirective;
