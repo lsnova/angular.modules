@@ -251,8 +251,6 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
         e.preventDefault();
       }
     }
-    console.log('event', e);
-    console.log('element', this.element.nativeElement.selectionStart, this.element.nativeElement.selectionEnd);
     // Ensure that it is a number or stop the keypress
     if (
       (

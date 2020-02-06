@@ -463,7 +463,9 @@ var NumericDirective = /** @class */ (function () {
                     NUMPAD_EIGHT,
                     NUMPAD_NINE,
                 ].indexOf(e.keyCode) === -1)
-            || (this.element.nativeElement.selectionStart === 0 && currentValue.indexOf('-') > -1)) {
+            || (this.element.nativeElement.selectionStart === 0
+                && this.element.nativeElement.selectionEnd === 0
+                && currentValue.indexOf('-') > -1)) {
             e.preventDefault();
         }
     };
