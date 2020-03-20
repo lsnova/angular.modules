@@ -6,7 +6,6 @@
 export * from './lib/lsn-libs.module';
 
 // components
-export * from './lib/components/mat-select/mat-select.module';
 
 // directives
 export * from './lib/directives/capitalize/capitalize.module';
