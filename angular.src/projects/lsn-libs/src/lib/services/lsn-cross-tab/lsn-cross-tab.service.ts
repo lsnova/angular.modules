@@ -14,13 +14,15 @@ export class LsnCrossTabService implements OnDestroy {
   private readonly tabOpenTime: number;
   private cookieReadSubscription: Subscription;
   private cookieCleanSubscription: Subscription;
+  private crossTabConfig: LsnCrossTabConfig;
 
   private get crossTabCookieName(): string {
     return this.crossTabConfig.crossTabCookieName;
   }
 
   constructor(private lsnCookieService: LsnCookieService,
-              @Optional() @Inject(LSN_CROSS_TAB_CONFIG) private crossTabConfig: LsnCrossTabConfig = new LsnCrossTabConfig()) {
+              @Optional() @Inject(LSN_CROSS_TAB_CONFIG) crossTabConfig: LsnCrossTabConfig) {
+    this.crossTabConfig = crossTabConfig || new LsnCrossTabConfig();
     this.messageSubject = new Subject<LsnCrossTabMessage>();
     this.tabId = Math.random() + '';
     this.messagesReadSet = new Set<string>();
