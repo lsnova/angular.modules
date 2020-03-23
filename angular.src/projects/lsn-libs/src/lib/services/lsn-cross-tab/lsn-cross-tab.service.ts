@@ -46,6 +46,13 @@ export class LsnCrossTabService implements OnDestroy {
   }
 
   /**
+   * Manually set cross tab config, for example when config must be provided asynchronously and not with InjectionToken
+   */
+  setCrossTabConfig(config: LsnCrossTabConfig) {
+    this.crossTabConfig = config;
+  }
+
+  /**
    * Sends message to other tabs by adding this message to cross tab cookie
    */
   sendMessage(data: (string | LsnCrossTabMessage | object)) {
@@ -130,11 +137,11 @@ export class LsnCrossTabService implements OnDestroy {
     if (this.cookie) {
       this.cookie.forEach((msgData: LsnCrossTabMessage) => {
         if (msgData.created > this.tabOpenTime) {
-        const msgCopy = {...msgData};
-        if (!this.messageWasRead(msgCopy)) {
-          this.messagesReadSet.add(this.getMessageId(msgCopy));
-          this.messageSubject.next(msgCopy);
-        }
+          const msgCopy = {...msgData};
+          if (!this.messageWasRead(msgCopy)) {
+            this.messagesReadSet.add(this.getMessageId(msgCopy));
+            this.messageSubject.next(msgCopy);
+          }
         }
       });
     }
