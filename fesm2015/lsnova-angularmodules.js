@@ -1262,9 +1262,9 @@ LsnCookieService.ctorParameters = () => [
 class LsnCrossTabService {
     /**
      * @param {?} lsnCookieService
-     * @param {?} crossTabConfig
+     * @param {?=} crossTabConfig
      */
-    constructor(lsnCookieService, crossTabConfig) {
+    constructor(lsnCookieService, crossTabConfig = new LsnCrossTabConfig()) {
         this.lsnCookieService = lsnCookieService;
         this.crossTabConfig = crossTabConfig;
         /**
@@ -1285,11 +1285,17 @@ class LsnCrossTabService {
             } // tslint:disable
         }, {}); // tslint:enable
         this.getCookie = () => this.cookie;
-        this.crossTabCookieName = crossTabConfig.crossTabCookieName;
         this.messageSubject = new Subject();
         this.tabId = Math.random() + '';
         this.messagesReadSet = new Set();
         this.tabOpenTime = Date.now();
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    get crossTabCookieName() {
+        return this.crossTabConfig.crossTabCookieName;
     }
     /**
      * This function sets up subscriptions for reading and cleaning cross tab cookie
@@ -1498,9 +1504,9 @@ LsnCrossTabService.decorators = [
 /** @nocollapse */
 LsnCrossTabService.ctorParameters = () => [
     { type: LsnCookieService },
-    { type: LsnCrossTabConfig, decorators: [{ type: Inject, args: [LSN_CROSS_TAB_CONFIG,] }] }
+    { type: LsnCrossTabConfig, decorators: [{ type: Optional }, { type: Inject, args: [LSN_CROSS_TAB_CONFIG,] }] }
 ];
-/** @nocollapse */ LsnCrossTabService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LsnCrossTabService_Factory() { return new LsnCrossTabService(ɵɵinject(LsnCookieService), ɵɵinject(LSN_CROSS_TAB_CONFIG)); }, token: LsnCrossTabService, providedIn: "root" });
+/** @nocollapse */ LsnCrossTabService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LsnCrossTabService_Factory() { return new LsnCrossTabService(ɵɵinject(LsnCookieService), ɵɵinject(LSN_CROSS_TAB_CONFIG, 8)); }, token: LsnCrossTabService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle

@@ -9,11 +9,11 @@ export declare class LsnCrossTabService implements OnDestroy {
     private readonly messageSubject;
     readonly tabId: string;
     private readonly messagesReadSet;
-    private readonly crossTabCookieName;
     private readonly tabOpenTime;
     private cookieReadSubscription;
     private cookieCleanSubscription;
-    constructor(lsnCookieService: LsnCookieService, crossTabConfig: LsnCrossTabConfig);
+    private readonly crossTabCookieName;
+    constructor(lsnCookieService: LsnCookieService, crossTabConfig?: LsnCrossTabConfig);
     /**
      * This function sets up subscriptions for reading and cleaning cross tab cookie
      */

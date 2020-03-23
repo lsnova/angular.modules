@@ -1483,6 +1483,7 @@ var LsnCookieService = /** @class */ (function () {
 var LsnCrossTabService = /** @class */ (function () {
     function LsnCrossTabService(lsnCookieService, crossTabConfig) {
         var _this = this;
+        if (crossTabConfig === void 0) { crossTabConfig = new LsnCrossTabConfig(); }
         this.lsnCookieService = lsnCookieService;
         this.crossTabConfig = crossTabConfig;
         /**
@@ -1503,12 +1504,22 @@ var LsnCrossTabService = /** @class */ (function () {
             } // tslint:disable
         }, {}); }; // tslint:enable
         this.getCookie = function () { return _this.cookie; };
-        this.crossTabCookieName = crossTabConfig.crossTabCookieName;
         this.messageSubject = new Subject();
         this.tabId = Math.random() + '';
         this.messagesReadSet = new Set();
         this.tabOpenTime = Date.now();
     }
+    Object.defineProperty(LsnCrossTabService.prototype, "crossTabCookieName", {
+        get: /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            return this.crossTabConfig.crossTabCookieName;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * This function sets up subscriptions for reading and cleaning cross tab cookie
      */
@@ -1829,9 +1840,9 @@ var LsnCrossTabService = /** @class */ (function () {
     /** @nocollapse */
     LsnCrossTabService.ctorParameters = function () { return [
         { type: LsnCookieService },
-        { type: LsnCrossTabConfig, decorators: [{ type: Inject, args: [LSN_CROSS_TAB_CONFIG,] }] }
+        { type: LsnCrossTabConfig, decorators: [{ type: Optional }, { type: Inject, args: [LSN_CROSS_TAB_CONFIG,] }] }
     ]; };
-    /** @nocollapse */ LsnCrossTabService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LsnCrossTabService_Factory() { return new LsnCrossTabService(ɵɵinject(LsnCookieService), ɵɵinject(LSN_CROSS_TAB_CONFIG)); }, token: LsnCrossTabService, providedIn: "root" });
+    /** @nocollapse */ LsnCrossTabService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LsnCrossTabService_Factory() { return new LsnCrossTabService(ɵɵinject(LsnCookieService), ɵɵinject(LSN_CROSS_TAB_CONFIG, 8)); }, token: LsnCrossTabService, providedIn: "root" });
     return LsnCrossTabService;
 }());
 
