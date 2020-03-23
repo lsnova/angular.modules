@@ -1,4 +1,4 @@
-import {Inject, Injectable, OnDestroy} from '@angular/core';
+import {Inject, Injectable, OnDestroy, Optional} from '@angular/core';
 import {interval, Observable, Subject, Subscription} from 'rxjs';
 import {LsnCrossTabMessage} from './models/lsnCrossTabMessage';
 import {LSN_CROSS_TAB_CONFIG, LsnCrossTabConfig} from './models/lsnCrossTabConfig';
@@ -11,13 +11,16 @@ export class LsnCrossTabService implements OnDestroy {
   private readonly messageSubject: Subject<LsnCrossTabMessage>;
   readonly tabId: string;
   private readonly messagesReadSet: Set<string>;
-  private readonly crossTabCookieName: string;
   private readonly tabOpenTime: number;
   private cookieReadSubscription: Subscription;
   private cookieCleanSubscription: Subscription;
 
-  constructor(private lsnCookieService: LsnCookieService, @Inject(LSN_CROSS_TAB_CONFIG) private crossTabConfig: LsnCrossTabConfig) {
-    this.crossTabCookieName = crossTabConfig.crossTabCookieName;
+  private get crossTabCookieName(): string {
+    return this.crossTabConfig.crossTabCookieName;
+  }
+
+  constructor(private lsnCookieService: LsnCookieService,
+              @Optional() @Inject(LSN_CROSS_TAB_CONFIG) private crossTabConfig: LsnCrossTabConfig = new LsnCrossTabConfig()) {
     this.messageSubject = new Subject<LsnCrossTabMessage>();
     this.tabId = Math.random() + '';
     this.messagesReadSet = new Set<string>();
