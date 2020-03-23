@@ -1262,11 +1262,10 @@ LsnCookieService.ctorParameters = () => [
 class LsnCrossTabService {
     /**
      * @param {?} lsnCookieService
-     * @param {?=} crossTabConfig
+     * @param {?} crossTabConfig
      */
-    constructor(lsnCookieService, crossTabConfig = new LsnCrossTabConfig()) {
+    constructor(lsnCookieService, crossTabConfig) {
         this.lsnCookieService = lsnCookieService;
-        this.crossTabConfig = crossTabConfig;
         /**
          * Checks if message with given id was already read
          */
@@ -1285,6 +1284,7 @@ class LsnCrossTabService {
             } // tslint:disable
         }, {}); // tslint:enable
         this.getCookie = () => this.cookie;
+        this.crossTabConfig = crossTabConfig || new LsnCrossTabConfig();
         this.messageSubject = new Subject();
         this.tabId = Math.random() + '';
         this.messagesReadSet = new Set();

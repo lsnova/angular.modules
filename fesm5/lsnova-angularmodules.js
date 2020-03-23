@@ -1483,9 +1483,7 @@ var LsnCookieService = /** @class */ (function () {
 var LsnCrossTabService = /** @class */ (function () {
     function LsnCrossTabService(lsnCookieService, crossTabConfig) {
         var _this = this;
-        if (crossTabConfig === void 0) { crossTabConfig = new LsnCrossTabConfig(); }
         this.lsnCookieService = lsnCookieService;
-        this.crossTabConfig = crossTabConfig;
         /**
          * Checks if message with given id was already read
          */
@@ -1504,6 +1502,7 @@ var LsnCrossTabService = /** @class */ (function () {
             } // tslint:disable
         }, {}); }; // tslint:enable
         this.getCookie = function () { return _this.cookie; };
+        this.crossTabConfig = crossTabConfig || new LsnCrossTabConfig();
         this.messageSubject = new Subject();
         this.tabId = Math.random() + '';
         this.messagesReadSet = new Set();

@@ -5,15 +5,15 @@ import { LsnCrossTabConfig } from './models/lsnCrossTabConfig';
 import { LsnCookieService } from '../lsn-cookie/lsn-cookie.service';
 export declare class LsnCrossTabService implements OnDestroy {
     private lsnCookieService;
-    private crossTabConfig;
     private readonly messageSubject;
     readonly tabId: string;
     private readonly messagesReadSet;
     private readonly tabOpenTime;
     private cookieReadSubscription;
     private cookieCleanSubscription;
+    private crossTabConfig;
     private readonly crossTabCookieName;
-    constructor(lsnCookieService: LsnCookieService, crossTabConfig?: LsnCrossTabConfig);
+    constructor(lsnCookieService: LsnCookieService, crossTabConfig: LsnCrossTabConfig);
     /**
      * This function sets up subscriptions for reading and cleaning cross tab cookie
      */
