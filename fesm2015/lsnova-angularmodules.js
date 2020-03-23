@@ -1313,6 +1313,14 @@ class LsnCrossTabService {
         return this.messageSubject;
     }
     /**
+     * Manually set cross tab config, for example when config must be provided asynchronously and not with InjectionToken
+     * @param {?} config
+     * @return {?}
+     */
+    setCrossTabConfig(config) {
+        this.crossTabConfig = config;
+    }
+    /**
      * Sends message to other tabs by adding this message to cross tab cookie
      * @param {?} data
      * @return {?}

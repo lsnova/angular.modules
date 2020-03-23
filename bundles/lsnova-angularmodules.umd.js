@@ -1635,6 +1635,22 @@
             configurable: true
         });
         /**
+         * Manually set cross tab config, for example when config must be provided asynchronously and not with InjectionToken
+         */
+        /**
+         * Manually set cross tab config, for example when config must be provided asynchronously and not with InjectionToken
+         * @param {?} config
+         * @return {?}
+         */
+        LsnCrossTabService.prototype.setCrossTabConfig = /**
+         * Manually set cross tab config, for example when config must be provided asynchronously and not with InjectionToken
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
+            this.crossTabConfig = config;
+        };
+        /**
          * Sends message to other tabs by adding this message to cross tab cookie
          */
         /**

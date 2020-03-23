@@ -23,6 +23,10 @@ export declare class LsnCrossTabService implements OnDestroy {
      */
     readonly messages$: Observable<LsnCrossTabMessage>;
     /**
+     * Manually set cross tab config, for example when config must be provided asynchronously and not with InjectionToken
+     */
+    setCrossTabConfig(config: LsnCrossTabConfig): void;
+    /**
      * Sends message to other tabs by adding this message to cross tab cookie
      */
     sendMessage(data: (string | LsnCrossTabMessage | object)): void;
