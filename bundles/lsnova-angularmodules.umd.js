@@ -559,7 +559,7 @@
         };
         NumericDirective.decorators = [
             { type: core.Directive, args: [{
-                        selector: '[ngModel][lsnNumeric]',
+                        selector: '[lsnNumeric]',
                         providers: [CUSTOM_SELECT_VALUE_ACCESSOR]
                     },] }
         ];
