@@ -10,7 +10,7 @@ const CUSTOM_SELECT_VALUE_ACCESSOR: any = {
 };
 
 @Directive({
-  selector: '[ngModel][lsnNumeric]',
+  selector: '[lsnNumeric]',
   providers: [CUSTOM_SELECT_VALUE_ACCESSOR]
 })
 export class NumericDirective implements OnChanges, ControlValueAccessor {
