@@ -8,7 +8,6 @@ import {LsnLibsModule, LsnScrollSpyModule} from '@lsnova/angularmodules';
 import {MaterialModule} from './modules/material.module';
 import {AppComponent} from './app.component';
 import {NumericCardComponent} from './components/numeric-card/numeric-card.component';
-import {SelectCardComponent} from './components/select-card/select-card.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {NumpadCardComponent} from './components/numpad-card/numpad-card.component';
 import {CrossTabModule} from './components/cross-tab/cross-tab.module';
@@ -20,7 +19,6 @@ import {ScrollSpyComponent} from './components/scroll-spy/scroll-spy.component';
     NavbarComponent,
     NumericCardComponent,
     NumpadCardComponent,
-    SelectCardComponent,
     ScrollSpyComponent
   ],
   imports: [
