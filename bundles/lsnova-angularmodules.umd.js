@@ -1960,6 +1960,8 @@
     }());
 
     exports.CapitalizeDirective = CapitalizeDirective;
+    exports.CustomNumericConfig = CustomNumericConfig;
+    exports.DefaultNumericConfig = DefaultNumericConfig;
     exports.LSN_COOKIE_CONFIG = LSN_COOKIE_CONFIG;
     exports.LSN_CROSS_TAB_CONFIG = LSN_CROSS_TAB_CONFIG;
     exports.LatinToGreekDirective = LatinToGreekDirective;
@@ -1977,11 +1979,10 @@
     exports.LsnNumpadModule = LsnNumpadModule;
     exports.LsnScrollSpyModule = LsnScrollSpyModule;
     exports.NumPadDirective = NumPadDirective;
+    exports.NumericConfigService = NumericConfigService;
     exports.NumericDirective = NumericDirective;
     exports.ScrollSpyDirective = ScrollSpyDirective;
     exports.lsnCrossTabServiceFactory = lsnCrossTabServiceFactory;
-    exports.ɵa = CustomNumericConfig;
-    exports.ɵb = NumericConfigService;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
