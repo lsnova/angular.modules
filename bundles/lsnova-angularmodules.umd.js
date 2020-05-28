@@ -1332,6 +1332,31 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var LsnCrossTabConfig = /** @class */ (function () {
         function LsnCrossTabConfig(_a) {
             var _b = _a === void 0 ? {} : _a, _c = _b.cookieCleanFreq, cookieCleanFreq = _c === void 0 ? null : _c, _d = _b.cookieReadFreq, cookieReadFreq = _d === void 0 ? null : _d, _e = _b.msgTtl, msgTtl = _e === void 0 ? null : _e, _f = _b.rootDomain, rootDomain = _f === void 0 ? null : _f, _g = _b.crossTabCookieName, crossTabCookieName = _g === void 0 ? null : _g;
@@ -1934,8 +1959,10 @@
         return LsnCrossTabService;
     }());
 
+    exports.CapitalizeDirective = CapitalizeDirective;
     exports.LSN_COOKIE_CONFIG = LSN_COOKIE_CONFIG;
     exports.LSN_CROSS_TAB_CONFIG = LSN_CROSS_TAB_CONFIG;
+    exports.LatinToGreekDirective = LatinToGreekDirective;
     exports.LsnCapitalizeModule = LsnCapitalizeModule;
     exports.LsnCookieConfig = LsnCookieConfig;
     exports.LsnCookieModule = LsnCookieModule;
@@ -1949,14 +1976,12 @@
     exports.LsnNumericModule = LsnNumericModule;
     exports.LsnNumpadModule = LsnNumpadModule;
     exports.LsnScrollSpyModule = LsnScrollSpyModule;
+    exports.NumPadDirective = NumPadDirective;
+    exports.NumericDirective = NumericDirective;
+    exports.ScrollSpyDirective = ScrollSpyDirective;
     exports.lsnCrossTabServiceFactory = lsnCrossTabServiceFactory;
-    exports.ɵa = CapitalizeDirective;
-    exports.ɵb = LatinToGreekDirective;
-    exports.ɵc = NumericDirective;
-    exports.ɵd = CustomNumericConfig;
-    exports.ɵe = NumericConfigService;
-    exports.ɵf = NumPadDirective;
-    exports.ɵg = ScrollSpyDirective;
+    exports.ɵa = CustomNumericConfig;
+    exports.ɵb = NumericConfigService;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
