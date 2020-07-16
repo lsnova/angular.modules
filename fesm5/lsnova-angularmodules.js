@@ -157,6 +157,10 @@ var NumericDirective = /** @class */ (function () {
      */
     function () {
         this.displayValue = this.prepareDisplayValue(this.element.nativeElement.value);
+        if (this.onTouch) {
+            // if user sets updateOn to 'blur', we have to call onTouch for it to work properly
+            this.onTouch();
+        }
     };
     /**
      * @param {?} modelValue
@@ -467,6 +471,17 @@ var NumericDirective = /** @class */ (function () {
                 && currentValue.indexOf('-') > -1)) {
             e.preventDefault();
         }
+    };
+    /**
+     * @param {?} isDisabled
+     * @return {?}
+     */
+    NumericDirective.prototype.setDisabledState = /**
+     * @param {?} isDisabled
+     * @return {?}
+     */
+    function (isDisabled) {
+        this.element.nativeElement.disabled = isDisabled;
     };
     NumericDirective.decorators = [
         { type: Directive, args: [{
