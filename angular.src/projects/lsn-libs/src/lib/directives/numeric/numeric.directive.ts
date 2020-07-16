@@ -60,6 +60,10 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
   @HostListener('blur', [])
   blurHandler() {
     this.displayValue = this.prepareDisplayValue(this.element.nativeElement.value);
+    if (this.onTouch) {
+      // if user sets updateOn to 'blur', we have to call onTouch for it to work properly
+      this.onTouch();
+    }
   }
 
   public async writeValue(modelValue: string): Promise<void> {
@@ -291,5 +295,9 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     ) {
       e.preventDefault();
     }
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.element.nativeElement.disabled = isDisabled;
   }
 }
