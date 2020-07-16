@@ -1,7 +1,7 @@
-import { LsnNumericModule } from '@lsnova/angularmodules';
 import {Component} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
+import {LsnNumericModule} from './numeric.module';
 
 @Component({
   template: '<input lsnNumeric [(ngModel)]="value"/>'
@@ -9,7 +9,8 @@ import {FormsModule} from '@angular/forms';
 class TestComponent {
   value = 0;
 
-  constructor() { }
+  constructor() {
+  }
 }
 
 
