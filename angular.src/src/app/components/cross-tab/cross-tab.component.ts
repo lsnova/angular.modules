@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LsnCrossTabService} from '../../../../projects/lsn-libs/src/lib/services/lsn-cross-tab/lsn-cross-tab.service';
+import {LsnCrossTabService} from 'lsn-libs';
 import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({

@@ -2,7 +2,15 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "types": []
+    "types": [],
+    "paths": {
+      "lsn-libs": [
+        "projects/lsn-libs/src/public_api"
+      ],
+      "lsn-libs/*": [
+        "projects/lsn-libs/src/*"
+      ]
+    }
   },
   "exclude": [
     "test.ts",
