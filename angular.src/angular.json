@@ -121,7 +121,7 @@
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ih-lib/tsconfig.lib.prod.json"
+              "tsConfig": "projects/lsn-libs/tsconfig.lib.prod.json"
             }
           }
         },
