@@ -2,22 +2,36 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/keycodes'), require('@angular/forms'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@lsnova/angularmodules', ['exports', '@angular/core', '@angular/cdk/keycodes', '@angular/forms', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
     (global = global || self, factory((global.lsnova = global.lsnova || {}, global.lsnova.angularmodules = {}), global.ng.core, global.ng.cdk.keycodes, global.ng.forms, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, function (exports, core, keycodes, forms, rxjs, operators, common) { 'use strict';
+}(this, (function (exports, core, keycodes, forms, rxjs, operators, common) { 'use strict';
 
     /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
+    Copyright (c) Microsoft Corporation.
 
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted.
 
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+    REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+    AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+    INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+    LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+    OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+    PERFORMANCE OF THIS SOFTWARE.
     ***************************************************************************** */
+    /* global Reflect, Promise */
+
+    var extendStatics = function(d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+
+    function __extends(d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    }
 
     var __assign = function() {
         __assign = Object.assign || function __assign(t) {
@@ -30,11 +44,39 @@
         return __assign.apply(this, arguments);
     };
 
+    function __rest(s, e) {
+        var t = {};
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+            t[p] = s[p];
+        if (s != null && typeof Object.getOwnPropertySymbols === "function")
+            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+                if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                    t[p[i]] = s[p[i]];
+            }
+        return t;
+    }
+
+    function __decorate(decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    }
+
+    function __param(paramIndex, decorator) {
+        return function (target, key) { decorator(target, key, paramIndex); }
+    }
+
+    function __metadata(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+    }
+
     function __awaiter(thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
             function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-            function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
             step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
     }
@@ -67,15 +109,25 @@
         }
     }
 
+    function __createBinding(o, m, k, k2) {
+        if (k2 === undefined) k2 = k;
+        o[k2] = m[k];
+    }
+
+    function __exportStar(m, exports) {
+        for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) exports[p] = m[p];
+    }
+
     function __values(o) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+        var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
         if (m) return m.call(o);
-        return {
+        if (o && typeof o.length === "number") return {
             next: function () {
                 if (o && i >= o.length) o = void 0;
                 return { value: o && o[i++], done: !o };
             }
         };
+        throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
     }
 
     function __read(o, n) {
@@ -95,16 +147,113 @@
         return ar;
     }
 
+    function __spread() {
+        for (var ar = [], i = 0; i < arguments.length; i++)
+            ar = ar.concat(__read(arguments[i]));
+        return ar;
+    }
+
+    function __spreadArrays() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+            for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+                r[k] = a[j];
+        return r;
+    };
+
+    function __await(v) {
+        return this instanceof __await ? (this.v = v, this) : new __await(v);
+    }
+
+    function __asyncGenerator(thisArg, _arguments, generator) {
+        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        var g = generator.apply(thisArg, _arguments || []), i, q = [];
+        return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+        function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+        function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+        function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+        function fulfill(value) { resume("next", value); }
+        function reject(value) { resume("throw", value); }
+        function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+    }
+
+    function __asyncDelegator(o) {
+        var i, p;
+        return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+        function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+    }
+
+    function __asyncValues(o) {
+        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        var m = o[Symbol.asyncIterator], i;
+        return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+        function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+    }
+
+    function __makeTemplateObject(cooked, raw) {
+        if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+        return cooked;
+    };
+
+    function __importStar(mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+        result.default = mod;
+        return result;
+    }
+
+    function __importDefault(mod) {
+        return (mod && mod.__esModule) ? mod : { default: mod };
+    }
+
+    function __classPrivateFieldGet(receiver, privateMap) {
+        if (!privateMap.has(receiver)) {
+            throw new TypeError("attempted to get private field on non-instance");
+        }
+        return privateMap.get(receiver);
+    }
+
+    function __classPrivateFieldSet(receiver, privateMap, value) {
+        if (!privateMap.has(receiver)) {
+            throw new TypeError("attempted to set private field on non-instance");
+        }
+        privateMap.set(receiver, value);
+        return value;
+    }
+
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/directives/numeric/numeric-config.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {string} */
     var NumericSeparator = {
-        COMMA: ',',
-        PERIOD: '.',
-        SPACE: ' ',
+        COMMA: ",",
+        PERIOD: ".",
+        SPACE: " ",
     };
+    /**
+     * @record
+     */
+    function NumericConfig() { }
+    if (false) {
+        /** @type {?|undefined} */
+        NumericConfig.prototype.min;
+        /** @type {?|undefined} */
+        NumericConfig.prototype.max;
+        /** @type {?|undefined} */
+        NumericConfig.prototype.maxLength;
+        /** @type {?|undefined} */
+        NumericConfig.prototype.precision;
+        /** @type {?|undefined} */
+        NumericConfig.prototype.decimals;
+        /** @type {?|undefined} */
+        NumericConfig.prototype.thousands;
+        /** @type {?|undefined} */
+        NumericConfig.prototype.config;
+    }
     var DefaultNumericConfig = /** @class */ (function () {
         function DefaultNumericConfig(props) {
             if (props === void 0) { props = {}; }
@@ -114,6 +263,20 @@
         }
         return DefaultNumericConfig;
     }());
+    if (false) {
+        /** @type {?} */
+        DefaultNumericConfig.prototype.min;
+        /** @type {?} */
+        DefaultNumericConfig.prototype.max;
+        /** @type {?} */
+        DefaultNumericConfig.prototype.maxLength;
+        /** @type {?} */
+        DefaultNumericConfig.prototype.precision;
+        /** @type {?} */
+        DefaultNumericConfig.prototype.decimals;
+        /** @type {?} */
+        DefaultNumericConfig.prototype.thousands;
+    }
     var CustomNumericConfig = /** @class */ (function () {
         function CustomNumericConfig(props) {
             if (props === void 0) { props = {}; }
@@ -121,6 +284,12 @@
         }
         return CustomNumericConfig;
     }());
+    if (false) {
+        /** @type {?} */
+        CustomNumericConfig.prototype.default;
+        /** @type {?} */
+        CustomNumericConfig.prototype.custom;
+    }
     var NumericConfigService = /** @class */ (function () {
         function NumericConfigService(config) {
             /** @type {?} */
@@ -158,7 +327,7 @@
             if (!this.config.custom[key]) {
                 console.warn('[lsnNumeric] Invalid config key provided.');
             }
-            return __assign({}, this.getDefaultConfig(), this.config.custom[key]) || this.getDefaultConfig();
+            return __assign(__assign({}, this.getDefaultConfig()), this.config.custom[key]) || this.getDefaultConfig();
         };
         NumericConfigService.decorators = [
             { type: core.Injectable }
@@ -169,15 +338,26 @@
         ]; };
         return NumericConfigService;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        NumericConfigService.prototype.config;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/directives/numeric/numeric.directive.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var CUSTOM_SELECT_VALUE_ACCESSOR = {
         provide: forms.NG_VALUE_ACCESSOR,
-        useExisting: core.forwardRef(function () { return NumericDirective; }),
+        useExisting: core.forwardRef((/**
+         * @return {?}
+         */
+        function () { return NumericDirective; })),
         multi: true
     };
     var NumericDirective = /** @class */ (function () {
@@ -185,10 +365,17 @@
             this.el = el;
             this.configService = configService;
             this.lsnNumeric = {};
-            this.onChange = function (_) {
-            };
-            this.onTouch = function () {
-            };
+            this.onChange = (/**
+             * @param {?} _
+             * @return {?}
+             */
+            function (_) {
+            });
+            this.onTouch = (/**
+             * @return {?}
+             */
+            function () {
+            });
             this.element = el;
             this.setConfig();
         }
@@ -320,7 +507,7 @@
             var defaultConfig = this.lsnNumeric.config
                 ? this.configService.getCustomConfig(this.lsnNumeric.config)
                 : this.configService.getDefaultConfig();
-            this.config = Object.assign(__assign({}, defaultConfig, this.lsnNumeric));
+            this.config = Object.assign(__assign(__assign({}, defaultConfig), this.lsnNumeric));
             if (this.config.decimals && this.config.thousands && this.config.decimals === this.config.thousands) {
                 this.config.thousands = undefined;
             }
@@ -592,10 +779,36 @@
         };
         return NumericDirective;
     }());
+    if (false) {
+        /** @type {?} */
+        NumericDirective.prototype.lsnNumeric;
+        /** @type {?} */
+        NumericDirective.prototype.element;
+        /**
+         * @type {?}
+         * @protected
+         */
+        NumericDirective.prototype.config;
+        /** @type {?} */
+        NumericDirective.prototype.onChange;
+        /** @type {?} */
+        NumericDirective.prototype.onTouch;
+        /**
+         * @type {?}
+         * @private
+         */
+        NumericDirective.prototype.el;
+        /**
+         * @type {?}
+         * @private
+         */
+        NumericDirective.prototype.configService;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/directives/numeric/numeric.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LsnNumericModule = /** @class */ (function () {
         function LsnNumericModule() {
@@ -632,7 +845,8 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/directives/numpad/numpad.directive.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NumPadConfig = /** @class */ (function () {
         function NumPadConfig() {
@@ -640,6 +854,12 @@
         }
         return NumPadConfig;
     }());
+    if (false) {
+        /** @type {?} */
+        NumPadConfig.prototype.maxlength;
+        /** @type {?} */
+        NumPadConfig.prototype.allowLeadingZeros;
+    }
     var NumPadDirective = /** @class */ (function () {
         function NumPadDirective(element, ngControl) {
             this.element = element;
@@ -654,7 +874,7 @@
          * @return {?}
          */
         function () {
-            this.config = Object.assign(__assign({}, this.defaultConfig, this.lsnNumPad));
+            this.config = Object.assign(__assign(__assign({}, this.defaultConfig), this.lsnNumPad));
         };
         /**
          * @param {?} $event
@@ -813,10 +1033,35 @@
         };
         return NumPadDirective;
     }());
+    if (false) {
+        /** @type {?} */
+        NumPadDirective.prototype.lsnNumPad;
+        /**
+         * @type {?}
+         * @protected
+         */
+        NumPadDirective.prototype.config;
+        /**
+         * @type {?}
+         * @private
+         */
+        NumPadDirective.prototype.defaultConfig;
+        /**
+         * @type {?}
+         * @private
+         */
+        NumPadDirective.prototype.element;
+        /**
+         * @type {?}
+         * @private
+         */
+        NumPadDirective.prototype.ngControl;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/directives/numpad/numpad.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LsnNumpadModule = /** @class */ (function () {
         function LsnNumpadModule() {
@@ -837,7 +1082,8 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/directives/latin-to-greek/latin-to-greek.directive.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LatinToGreekDirective = /** @class */ (function () {
         function LatinToGreekDirective(model, el) {
@@ -915,9 +1161,13 @@
             var _a = this.getCaret(), start = _a.start, end = _a.end;
             /** @type {?} */
             var translated = $event.toLocaleUpperCase();
-            this.latinToGreek.forEach(function (replace) {
+            this.latinToGreek.forEach((/**
+             * @param {?} replace
+             * @return {?}
+             */
+            function (replace) {
                 translated = translated.replace(replace[0], replace[1]);
-            });
+            }));
             this.model.valueAccessor.writeValue(translated);
             this.setCaret(start, end);
         };
@@ -937,10 +1187,28 @@
         };
         return LatinToGreekDirective;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        LatinToGreekDirective.prototype.latinToGreek;
+        /**
+         * @type {?}
+         * @private
+         */
+        LatinToGreekDirective.prototype.model;
+        /**
+         * @type {?}
+         * @private
+         */
+        LatinToGreekDirective.prototype.el;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/directives/latin-to-greek/latin-to-greek.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LsnLatinToGreekModule = /** @class */ (function () {
         function LsnLatinToGreekModule() {
@@ -961,7 +1229,8 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/directives/capitalize/capitalize.directive.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var CapitalizeDirective = /** @class */ (function () {
         function CapitalizeDirective(model) {
@@ -993,10 +1262,18 @@
         };
         return CapitalizeDirective;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CapitalizeDirective.prototype.model;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/directives/capitalize/capitalize.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LsnCapitalizeModule = /** @class */ (function () {
         function LsnCapitalizeModule() {
@@ -1017,7 +1294,8 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/directives/scroll-spy/scroll-spy.directive.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ScrollSpyDirective = /** @class */ (function () {
         function ScrollSpyDirective(elementRef) {
@@ -1038,10 +1316,22 @@
             this.scrollOffset = this.nativeElement().offsetTop;
             // emit event on section change
             /** @type {?} */
-            var sectionChangeSub = this.currentSection$.pipe(operators.distinctUntilChanged(), operators.tap(function (sectionId) { return _this.spySectionChange.emit(sectionId); })).subscribe();
+            var sectionChangeSub = this.currentSection$.pipe(operators.distinctUntilChanged(), operators.tap((/**
+             * @param {?} sectionId
+             * @return {?}
+             */
+            function (sectionId) { return _this.spySectionChange.emit(sectionId); }))).subscribe();
             // scroll to given section
             /** @type {?} */
-            var scrollToSub = this.scrollToSection.pipe(operators.filter(function (section) { return !!section; }), operators.tap(function (section) { return _this.scrollTo(section); })).subscribe();
+            var scrollToSub = this.scrollToSection.pipe(operators.filter((/**
+             * @param {?} section
+             * @return {?}
+             */
+            function (section) { return !!section; })), operators.tap((/**
+             * @param {?} section
+             * @return {?}
+             */
+            function (section) { return _this.scrollTo(section); }))).subscribe();
             this.subscriptions.push(sectionChangeSub, scrollToSub);
         };
         /**
@@ -1081,9 +1371,12 @@
             this.disableEmitter = true;
             this.nativeElement().querySelector('#' + sectionId).scrollIntoView();
             // set timeout to enforce scroll event execute before enabling back the emitter
-            setTimeout(function () {
+            setTimeout((/**
+             * @return {?}
+             */
+            function () {
                 _this.disableEmitter = false;
-            }, 0);
+            }), 0);
         };
         /**
          * @private
@@ -1099,7 +1392,11 @@
             var scrollMiddle = (this.scrollTopPosition() + this.scrollBottomPosition()) / 2;
             /** @type {?} */
             var spiedSections = this.getSpiedSections();
-            return spiedSections.find(function (section) { return _this.isCurrentSection(section, scrollMiddle); });
+            return spiedSections.find((/**
+             * @param {?} section
+             * @return {?}
+             */
+            function (section) { return _this.isCurrentSection(section, scrollMiddle); }));
         };
         /**
          * @private
@@ -1209,7 +1506,11 @@
          * @return {?}
          */
         function () {
-            this.subscriptions.forEach(function (sub) { return sub.unsubscribe(); });
+            this.subscriptions.forEach((/**
+             * @param {?} sub
+             * @return {?}
+             */
+            function (sub) { return sub.unsubscribe(); }));
         };
         ScrollSpyDirective.decorators = [
             { type: core.Directive, args: [{
@@ -1229,10 +1530,41 @@
         };
         return ScrollSpyDirective;
     }());
+    if (false) {
+        /** @type {?} */
+        ScrollSpyDirective.prototype.spySelector;
+        /** @type {?} */
+        ScrollSpyDirective.prototype.scrollToSection;
+        /** @type {?} */
+        ScrollSpyDirective.prototype.spySectionChange;
+        /**
+         * @type {?}
+         * @private
+         */
+        ScrollSpyDirective.prototype.scrollOffset;
+        /**
+         * @type {?}
+         * @private
+         */
+        ScrollSpyDirective.prototype.currentSection$;
+        /**
+         * @type {?}
+         * @private
+         */
+        ScrollSpyDirective.prototype.disableEmitter;
+        /** @type {?} */
+        ScrollSpyDirective.prototype.subscriptions;
+        /**
+         * @type {?}
+         * @private
+         */
+        ScrollSpyDirective.prototype.elementRef;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/directives/scroll-spy/scroll-spy.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LsnScrollSpyModule = /** @class */ (function () {
         function LsnScrollSpyModule() {
@@ -1253,7 +1585,8 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/services/lsn-cookie/lsn-cookie.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LsnCookieModule = /** @class */ (function () {
         function LsnCookieModule() {
@@ -1271,14 +1604,18 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/services/lsn-cross-tab/lsn-cross-tab.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @param {?} lsnCrossTabService
      * @return {?}
      */
     function lsnCrossTabServiceFactory(lsnCrossTabService) {
-        return function () { return lsnCrossTabService.run(); };
+        return (/**
+         * @return {?}
+         */
+        function () { return lsnCrossTabService.run(); });
     }
     var LsnCrossTabModule = /** @class */ (function () {
         function LsnCrossTabModule() {
@@ -1299,7 +1636,8 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/lsn-libs.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LsnLibsModule = /** @class */ (function () {
         function LsnLibsModule() {
@@ -1345,32 +1683,38 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/directives/capitalize/public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/directives/latin-to-greek/public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/directives/numeric/public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/directives/numpad/public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/directives/scroll-spy/public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/services/lsn-cross-tab/models/lsnCrossTabConfig.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LsnCrossTabConfig = /** @class */ (function () {
         function LsnCrossTabConfig(_a) {
@@ -1383,12 +1727,25 @@
         }
         return LsnCrossTabConfig;
     }());
+    if (false) {
+        /** @type {?} */
+        LsnCrossTabConfig.prototype.cookieCleanFreq;
+        /** @type {?} */
+        LsnCrossTabConfig.prototype.cookieReadFreq;
+        /** @type {?} */
+        LsnCrossTabConfig.prototype.msgTtl;
+        /** @type {?} */
+        LsnCrossTabConfig.prototype.rootDomain;
+        /** @type {?} */
+        LsnCrossTabConfig.prototype.crossTabCookieName;
+    }
     /** @type {?} */
     var LSN_CROSS_TAB_CONFIG = new core.InjectionToken('LsnCrossTabConfig');
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/services/lsn-cross-tab/models/lsnCrossTabMessage.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @template T
@@ -1428,10 +1785,21 @@
         };
         return LsnCrossTabMessage;
     }());
+    if (false) {
+        /** @type {?} */
+        LsnCrossTabMessage.prototype.created;
+        /** @type {?} */
+        LsnCrossTabMessage.prototype.code;
+        /** @type {?} */
+        LsnCrossTabMessage.prototype.tabId;
+        /** @type {?} */
+        LsnCrossTabMessage.prototype.attrs;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/services/lsn-cookie/lsnCookieConfig.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LsnCookieConfig = /** @class */ (function () {
         function LsnCookieConfig(_a) {
@@ -1441,13 +1809,60 @@
         }
         return LsnCookieConfig;
     }());
+    if (false) {
+        /** @type {?} */
+        LsnCookieConfig.prototype.secureCookies;
+        /** @type {?} */
+        LsnCookieConfig.prototype.domainCookies;
+    }
     /** @type {?} */
     var LSN_COOKIE_CONFIG = new core.InjectionToken('LsnCookieConfig');
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/services/lsn-cookie/lsn-cookie.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * @record
+     */
+    function LsnCookieOptions() { }
+    if (false) {
+        /** @type {?|undefined} */
+        LsnCookieOptions.prototype.expires;
+        /** @type {?|undefined} */
+        LsnCookieOptions.prototype.expirationUnit;
+        /** @type {?|undefined} */
+        LsnCookieOptions.prototype.path;
+        /** @type {?|undefined} */
+        LsnCookieOptions.prototype.domain;
+        /** @type {?|undefined} */
+        LsnCookieOptions.prototype.secure;
+    }
+    /**
+     * @record
+     */
+    function CookieService() { }
+    if (false) {
+        /**
+         * @param {?} cookieKey
+         * @param {?} cookieValue
+         * @param {?} cookieOptions
+         * @return {?}
+         */
+        CookieService.prototype.set = function (cookieKey, cookieValue, cookieOptions) { };
+        /**
+         * @param {?=} cookieKey
+         * @return {?}
+         */
+        CookieService.prototype.get = function (cookieKey) { };
+        /**
+         * @param {?} cookieKey
+         * @param {?} cookieOptions
+         * @return {?}
+         */
+        CookieService.prototype.remove = function (cookieKey, cookieOptions) { };
+    }
     var LsnCookieService = /** @class */ (function () {
         function LsnCookieService(cookieConfig, document) {
             this.cookieConfig = cookieConfig;
@@ -1475,7 +1890,7 @@
          */
         function (cookieKey, cookieValue, cookieOptions) {
             /** @type {?} */
-            var options = __assign({}, cookieOptions, { secure: cookieOptions && cookieOptions.secure ? cookieOptions.secure : this.cookieConfig.secureCookies });
+            var options = __assign(__assign({}, cookieOptions), { secure: cookieOptions && cookieOptions.secure ? cookieOptions.secure : this.cookieConfig.secureCookies });
             if (!this.cookieConfig.domainCookies) {
                 options.domain = false;
             }
@@ -1545,16 +1960,29 @@
             var cookieStringList = this.document.cookie ? this.document.cookie.split('; ') : [];
             /** @type {?} */
             var cookieObject = cookieStringList
-                .map(function (cookieString) {
+                .map((/**
+             * @param {?} cookieString
+             * @return {?}
+             */
+            function (cookieString) {
                 /** @type {?} */
                 var pos = cookieString.indexOf('=');
                 return {
                     name: cookieString.substr(0, pos),
                     value: decodeURIComponent(cookieString.substr(pos + 1))
                 };
-            }).filter(function (cookie) {
+            })).filter((/**
+             * @param {?} cookie
+             * @return {?}
+             */
+            function (cookie) {
                 return typeof cookie.value !== 'undefined' && (cookieKey === undefined || cookieKey === cookie.name);
-            }).reduce(function (previousValue, currentValue) {
+            })).reduce((/**
+             * @param {?} previousValue
+             * @param {?} currentValue
+             * @return {?}
+             */
+            function (previousValue, currentValue) {
                 /** @type {?} */
                 var value = null;
                 try {
@@ -1565,7 +1993,7 @@
                 }
                 previousValue[currentValue.name] = value;
                 return previousValue;
-            }, {});
+            }), {});
             return cookieKey ? cookieObject[cookieKey] : Object.keys(cookieObject).length > 0 ? cookieObject : undefined;
         };
         /**
@@ -1601,13 +2029,23 @@
             { type: LsnCookieConfig, decorators: [{ type: core.Inject, args: [LSN_COOKIE_CONFIG,] }] },
             { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
         ]; };
-        /** @nocollapse */ LsnCookieService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LsnCookieService_Factory() { return new LsnCookieService(core.ɵɵinject(LSN_COOKIE_CONFIG), core.ɵɵinject(common.DOCUMENT)); }, token: LsnCookieService, providedIn: "root" });
+        /** @nocollapse */ LsnCookieService.ɵprov = core.ɵɵdefineInjectable({ factory: function LsnCookieService_Factory() { return new LsnCookieService(core.ɵɵinject(LSN_COOKIE_CONFIG), core.ɵɵinject(common.DOCUMENT)); }, token: LsnCookieService, providedIn: "root" });
         return LsnCookieService;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        LsnCookieService.prototype.cookieConfig;
+        /** @type {?} */
+        LsnCookieService.prototype.document;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated from: lib/services/lsn-cross-tab/lsn-cross-tab.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LsnCrossTabService = /** @class */ (function () {
         function LsnCrossTabService(lsnCookieService, crossTabConfig) {
@@ -1616,10 +2054,27 @@
             /**
              * Checks if message with given id was already read
              */
-            this.messageWasRead = function (msg) { return _this.messagesReadSet.has(_this.getMessageId(msg)); };
-            this.getMessageId = function (message) { return message.tabId + message.created + message.code; };
-            this.messageToPlainObject = function (msg) { return Object.keys(msg)
-                .reduce(function (minifiedObj, key) {
+            this.messageWasRead = (/**
+             * @param {?} msg
+             * @return {?}
+             */
+            function (msg) { return _this.messagesReadSet.has(_this.getMessageId(msg)); });
+            this.getMessageId = (/**
+             * @param {?} message
+             * @return {?}
+             */
+            function (message) { return message.tabId + message.created + message.code; });
+            this.messageToPlainObject = (/**
+             * @param {?} msg
+             * @return {?}
+             */
+            function (msg) { return Object.keys(msg)
+                .reduce((/**
+             * @param {?} minifiedObj
+             * @param {?} key
+             * @return {?}
+             */
+            function (minifiedObj, key) {
                 /** @type {?} */
                 var value = msg[key];
                 if (!(key === 'attrs' && (value === null || value === {}))) {
@@ -1629,8 +2084,11 @@
                 else {
                     return minifiedObj;
                 } // tslint:disable
-            }, {}); }; // tslint:enable
-            this.getCookie = function () { return _this.cookie; };
+            }), {}); }); // tslint:enable
+            this.getCookie = (/**
+             * @return {?}
+             */
+            function () { return _this.cookie; });
             this.crossTabConfig = crossTabConfig || new LsnCrossTabConfig();
             this.messageSubject = new rxjs.Subject();
             this.tabId = Math.random() + '';
@@ -1663,11 +2121,17 @@
             var _this = this;
             if (!this.cookieReadSubscription) {
                 this.cookieReadSubscription = rxjs.interval(this.crossTabConfig.cookieReadFreq)
-                    .subscribe(function () { return _this.readMessages(); });
+                    .subscribe((/**
+                 * @return {?}
+                 */
+                function () { return _this.readMessages(); }));
             }
             if (!this.cookieCleanSubscription) {
                 this.cookieCleanSubscription = rxjs.interval(this.crossTabConfig.cookieCleanFreq)
-                    .subscribe(function () { return _this.cleanCookie(); });
+                    .subscribe((/**
+                 * @return {?}
+                 */
+                function () { return _this.cleanCookie(); }));
             }
         };
         Object.defineProperty(LsnCrossTabService.prototype, "messages$", {
@@ -1825,7 +2289,11 @@
         function () {
             var _this = this;
             if (this.cookie) {
-                this.cookie.forEach(function (msgData) {
+                this.cookie.forEach((/**
+                 * @param {?} msgData
+                 * @return {?}
+                 */
+                function (msgData) {
                     if (msgData.created > _this.tabOpenTime) {
                         /** @type {?} */
                         var msgCopy = __assign({}, msgData);
@@ -1834,7 +2302,7 @@
                             _this.messageSubject.next(msgCopy);
                         }
                     }
-                });
+                }));
             }
         };
         /**
@@ -1958,7 +2426,11 @@
          * @return {?}
          */
         function (timestamp, msgTtl) {
-            return function (cookieMessage) { return timestamp - cookieMessage.created <= msgTtl; };
+            return (/**
+             * @param {?} cookieMessage
+             * @return {?}
+             */
+            function (cookieMessage) { return timestamp - cookieMessage.created <= msgTtl; });
         };
         LsnCrossTabService.decorators = [
             { type: core.Injectable, args: [{
@@ -1970,9 +2442,66 @@
             { type: LsnCookieService },
             { type: LsnCrossTabConfig, decorators: [{ type: core.Optional }, { type: core.Inject, args: [LSN_CROSS_TAB_CONFIG,] }] }
         ]; };
-        /** @nocollapse */ LsnCrossTabService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LsnCrossTabService_Factory() { return new LsnCrossTabService(core.ɵɵinject(LsnCookieService), core.ɵɵinject(LSN_CROSS_TAB_CONFIG, 8)); }, token: LsnCrossTabService, providedIn: "root" });
+        /** @nocollapse */ LsnCrossTabService.ɵprov = core.ɵɵdefineInjectable({ factory: function LsnCrossTabService_Factory() { return new LsnCrossTabService(core.ɵɵinject(LsnCookieService), core.ɵɵinject(LSN_CROSS_TAB_CONFIG, 8)); }, token: LsnCrossTabService, providedIn: "root" });
         return LsnCrossTabService;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        LsnCrossTabService.prototype.messageSubject;
+        /** @type {?} */
+        LsnCrossTabService.prototype.tabId;
+        /**
+         * @type {?}
+         * @private
+         */
+        LsnCrossTabService.prototype.messagesReadSet;
+        /**
+         * @type {?}
+         * @private
+         */
+        LsnCrossTabService.prototype.tabOpenTime;
+        /**
+         * @type {?}
+         * @private
+         */
+        LsnCrossTabService.prototype.cookieReadSubscription;
+        /**
+         * @type {?}
+         * @private
+         */
+        LsnCrossTabService.prototype.cookieCleanSubscription;
+        /**
+         * @type {?}
+         * @private
+         */
+        LsnCrossTabService.prototype.crossTabConfig;
+        /**
+         * Checks if message with given id was already read
+         * @type {?}
+         * @private
+         */
+        LsnCrossTabService.prototype.messageWasRead;
+        /**
+         * @type {?}
+         * @private
+         */
+        LsnCrossTabService.prototype.getMessageId;
+        /**
+         * @type {?}
+         * @private
+         */
+        LsnCrossTabService.prototype.messageToPlainObject;
+        /** @type {?} */
+        LsnCrossTabService.prototype.getCookie;
+        /**
+         * @type {?}
+         * @private
+         */
+        LsnCrossTabService.prototype.lsnCookieService;
+    }
 
     exports.CapitalizeDirective = CapitalizeDirective;
     exports.CustomNumericConfig = CustomNumericConfig;
@@ -2001,5 +2530,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=lsnova-angularmodules.umd.js.map

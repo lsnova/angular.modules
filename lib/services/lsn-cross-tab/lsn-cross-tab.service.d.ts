@@ -12,7 +12,7 @@ export declare class LsnCrossTabService implements OnDestroy {
     private cookieReadSubscription;
     private cookieCleanSubscription;
     private crossTabConfig;
-    private readonly crossTabCookieName;
+    private get crossTabCookieName();
     constructor(lsnCookieService: LsnCookieService, crossTabConfig: LsnCrossTabConfig);
     /**
      * This function sets up subscriptions for reading and cleaning cross tab cookie
@@ -21,7 +21,7 @@ export declare class LsnCrossTabService implements OnDestroy {
     /**
      * This Observable emits messages that were sent by other tabs
      */
-    readonly messages$: Observable<LsnCrossTabMessage>;
+    get messages$(): Observable<LsnCrossTabMessage>;
     /**
      * Manually set cross tab config, for example when config must be provided asynchronously and not with InjectionToken
      */
@@ -40,7 +40,8 @@ export declare class LsnCrossTabService implements OnDestroy {
      * Appends given message to cross tab cookie value
      */
     private updateCookie;
-    private cookie;
+    private get cookie();
+    private set cookie(value);
     /**
      * Removes messages from cross tab cookie that are older than supplied config.msgTtl time
      */

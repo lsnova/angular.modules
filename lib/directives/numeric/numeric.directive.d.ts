@@ -17,7 +17,8 @@ export declare class NumericDirective implements OnChanges, ControlValueAccessor
     writeValue(modelValue: string): Promise<void>;
     registerOnChange(fn: any): void;
     registerOnTouched(fn: any): void;
-    displayValue: any;
+    get displayValue(): any;
+    set displayValue(value: any);
     setConfig(): void;
     parseValue(value: any): number;
     handleWholesLength(value: any): any;

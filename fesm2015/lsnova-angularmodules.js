@@ -8,14 +8,35 @@ import { CommonModule, DOCUMENT } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/directives/numeric/numeric-config.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {string} */
 const NumericSeparator = {
-    COMMA: ',',
-    PERIOD: '.',
-    SPACE: ' ',
+    COMMA: ",",
+    PERIOD: ".",
+    SPACE: " ",
 };
+/**
+ * @record
+ */
+function NumericConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    NumericConfig.prototype.min;
+    /** @type {?|undefined} */
+    NumericConfig.prototype.max;
+    /** @type {?|undefined} */
+    NumericConfig.prototype.maxLength;
+    /** @type {?|undefined} */
+    NumericConfig.prototype.precision;
+    /** @type {?|undefined} */
+    NumericConfig.prototype.decimals;
+    /** @type {?|undefined} */
+    NumericConfig.prototype.thousands;
+    /** @type {?|undefined} */
+    NumericConfig.prototype.config;
+}
 class DefaultNumericConfig {
     /**
      * @param {?=} props
@@ -26,6 +47,20 @@ class DefaultNumericConfig {
         Object.assign(this, props);
     }
 }
+if (false) {
+    /** @type {?} */
+    DefaultNumericConfig.prototype.min;
+    /** @type {?} */
+    DefaultNumericConfig.prototype.max;
+    /** @type {?} */
+    DefaultNumericConfig.prototype.maxLength;
+    /** @type {?} */
+    DefaultNumericConfig.prototype.precision;
+    /** @type {?} */
+    DefaultNumericConfig.prototype.decimals;
+    /** @type {?} */
+    DefaultNumericConfig.prototype.thousands;
+}
 class CustomNumericConfig {
     /**
      * @param {?=} props
@@ -33,6 +68,12 @@ class CustomNumericConfig {
     constructor(props = {}) {
         Object.assign(this, props);
     }
+}
+if (false) {
+    /** @type {?} */
+    CustomNumericConfig.prototype.default;
+    /** @type {?} */
+    CustomNumericConfig.prototype.custom;
 }
 class NumericConfigService {
     /**
@@ -67,7 +108,7 @@ class NumericConfigService {
         if (!this.config.custom[key]) {
             console.warn('[lsnNumeric] Invalid config key provided.');
         }
-        return Object.assign({}, this.getDefaultConfig(), this.config.custom[key]) || this.getDefaultConfig();
+        return Object.assign(Object.assign({}, this.getDefaultConfig()), this.config.custom[key]) || this.getDefaultConfig();
     }
 }
 NumericConfigService.decorators = [
@@ -77,15 +118,26 @@ NumericConfigService.decorators = [
 NumericConfigService.ctorParameters = () => [
     { type: CustomNumericConfig }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    NumericConfigService.prototype.config;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/directives/numeric/numeric.directive.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const CUSTOM_SELECT_VALUE_ACCESSOR = {
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => NumericDirective),
+    useExisting: forwardRef((/**
+     * @return {?}
+     */
+    () => NumericDirective)),
     multi: true
 };
 class NumericDirective {
@@ -97,10 +149,17 @@ class NumericDirective {
         this.el = el;
         this.configService = configService;
         this.lsnNumeric = {};
-        this.onChange = (_) => {
-        };
-        this.onTouch = () => {
-        };
+        this.onChange = (/**
+         * @param {?} _
+         * @return {?}
+         */
+        (_) => {
+        });
+        this.onTouch = (/**
+         * @return {?}
+         */
+        () => {
+        });
         this.element = el;
         this.setConfig();
     }
@@ -197,7 +256,7 @@ class NumericDirective {
         const defaultConfig = this.lsnNumeric.config
             ? this.configService.getCustomConfig(this.lsnNumeric.config)
             : this.configService.getDefaultConfig();
-        this.config = Object.assign(Object.assign({}, defaultConfig, this.lsnNumeric));
+        this.config = Object.assign(Object.assign(Object.assign({}, defaultConfig), this.lsnNumeric));
         if (this.config.decimals && this.config.thousands && this.config.decimals === this.config.thousands) {
             this.config.thousands = undefined;
         }
@@ -435,10 +494,36 @@ NumericDirective.propDecorators = {
     blurHandler: [{ type: HostListener, args: ['blur', [],] }],
     keyDownHandler: [{ type: HostListener, args: ['keydown', ['$event'],] }]
 };
+if (false) {
+    /** @type {?} */
+    NumericDirective.prototype.lsnNumeric;
+    /** @type {?} */
+    NumericDirective.prototype.element;
+    /**
+     * @type {?}
+     * @protected
+     */
+    NumericDirective.prototype.config;
+    /** @type {?} */
+    NumericDirective.prototype.onChange;
+    /** @type {?} */
+    NumericDirective.prototype.onTouch;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumericDirective.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumericDirective.prototype.configService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/directives/numeric/numeric.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LsnNumericModule {
     /**
@@ -468,12 +553,19 @@ LsnNumericModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/directives/numpad/numpad.directive.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NumPadConfig {
     constructor() {
         this.allowLeadingZeros = false;
     }
+}
+if (false) {
+    /** @type {?} */
+    NumPadConfig.prototype.maxlength;
+    /** @type {?} */
+    NumPadConfig.prototype.allowLeadingZeros;
 }
 class NumPadDirective {
     /**
@@ -490,7 +582,7 @@ class NumPadDirective {
      * @return {?}
      */
     ngOnChanges() {
-        this.config = Object.assign(Object.assign({}, this.defaultConfig, this.lsnNumPad));
+        this.config = Object.assign(Object.assign(Object.assign({}, this.defaultConfig), this.lsnNumPad));
     }
     /**
      * @param {?} $event
@@ -624,10 +716,35 @@ NumPadDirective.propDecorators = {
     blurHandler: [{ type: HostListener, args: ['blur', ['$event'],] }],
     keyDownHandler: [{ type: HostListener, args: ['keydown', ['$event'],] }]
 };
+if (false) {
+    /** @type {?} */
+    NumPadDirective.prototype.lsnNumPad;
+    /**
+     * @type {?}
+     * @protected
+     */
+    NumPadDirective.prototype.config;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumPadDirective.prototype.defaultConfig;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumPadDirective.prototype.element;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumPadDirective.prototype.ngControl;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/directives/numpad/numpad.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LsnNumpadModule {
 }
@@ -645,7 +762,8 @@ LsnNumpadModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/directives/latin-to-greek/latin-to-greek.directive.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LatinToGreekDirective {
     /**
@@ -713,9 +831,13 @@ class LatinToGreekDirective {
         const { start, end } = this.getCaret();
         /** @type {?} */
         let translated = $event.toLocaleUpperCase();
-        this.latinToGreek.forEach(replace => {
+        this.latinToGreek.forEach((/**
+         * @param {?} replace
+         * @return {?}
+         */
+        replace => {
             translated = translated.replace(replace[0], replace[1]);
-        });
+        }));
         this.model.valueAccessor.writeValue(translated);
         this.setCaret(start, end);
     }
@@ -734,10 +856,28 @@ LatinToGreekDirective.ctorParameters = () => [
 LatinToGreekDirective.propDecorators = {
     onInputChange: [{ type: HostListener, args: ['ngModelChange', ['$event'],] }]
 };
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    LatinToGreekDirective.prototype.latinToGreek;
+    /**
+     * @type {?}
+     * @private
+     */
+    LatinToGreekDirective.prototype.model;
+    /**
+     * @type {?}
+     * @private
+     */
+    LatinToGreekDirective.prototype.el;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/directives/latin-to-greek/latin-to-greek.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LsnLatinToGreekModule {
 }
@@ -755,7 +895,8 @@ LsnLatinToGreekModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/directives/capitalize/capitalize.directive.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class CapitalizeDirective {
     /**
@@ -785,10 +926,18 @@ CapitalizeDirective.ctorParameters = () => [
 CapitalizeDirective.propDecorators = {
     onInputChange: [{ type: HostListener, args: ['ngModelChange', ['$event'],] }]
 };
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    CapitalizeDirective.prototype.model;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/directives/capitalize/capitalize.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LsnCapitalizeModule {
 }
@@ -806,7 +955,8 @@ LsnCapitalizeModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/directives/scroll-spy/scroll-spy.directive.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ScrollSpyDirective {
     /**
@@ -826,10 +976,22 @@ class ScrollSpyDirective {
         this.scrollOffset = this.nativeElement().offsetTop;
         // emit event on section change
         /** @type {?} */
-        const sectionChangeSub = this.currentSection$.pipe(distinctUntilChanged(), tap((sectionId) => this.spySectionChange.emit(sectionId))).subscribe();
+        const sectionChangeSub = this.currentSection$.pipe(distinctUntilChanged(), tap((/**
+         * @param {?} sectionId
+         * @return {?}
+         */
+        (sectionId) => this.spySectionChange.emit(sectionId)))).subscribe();
         // scroll to given section
         /** @type {?} */
-        const scrollToSub = this.scrollToSection.pipe(filter((section) => !!section), tap((section) => this.scrollTo(section))).subscribe();
+        const scrollToSub = this.scrollToSection.pipe(filter((/**
+         * @param {?} section
+         * @return {?}
+         */
+        (section) => !!section)), tap((/**
+         * @param {?} section
+         * @return {?}
+         */
+        (section) => this.scrollTo(section)))).subscribe();
         this.subscriptions.push(sectionChangeSub, scrollToSub);
     }
     /**
@@ -857,9 +1019,12 @@ class ScrollSpyDirective {
         this.disableEmitter = true;
         this.nativeElement().querySelector('#' + sectionId).scrollIntoView();
         // set timeout to enforce scroll event execute before enabling back the emitter
-        setTimeout(() => {
+        setTimeout((/**
+         * @return {?}
+         */
+        () => {
             this.disableEmitter = false;
-        }, 0);
+        }), 0);
     }
     /**
      * @private
@@ -870,7 +1035,11 @@ class ScrollSpyDirective {
         const scrollMiddle = (this.scrollTopPosition() + this.scrollBottomPosition()) / 2;
         /** @type {?} */
         const spiedSections = this.getSpiedSections();
-        return spiedSections.find((section) => this.isCurrentSection(section, scrollMiddle));
+        return spiedSections.find((/**
+         * @param {?} section
+         * @return {?}
+         */
+        (section) => this.isCurrentSection(section, scrollMiddle)));
     }
     /**
      * @private
@@ -940,7 +1109,11 @@ class ScrollSpyDirective {
      * @return {?}
      */
     ngOnDestroy() {
-        this.subscriptions.forEach(sub => sub.unsubscribe());
+        this.subscriptions.forEach((/**
+         * @param {?} sub
+         * @return {?}
+         */
+        sub => sub.unsubscribe()));
     }
 }
 ScrollSpyDirective.decorators = [
@@ -959,10 +1132,41 @@ ScrollSpyDirective.propDecorators = {
     onScroll: [{ type: HostListener, args: ['scroll',] }],
     onResize: [{ type: HostListener, args: ['window:resize',] }]
 };
+if (false) {
+    /** @type {?} */
+    ScrollSpyDirective.prototype.spySelector;
+    /** @type {?} */
+    ScrollSpyDirective.prototype.scrollToSection;
+    /** @type {?} */
+    ScrollSpyDirective.prototype.spySectionChange;
+    /**
+     * @type {?}
+     * @private
+     */
+    ScrollSpyDirective.prototype.scrollOffset;
+    /**
+     * @type {?}
+     * @private
+     */
+    ScrollSpyDirective.prototype.currentSection$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ScrollSpyDirective.prototype.disableEmitter;
+    /** @type {?} */
+    ScrollSpyDirective.prototype.subscriptions;
+    /**
+     * @type {?}
+     * @private
+     */
+    ScrollSpyDirective.prototype.elementRef;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/directives/scroll-spy/scroll-spy.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LsnScrollSpyModule {
 }
@@ -980,7 +1184,8 @@ LsnScrollSpyModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/services/lsn-cookie/lsn-cookie.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LsnCookieModule {
 }
@@ -995,14 +1200,18 @@ LsnCookieModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/services/lsn-cross-tab/lsn-cross-tab.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @param {?} lsnCrossTabService
  * @return {?}
  */
 function lsnCrossTabServiceFactory(lsnCrossTabService) {
-    return () => lsnCrossTabService.run();
+    return (/**
+     * @return {?}
+     */
+    () => lsnCrossTabService.run());
 }
 class LsnCrossTabModule {
 }
@@ -1020,7 +1229,8 @@ LsnCrossTabModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/lsn-libs.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LsnLibsModule {
 }
@@ -1063,32 +1273,38 @@ LsnLibsModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/directives/capitalize/public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/directives/latin-to-greek/public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/directives/numeric/public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/directives/numpad/public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/directives/scroll-spy/public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/services/lsn-cross-tab/models/lsnCrossTabConfig.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LsnCrossTabConfig {
     /**
@@ -1102,12 +1318,25 @@ class LsnCrossTabConfig {
         this.crossTabCookieName = crossTabCookieName;
     }
 }
+if (false) {
+    /** @type {?} */
+    LsnCrossTabConfig.prototype.cookieCleanFreq;
+    /** @type {?} */
+    LsnCrossTabConfig.prototype.cookieReadFreq;
+    /** @type {?} */
+    LsnCrossTabConfig.prototype.msgTtl;
+    /** @type {?} */
+    LsnCrossTabConfig.prototype.rootDomain;
+    /** @type {?} */
+    LsnCrossTabConfig.prototype.crossTabCookieName;
+}
 /** @type {?} */
 const LSN_CROSS_TAB_CONFIG = new InjectionToken('LsnCrossTabConfig');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/services/lsn-cross-tab/models/lsnCrossTabMessage.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @template T
@@ -1140,10 +1369,21 @@ class LsnCrossTabMessage {
         return firstMessage.tabId !== secondMessage.tabId;
     }
 }
+if (false) {
+    /** @type {?} */
+    LsnCrossTabMessage.prototype.created;
+    /** @type {?} */
+    LsnCrossTabMessage.prototype.code;
+    /** @type {?} */
+    LsnCrossTabMessage.prototype.tabId;
+    /** @type {?} */
+    LsnCrossTabMessage.prototype.attrs;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/services/lsn-cookie/lsnCookieConfig.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LsnCookieConfig {
     /**
@@ -1154,13 +1394,60 @@ class LsnCookieConfig {
         this.domainCookies = domainCookies;
     }
 }
+if (false) {
+    /** @type {?} */
+    LsnCookieConfig.prototype.secureCookies;
+    /** @type {?} */
+    LsnCookieConfig.prototype.domainCookies;
+}
 /** @type {?} */
 const LSN_COOKIE_CONFIG = new InjectionToken('LsnCookieConfig');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/services/lsn-cookie/lsn-cookie.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function LsnCookieOptions() { }
+if (false) {
+    /** @type {?|undefined} */
+    LsnCookieOptions.prototype.expires;
+    /** @type {?|undefined} */
+    LsnCookieOptions.prototype.expirationUnit;
+    /** @type {?|undefined} */
+    LsnCookieOptions.prototype.path;
+    /** @type {?|undefined} */
+    LsnCookieOptions.prototype.domain;
+    /** @type {?|undefined} */
+    LsnCookieOptions.prototype.secure;
+}
+/**
+ * @record
+ */
+function CookieService() { }
+if (false) {
+    /**
+     * @param {?} cookieKey
+     * @param {?} cookieValue
+     * @param {?} cookieOptions
+     * @return {?}
+     */
+    CookieService.prototype.set = function (cookieKey, cookieValue, cookieOptions) { };
+    /**
+     * @param {?=} cookieKey
+     * @return {?}
+     */
+    CookieService.prototype.get = function (cookieKey) { };
+    /**
+     * @param {?} cookieKey
+     * @param {?} cookieOptions
+     * @return {?}
+     */
+    CookieService.prototype.remove = function (cookieKey, cookieOptions) { };
+}
 class LsnCookieService {
     /**
      * @param {?} cookieConfig
@@ -1180,7 +1467,7 @@ class LsnCookieService {
      */
     set(cookieKey, cookieValue, cookieOptions) {
         /** @type {?} */
-        const options = Object.assign({}, cookieOptions, { secure: cookieOptions && cookieOptions.secure ? cookieOptions.secure : this.cookieConfig.secureCookies });
+        const options = Object.assign(Object.assign({}, cookieOptions), { secure: cookieOptions && cookieOptions.secure ? cookieOptions.secure : this.cookieConfig.secureCookies });
         if (!this.cookieConfig.domainCookies) {
             options.domain = false;
         }
@@ -1238,16 +1525,29 @@ class LsnCookieService {
         const cookieStringList = this.document.cookie ? this.document.cookie.split('; ') : [];
         /** @type {?} */
         const cookieObject = cookieStringList
-            .map(cookieString => {
+            .map((/**
+         * @param {?} cookieString
+         * @return {?}
+         */
+        cookieString => {
             /** @type {?} */
             const pos = cookieString.indexOf('=');
             return {
                 name: cookieString.substr(0, pos),
                 value: decodeURIComponent(cookieString.substr(pos + 1))
             };
-        }).filter(cookie => {
+        })).filter((/**
+         * @param {?} cookie
+         * @return {?}
+         */
+        cookie => {
             return typeof cookie.value !== 'undefined' && (cookieKey === undefined || cookieKey === cookie.name);
-        }).reduce((previousValue, currentValue) => {
+        })).reduce((/**
+         * @param {?} previousValue
+         * @param {?} currentValue
+         * @return {?}
+         */
+        (previousValue, currentValue) => {
             /** @type {?} */
             let value = null;
             try {
@@ -1258,7 +1558,7 @@ class LsnCookieService {
             }
             previousValue[currentValue.name] = value;
             return previousValue;
-        }, {});
+        }), {});
         return cookieKey ? cookieObject[cookieKey] : Object.keys(cookieObject).length > 0 ? cookieObject : undefined;
     }
     /**
@@ -1289,11 +1589,21 @@ LsnCookieService.ctorParameters = () => [
     { type: LsnCookieConfig, decorators: [{ type: Inject, args: [LSN_COOKIE_CONFIG,] }] },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
-/** @nocollapse */ LsnCookieService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LsnCookieService_Factory() { return new LsnCookieService(ɵɵinject(LSN_COOKIE_CONFIG), ɵɵinject(DOCUMENT)); }, token: LsnCookieService, providedIn: "root" });
+/** @nocollapse */ LsnCookieService.ɵprov = ɵɵdefineInjectable({ factory: function LsnCookieService_Factory() { return new LsnCookieService(ɵɵinject(LSN_COOKIE_CONFIG), ɵɵinject(DOCUMENT)); }, token: LsnCookieService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    LsnCookieService.prototype.cookieConfig;
+    /** @type {?} */
+    LsnCookieService.prototype.document;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/services/lsn-cross-tab/lsn-cross-tab.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LsnCrossTabService {
     /**
@@ -1305,10 +1615,27 @@ class LsnCrossTabService {
         /**
          * Checks if message with given id was already read
          */
-        this.messageWasRead = (msg) => this.messagesReadSet.has(this.getMessageId(msg));
-        this.getMessageId = (message) => message.tabId + message.created + message.code;
-        this.messageToPlainObject = (msg) => Object.keys(msg)
-            .reduce((minifiedObj, key) => {
+        this.messageWasRead = (/**
+         * @param {?} msg
+         * @return {?}
+         */
+        (msg) => this.messagesReadSet.has(this.getMessageId(msg)));
+        this.getMessageId = (/**
+         * @param {?} message
+         * @return {?}
+         */
+        (message) => message.tabId + message.created + message.code);
+        this.messageToPlainObject = (/**
+         * @param {?} msg
+         * @return {?}
+         */
+        (msg) => Object.keys(msg)
+            .reduce((/**
+         * @param {?} minifiedObj
+         * @param {?} key
+         * @return {?}
+         */
+        (minifiedObj, key) => {
             /** @type {?} */
             const value = msg[key];
             if (!(key === 'attrs' && (value === null || value === {}))) {
@@ -1318,8 +1645,11 @@ class LsnCrossTabService {
             else {
                 return minifiedObj;
             } // tslint:disable
-        }, {}); // tslint:enable
-        this.getCookie = () => this.cookie;
+        }), {})); // tslint:enable
+        this.getCookie = (/**
+         * @return {?}
+         */
+        () => this.cookie);
         this.crossTabConfig = crossTabConfig || new LsnCrossTabConfig();
         this.messageSubject = new Subject();
         this.tabId = Math.random() + '';
@@ -1340,11 +1670,17 @@ class LsnCrossTabService {
     run() {
         if (!this.cookieReadSubscription) {
             this.cookieReadSubscription = interval(this.crossTabConfig.cookieReadFreq)
-                .subscribe(() => this.readMessages());
+                .subscribe((/**
+             * @return {?}
+             */
+            () => this.readMessages()));
         }
         if (!this.cookieCleanSubscription) {
             this.cookieCleanSubscription = interval(this.crossTabConfig.cookieCleanFreq)
-                .subscribe(() => this.cleanCookie());
+                .subscribe((/**
+             * @return {?}
+             */
+            () => this.cleanCookie()));
         }
     }
     /**
@@ -1447,7 +1783,11 @@ class LsnCrossTabService {
      */
     readMessages() {
         if (this.cookie) {
-            this.cookie.forEach((msgData) => {
+            this.cookie.forEach((/**
+             * @param {?} msgData
+             * @return {?}
+             */
+            (msgData) => {
                 if (msgData.created > this.tabOpenTime) {
                     /** @type {?} */
                     const msgCopy = Object.assign({}, msgData);
@@ -1456,7 +1796,7 @@ class LsnCrossTabService {
                         this.messageSubject.next(msgCopy);
                     }
                 }
-            });
+            }));
         }
     }
     /**
@@ -1529,7 +1869,11 @@ class LsnCrossTabService {
      * @return {?}
      */
     cleanCookieFilter(timestamp, msgTtl) {
-        return (cookieMessage) => timestamp - cookieMessage.created <= msgTtl;
+        return (/**
+         * @param {?} cookieMessage
+         * @return {?}
+         */
+        (cookieMessage) => timestamp - cookieMessage.created <= msgTtl);
     }
 }
 LsnCrossTabService.decorators = [
@@ -1542,26 +1886,87 @@ LsnCrossTabService.ctorParameters = () => [
     { type: LsnCookieService },
     { type: LsnCrossTabConfig, decorators: [{ type: Optional }, { type: Inject, args: [LSN_CROSS_TAB_CONFIG,] }] }
 ];
-/** @nocollapse */ LsnCrossTabService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LsnCrossTabService_Factory() { return new LsnCrossTabService(ɵɵinject(LsnCookieService), ɵɵinject(LSN_CROSS_TAB_CONFIG, 8)); }, token: LsnCrossTabService, providedIn: "root" });
+/** @nocollapse */ LsnCrossTabService.ɵprov = ɵɵdefineInjectable({ factory: function LsnCrossTabService_Factory() { return new LsnCrossTabService(ɵɵinject(LsnCookieService), ɵɵinject(LSN_CROSS_TAB_CONFIG, 8)); }, token: LsnCrossTabService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    LsnCrossTabService.prototype.messageSubject;
+    /** @type {?} */
+    LsnCrossTabService.prototype.tabId;
+    /**
+     * @type {?}
+     * @private
+     */
+    LsnCrossTabService.prototype.messagesReadSet;
+    /**
+     * @type {?}
+     * @private
+     */
+    LsnCrossTabService.prototype.tabOpenTime;
+    /**
+     * @type {?}
+     * @private
+     */
+    LsnCrossTabService.prototype.cookieReadSubscription;
+    /**
+     * @type {?}
+     * @private
+     */
+    LsnCrossTabService.prototype.cookieCleanSubscription;
+    /**
+     * @type {?}
+     * @private
+     */
+    LsnCrossTabService.prototype.crossTabConfig;
+    /**
+     * Checks if message with given id was already read
+     * @type {?}
+     * @private
+     */
+    LsnCrossTabService.prototype.messageWasRead;
+    /**
+     * @type {?}
+     * @private
+     */
+    LsnCrossTabService.prototype.getMessageId;
+    /**
+     * @type {?}
+     * @private
+     */
+    LsnCrossTabService.prototype.messageToPlainObject;
+    /** @type {?} */
+    LsnCrossTabService.prototype.getCookie;
+    /**
+     * @type {?}
+     * @private
+     */
+    LsnCrossTabService.prototype.lsnCookieService;
+}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/services/lsn-cross-tab/public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/services/lsn-cookie/public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lsnova-angularmodules.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { CapitalizeDirective, CustomNumericConfig, DefaultNumericConfig, LSN_COOKIE_CONFIG, LSN_CROSS_TAB_CONFIG, LatinToGreekDirective, LsnCapitalizeModule, LsnCookieConfig, LsnCookieModule, LsnCookieService, LsnCrossTabConfig, LsnCrossTabMessage, LsnCrossTabModule, LsnCrossTabService, LsnLatinToGreekModule, LsnLibsModule, LsnNumericModule, LsnNumpadModule, LsnScrollSpyModule, NumPadDirective, NumericConfigService, NumericDirective, ScrollSpyDirective, lsnCrossTabServiceFactory };

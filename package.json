@@ -1,6 +1,6 @@
 {
   "name": "@lsnova/angularmodules",
-  "version": "0.7.7",
+  "version": "0.7.8",
   "peerDependencies": {
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0",
@@ -18,6 +18,6 @@
   "metadata": "lsnova-angularmodules.metadata.json",
   "sideEffects": false,
   "dependencies": {
-    "tslib": "^1.9.0"
+    "tslib": "^1.10.0"
   }
 }
