@@ -118,6 +118,11 @@
           "options": {
             "tsConfig": "projects/lsn-libs/tsconfig.lib.json",
             "project": "projects/lsn-libs/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/lsn-libs/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {

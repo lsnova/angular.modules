@@ -1,4 +1,4 @@
-import {Inject, Injectable, Optional} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {LSN_COOKIE_CONFIG, LsnCookieConfig} from './lsnCookieConfig';
 import {DOCUMENT} from '@angular/common';
 
