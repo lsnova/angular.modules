@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "libs:build": "cd projects/lsn-libs && ng build lsn-libs",
+    "libs:build": "cd projects/lsn-libs && ng build lsn-libs --prod",
     "libs:build-watch": "cd projects/lsn-libs && ng build lsn-libs --watch",
     "libs:test": "ng test lsn-libs",
     "package": "npm run libs:build && rsync -a dist/lsn-libs/* ../",
