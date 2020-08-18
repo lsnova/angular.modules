@@ -9,6 +9,7 @@ import {NumpadCardComponent} from './components/numpad-card/numpad-card.componen
 import {CrossTabModule} from './components/cross-tab/cross-tab.module';
 import {ScrollSpyComponent} from './components/scroll-spy/scroll-spy.component';
 import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {BrowserModule} from '@angular/platform-browser';
     // lib modules
     LsnLibsModule,
     CrossTabModule,
-    LsnScrollSpyModule
+    LsnScrollSpyModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
