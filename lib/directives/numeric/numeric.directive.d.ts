@@ -24,6 +24,7 @@ export declare class NumericDirective implements OnChanges, ControlValueAccessor
     handleWholesLength(value: any): any;
     removeInvalidCharacters(value: any, allowDecimalsOnly?: boolean): any;
     handleRange(value: any): any;
+    handleStep(value: number): number;
     prepareDisplayValue(value: any): string;
     setEditMode(): void;
     keyDownHandler(e: KeyboardEvent): void;

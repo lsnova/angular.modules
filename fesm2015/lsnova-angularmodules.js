@@ -36,6 +36,8 @@ if (false) {
     NumericConfig.prototype.thousands;
     /** @type {?|undefined} */
     NumericConfig.prototype.config;
+    /** @type {?|undefined} */
+    NumericConfig.prototype.step;
 }
 class DefaultNumericConfig {
     /**
@@ -60,6 +62,8 @@ if (false) {
     DefaultNumericConfig.prototype.decimals;
     /** @type {?} */
     DefaultNumericConfig.prototype.thousands;
+    /** @type {?} */
+    DefaultNumericConfig.prototype.step;
 }
 class CustomNumericConfig {
     /**
@@ -182,16 +186,8 @@ class NumericDirective {
         value = this.handleWholesLength(value);
         /** @type {?} */
         const parsedValue = this.parseValue(value);
-        /** @type {?} */
-        const rangeValue = this.handleRange(parsedValue);
-        if (parsedValue === rangeValue) {
-            this.displayValue = value.replace(/[,|.]/, this.config.decimals);
-            this.onChange(parsedValue);
-        }
-        else {
-            this.displayValue = rangeValue.toString().replace(/[,|.]/, this.config.decimals);
-            this.onChange(rangeValue);
-        }
+        this.displayValue = value.replace(/[,|.]/, this.config.decimals);
+        this.onChange(parsedValue);
     }
     /**
      * @return {?}
@@ -203,6 +199,22 @@ class NumericDirective {
      * @return {?}
      */
     blurHandler() {
+        /** @type {?} */
+        const parsedValue = this.parseValue(this.element.nativeElement.value);
+        /** @type {?} */
+        const rangeValue = this.handleRange(parsedValue);
+        // correct entered value on blur to proper range value
+        if (parsedValue !== rangeValue) {
+            this.displayValue = rangeValue.toString().replace(/[,|.]/, this.config.decimals);
+            this.onChange(rangeValue);
+        }
+        else if (this.config.step && !isNaN(parsedValue)) {
+            // correct entered value on blur to proper step value
+            /** @type {?} */
+            const stepValue = this.handleStep(parsedValue);
+            this.displayValue = stepValue.toString().replace(/[,|.]/, this.config.decimals);
+            this.onChange(stepValue);
+        }
         this.displayValue = this.prepareDisplayValue(this.element.nativeElement.value);
         if (this.onTouch) {
             // if user sets updateOn to 'blur', we have to call onTouch for it to work properly
@@ -216,8 +228,7 @@ class NumericDirective {
     writeValue(modelValue) {
         return __awaiter(this, void 0, void 0, function* () {
             /** @type {?} */
-            let parsedValue = this.parseValue(modelValue);
-            parsedValue = this.handleRange(parsedValue);
+            const parsedValue = this.parseValue(modelValue);
             this.displayValue = this.prepareDisplayValue(parsedValue);
         });
     }
@@ -324,6 +335,13 @@ class NumericDirective {
             return this.config.min;
         }
         return value;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    handleStep(value) {
+        return Math.round(value / this.config.step) * this.config.step;
     }
     /**
      * @param {?} value
