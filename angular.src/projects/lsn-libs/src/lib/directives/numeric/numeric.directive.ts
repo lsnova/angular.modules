@@ -42,14 +42,8 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     let value = this.removeInvalidCharacters($event.target.value);
     value = this.handleWholesLength(value);
     const parsedValue = this.parseValue(value);
-    const rangeValue = this.handleRange(parsedValue);
-    if (parsedValue === rangeValue) {
-      this.displayValue = value.replace(/[,|.]/, this.config.decimals);
-      this.onChange(parsedValue);
-    } else {
-      this.displayValue = rangeValue.toString().replace(/[,|.]/, this.config.decimals);
-      this.onChange(rangeValue);
-    }
+    this.displayValue = value.replace(/[,|.]/, this.config.decimals);
+    this.onChange(parsedValue);
   }
 
   @HostListener('focus', [])
@@ -59,6 +53,13 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
 
   @HostListener('blur', [])
   blurHandler() {
+    const parsedValue = this.parseValue(this.element.nativeElement.value);
+    const rangeValue = this.handleRange(parsedValue);
+    // correct entered value on blur to proper range value
+    if (parsedValue !== rangeValue) {
+      this.displayValue = rangeValue.toString().replace(/[,|.]/, this.config.decimals);
+      this.onChange(rangeValue);
+    }
     this.displayValue = this.prepareDisplayValue(this.element.nativeElement.value);
     if (this.onTouch) {
       // if user sets updateOn to 'blur', we have to call onTouch for it to work properly
@@ -67,8 +68,7 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
   }
 
   public async writeValue(modelValue: string): Promise<void> {
-    let parsedValue = this.parseValue(modelValue);
-    parsedValue = this.handleRange(parsedValue);
+    const parsedValue = this.parseValue(modelValue);
     this.displayValue = this.prepareDisplayValue(parsedValue);
   }
 

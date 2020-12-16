@@ -28,5 +28,12 @@
         [(ngModel)]="numeric4"
       /> model value: {{numeric4}}
     </section>
+    <section>
+      <p>min/max (updates on blur): </p>
+      <input
+        [lsnNumeric]="{min: 500, max: 5000, precision: 2, thousands: ' '}"
+        [(ngModel)]="numeric5"
+      /> model value: {{numeric4}}
+    </section>
   </mat-card-content>
 </mat-card>

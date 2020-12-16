@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-numeric-card',
@@ -10,4 +10,5 @@ export class NumericCardComponent {
   numeric2 = 123456.789;
   numeric3 = undefined;
   numeric4 = 1;
+  numeric5 = undefined;
 }
