@@ -14,6 +14,7 @@ export interface NumericConfig {
   decimals?: string;
   thousands?: string;
   config?: string;
+  step?: number;
 }
 
 export class DefaultNumericConfig implements NumericConfig {
@@ -23,6 +24,7 @@ export class DefaultNumericConfig implements NumericConfig {
   precision = 0;
   decimals: string = NumericSeparator.PERIOD;
   thousands: string;
+  step: number;
 
   constructor(props = {}) {
     Object.assign(this, props);

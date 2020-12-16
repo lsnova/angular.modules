@@ -33,7 +33,14 @@
       <input
         [lsnNumeric]="{min: 500, max: 5000, precision: 2, thousands: ' '}"
         [(ngModel)]="numeric5"
-      /> model value: {{numeric4}}
+      /> model value: {{numeric5}}
+    </section>
+    <section>
+      <p>step (updates on blur): </p>
+      <input
+        [lsnNumeric]="{step: 500, precision: 2, thousands: ' '}"
+        [(ngModel)]="numeric6"
+      /> model value: {{numeric6}}
     </section>
   </mat-card-content>
 </mat-card>

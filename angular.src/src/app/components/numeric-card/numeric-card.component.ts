@@ -11,4 +11,5 @@ export class NumericCardComponent {
   numeric3 = undefined;
   numeric4 = 1;
   numeric5 = undefined;
+  numeric6 = undefined;
 }

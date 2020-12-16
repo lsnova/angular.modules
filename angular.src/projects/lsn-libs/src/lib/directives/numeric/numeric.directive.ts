@@ -53,12 +53,17 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
 
   @HostListener('blur', [])
   blurHandler() {
-    const parsedValue = this.parseValue(this.element.nativeElement.value);
+    const parsedValue: number = this.parseValue(this.element.nativeElement.value);
     const rangeValue = this.handleRange(parsedValue);
     // correct entered value on blur to proper range value
     if (parsedValue !== rangeValue) {
       this.displayValue = rangeValue.toString().replace(/[,|.]/, this.config.decimals);
       this.onChange(rangeValue);
+    } else if (this.config.step && !isNaN(parsedValue)) {
+      // correct entered value on blur to proper step value
+      const stepValue = this.handleStep(parsedValue);
+      this.displayValue = stepValue.toString().replace(/[,|.]/, this.config.decimals);
+      this.onChange(stepValue);
     }
     this.displayValue = this.prepareDisplayValue(this.element.nativeElement.value);
     if (this.onTouch) {
@@ -141,6 +146,10 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
       return this.config.min;
     }
     return value;
+  }
+
+  handleStep(value: number): number {
+    return Math.round(value / this.config.step) * this.config.step;
   }
 
   prepareDisplayValue(value) {
