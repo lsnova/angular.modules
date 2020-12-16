@@ -134,9 +134,35 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
   }
 
   removeInvalidCharacters(value, allowDecimalsOnly = false) {
-    return allowDecimalsOnly
-      ? value.replace(/[^0-9]/g, '')
-      : value.replace(/[^\-0-9,.]/g, '');
+    return this.cleanUp(
+      allowDecimalsOnly
+      ? value.replace(/[^\-0-9]/g, '')
+      : value.replace(/[^\-0-9,.]/g, '')
+    );
+  }
+
+  private cleanUp(value) {
+    // no precision at all
+    const firstIndex = typeof value === 'string' || value instanceof String
+      ? value.indexOf('.')
+      : -1;
+    if (firstIndex === -1) {
+      return value;
+    }
+
+    // remove everything after second comma
+    const secondIndex = value.substr(firstIndex + 1).indexOf('.');
+    if (secondIndex !== -1) {
+      value = value.substr(0, firstIndex + secondIndex + 1);
+    }
+
+    // remove additional precision
+    if (this.config.precision === 0) {
+      return value.substr(0, firstIndex);
+    } else if (this.config.precision) {
+      return value.substr(0, firstIndex + this.config.precision + 1);
+    }
+    return value;
   }
 
   handleRange(value) {
