@@ -364,11 +364,17 @@
         function () { return NumericDirective; })),
         multi: true
     };
+    /** @enum {number} */
+    var NumericMessage = {
+        ADDITIONAL_DECIMAL_SEPARATOR: 0,
+    };
+    NumericMessage[NumericMessage.ADDITIONAL_DECIMAL_SEPARATOR] = 'ADDITIONAL_DECIMAL_SEPARATOR';
     var NumericDirective = /** @class */ (function () {
         function NumericDirective(el, configService) {
             this.el = el;
             this.configService = configService;
             this.lsnNumeric = {};
+            this.lsnNumericMessages = new core.EventEmitter();
             this.onChange = (/**
              * @param {?} _
              * @return {?}
@@ -584,9 +590,46 @@
          */
         function (value, allowDecimalsOnly) {
             if (allowDecimalsOnly === void 0) { allowDecimalsOnly = false; }
-            return allowDecimalsOnly
-                ? value.replace(/[^0-9]/g, '')
-                : value.replace(/[^\-0-9,.]/g, '');
+            return this.cleanUp(allowDecimalsOnly
+                ? value.replace(/[^\-0-9]/g, '')
+                : value.replace(/[^\-0-9,.]/g, ''));
+        };
+        /**
+         * @private
+         * @param {?} input
+         * @return {?}
+         */
+        NumericDirective.prototype.cleanUp = /**
+         * @private
+         * @param {?} input
+         * @return {?}
+         */
+        function (input) {
+            // no precision at all
+            /** @type {?} */
+            var value = input.replace(/[,|.]/g, '.');
+            /** @type {?} */
+            var firstIndex = typeof value === 'string' || value instanceof String
+                ? value.indexOf('.')
+                : -1;
+            if (firstIndex === -1) {
+                return value;
+            }
+            // remove everything after second comma
+            /** @type {?} */
+            var secondIndex = value.substr(firstIndex + 1).indexOf('.');
+            if (secondIndex !== -1) {
+                this.lsnNumericMessages.emit(NumericMessage.ADDITIONAL_DECIMAL_SEPARATOR);
+                value = value.substr(0, firstIndex + secondIndex + 1);
+            }
+            // remove additional precision
+            if (this.config.precision === 0) {
+                return value.substr(0, firstIndex);
+            }
+            else if (this.config.precision) {
+                return value.substr(0, firstIndex + this.config.precision + 1);
+            }
+            return value;
         };
         /**
          * @param {?} value
@@ -794,6 +837,7 @@
         ]; };
         NumericDirective.propDecorators = {
             lsnNumeric: [{ type: core.Input }],
+            lsnNumericMessages: [{ type: core.Output }],
             inputHandler: [{ type: core.HostListener, args: ['input', ['$event'],] }],
             focusHandler: [{ type: core.HostListener, args: ['focus', [],] }],
             blurHandler: [{ type: core.HostListener, args: ['blur', [],] }],
@@ -804,6 +848,8 @@
     if (false) {
         /** @type {?} */
         NumericDirective.prototype.lsnNumeric;
+        /** @type {?} */
+        NumericDirective.prototype.lsnNumericMessages;
         /** @type {?} */
         NumericDirective.prototype.element;
         /**
@@ -2547,6 +2593,7 @@
     exports.NumPadDirective = NumPadDirective;
     exports.NumericConfigService = NumericConfigService;
     exports.NumericDirective = NumericDirective;
+    exports.NumericMessage = NumericMessage;
     exports.ScrollSpyDirective = ScrollSpyDirective;
     exports.lsnCrossTabServiceFactory = lsnCrossTabServiceFactory;
 
