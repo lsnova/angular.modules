@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {NumericMessage} from 'lsn-libs';
 
 @Component({
   selector: 'app-numeric-card',
@@ -12,4 +13,11 @@ export class NumericCardComponent {
   numeric4 = 1;
   numeric5 = undefined;
   numeric6 = undefined;
+
+  message($event: NumericMessage) {
+    switch ($event) {
+      case NumericMessage.ADDITIONAL_DECIMAL_SEPARATOR:
+        console.log('additional decimal separator!');
+    }
+  }
 }

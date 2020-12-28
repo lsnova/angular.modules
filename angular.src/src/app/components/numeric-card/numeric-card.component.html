@@ -11,6 +11,7 @@
       <p>precision with separators:</p>
       <input
         [lsnNumeric]="{precision:3, decimals: ',', thousands: '.'}"
+        (lsnNumericMessages)="message($event)"
         [(ngModel)]="numeric2"
       /> model value: {{numeric2}}
     </section>

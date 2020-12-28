@@ -1,4 +1,4 @@
-import {Directive, ElementRef, forwardRef, HostListener, Input, OnChanges} from '@angular/core';
+import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges, Output} from '@angular/core';
 import * as keyboard from '@angular/cdk/keycodes';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {NumericConfig, NumericConfigService} from './numeric-config.service';
@@ -9,18 +9,23 @@ const CUSTOM_SELECT_VALUE_ACCESSOR: any = {
   multi: true
 };
 
+export enum NumericMessage {
+  ADDITIONAL_DECIMAL_SEPARATOR
+}
+
 @Directive({
   selector: '[lsnNumeric]',
   providers: [CUSTOM_SELECT_VALUE_ACCESSOR]
 })
 export class NumericDirective implements OnChanges, ControlValueAccessor {
   @Input() lsnNumeric: NumericConfig = {};
+  @Output() lsnNumericMessages = new EventEmitter<NumericMessage>();
   element: ElementRef;
   protected config: NumericConfig;
   public onChange = (_: any) => {
-  };
+  }
   public onTouch = () => {
-  };
+  }
 
   constructor(
     private el: ElementRef,
@@ -136,13 +141,14 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
   removeInvalidCharacters(value, allowDecimalsOnly = false) {
     return this.cleanUp(
       allowDecimalsOnly
-      ? value.replace(/[^\-0-9]/g, '')
-      : value.replace(/[^\-0-9,.]/g, '')
+        ? value.replace(/[^\-0-9]/g, '')
+        : value.replace(/[^\-0-9,.]/g, '')
     );
   }
 
-  private cleanUp(value) {
+  private cleanUp(input) {
     // no precision at all
+    let value = input.replace(/[,|.]/g, '.');
     const firstIndex = typeof value === 'string' || value instanceof String
       ? value.indexOf('.')
       : -1;
@@ -153,6 +159,7 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     // remove everything after second comma
     const secondIndex = value.substr(firstIndex + 1).indexOf('.');
     if (secondIndex !== -1) {
+      this.lsnNumericMessages.emit(NumericMessage.ADDITIONAL_DECIMAL_SEPARATOR);
       value = value.substr(0, firstIndex + secondIndex + 1);
     }
 
