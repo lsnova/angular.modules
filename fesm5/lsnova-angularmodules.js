@@ -1,4 +1,4 @@
-import { Injectable, forwardRef, Directive, ElementRef, Input, HostListener, NgModule, Optional, EventEmitter, Output, InjectionToken, Inject, ɵɵdefineInjectable, ɵɵinject } from '@angular/core';
+import { Injectable, forwardRef, EventEmitter, Directive, ElementRef, Input, Output, HostListener, NgModule, Optional, InjectionToken, Inject, ɵɵdefineInjectable, ɵɵinject } from '@angular/core';
 import { __assign, __awaiter, __generator, __read, __values } from 'tslib';
 import { LEFT_ARROW, RIGHT_ARROW, BACKSPACE, DELETE, END, ENTER, ESCAPE, HOME, TAB, A, C, R, V, X, DASH, NUMPAD_MINUS, COMMA, NUMPAD_PERIOD, ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, NUMPAD_ZERO, NUMPAD_ONE, NUMPAD_TWO, NUMPAD_THREE, NUMPAD_FOUR, NUMPAD_FIVE, NUMPAD_SIX, NUMPAD_SEVEN, NUMPAD_EIGHT, NUMPAD_NINE } from '@angular/cdk/keycodes';
 import { NG_VALUE_ACCESSOR, NgControl, NgModel, FormsModule } from '@angular/forms';
@@ -147,11 +147,17 @@ var CUSTOM_SELECT_VALUE_ACCESSOR = {
     function () { return NumericDirective; })),
     multi: true
 };
+/** @enum {number} */
+var NumericMessage = {
+    ADDITIONAL_DECIMAL_SEPARATOR: 0,
+};
+NumericMessage[NumericMessage.ADDITIONAL_DECIMAL_SEPARATOR] = 'ADDITIONAL_DECIMAL_SEPARATOR';
 var NumericDirective = /** @class */ (function () {
     function NumericDirective(el, configService) {
         this.el = el;
         this.configService = configService;
         this.lsnNumeric = {};
+        this.lsnNumericMessages = new EventEmitter();
         this.onChange = (/**
          * @param {?} _
          * @return {?}
@@ -367,9 +373,46 @@ var NumericDirective = /** @class */ (function () {
      */
     function (value, allowDecimalsOnly) {
         if (allowDecimalsOnly === void 0) { allowDecimalsOnly = false; }
-        return allowDecimalsOnly
-            ? value.replace(/[^0-9]/g, '')
-            : value.replace(/[^\-0-9,.]/g, '');
+        return this.cleanUp(allowDecimalsOnly
+            ? value.replace(/[^\-0-9]/g, '')
+            : value.replace(/[^\-0-9,.]/g, ''));
+    };
+    /**
+     * @private
+     * @param {?} input
+     * @return {?}
+     */
+    NumericDirective.prototype.cleanUp = /**
+     * @private
+     * @param {?} input
+     * @return {?}
+     */
+    function (input) {
+        // no precision at all
+        /** @type {?} */
+        var value = input.replace(/[,|.]/g, '.');
+        /** @type {?} */
+        var firstIndex = typeof value === 'string' || value instanceof String
+            ? value.indexOf('.')
+            : -1;
+        if (firstIndex === -1) {
+            return value;
+        }
+        // remove everything after second comma
+        /** @type {?} */
+        var secondIndex = value.substr(firstIndex + 1).indexOf('.');
+        if (secondIndex !== -1) {
+            this.lsnNumericMessages.emit(NumericMessage.ADDITIONAL_DECIMAL_SEPARATOR);
+            value = value.substr(0, firstIndex + secondIndex + 1);
+        }
+        // remove additional precision
+        if (this.config.precision === 0) {
+            return value.substr(0, firstIndex);
+        }
+        else if (this.config.precision) {
+            return value.substr(0, firstIndex + this.config.precision + 1);
+        }
+        return value;
     };
     /**
      * @param {?} value
@@ -577,6 +620,7 @@ var NumericDirective = /** @class */ (function () {
     ]; };
     NumericDirective.propDecorators = {
         lsnNumeric: [{ type: Input }],
+        lsnNumericMessages: [{ type: Output }],
         inputHandler: [{ type: HostListener, args: ['input', ['$event'],] }],
         focusHandler: [{ type: HostListener, args: ['focus', [],] }],
         blurHandler: [{ type: HostListener, args: ['blur', [],] }],
@@ -587,6 +631,8 @@ var NumericDirective = /** @class */ (function () {
 if (false) {
     /** @type {?} */
     NumericDirective.prototype.lsnNumeric;
+    /** @type {?} */
+    NumericDirective.prototype.lsnNumericMessages;
     /** @type {?} */
     NumericDirective.prototype.element;
     /**
@@ -2332,5 +2378,5 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { CapitalizeDirective, CustomNumericConfig, DefaultNumericConfig, LSN_COOKIE_CONFIG, LSN_CROSS_TAB_CONFIG, LatinToGreekDirective, LsnCapitalizeModule, LsnCookieConfig, LsnCookieModule, LsnCookieService, LsnCrossTabConfig, LsnCrossTabMessage, LsnCrossTabModule, LsnCrossTabService, LsnLatinToGreekModule, LsnLibsModule, LsnNumericModule, LsnNumpadModule, LsnScrollSpyModule, NumPadDirective, NumericConfigService, NumericDirective, ScrollSpyDirective, lsnCrossTabServiceFactory };
+export { CapitalizeDirective, CustomNumericConfig, DefaultNumericConfig, LSN_COOKIE_CONFIG, LSN_CROSS_TAB_CONFIG, LatinToGreekDirective, LsnCapitalizeModule, LsnCookieConfig, LsnCookieModule, LsnCookieService, LsnCrossTabConfig, LsnCrossTabMessage, LsnCrossTabModule, LsnCrossTabService, LsnLatinToGreekModule, LsnLibsModule, LsnNumericModule, LsnNumpadModule, LsnScrollSpyModule, NumPadDirective, NumericConfigService, NumericDirective, NumericMessage, ScrollSpyDirective, lsnCrossTabServiceFactory };
 //# sourceMappingURL=lsnova-angularmodules.js.map
