@@ -41,6 +41,7 @@ where for example: `const numericConfig = { precision:2 }`
 | `thousands`      | Thousands separator (allowed `.` and `,`) removed if same as decimals         |   undefined  |
 | `maxLength`      | The maximum length of the wholes part (not including minus), overrides `max`  |   undefined  |
 | `step`           | Entered numbers will be rounded to closest value, which is a multiple of step |   undefined  |
+| `noScientificNotation`| Display value (input text) will have no scientific notation for large numbers (larger than 10**20)|   false  |
 
 ## Global configuration
 When importing the module you can set global default configuration:

@@ -43,5 +43,12 @@
         [(ngModel)]="numeric6"
       /> model value: {{numeric6}}
     </section>
+    <section>
+      <p>noScientificNotation (updates on blur) - for large numbers: </p>
+      <input
+        [lsnNumeric]="{thousands: ' ', noScientificNotation: true}"
+        [(ngModel)]="numeric7"
+      /> model value: {{numeric7}}
+    </section>
   </mat-card-content>
 </mat-card>

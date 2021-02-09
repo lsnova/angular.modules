@@ -13,6 +13,7 @@ export class NumericCardComponent {
   numeric4 = 1;
   numeric5 = undefined;
   numeric6 = undefined;
+  numeric7 = -1_000_000_000_000_000_000_000;
 
   message($event: NumericMessage) {
     switch ($event) {

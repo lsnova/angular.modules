@@ -189,13 +189,11 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     if (!value && value !== 0) {
       return '';
     }
-    const [whole, decimals] = typeof value === 'number'
-      ? value.toString().split('.')
-      : value.toString().split(this.config.decimals);
-    const isNegative = whole[0] === '-';
+    const [whole, decimals] = this.getWholeAndDecimalParts(value);
+    const isNegative = whole[0] === '-' || whole < 0;
     let result = whole === '-' || !whole
       ? '0'
-      : Math.abs(parseInt(whole, 10)).toString();
+      : this.getWholeDisplayValue(whole);
     if (this.config.thousands) {
       result = result.replace(/\B(?=(\d{3})+(?!\d))/g, this.config.thousands);
     }
@@ -341,5 +339,33 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.element.nativeElement.disabled = isDisabled;
+  }
+
+  /**
+   * parse whole part of a number to display value (based on given config)
+   */
+  protected getWholeDisplayValue(whole: string | number): string {
+    const parsedWhole: number = Math.abs(typeof whole !== 'number' ? parseInt(whole, 10) : whole);
+    return this.config.noScientificNotation
+      ? parsedWhole.toLocaleString('fullwide', {useGrouping: false})
+      : parsedWhole.toString();
+  }
+
+  /**
+   * get whole and decimal part of a number
+   * type of return values may vary, it is intentional
+   * the returned array should have size of 1(only whole number) or 2(whole and decimal)
+   */
+  protected getWholeAndDecimalParts(value: string | number): Array<number | string> {
+    if (typeof value === 'number') {
+      if (this.config.noScientificNotation && (value > Number.MAX_SAFE_INTEGER || value < Number.MIN_SAFE_INTEGER)) {
+        const decimals = value % 1;
+        return [Math.floor(value), decimals !== 0 ? '' + decimals : undefined];
+      } else {
+        return value.toString().split('.');
+      }
+    } else {
+      return value.toString().split(this.config.decimals);
+    }
   }
 }
