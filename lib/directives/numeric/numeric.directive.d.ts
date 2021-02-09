@@ -34,4 +34,14 @@ export declare class NumericDirective implements OnChanges, ControlValueAccessor
     setEditMode(): void;
     keyDownHandler(e: KeyboardEvent): void;
     setDisabledState(isDisabled: boolean): void;
+    /**
+     * parse whole part of a number to display value (based on given config)
+     */
+    protected getWholeDisplayValue(whole: string | number): string;
+    /**
+     * get whole and decimal part of a number
+     * type of return values may vary, it is intentional
+     * the returned array should have size of 1(only whole number) or 2(whole and decimal)
+     */
+    protected getWholeAndDecimalParts(value: string | number): Array<number | string>;
 }

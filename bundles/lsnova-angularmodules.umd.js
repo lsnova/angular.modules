@@ -255,12 +255,15 @@
         NumericConfig.prototype.config;
         /** @type {?|undefined} */
         NumericConfig.prototype.step;
+        /** @type {?|undefined} */
+        NumericConfig.prototype.noScientificNotation;
     }
     var DefaultNumericConfig = /** @class */ (function () {
         function DefaultNumericConfig(props) {
             if (props === void 0) { props = {}; }
             this.precision = 0;
             this.decimals = NumericSeparator.PERIOD;
+            this.noScientificNotation = false;
             Object.assign(this, props);
         }
         return DefaultNumericConfig;
@@ -280,6 +283,8 @@
         DefaultNumericConfig.prototype.thousands;
         /** @type {?} */
         DefaultNumericConfig.prototype.step;
+        /** @type {?} */
+        DefaultNumericConfig.prototype.noScientificNotation;
     }
     var CustomNumericConfig = /** @class */ (function () {
         function CustomNumericConfig(props) {
@@ -671,15 +676,13 @@
             if (!value && value !== 0) {
                 return '';
             }
-            var _a = __read(typeof value === 'number'
-                ? value.toString().split('.')
-                : value.toString().split(this.config.decimals), 2), whole = _a[0], decimals = _a[1];
+            var _a = __read(this.getWholeAndDecimalParts(value), 2), whole = _a[0], decimals = _a[1];
             /** @type {?} */
-            var isNegative = whole[0] === '-';
+            var isNegative = whole[0] === '-' || whole < 0;
             /** @type {?} */
             var result = whole === '-' || !whole
                 ? '0'
-                : Math.abs(parseInt(whole, 10)).toString();
+                : this.getWholeDisplayValue(whole);
             if (this.config.thousands) {
                 result = result.replace(/\B(?=(\d{3})+(?!\d))/g, this.config.thousands);
             }
@@ -823,6 +826,64 @@
          */
         function (isDisabled) {
             this.element.nativeElement.disabled = isDisabled;
+        };
+        /**
+         * parse whole part of a number to display value (based on given config)
+         */
+        /**
+         * parse whole part of a number to display value (based on given config)
+         * @protected
+         * @param {?} whole
+         * @return {?}
+         */
+        NumericDirective.prototype.getWholeDisplayValue = /**
+         * parse whole part of a number to display value (based on given config)
+         * @protected
+         * @param {?} whole
+         * @return {?}
+         */
+        function (whole) {
+            /** @type {?} */
+            var parsedWhole = Math.abs(typeof whole !== 'number' ? parseInt(whole, 10) : whole);
+            return this.config.noScientificNotation
+                ? parsedWhole.toLocaleString('fullwide', { useGrouping: false })
+                : parsedWhole.toString();
+        };
+        /**
+         * get whole and decimal part of a number
+         * type of return values may vary, it is intentional
+         * the returned array should have size of 1(only whole number) or 2(whole and decimal)
+         */
+        /**
+         * get whole and decimal part of a number
+         * type of return values may vary, it is intentional
+         * the returned array should have size of 1(only whole number) or 2(whole and decimal)
+         * @protected
+         * @param {?} value
+         * @return {?}
+         */
+        NumericDirective.prototype.getWholeAndDecimalParts = /**
+         * get whole and decimal part of a number
+         * type of return values may vary, it is intentional
+         * the returned array should have size of 1(only whole number) or 2(whole and decimal)
+         * @protected
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            if (typeof value === 'number') {
+                if (this.config.noScientificNotation && (value > Number.MAX_SAFE_INTEGER || value < Number.MIN_SAFE_INTEGER)) {
+                    /** @type {?} */
+                    var decimals = value % 1;
+                    return [Math.floor(value), decimals !== 0 ? '' + decimals : undefined];
+                }
+                else {
+                    return value.toString().split('.');
+                }
+            }
+            else {
+                return value.toString().split(this.config.decimals);
+            }
         };
         NumericDirective.decorators = [
             { type: core.Directive, args: [{

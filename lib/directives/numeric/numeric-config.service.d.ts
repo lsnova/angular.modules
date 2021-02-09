@@ -7,6 +7,7 @@ export interface NumericConfig {
     thousands?: string;
     config?: string;
     step?: number;
+    noScientificNotation?: boolean;
 }
 export declare class DefaultNumericConfig implements NumericConfig {
     min: number;
@@ -16,6 +17,7 @@ export declare class DefaultNumericConfig implements NumericConfig {
     decimals: string;
     thousands: string;
     step: number;
+    noScientificNotation: boolean;
     constructor(props?: {});
 }
 export declare class CustomNumericConfig {
