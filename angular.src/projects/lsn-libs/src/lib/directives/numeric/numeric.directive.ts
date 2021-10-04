@@ -197,8 +197,12 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     if (this.config.thousands) {
       result = result.replace(/\B(?=(\d{3})+(?!\d))/g, this.config.thousands);
     }
-    if (decimals && this.config.precision && this.config.decimals) {
-      result = result + this.config.decimals + decimals;
+    if (this.config.precision && this.config.decimals) {
+      if (this.config.alwaysDisplayDecimals && this.shouldAddDefaultDecimals(decimals)) {
+        result = result + this.config.decimals + this.defaultDecimals(decimals, this.config.precision);
+      } else if (decimals) {
+        result = result + this.config.decimals + decimals;
+      }
     }
     return isNegative && result !== '0' ? '-' + result : result;
   }
@@ -367,5 +371,17 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
     } else {
       return value.toString().split(this.config.decimals);
     }
+  }
+
+  protected defaultDecimals(value: string | number = '', precision: number = 0): string {
+    let result = '' + value;
+    while (result.length < precision) {
+      result += '0';
+    }
+    return result;
+  }
+
+  protected shouldAddDefaultDecimals(decimals: string | number | undefined): boolean {
+    return !decimals || ('' + decimals).length !== this.config.precision;
   }
 }

@@ -50,5 +50,12 @@
         [(ngModel)]="numeric7"
       /> model value: {{numeric7}}
     </section>
+    <section>
+      <p>always display decimals</p>
+      <input
+        [lsnNumeric]="{thousands: ' ', precision: 3, alwaysDisplayDecimals: true, decimals: ','}"
+        [(ngModel)]="numeric8"
+      /> model value: {{numeric8}}
+    </section>
   </mat-card-content>
 </mat-card>

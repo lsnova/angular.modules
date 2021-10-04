@@ -16,6 +16,7 @@ export interface NumericConfig {
   config?: string;
   step?: number;
   noScientificNotation?: boolean;
+  alwaysDisplayDecimals?: boolean;
 }
 
 export class DefaultNumericConfig implements NumericConfig {
