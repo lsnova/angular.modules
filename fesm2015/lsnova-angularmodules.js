@@ -40,6 +40,8 @@ if (false) {
     NumericConfig.prototype.step;
     /** @type {?|undefined} */
     NumericConfig.prototype.noScientificNotation;
+    /** @type {?|undefined} */
+    NumericConfig.prototype.alwaysDisplayDecimals;
 }
 class DefaultNumericConfig {
     /**
@@ -404,8 +406,13 @@ class NumericDirective {
         if (this.config.thousands) {
             result = result.replace(/\B(?=(\d{3})+(?!\d))/g, this.config.thousands);
         }
-        if (decimals && this.config.precision && this.config.decimals) {
-            result = result + this.config.decimals + decimals;
+        if (this.config.precision && this.config.decimals) {
+            if (this.config.alwaysDisplayDecimals && this.shouldAddDefaultDecimals(decimals)) {
+                result = result + this.config.decimals + this.defaultDecimals(decimals, this.config.precision);
+            }
+            else if (decimals) {
+                result = result + this.config.decimals + decimals;
+            }
         }
         return isNegative && result !== '0' ? '-' + result : result;
     }
@@ -569,6 +576,28 @@ class NumericDirective {
         else {
             return value.toString().split(this.config.decimals);
         }
+    }
+    /**
+     * @protected
+     * @param {?=} value
+     * @param {?=} precision
+     * @return {?}
+     */
+    defaultDecimals(value = '', precision = 0) {
+        /** @type {?} */
+        let result = '' + value;
+        while (result.length < precision) {
+            result += '0';
+        }
+        return result;
+    }
+    /**
+     * @protected
+     * @param {?} decimals
+     * @return {?}
+     */
+    shouldAddDefaultDecimals(decimals) {
+        return !decimals || ('' + decimals).length !== this.config.precision;
     }
 }
 NumericDirective.decorators = [

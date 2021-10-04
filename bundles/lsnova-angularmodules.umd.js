@@ -257,6 +257,8 @@
         NumericConfig.prototype.step;
         /** @type {?|undefined} */
         NumericConfig.prototype.noScientificNotation;
+        /** @type {?|undefined} */
+        NumericConfig.prototype.alwaysDisplayDecimals;
     }
     var DefaultNumericConfig = /** @class */ (function () {
         function DefaultNumericConfig(props) {
@@ -686,8 +688,13 @@
             if (this.config.thousands) {
                 result = result.replace(/\B(?=(\d{3})+(?!\d))/g, this.config.thousands);
             }
-            if (decimals && this.config.precision && this.config.decimals) {
-                result = result + this.config.decimals + decimals;
+            if (this.config.precision && this.config.decimals) {
+                if (this.config.alwaysDisplayDecimals && this.shouldAddDefaultDecimals(decimals)) {
+                    result = result + this.config.decimals + this.defaultDecimals(decimals, this.config.precision);
+                }
+                else if (decimals) {
+                    result = result + this.config.decimals + decimals;
+                }
             }
             return isNegative && result !== '0' ? '-' + result : result;
         };
@@ -884,6 +891,41 @@
             else {
                 return value.toString().split(this.config.decimals);
             }
+        };
+        /**
+         * @protected
+         * @param {?=} value
+         * @param {?=} precision
+         * @return {?}
+         */
+        NumericDirective.prototype.defaultDecimals = /**
+         * @protected
+         * @param {?=} value
+         * @param {?=} precision
+         * @return {?}
+         */
+        function (value, precision) {
+            if (value === void 0) { value = ''; }
+            if (precision === void 0) { precision = 0; }
+            /** @type {?} */
+            var result = '' + value;
+            while (result.length < precision) {
+                result += '0';
+            }
+            return result;
+        };
+        /**
+         * @protected
+         * @param {?} decimals
+         * @return {?}
+         */
+        NumericDirective.prototype.shouldAddDefaultDecimals = /**
+         * @protected
+         * @param {?} decimals
+         * @return {?}
+         */
+        function (decimals) {
+            return !decimals || ('' + decimals).length !== this.config.precision;
         };
         NumericDirective.decorators = [
             { type: core.Directive, args: [{

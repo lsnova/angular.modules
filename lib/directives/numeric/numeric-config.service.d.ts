@@ -8,6 +8,7 @@ export interface NumericConfig {
     config?: string;
     step?: number;
     noScientificNotation?: boolean;
+    alwaysDisplayDecimals?: boolean;
 }
 export declare class DefaultNumericConfig implements NumericConfig {
     min: number;

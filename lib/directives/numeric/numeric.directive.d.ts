@@ -44,4 +44,6 @@ export declare class NumericDirective implements OnChanges, ControlValueAccessor
      * the returned array should have size of 1(only whole number) or 2(whole and decimal)
      */
     protected getWholeAndDecimalParts(value: string | number): Array<number | string>;
+    protected defaultDecimals(value?: string | number, precision?: number): string;
+    protected shouldAddDefaultDecimals(decimals: string | number | undefined): boolean;
 }
