@@ -266,6 +266,7 @@
             this.precision = 0;
             this.decimals = NumericSeparator.PERIOD;
             this.noScientificNotation = false;
+            this.alwaysDisplayDecimals = false;
             Object.assign(this, props);
         }
         return DefaultNumericConfig;
@@ -287,6 +288,8 @@
         DefaultNumericConfig.prototype.step;
         /** @type {?} */
         DefaultNumericConfig.prototype.noScientificNotation;
+        /** @type {?} */
+        DefaultNumericConfig.prototype.alwaysDisplayDecimals;
     }
     var CustomNumericConfig = /** @class */ (function () {
         function CustomNumericConfig(props) {

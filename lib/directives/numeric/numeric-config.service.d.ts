@@ -19,6 +19,7 @@ export declare class DefaultNumericConfig implements NumericConfig {
     thousands: string;
     step: number;
     noScientificNotation: boolean;
+    alwaysDisplayDecimals: boolean;
     constructor(props?: {});
 }
 export declare class CustomNumericConfig {
