@@ -28,6 +28,7 @@ export class DefaultNumericConfig implements NumericConfig {
   thousands: string;
   step: number;
   noScientificNotation = false;
+  alwaysDisplayDecimals = false;
 
   constructor(props = {}) {
     Object.assign(this, props);
