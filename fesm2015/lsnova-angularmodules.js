@@ -825,7 +825,8 @@ class NumPadDirective {
                 ].indexOf(e.keyCode) === -1)
             || (currentValue.length
                 && this.config.maxlength && this.config.maxlength > 0
-                && currentValue.length >= this.config.maxlength)) {
+                && currentValue.length >= this.config.maxlength
+                && this.element.nativeElement.selectionEnd - this.element.nativeElement.selectionStart === 0)) {
             e.preventDefault();
         }
     }
