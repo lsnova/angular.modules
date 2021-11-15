@@ -123,6 +123,7 @@ export class NumPadDirective implements OnChanges {
         currentValue.length
         && this.config.maxlength && this.config.maxlength > 0
         && currentValue.length >= this.config.maxlength
+        && this.element.nativeElement.selectionEnd - this.element.nativeElement.selectionStart === 0
       )
     ) {
       e.preventDefault();
