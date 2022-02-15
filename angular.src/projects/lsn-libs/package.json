@@ -1,5 +1,8 @@
 {
   "name": "@lsnova/angularmodules",
   "version": "0.7.14",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {}
 }
