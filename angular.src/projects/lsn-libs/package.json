@@ -2,9 +2,9 @@
   "name": "@lsnova/angularmodules",
   "version": "0.7.14",
   "peerDependencies": {
-    "@angular/common": "^8.0.0",
-    "@angular/core": "^8.0.0",
-    "@angular/forms": "^8.0.0",
-    "@angular/cdk": "^8.2.3"
+    "@angular/common": "~9.1.12",
+    "@angular/core": "~9.1.12",
+    "@angular/forms": "~9.1.12",
+    "@angular/cdk": "~9.1.12"
   }
 }
