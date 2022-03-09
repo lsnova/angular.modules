@@ -15,3 +15,4 @@ export * from './lib/directives/scroll-spy/public_api';
 // services
 export * from './lib/services/lsn-cross-tab/public_api';
 export * from './lib/services/lsn-cookie/public_api';
+export * from './lib/services/adv-chatbot/public_api';
