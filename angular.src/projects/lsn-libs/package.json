@@ -1,6 +1,6 @@
 {
   "name": "@lsnova/angularmodules",
-  "version": "0.7.16",
+  "version": "0.7.17",
   "dependencies": {
     "tslib": "^2.0.0"
   },
