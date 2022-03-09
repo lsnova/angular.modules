@@ -32,6 +32,9 @@
       ],
       "@lsnova/angularmodules": [
         "dist/lsn-libs"
+      ],
+      "lsn-libs/adv-chatbot": [
+        "dist/lsn-libs/adv-chatbot"
       ]
     }
   },

@@ -4,9 +4,7 @@ import {ADV_CHATBOT_CONFIG, AdvChatbot} from './adv-chatbot.model';
 import {forkJoin, Observable, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AdvChatbotHelper {
 
   protected renderer: Renderer2;

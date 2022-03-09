@@ -9,6 +9,9 @@
       ],
       "lsn-libs/*": [
         "projects/lsn-libs/src/*"
+      ],
+      "lsn-libs/adv-chatbot": [
+        "projects/lsn-libs/adv-chatbot/public_api"
       ]
     }
   },
