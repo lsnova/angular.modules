@@ -1,16 +1,8 @@
 import {Inject, Injectable, Injector, Optional, Renderer2, RendererFactory2} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
-import _ from 'lodash';
-import {ADV_CHATBOT_CONFIG, AdvChatbot,} from './adv-chatbot.model';
+import {ADV_CHATBOT_CONFIG, AdvChatbot} from './adv-chatbot.model';
 import {forkJoin, Observable, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
-import Widget = AdvChatbot.Widget;
-import Event = AdvChatbot.Event;
-import DataProvider = AdvChatbot.DataProvider;
-import ModuleConfig = AdvChatbot.ModuleConfig;
-import WidgetConfig = AdvChatbot.WidgetConfig;
-import Global = AdvChatbot.Global;
-import Events = AdvChatbot.Events;
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +10,11 @@ import Events = AdvChatbot.Events;
 export class AdvChatbotHelper {
 
   protected renderer: Renderer2;
-  protected widget: Widget;
-  protected events$ = new Subject<Event>();
-  protected dataProviders: DataProvider[] = [];
+  protected widget: AdvChatbot.Widget;
+  protected events$ = new Subject<AdvChatbot.Event>();
+  protected dataProviders: AdvChatbot.DataProvider[] = [];
 
-  get events(): Observable<Event> {
+  get events(): Observable<AdvChatbot.Event> {
     return this.events$.asObservable();
   }
 
@@ -32,20 +24,20 @@ export class AdvChatbotHelper {
 
   constructor(@Inject(DOCUMENT) protected document,
               rendererFactory2: RendererFactory2,
-              @Optional() @Inject(ADV_CHATBOT_CONFIG) protected moduleConfig: ModuleConfig,
+              @Optional() @Inject(ADV_CHATBOT_CONFIG) protected moduleConfig: AdvChatbot.ModuleConfig,
               protected injector: Injector) {
     this.renderer = rendererFactory2.createRenderer(document, null);
-    if (this.moduleConfig && !_.isEmpty(this.moduleConfig.dataProviders)) {
+    if (this.moduleConfig?.dataProviders?.length) {
       for (const providerClass of this.moduleConfig.dataProviders) {
         this.dataProviders.push(this.injector.get(providerClass));
       }
     }
   }
 
-  async setupSdk(config: WidgetConfig, awaitConfig = false) {
+  async setupSdk(config: AdvChatbot.WidgetConfig, awaitConfig = false) {
     if (config.sdkUrl) {
       await this.loadScript(config.sdkUrl);
-      const advGlobal: Global = (this.document.defaultView as any).ADV;
+      const advGlobal: AdvChatbot.Global = (this.document.defaultView as any).ADV;
       const configPromise = this.setConfig(advGlobal, config);
       if (awaitConfig) {
         await configPromise;
@@ -77,11 +69,11 @@ export class AdvChatbotHelper {
    * check if any script on page includes one with src = apiUrl
    */
   protected checkScriptLoaded(scriptUrl: string): boolean {
-    const scripts = this.document.getElementsByTagName('script');
-    return _.some(scripts, (scriptEl: HTMLScriptElement) => _.includes(scriptEl.src, scriptUrl));
+    const scripts: HTMLCollection = this.document.getElementsByTagName('script');
+    return Array.from(scripts)?.some((scriptEl: HTMLScriptElement) => scriptEl.src?.includes(scriptUrl)) ?? false;
   }
 
-  protected async setConfig(advGlobal: Global, chatbotConfig: WidgetConfig) {
+  protected async setConfig(advGlobal: AdvChatbot.Global, chatbotConfig: AdvChatbot.WidgetConfig) {
     this.widget = await advGlobal.initWidget({
       cid: chatbotConfig.cid,
       baseUrl: chatbotConfig.baseUrl,
@@ -100,7 +92,7 @@ export class AdvChatbotHelper {
       },
       newMessageEvent: isWidgetOpen => {
         this.events$.next({
-          type: Events.newMessage,
+          type: AdvChatbot.Events.newMessage,
           value: !isWidgetOpen // mark new message as unread
         });
       }
@@ -110,7 +102,7 @@ export class AdvChatbotHelper {
   /**
    * manual click on chatbot icon, setup sdk if not loaded
    */
-  async toggleVisibility(config: WidgetConfig): Promise<any> {
+  async toggleVisibility(config: AdvChatbot.WidgetConfig): Promise<any> {
     if (this.widget) {
       this.widget.toggleWidget();
     } else {
@@ -119,7 +111,7 @@ export class AdvChatbotHelper {
     }
   }
 
-  protected getDataForWidget(chatbotConfig: WidgetConfig): Observable<object> {
+  protected getDataForWidget(chatbotConfig: AdvChatbot.WidgetConfig): Observable<object> {
     const obs$: Observable<object>[] = this.dataProviders?.map(provider => provider.getData(chatbotConfig));
     return forkJoin(obs$).pipe(
       map(outputs => Object.assign({}, ...outputs))

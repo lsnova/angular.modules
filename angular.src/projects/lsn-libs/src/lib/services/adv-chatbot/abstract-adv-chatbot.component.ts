@@ -2,9 +2,6 @@ import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 import {AdvChatbotHelper} from './adv-chatbot.helper';
 import {Subscription} from 'rxjs';
 import {AdvChatbot} from './adv-chatbot.model';
-import Event = AdvChatbot.Event;
-import Events = AdvChatbot.Events;
-import WidgetConfig = AdvChatbot.WidgetConfig;
 
 @Component({
   template: ''
@@ -20,7 +17,7 @@ export abstract class AbstractAdvChatbotComponent implements OnDestroy {
                         protected cd: ChangeDetectorRef) {
   }
 
-  toggleVisibility(config: WidgetConfig) {
+  toggleVisibility(config: AdvChatbot.WidgetConfig) {
     // when opening widget, remove unread messages mark
     this.unreadMessages = false;
     this.chatBotHelper.toggleVisibility(config);
@@ -35,8 +32,8 @@ export abstract class AbstractAdvChatbotComponent implements OnDestroy {
     }
   }
 
-  protected handleEvent(event: Event) {
-    if (event.type === Events.newMessage) {
+  protected handleEvent(event: AdvChatbot.Event) {
+    if (event.type === AdvChatbot.Events.newMessage) {
       this.unreadMessages = event.value;
       this.playAudio();
     }
