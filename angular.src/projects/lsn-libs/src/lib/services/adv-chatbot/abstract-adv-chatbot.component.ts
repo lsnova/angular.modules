@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {AdvChatbotHelper} from './adv-chatbot.helper';
 import {Subscription} from 'rxjs';
 import {AdvChatbot} from './adv-chatbot.model';
@@ -6,15 +6,21 @@ import {AdvChatbot} from './adv-chatbot.model';
 @Component({
   template: ''
 })
-export abstract class AbstractAdvChatbotComponent implements OnDestroy {
+export abstract class AbstractAdvChatbotComponent implements OnInit, OnDestroy {
 
   protected eventsSub: Subscription;
   unreadMessages = false;
   abstract audioSrc: string;
   protected audio: HTMLAudioElement;
 
-  protected constructor(protected chatBotHelper: AdvChatbotHelper,
-                        protected cd: ChangeDetectorRef) {
+  constructor(protected chatBotHelper: AdvChatbotHelper,
+              protected cd: ChangeDetectorRef) {
+  }
+
+  ngOnInit() {
+    this.audio = new Audio(this.audioSrc);
+    this.eventsSub = this.chatBotHelper.events
+      .subscribe(this.handleEvent.bind(this));
   }
 
   toggleVisibility(config: AdvChatbot.WidgetConfig) {
@@ -38,12 +44,6 @@ export abstract class AbstractAdvChatbotComponent implements OnDestroy {
       this.playAudio();
     }
     this.cd.markForCheck();
-  }
-
-  protected initialize() {
-    this.audio = new Audio(this.audioSrc);
-    this.eventsSub = this.chatBotHelper.events
-      .subscribe(this.handleEvent.bind(this));
   }
 
   ngOnDestroy() {
