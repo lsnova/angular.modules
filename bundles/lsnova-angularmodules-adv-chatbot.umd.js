@@ -5,18 +5,14 @@
 }(this, (function (exports, core, common, rxjs, operators) { 'use strict';
 
     var ADV_CHATBOT_CONFIG = new core.InjectionToken('AdvChatbotModuleConfig');
-    (function (AdvChatbot) {
-        var Events;
-        (function (Events) {
-            Events["newMessage"] = "newMessage";
-        })(Events = AdvChatbot.Events || (AdvChatbot.Events = {}));
-        var WidgetConfig = /** @class */ (function () {
-            function WidgetConfig() {
-            }
-            return WidgetConfig;
-        }());
-        AdvChatbot.WidgetConfig = WidgetConfig;
-    })(exports.ɵa || (exports.ɵa = {}));
+    (function (AdvChatbotEvents) {
+        AdvChatbotEvents["newMessage"] = "newMessage";
+    })(exports.AdvChatbotEvents || (exports.AdvChatbotEvents = {}));
+    var AdvChatbotWidgetConfig = /** @class */ (function () {
+        function AdvChatbotWidgetConfig() {
+        }
+        return AdvChatbotWidgetConfig;
+    }());
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -454,7 +450,7 @@
                                     },
                                     newMessageEvent: function (isWidgetOpen) {
                                         _this.events$.next({
-                                            type: exports.ɵa.Events.newMessage,
+                                            type: exports.AdvChatbotEvents.newMessage,
                                             value: !isWidgetOpen // mark new message as unread
                                         });
                                     }
@@ -554,7 +550,7 @@
             }
         };
         AbstractAdvChatbotComponent.prototype.handleEvent = function (event) {
-            if (event.type === exports.ɵa.Events.newMessage) {
+            if (event.type === exports.AdvChatbotEvents.newMessage) {
                 this.unreadMessages = event.value;
                 this.playAudio();
             }
@@ -583,8 +579,8 @@
 
     exports.ADV_CHATBOT_CONFIG = ADV_CHATBOT_CONFIG;
     exports.AbstractAdvChatbotComponent = AbstractAdvChatbotComponent;
-    exports.AdvChatbot = exports.ɵa;
     exports.AdvChatbotHelper = AdvChatbotHelper;
+    exports.AdvChatbotWidgetConfig = AdvChatbotWidgetConfig;
     exports.LsnAdvChatbotModule = LsnAdvChatbotModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });

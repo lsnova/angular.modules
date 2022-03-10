@@ -5,16 +5,12 @@ import { Subject, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 const ADV_CHATBOT_CONFIG = new InjectionToken('AdvChatbotModuleConfig');
-var AdvChatbot;
-(function (AdvChatbot) {
-    let Events;
-    (function (Events) {
-        Events["newMessage"] = "newMessage";
-    })(Events = AdvChatbot.Events || (AdvChatbot.Events = {}));
-    class WidgetConfig {
-    }
-    AdvChatbot.WidgetConfig = WidgetConfig;
-})(AdvChatbot || (AdvChatbot = {}));
+var AdvChatbotEvents;
+(function (AdvChatbotEvents) {
+    AdvChatbotEvents["newMessage"] = "newMessage";
+})(AdvChatbotEvents || (AdvChatbotEvents = {}));
+class AdvChatbotWidgetConfig {
+}
 
 class AdvChatbotHelper {
     constructor(document, rendererFactory2, moduleConfig, injector) {
@@ -97,7 +93,7 @@ class AdvChatbotHelper {
                 },
                 newMessageEvent: isWidgetOpen => {
                     this.events$.next({
-                        type: AdvChatbot.Events.newMessage,
+                        type: AdvChatbotEvents.newMessage,
                         value: !isWidgetOpen // mark new message as unread
                     });
                 }
@@ -180,7 +176,7 @@ class AbstractAdvChatbotComponent {
         }
     }
     handleEvent(event) {
-        if (event.type === AdvChatbot.Events.newMessage) {
+        if (event.type === AdvChatbotEvents.newMessage) {
             this.unreadMessages = event.value;
             this.playAudio();
         }
@@ -206,5 +202,5 @@ AbstractAdvChatbotComponent.ctorParameters = () => [
  * Generated bundle index. Do not edit.
  */
 
-export { ADV_CHATBOT_CONFIG, AbstractAdvChatbotComponent, AdvChatbot, AdvChatbotHelper, LsnAdvChatbotModule, AdvChatbot as ɵa };
+export { ADV_CHATBOT_CONFIG, AbstractAdvChatbotComponent, AdvChatbotEvents, AdvChatbotHelper, AdvChatbotWidgetConfig, LsnAdvChatbotModule };
 //# sourceMappingURL=lsnova-angularmodules-adv-chatbot.js.map
