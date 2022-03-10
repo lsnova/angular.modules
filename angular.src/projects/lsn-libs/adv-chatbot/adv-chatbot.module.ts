@@ -1,8 +1,7 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ADV_CHATBOT_CONFIG, AdvChatbot} from './adv-chatbot.model';
+import {ADV_CHATBOT_CONFIG, AdvChatbotModuleConfig} from './adv-chatbot.model';
 import {AdvChatbotHelper} from './adv-chatbot.helper';
-import ModuleConfig = AdvChatbot.ModuleConfig;
 
 @NgModule({
   imports: [
@@ -10,7 +9,7 @@ import ModuleConfig = AdvChatbot.ModuleConfig;
   ]
 })
 export class LsnAdvChatbotModule {
-  static forRoot(config: ModuleConfig = {}): ModuleWithProviders<LsnAdvChatbotModule> {
+  static forRoot(config: AdvChatbotModuleConfig = {}): ModuleWithProviders<LsnAdvChatbotModule> {
     return {
       ngModule: LsnAdvChatbotModule,
       providers: [
