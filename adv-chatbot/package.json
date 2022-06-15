@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/lsnova-angularmodules-adv-chatbot.umd.js",
-  "module": "../fesm2015/lsnova-angularmodules-adv-chatbot.js",
-  "es2015": "../fesm2015/lsnova-angularmodules-adv-chatbot.js",
-  "esm2015": "../esm2015/adv-chatbot/lsnova-angularmodules-adv-chatbot.js",
-  "fesm2015": "../fesm2015/lsnova-angularmodules-adv-chatbot.js",
+  "module": "../fesm2015/lsnova-angularmodules-adv-chatbot.mjs",
+  "es2020": "../fesm2020/lsnova-angularmodules-adv-chatbot.mjs",
+  "esm2020": "../esm2020/adv-chatbot/lsnova-angularmodules-adv-chatbot.mjs",
+  "fesm2020": "../fesm2020/lsnova-angularmodules-adv-chatbot.mjs",
+  "fesm2015": "../fesm2015/lsnova-angularmodules-adv-chatbot.mjs",
   "typings": "lsnova-angularmodules-adv-chatbot.d.ts",
-  "metadata": "lsnova-angularmodules-adv-chatbot.metadata.json",
   "sideEffects": false,
   "name": "@lsnova/angularmodules/adv-chatbot"
 }

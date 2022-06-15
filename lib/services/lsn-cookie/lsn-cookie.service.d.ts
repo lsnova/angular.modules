@@ -1,4 +1,5 @@
 import { LsnCookieConfig } from './lsnCookieConfig';
+import * as i0 from "@angular/core";
 export interface LsnCookieOptions {
     expires?: number | Date;
     expirationUnit?: string;
@@ -27,4 +28,6 @@ export declare class LsnCookieService implements CookieService {
      */
     get(cookieKey?: string): any;
     remove(cookieKey: string, cookieOptions?: LsnCookieOptions): boolean;
+    static ɵfac: i0.ɵɵFactoryDeclaration<LsnCookieService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<LsnCookieService>;
 }

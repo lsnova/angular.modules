@@ -1,6 +1,7 @@
 import { Injector, Renderer2, RendererFactory2 } from '@angular/core';
 import { AdvChatbotDataProvider, AdvChatbotEvent, AdvChatbotGlobal, AdvChatbotModuleConfig, AdvChatbotWidget, AdvChatbotWidgetConfig } from './adv-chatbot.model';
 import { Observable, Subject } from 'rxjs';
+import * as i0 from "@angular/core";
 export declare class AdvChatbotHelper {
     protected document: any;
     protected moduleConfig: AdvChatbotModuleConfig;
@@ -24,4 +25,6 @@ export declare class AdvChatbotHelper {
      */
     toggleVisibility(config: AdvChatbotWidgetConfig): Promise<any>;
     protected getDataForWidget(chatbotConfig: AdvChatbotWidgetConfig): Observable<object>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<AdvChatbotHelper, [null, null, { optional: true; }, null]>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<AdvChatbotHelper>;
 }

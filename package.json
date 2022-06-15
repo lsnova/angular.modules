@@ -1,19 +1,42 @@
 {
   "name": "@lsnova/angularmodules",
-  "version": "0.7.19",
-  "dependencies": {
-    "tslib": "^2.0.0"
-  },
+  "version": "0.8.0",
   "peerDependencies": {
     "@angular/common": "~13.3.11",
     "@angular/core": "~13.3.11"
   },
-  "main": "bundles/lsnova-angularmodules.umd.js",
-  "module": "fesm2015/lsnova-angularmodules.js",
-  "es2015": "fesm2015/lsnova-angularmodules.js",
-  "esm2015": "esm2015/lsnova-angularmodules.js",
-  "fesm2015": "fesm2015/lsnova-angularmodules.js",
+  "module": "fesm2015/lsnova-angularmodules.mjs",
+  "es2020": "fesm2020/lsnova-angularmodules.mjs",
+  "esm2020": "esm2020/lsnova-angularmodules.mjs",
+  "fesm2020": "fesm2020/lsnova-angularmodules.mjs",
+  "fesm2015": "fesm2015/lsnova-angularmodules.mjs",
   "typings": "lsnova-angularmodules.d.ts",
-  "metadata": "lsnova-angularmodules.metadata.json",
-  "sideEffects": false
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./lsnova-angularmodules.d.ts",
+      "esm2020": "./esm2020/lsnova-angularmodules.mjs",
+      "es2020": "./fesm2020/lsnova-angularmodules.mjs",
+      "es2015": "./fesm2015/lsnova-angularmodules.mjs",
+      "node": "./fesm2015/lsnova-angularmodules.mjs",
+      "default": "./fesm2020/lsnova-angularmodules.mjs"
+    },
+    "./adv-chatbot": {
+      "types": "./adv-chatbot/lsnova-angularmodules-adv-chatbot.d.ts",
+      "esm2020": "./esm2020/adv-chatbot/lsnova-angularmodules-adv-chatbot.mjs",
+      "es2020": "./fesm2020/lsnova-angularmodules-adv-chatbot.mjs",
+      "es2015": "./fesm2015/lsnova-angularmodules-adv-chatbot.mjs",
+      "node": "./fesm2015/lsnova-angularmodules-adv-chatbot.mjs",
+      "default": "./fesm2020/lsnova-angularmodules-adv-chatbot.mjs"
+    }
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy in full compilation mode. This is not allowed.\\nPlease delete and rebuild the package with Ivy partial compilation mode, before attempting to publish.\\n')\" && exit 1"
+  }
 }

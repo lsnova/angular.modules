@@ -1,5 +1,6 @@
 import { ElementRef, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+import * as i0 from "@angular/core";
 export declare class ScrollSpyDirective implements OnInit, OnDestroy {
     private elementRef;
     spySelector: string;
@@ -24,4 +25,6 @@ export declare class ScrollSpyDirective implements OnInit, OnDestroy {
     private scrollBottomPosition;
     private nativeElement;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ScrollSpyDirective, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ScrollSpyDirective, "[lsnScrollSpy]", never, { "spySelector": "spySelector"; "scrollToSection": "scrollToSection"; }, { "spySectionChange": "spySectionChange"; }, never>;
 }

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { LsnCrossTabMessage } from './models/lsnCrossTabMessage';
 import { LsnCrossTabConfig } from './models/lsnCrossTabConfig';
 import { LsnCookieService } from '../lsn-cookie/lsn-cookie.service';
+import * as i0 from "@angular/core";
 export declare class LsnCrossTabService implements OnDestroy {
     private lsnCookieService;
     private readonly messageSubject;
@@ -68,4 +69,6 @@ export declare class LsnCrossTabService implements OnDestroy {
      * Function determines whether given message is to be removed from the cross tab cookie
      */
     private cleanCookieFilter;
+    static ɵfac: i0.ɵɵFactoryDeclaration<LsnCrossTabService, [null, { optional: true; }]>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<LsnCrossTabService>;
 }

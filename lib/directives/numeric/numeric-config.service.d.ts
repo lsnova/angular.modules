@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 export interface NumericConfig {
     min?: number;
     max?: number;
@@ -34,4 +35,6 @@ export declare class NumericConfigService {
     constructor(config: CustomNumericConfig);
     getDefaultConfig(): NumericConfig;
     getCustomConfig(key: any): NumericConfig;
+    static ɵfac: i0.ɵɵFactoryDeclaration<NumericConfigService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<NumericConfigService>;
 }

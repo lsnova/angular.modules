@@ -1,6 +1,7 @@
 import { ElementRef, EventEmitter, OnChanges } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { NumericConfig, NumericConfigService } from './numeric-config.service';
+import * as i0 from "@angular/core";
 export declare enum NumericMessage {
     ADDITIONAL_DECIMAL_SEPARATOR = 0
 }
@@ -46,4 +47,6 @@ export declare class NumericDirective implements OnChanges, ControlValueAccessor
     protected getWholeAndDecimalParts(value: string | number): Array<number | string>;
     protected defaultDecimals(value?: string | number, precision?: number): string;
     protected shouldAddDefaultDecimals(decimals: string | number | undefined): boolean;
+    static ɵfac: i0.ɵɵFactoryDeclaration<NumericDirective, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<NumericDirective, "[lsnNumeric]", never, { "lsnNumeric": "lsnNumeric"; }, { "lsnNumericMessages": "lsnNumericMessages"; }, never>;
 }
