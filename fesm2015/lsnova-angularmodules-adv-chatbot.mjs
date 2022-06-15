@@ -121,12 +121,11 @@ class AdvChatbotHelper {
         return forkJoin(obs$).pipe(map(outputs => Object.assign({}, ...outputs)));
     }
 }
-/** @nocollapse */ AdvChatbotHelper.ɵfac = function AdvChatbotHelper_Factory(t) { return new (t || AdvChatbotHelper)(i0.ɵɵinject(DOCUMENT), i0.ɵɵinject(i0.RendererFactory2), i0.ɵɵinject(ADV_CHATBOT_CONFIG, 8), i0.ɵɵinject(i0.Injector)); };
-/** @nocollapse */ AdvChatbotHelper.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: AdvChatbotHelper, factory: AdvChatbotHelper.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AdvChatbotHelper, [{
+/** @nocollapse */ AdvChatbotHelper.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdvChatbotHelper, deps: [{ token: DOCUMENT }, { token: i0.RendererFactory2 }, { token: ADV_CHATBOT_CONFIG, optional: true }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable });
+/** @nocollapse */ AdvChatbotHelper.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdvChatbotHelper });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdvChatbotHelper, decorators: [{
             type: Injectable
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: undefined, decorators: [{
                         type: Inject,
                         args: [DOCUMENT]
@@ -136,8 +135,7 @@ class AdvChatbotHelper {
                         type: Inject,
                         args: [ADV_CHATBOT_CONFIG]
                     }] }, { type: i0.Injector }];
-    }, null);
-})();
+    } });
 
 class LsnAdvChatbotModule {
     static forRoot(config = {}) {
@@ -150,22 +148,19 @@ class LsnAdvChatbotModule {
         };
     }
 }
-/** @nocollapse */ LsnAdvChatbotModule.ɵfac = function LsnAdvChatbotModule_Factory(t) { return new (t || LsnAdvChatbotModule)(); };
-/** @nocollapse */ LsnAdvChatbotModule.ɵmod = /** @pureOrBreakMyCode */ i0.ɵɵdefineNgModule({ type: LsnAdvChatbotModule });
-/** @nocollapse */ LsnAdvChatbotModule.ɵinj = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjector({ imports: [[
+/** @nocollapse */ LsnAdvChatbotModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnAdvChatbotModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnAdvChatbotModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnAdvChatbotModule, imports: [CommonModule] });
+/** @nocollapse */ LsnAdvChatbotModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnAdvChatbotModule, imports: [[
             CommonModule
         ]] });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LsnAdvChatbotModule, [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnAdvChatbotModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
                         CommonModule
                     ]
                 }]
-        }], null, null);
-})();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(LsnAdvChatbotModule, { imports: [CommonModule] }); })();
+        }] });
 
 class AbstractAdvChatbotComponent {
     constructor(chatBotHelper, cd) {
@@ -204,16 +199,14 @@ class AbstractAdvChatbotComponent {
         (_a = this.eventsSub) === null || _a === void 0 ? void 0 : _a.unsubscribe();
     }
 }
-/** @nocollapse */ AbstractAdvChatbotComponent.ɵfac = function AbstractAdvChatbotComponent_Factory(t) { return new (t || AbstractAdvChatbotComponent)(i0.ɵɵdirectiveInject(AdvChatbotHelper), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef)); };
-/** @nocollapse */ AbstractAdvChatbotComponent.ɵcmp = /** @pureOrBreakMyCode */ i0.ɵɵdefineComponent({ type: AbstractAdvChatbotComponent, selectors: [["ng-component"]], decls: 0, vars: 0, template: function AbstractAdvChatbotComponent_Template(rf, ctx) { }, encapsulation: 2 });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AbstractAdvChatbotComponent, [{
+/** @nocollapse */ AbstractAdvChatbotComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AbstractAdvChatbotComponent, deps: [{ token: AdvChatbotHelper }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
+/** @nocollapse */ AbstractAdvChatbotComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.3.11", type: AbstractAdvChatbotComponent, selector: "ng-component", ngImport: i0, template: '', isInline: true });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AbstractAdvChatbotComponent, decorators: [{
             type: Component,
             args: [{
                     template: ''
                 }]
-        }], function () { return [{ type: AdvChatbotHelper }, { type: i0.ChangeDetectorRef }]; }, null);
-})();
+        }], ctorParameters: function () { return [{ type: AdvChatbotHelper }, { type: i0.ChangeDetectorRef }]; } });
 
 /**
  * Generated bundle index. Do not edit.

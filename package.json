@@ -1,6 +1,6 @@
 {
   "name": "@lsnova/angularmodules",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "peerDependencies": {
     "@angular/common": "~13.3.11",
     "@angular/core": "~13.3.11"
@@ -35,8 +35,5 @@
   "sideEffects": false,
   "dependencies": {
     "tslib": "^2.3.0"
-  },
-  "scripts": {
-    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy in full compilation mode. This is not allowed.\\nPlease delete and rebuild the package with Ivy partial compilation mode, before attempting to publish.\\n')\" && exit 1"
   }
 }

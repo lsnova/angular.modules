@@ -50,11 +50,11 @@ class NumericConfigService {
         return { ...this.getDefaultConfig(), ...this.config.custom[key] } || this.getDefaultConfig();
     }
 }
-/** @nocollapse */ NumericConfigService.ɵfac = function NumericConfigService_Factory(t) { return new (t || NumericConfigService)(i0.ɵɵinject(CustomNumericConfig)); };
-/** @nocollapse */ NumericConfigService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: NumericConfigService, factory: NumericConfigService.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(NumericConfigService, [{
-        type: Injectable
-    }], function () { return [{ type: CustomNumericConfig }]; }, null); })();
+/** @nocollapse */ NumericConfigService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: NumericConfigService, deps: [{ token: CustomNumericConfig }], target: i0.ɵɵFactoryTarget.Injectable });
+/** @nocollapse */ NumericConfigService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: NumericConfigService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: NumericConfigService, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () { return [{ type: CustomNumericConfig }]; } });
 
 const CUSTOM_SELECT_VALUE_ACCESSOR = {
     provide: NG_VALUE_ACCESSOR,
@@ -378,33 +378,31 @@ class NumericDirective {
         return !decimals || ('' + decimals).length !== this.config.precision;
     }
 }
-/** @nocollapse */ NumericDirective.ɵfac = function NumericDirective_Factory(t) { return new (t || NumericDirective)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(NumericConfigService)); };
-/** @nocollapse */ NumericDirective.ɵdir = /** @pureOrBreakMyCode */ i0.ɵɵdefineDirective({ type: NumericDirective, selectors: [["", "lsnNumeric", ""]], hostBindings: function NumericDirective_HostBindings(rf, ctx) { if (rf & 1) {
-        i0.ɵɵlistener("input", function NumericDirective_input_HostBindingHandler($event) { return ctx.inputHandler($event); })("focus", function NumericDirective_focus_HostBindingHandler() { return ctx.focusHandler(); })("blur", function NumericDirective_blur_HostBindingHandler() { return ctx.blurHandler(); })("keydown", function NumericDirective_keydown_HostBindingHandler($event) { return ctx.keyDownHandler($event); });
-    } }, inputs: { lsnNumeric: "lsnNumeric" }, outputs: { lsnNumericMessages: "lsnNumericMessages" }, features: [i0.ɵɵProvidersFeature([CUSTOM_SELECT_VALUE_ACCESSOR]), i0.ɵɵNgOnChangesFeature] });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(NumericDirective, [{
-        type: Directive,
-        args: [{
-                selector: '[lsnNumeric]',
-                providers: [CUSTOM_SELECT_VALUE_ACCESSOR]
-            }]
-    }], function () { return [{ type: i0.ElementRef }, { type: NumericConfigService }]; }, { lsnNumeric: [{
-            type: Input
-        }], lsnNumericMessages: [{
-            type: Output
-        }], inputHandler: [{
-            type: HostListener,
-            args: ['input', ['$event']]
-        }], focusHandler: [{
-            type: HostListener,
-            args: ['focus', []]
-        }], blurHandler: [{
-            type: HostListener,
-            args: ['blur', []]
-        }], keyDownHandler: [{
-            type: HostListener,
-            args: ['keydown', ['$event']]
-        }] }); })();
+/** @nocollapse */ NumericDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: NumericDirective, deps: [{ token: i0.ElementRef }, { token: NumericConfigService }], target: i0.ɵɵFactoryTarget.Directive });
+/** @nocollapse */ NumericDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.11", type: NumericDirective, selector: "[lsnNumeric]", inputs: { lsnNumeric: "lsnNumeric" }, outputs: { lsnNumericMessages: "lsnNumericMessages" }, host: { listeners: { "input": "inputHandler($event)", "focus": "focusHandler()", "blur": "blurHandler()", "keydown": "keyDownHandler($event)" } }, providers: [CUSTOM_SELECT_VALUE_ACCESSOR], usesOnChanges: true, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: NumericDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: '[lsnNumeric]',
+                    providers: [CUSTOM_SELECT_VALUE_ACCESSOR]
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: NumericConfigService }]; }, propDecorators: { lsnNumeric: [{
+                type: Input
+            }], lsnNumericMessages: [{
+                type: Output
+            }], inputHandler: [{
+                type: HostListener,
+                args: ['input', ['$event']]
+            }], focusHandler: [{
+                type: HostListener,
+                args: ['focus', []]
+            }], blurHandler: [{
+                type: HostListener,
+                args: ['blur', []]
+            }], keyDownHandler: [{
+                type: HostListener,
+                args: ['keydown', ['$event']]
+            }] } });
 
 class LsnNumericModule {
     static forRoot(config) {
@@ -417,21 +415,20 @@ class LsnNumericModule {
         };
     }
 }
-/** @nocollapse */ LsnNumericModule.ɵfac = function LsnNumericModule_Factory(t) { return new (t || LsnNumericModule)(); };
-/** @nocollapse */ LsnNumericModule.ɵmod = /** @pureOrBreakMyCode */ i0.ɵɵdefineNgModule({ type: LsnNumericModule });
-/** @nocollapse */ LsnNumericModule.ɵinj = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjector({});
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LsnNumericModule, [{
-        type: NgModule,
-        args: [{
-                declarations: [
-                    NumericDirective,
-                ],
-                exports: [
-                    NumericDirective,
-                ]
-            }]
-    }], null, null); })();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(LsnNumericModule, { declarations: [NumericDirective], exports: [NumericDirective] }); })();
+/** @nocollapse */ LsnNumericModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumericModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnNumericModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumericModule, declarations: [NumericDirective], exports: [NumericDirective] });
+/** @nocollapse */ LsnNumericModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumericModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumericModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [
+                        NumericDirective,
+                    ],
+                    exports: [
+                        NumericDirective,
+                    ]
+                }]
+        }] });
 
 class NumPadConfig {
     constructor() {
@@ -538,48 +535,45 @@ class NumPadDirective {
         }
     }
 }
-/** @nocollapse */ NumPadDirective.ɵfac = function NumPadDirective_Factory(t) { return new (t || NumPadDirective)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i1.NgControl, 8)); };
-/** @nocollapse */ NumPadDirective.ɵdir = /** @pureOrBreakMyCode */ i0.ɵɵdefineDirective({ type: NumPadDirective, selectors: [["", "lsnNumPad", ""]], hostBindings: function NumPadDirective_HostBindings(rf, ctx) { if (rf & 1) {
-        i0.ɵɵlistener("input", function NumPadDirective_input_HostBindingHandler($event) { return ctx.inputHandler($event); })("blur", function NumPadDirective_blur_HostBindingHandler($event) { return ctx.blurHandler($event); })("keydown", function NumPadDirective_keydown_HostBindingHandler($event) { return ctx.keyDownHandler($event); });
-    } }, inputs: { lsnNumPad: "lsnNumPad" }, features: [i0.ɵɵNgOnChangesFeature] });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(NumPadDirective, [{
-        type: Directive,
-        args: [{
-                selector: '[lsnNumPad]'
-            }]
-    }], function () { return [{ type: i0.ElementRef }, { type: i1.NgControl, decorators: [{
-                type: Optional
-            }] }]; }, { lsnNumPad: [{
-            type: Input
-        }], inputHandler: [{
-            type: HostListener,
-            args: ['input', ['$event']]
-        }], blurHandler: [{
-            type: HostListener,
-            args: ['blur', ['$event']]
-        }], keyDownHandler: [{
-            type: HostListener,
-            args: ['keydown', ['$event']]
-        }] }); })();
+/** @nocollapse */ NumPadDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: NumPadDirective, deps: [{ token: i0.ElementRef }, { token: i1.NgControl, optional: true }], target: i0.ɵɵFactoryTarget.Directive });
+/** @nocollapse */ NumPadDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.11", type: NumPadDirective, selector: "[lsnNumPad]", inputs: { lsnNumPad: "lsnNumPad" }, host: { listeners: { "input": "inputHandler($event)", "blur": "blurHandler($event)", "keydown": "keyDownHandler($event)" } }, usesOnChanges: true, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: NumPadDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: '[lsnNumPad]'
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i1.NgControl, decorators: [{
+                    type: Optional
+                }] }]; }, propDecorators: { lsnNumPad: [{
+                type: Input
+            }], inputHandler: [{
+                type: HostListener,
+                args: ['input', ['$event']]
+            }], blurHandler: [{
+                type: HostListener,
+                args: ['blur', ['$event']]
+            }], keyDownHandler: [{
+                type: HostListener,
+                args: ['keydown', ['$event']]
+            }] } });
 
 class LsnNumpadModule {
 }
-/** @nocollapse */ LsnNumpadModule.ɵfac = function LsnNumpadModule_Factory(t) { return new (t || LsnNumpadModule)(); };
-/** @nocollapse */ LsnNumpadModule.ɵmod = /** @pureOrBreakMyCode */ i0.ɵɵdefineNgModule({ type: LsnNumpadModule });
-/** @nocollapse */ LsnNumpadModule.ɵinj = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjector({ imports: [[]] });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LsnNumpadModule, [{
-        type: NgModule,
-        args: [{
-                declarations: [
-                    NumPadDirective,
-                ],
-                imports: [],
-                exports: [
-                    NumPadDirective,
-                ]
-            }]
-    }], null, null); })();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(LsnNumpadModule, { declarations: [NumPadDirective], exports: [NumPadDirective] }); })();
+/** @nocollapse */ LsnNumpadModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumpadModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnNumpadModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumpadModule, declarations: [NumPadDirective], exports: [NumPadDirective] });
+/** @nocollapse */ LsnNumpadModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumpadModule, imports: [[]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumpadModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [
+                        NumPadDirective,
+                    ],
+                    imports: [],
+                    exports: [
+                        NumPadDirective,
+                    ]
+                }]
+        }] });
 
 class LatinToGreekDirective {
     constructor(model, el) {
@@ -635,39 +629,36 @@ class LatinToGreekDirective {
         this.setCaret(start, end);
     }
 }
-/** @nocollapse */ LatinToGreekDirective.ɵfac = function LatinToGreekDirective_Factory(t) { return new (t || LatinToGreekDirective)(i0.ɵɵdirectiveInject(i1.NgModel), i0.ɵɵdirectiveInject(i0.ElementRef)); };
-/** @nocollapse */ LatinToGreekDirective.ɵdir = /** @pureOrBreakMyCode */ i0.ɵɵdefineDirective({ type: LatinToGreekDirective, selectors: [["", "ngModel", "", "lsnLatinToGreek", ""]], hostBindings: function LatinToGreekDirective_HostBindings(rf, ctx) { if (rf & 1) {
-        i0.ɵɵlistener("ngModelChange", function LatinToGreekDirective_ngModelChange_HostBindingHandler($event) { return ctx.onInputChange($event); });
-    } }, features: [i0.ɵɵProvidersFeature([NgModel])] });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LatinToGreekDirective, [{
-        type: Directive,
-        args: [{
-                selector: '[ngModel][lsnLatinToGreek]',
-                providers: [NgModel]
-            }]
-    }], function () { return [{ type: i1.NgModel }, { type: i0.ElementRef }]; }, { onInputChange: [{
-            type: HostListener,
-            args: ['ngModelChange', ['$event']]
-        }] }); })();
+/** @nocollapse */ LatinToGreekDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LatinToGreekDirective, deps: [{ token: i1.NgModel }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+/** @nocollapse */ LatinToGreekDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.11", type: LatinToGreekDirective, selector: "[ngModel][lsnLatinToGreek]", host: { listeners: { "ngModelChange": "onInputChange($event)" } }, providers: [NgModel], ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LatinToGreekDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: '[ngModel][lsnLatinToGreek]',
+                    providers: [NgModel]
+                }]
+        }], ctorParameters: function () { return [{ type: i1.NgModel }, { type: i0.ElementRef }]; }, propDecorators: { onInputChange: [{
+                type: HostListener,
+                args: ['ngModelChange', ['$event']]
+            }] } });
 
 class LsnLatinToGreekModule {
 }
-/** @nocollapse */ LsnLatinToGreekModule.ɵfac = function LsnLatinToGreekModule_Factory(t) { return new (t || LsnLatinToGreekModule)(); };
-/** @nocollapse */ LsnLatinToGreekModule.ɵmod = /** @pureOrBreakMyCode */ i0.ɵɵdefineNgModule({ type: LsnLatinToGreekModule });
-/** @nocollapse */ LsnLatinToGreekModule.ɵinj = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjector({ imports: [[]] });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LsnLatinToGreekModule, [{
-        type: NgModule,
-        args: [{
-                declarations: [
-                    LatinToGreekDirective,
-                ],
-                imports: [],
-                exports: [
-                    LatinToGreekDirective,
-                ]
-            }]
-    }], null, null); })();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(LsnLatinToGreekModule, { declarations: [LatinToGreekDirective], exports: [LatinToGreekDirective] }); })();
+/** @nocollapse */ LsnLatinToGreekModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLatinToGreekModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnLatinToGreekModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLatinToGreekModule, declarations: [LatinToGreekDirective], exports: [LatinToGreekDirective] });
+/** @nocollapse */ LsnLatinToGreekModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLatinToGreekModule, imports: [[]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLatinToGreekModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [
+                        LatinToGreekDirective,
+                    ],
+                    imports: [],
+                    exports: [
+                        LatinToGreekDirective,
+                    ]
+                }]
+        }] });
 
 class CapitalizeDirective {
     constructor(model) {
@@ -677,39 +668,36 @@ class CapitalizeDirective {
         this.model.valueAccessor.writeValue($event.toLocaleUpperCase());
     }
 }
-/** @nocollapse */ CapitalizeDirective.ɵfac = function CapitalizeDirective_Factory(t) { return new (t || CapitalizeDirective)(i0.ɵɵdirectiveInject(i1.NgModel)); };
-/** @nocollapse */ CapitalizeDirective.ɵdir = /** @pureOrBreakMyCode */ i0.ɵɵdefineDirective({ type: CapitalizeDirective, selectors: [["", "ngModel", "", "lsnCapitalize", ""]], hostBindings: function CapitalizeDirective_HostBindings(rf, ctx) { if (rf & 1) {
-        i0.ɵɵlistener("ngModelChange", function CapitalizeDirective_ngModelChange_HostBindingHandler($event) { return ctx.onInputChange($event); });
-    } }, features: [i0.ɵɵProvidersFeature([NgModel])] });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(CapitalizeDirective, [{
-        type: Directive,
-        args: [{
-                selector: '[ngModel][lsnCapitalize]',
-                providers: [NgModel]
-            }]
-    }], function () { return [{ type: i1.NgModel }]; }, { onInputChange: [{
-            type: HostListener,
-            args: ['ngModelChange', ['$event']]
-        }] }); })();
+/** @nocollapse */ CapitalizeDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: CapitalizeDirective, deps: [{ token: i1.NgModel }], target: i0.ɵɵFactoryTarget.Directive });
+/** @nocollapse */ CapitalizeDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.11", type: CapitalizeDirective, selector: "[ngModel][lsnCapitalize]", host: { listeners: { "ngModelChange": "onInputChange($event)" } }, providers: [NgModel], ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: CapitalizeDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: '[ngModel][lsnCapitalize]',
+                    providers: [NgModel]
+                }]
+        }], ctorParameters: function () { return [{ type: i1.NgModel }]; }, propDecorators: { onInputChange: [{
+                type: HostListener,
+                args: ['ngModelChange', ['$event']]
+            }] } });
 
 class LsnCapitalizeModule {
 }
-/** @nocollapse */ LsnCapitalizeModule.ɵfac = function LsnCapitalizeModule_Factory(t) { return new (t || LsnCapitalizeModule)(); };
-/** @nocollapse */ LsnCapitalizeModule.ɵmod = /** @pureOrBreakMyCode */ i0.ɵɵdefineNgModule({ type: LsnCapitalizeModule });
-/** @nocollapse */ LsnCapitalizeModule.ɵinj = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjector({ imports: [[]] });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LsnCapitalizeModule, [{
-        type: NgModule,
-        args: [{
-                declarations: [
-                    CapitalizeDirective,
-                ],
-                imports: [],
-                exports: [
-                    CapitalizeDirective,
-                ]
-            }]
-    }], null, null); })();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(LsnCapitalizeModule, { declarations: [CapitalizeDirective], exports: [CapitalizeDirective] }); })();
+/** @nocollapse */ LsnCapitalizeModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCapitalizeModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnCapitalizeModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCapitalizeModule, declarations: [CapitalizeDirective], exports: [CapitalizeDirective] });
+/** @nocollapse */ LsnCapitalizeModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCapitalizeModule, imports: [[]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCapitalizeModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [
+                        CapitalizeDirective,
+                    ],
+                    imports: [],
+                    exports: [
+                        CapitalizeDirective,
+                    ]
+                }]
+        }] });
 
 class ScrollSpyDirective {
     constructor(elementRef) {
@@ -780,97 +768,103 @@ class ScrollSpyDirective {
         this.subscriptions.forEach(sub => sub.unsubscribe());
     }
 }
-/** @nocollapse */ ScrollSpyDirective.ɵfac = function ScrollSpyDirective_Factory(t) { return new (t || ScrollSpyDirective)(i0.ɵɵdirectiveInject(i0.ElementRef)); };
-/** @nocollapse */ ScrollSpyDirective.ɵdir = /** @pureOrBreakMyCode */ i0.ɵɵdefineDirective({ type: ScrollSpyDirective, selectors: [["", "lsnScrollSpy", ""]], hostBindings: function ScrollSpyDirective_HostBindings(rf, ctx) { if (rf & 1) {
-        i0.ɵɵlistener("scroll", function ScrollSpyDirective_scroll_HostBindingHandler() { return ctx.onScroll(); })("resize", function ScrollSpyDirective_resize_HostBindingHandler() { return ctx.onResize(); }, false, i0.ɵɵresolveWindow);
-    } }, inputs: { spySelector: "spySelector", scrollToSection: "scrollToSection" }, outputs: { spySectionChange: "spySectionChange" } });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ScrollSpyDirective, [{
-        type: Directive,
-        args: [{
-                selector: '[lsnScrollSpy]'
-            }]
-    }], function () { return [{ type: i0.ElementRef }]; }, { spySelector: [{
-            type: Input
-        }], scrollToSection: [{
-            type: Input
-        }], spySectionChange: [{
-            type: Output
-        }], onScroll: [{
-            type: HostListener,
-            args: ['scroll']
-        }], onResize: [{
-            type: HostListener,
-            args: ['window:resize']
-        }] }); })();
+/** @nocollapse */ ScrollSpyDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: ScrollSpyDirective, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+/** @nocollapse */ ScrollSpyDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.11", type: ScrollSpyDirective, selector: "[lsnScrollSpy]", inputs: { spySelector: "spySelector", scrollToSection: "scrollToSection" }, outputs: { spySectionChange: "spySectionChange" }, host: { listeners: { "scroll": "onScroll()", "window:resize": "onResize()" } }, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: ScrollSpyDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: '[lsnScrollSpy]'
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { spySelector: [{
+                type: Input
+            }], scrollToSection: [{
+                type: Input
+            }], spySectionChange: [{
+                type: Output
+            }], onScroll: [{
+                type: HostListener,
+                args: ['scroll']
+            }], onResize: [{
+                type: HostListener,
+                args: ['window:resize']
+            }] } });
 
 class LsnScrollSpyModule {
 }
-/** @nocollapse */ LsnScrollSpyModule.ɵfac = function LsnScrollSpyModule_Factory(t) { return new (t || LsnScrollSpyModule)(); };
-/** @nocollapse */ LsnScrollSpyModule.ɵmod = /** @pureOrBreakMyCode */ i0.ɵɵdefineNgModule({ type: LsnScrollSpyModule });
-/** @nocollapse */ LsnScrollSpyModule.ɵinj = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjector({ imports: [[]] });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LsnScrollSpyModule, [{
-        type: NgModule,
-        args: [{
-                declarations: [
-                    ScrollSpyDirective,
-                ],
-                imports: [],
-                exports: [
-                    ScrollSpyDirective,
-                ]
-            }]
-    }], null, null); })();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(LsnScrollSpyModule, { declarations: [ScrollSpyDirective], exports: [ScrollSpyDirective] }); })();
+/** @nocollapse */ LsnScrollSpyModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnScrollSpyModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnScrollSpyModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnScrollSpyModule, declarations: [ScrollSpyDirective], exports: [ScrollSpyDirective] });
+/** @nocollapse */ LsnScrollSpyModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnScrollSpyModule, imports: [[]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnScrollSpyModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [
+                        ScrollSpyDirective,
+                    ],
+                    imports: [],
+                    exports: [
+                        ScrollSpyDirective,
+                    ]
+                }]
+        }] });
 
 class LsnCookieModule {
 }
-/** @nocollapse */ LsnCookieModule.ɵfac = function LsnCookieModule_Factory(t) { return new (t || LsnCookieModule)(); };
-/** @nocollapse */ LsnCookieModule.ɵmod = /** @pureOrBreakMyCode */ i0.ɵɵdefineNgModule({ type: LsnCookieModule });
-/** @nocollapse */ LsnCookieModule.ɵinj = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjector({ imports: [[
+/** @nocollapse */ LsnCookieModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnCookieModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieModule, imports: [CommonModule] });
+/** @nocollapse */ LsnCookieModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieModule, imports: [[
             CommonModule
         ]] });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LsnCookieModule, [{
-        type: NgModule,
-        args: [{
-                declarations: [],
-                imports: [
-                    CommonModule
-                ]
-            }]
-    }], null, null); })();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(LsnCookieModule, { imports: [CommonModule] }); })();
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [],
+                    imports: [
+                        CommonModule
+                    ]
+                }]
+        }] });
 
 function lsnCrossTabServiceFactory(lsnCrossTabService) {
     return () => lsnCrossTabService.run();
 }
 class LsnCrossTabModule {
 }
-/** @nocollapse */ LsnCrossTabModule.ɵfac = function LsnCrossTabModule_Factory(t) { return new (t || LsnCrossTabModule)(); };
-/** @nocollapse */ LsnCrossTabModule.ɵmod = /** @pureOrBreakMyCode */ i0.ɵɵdefineNgModule({ type: LsnCrossTabModule });
-/** @nocollapse */ LsnCrossTabModule.ɵinj = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjector({ imports: [[
+/** @nocollapse */ LsnCrossTabModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnCrossTabModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabModule, imports: [CommonModule,
+        LsnCookieModule], exports: [LsnCookieModule] });
+/** @nocollapse */ LsnCrossTabModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabModule, imports: [[
             CommonModule,
             LsnCookieModule
         ], LsnCookieModule] });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LsnCrossTabModule, [{
-        type: NgModule,
-        args: [{
-                imports: [
-                    CommonModule,
-                    LsnCookieModule
-                ],
-                exports: [
-                    LsnCookieModule
-                ]
-            }]
-    }], null, null); })();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(LsnCrossTabModule, { imports: [CommonModule,
-        LsnCookieModule], exports: [LsnCookieModule] }); })();
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    imports: [
+                        CommonModule,
+                        LsnCookieModule
+                    ],
+                    exports: [
+                        LsnCookieModule
+                    ]
+                }]
+        }] });
 
 class LsnLibsModule {
 }
-/** @nocollapse */ LsnLibsModule.ɵfac = function LsnLibsModule_Factory(t) { return new (t || LsnLibsModule)(); };
-/** @nocollapse */ LsnLibsModule.ɵmod = /** @pureOrBreakMyCode */ i0.ɵɵdefineNgModule({ type: LsnLibsModule });
-/** @nocollapse */ LsnLibsModule.ɵinj = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjector({ imports: [[
+/** @nocollapse */ LsnLibsModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLibsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnLibsModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLibsModule, imports: [FormsModule,
+        LsnCapitalizeModule,
+        LsnLatinToGreekModule, LsnNumericModule, LsnNumpadModule,
+        LsnCookieModule,
+        LsnCrossTabModule,
+        LsnScrollSpyModule], exports: [LsnCapitalizeModule,
+        LsnLatinToGreekModule,
+        LsnNumericModule,
+        LsnNumpadModule,
+        LsnCookieModule,
+        LsnCrossTabModule,
+        LsnScrollSpyModule] });
+/** @nocollapse */ LsnLibsModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLibsModule, imports: [[
             FormsModule,
             LsnCapitalizeModule,
             LsnLatinToGreekModule,
@@ -898,55 +892,43 @@ class LsnLibsModule {
         LsnCookieModule,
         LsnCrossTabModule,
         LsnScrollSpyModule] });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LsnLibsModule, [{
-        type: NgModule,
-        args: [{
-                declarations: [],
-                imports: [
-                    FormsModule,
-                    LsnCapitalizeModule,
-                    LsnLatinToGreekModule,
-                    LsnNumericModule.forRoot({
-                        default: {
-                            decimals: '.',
-                            precision: 4,
-                        },
-                        custom: {
-                            currency: {
-                                decimals: ',',
-                                thousands: ' ',
-                                precision: 2,
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLibsModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [],
+                    imports: [
+                        FormsModule,
+                        LsnCapitalizeModule,
+                        LsnLatinToGreekModule,
+                        LsnNumericModule.forRoot({
+                            default: {
+                                decimals: '.',
+                                precision: 4,
+                            },
+                            custom: {
+                                currency: {
+                                    decimals: ',',
+                                    thousands: ' ',
+                                    precision: 2,
+                                }
                             }
-                        }
-                    }),
-                    LsnNumpadModule,
-                    LsnCookieModule,
-                    LsnCrossTabModule,
-                    LsnScrollSpyModule
-                ],
-                exports: [
-                    LsnCapitalizeModule,
-                    LsnLatinToGreekModule,
-                    LsnNumericModule,
-                    LsnNumpadModule,
-                    LsnCookieModule,
-                    LsnCrossTabModule,
-                    LsnScrollSpyModule
-                ]
-            }]
-    }], null, null); })();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(LsnLibsModule, { imports: [FormsModule,
-        LsnCapitalizeModule,
-        LsnLatinToGreekModule, LsnNumericModule, LsnNumpadModule,
-        LsnCookieModule,
-        LsnCrossTabModule,
-        LsnScrollSpyModule], exports: [LsnCapitalizeModule,
-        LsnLatinToGreekModule,
-        LsnNumericModule,
-        LsnNumpadModule,
-        LsnCookieModule,
-        LsnCrossTabModule,
-        LsnScrollSpyModule] }); })();
+                        }),
+                        LsnNumpadModule,
+                        LsnCookieModule,
+                        LsnCrossTabModule,
+                        LsnScrollSpyModule
+                    ],
+                    exports: [
+                        LsnCapitalizeModule,
+                        LsnLatinToGreekModule,
+                        LsnNumericModule,
+                        LsnNumpadModule,
+                        LsnCookieModule,
+                        LsnCrossTabModule,
+                        LsnScrollSpyModule
+                    ]
+                }]
+        }] });
 
 class LsnCrossTabConfig {
     constructor({ cookieCleanFreq = null, cookieReadFreq = null, msgTtl = null, rootDomain = null, crossTabCookieName = null } = {}) {
@@ -1086,20 +1068,20 @@ class LsnCookieService {
         }
     }
 }
-/** @nocollapse */ LsnCookieService.ɵfac = function LsnCookieService_Factory(t) { return new (t || LsnCookieService)(i0.ɵɵinject(LSN_COOKIE_CONFIG), i0.ɵɵinject(DOCUMENT)); };
-/** @nocollapse */ LsnCookieService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: LsnCookieService, factory: LsnCookieService.ɵfac, providedIn: 'root' });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LsnCookieService, [{
-        type: Injectable,
-        args: [{
-                providedIn: 'root'
-            }]
-    }], function () { return [{ type: LsnCookieConfig, decorators: [{
-                type: Inject,
-                args: [LSN_COOKIE_CONFIG]
-            }] }, { type: undefined, decorators: [{
-                type: Inject,
-                args: [DOCUMENT]
-            }] }]; }, null); })();
+/** @nocollapse */ LsnCookieService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieService, deps: [{ token: LSN_COOKIE_CONFIG }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable });
+/** @nocollapse */ LsnCookieService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieService, decorators: [{
+            type: Injectable,
+            args: [{
+                    providedIn: 'root'
+                }]
+        }], ctorParameters: function () { return [{ type: LsnCookieConfig, decorators: [{
+                    type: Inject,
+                    args: [LSN_COOKIE_CONFIG]
+                }] }, { type: undefined, decorators: [{
+                    type: Inject,
+                    args: [DOCUMENT]
+                }] }]; } });
 
 class LsnCrossTabService {
     constructor(lsnCookieService, crossTabConfig) {
@@ -1281,19 +1263,19 @@ class LsnCrossTabService {
         return (cookieMessage) => timestamp - cookieMessage.created <= msgTtl;
     }
 }
-/** @nocollapse */ LsnCrossTabService.ɵfac = function LsnCrossTabService_Factory(t) { return new (t || LsnCrossTabService)(i0.ɵɵinject(LsnCookieService), i0.ɵɵinject(LSN_CROSS_TAB_CONFIG, 8)); };
-/** @nocollapse */ LsnCrossTabService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: LsnCrossTabService, factory: LsnCrossTabService.ɵfac, providedIn: 'root' });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LsnCrossTabService, [{
-        type: Injectable,
-        args: [{
-                providedIn: 'root'
-            }]
-    }], function () { return [{ type: LsnCookieService }, { type: LsnCrossTabConfig, decorators: [{
-                type: Optional
-            }, {
-                type: Inject,
-                args: [LSN_CROSS_TAB_CONFIG]
-            }] }]; }, null); })();
+/** @nocollapse */ LsnCrossTabService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabService, deps: [{ token: LsnCookieService }, { token: LSN_CROSS_TAB_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable });
+/** @nocollapse */ LsnCrossTabService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabService, decorators: [{
+            type: Injectable,
+            args: [{
+                    providedIn: 'root'
+                }]
+        }], ctorParameters: function () { return [{ type: LsnCookieService }, { type: LsnCrossTabConfig, decorators: [{
+                    type: Optional
+                }, {
+                    type: Inject,
+                    args: [LSN_CROSS_TAB_CONFIG]
+                }] }]; } });
 
 /*
  * Public API Surface of lsn-libs
