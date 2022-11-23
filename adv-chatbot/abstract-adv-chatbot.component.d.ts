@@ -17,5 +17,5 @@ export declare abstract class AbstractAdvChatbotComponent implements OnInit, OnD
     protected handleEvent(event: AdvChatbotEvent): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<AbstractAdvChatbotComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<AbstractAdvChatbotComponent, "ng-component", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<AbstractAdvChatbotComponent, "ng-component", never, {}, {}, never, never, false>;
 }

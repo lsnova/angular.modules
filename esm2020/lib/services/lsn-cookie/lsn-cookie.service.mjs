@@ -101,9 +101,9 @@ export class LsnCookieService {
         }
     }
 }
-/** @nocollapse */ LsnCookieService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieService, deps: [{ token: LSN_COOKIE_CONFIG }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable });
-/** @nocollapse */ LsnCookieService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieService, decorators: [{
+/** @nocollapse */ LsnCookieService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: LsnCookieService, deps: [{ token: LSN_COOKIE_CONFIG }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable });
+/** @nocollapse */ LsnCookieService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: LsnCookieService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: LsnCookieService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'

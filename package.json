@@ -1,22 +1,22 @@
 {
   "name": "@lsnova/angularmodules",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "peerDependencies": {
-    "@angular/common": "~13.3.11",
-    "@angular/core": "~13.3.11"
+    "@angular/common": "~14.2.0",
+    "@angular/core": "~14.2.0"
   },
   "module": "fesm2015/lsnova-angularmodules.mjs",
   "es2020": "fesm2020/lsnova-angularmodules.mjs",
   "esm2020": "esm2020/lsnova-angularmodules.mjs",
   "fesm2020": "fesm2020/lsnova-angularmodules.mjs",
   "fesm2015": "fesm2015/lsnova-angularmodules.mjs",
-  "typings": "lsnova-angularmodules.d.ts",
+  "typings": "index.d.ts",
   "exports": {
     "./package.json": {
       "default": "./package.json"
     },
     ".": {
-      "types": "./lsnova-angularmodules.d.ts",
+      "types": "./index.d.ts",
       "esm2020": "./esm2020/lsnova-angularmodules.mjs",
       "es2020": "./fesm2020/lsnova-angularmodules.mjs",
       "es2015": "./fesm2015/lsnova-angularmodules.mjs",
@@ -24,7 +24,7 @@
       "default": "./fesm2020/lsnova-angularmodules.mjs"
     },
     "./adv-chatbot": {
-      "types": "./adv-chatbot/lsnova-angularmodules-adv-chatbot.d.ts",
+      "types": "./adv-chatbot/index.d.ts",
       "esm2020": "./esm2020/adv-chatbot/lsnova-angularmodules-adv-chatbot.mjs",
       "es2020": "./fesm2020/lsnova-angularmodules-adv-chatbot.mjs",
       "es2015": "./fesm2015/lsnova-angularmodules-adv-chatbot.mjs",

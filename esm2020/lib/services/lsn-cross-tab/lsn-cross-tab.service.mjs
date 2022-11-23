@@ -186,9 +186,9 @@ export class LsnCrossTabService {
         return (cookieMessage) => timestamp - cookieMessage.created <= msgTtl;
     }
 }
-/** @nocollapse */ LsnCrossTabService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabService, deps: [{ token: i1.LsnCookieService }, { token: LSN_CROSS_TAB_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable });
-/** @nocollapse */ LsnCrossTabService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabService, decorators: [{
+/** @nocollapse */ LsnCrossTabService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: LsnCrossTabService, deps: [{ token: i1.LsnCookieService }, { token: LSN_CROSS_TAB_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable });
+/** @nocollapse */ LsnCrossTabService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: LsnCrossTabService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: LsnCrossTabService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'

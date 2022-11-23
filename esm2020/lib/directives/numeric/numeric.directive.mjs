@@ -326,9 +326,9 @@ export class NumericDirective {
         return !decimals || ('' + decimals).length !== this.config.precision;
     }
 }
-/** @nocollapse */ NumericDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: NumericDirective, deps: [{ token: i0.ElementRef }, { token: i1.NumericConfigService }], target: i0.ɵɵFactoryTarget.Directive });
-/** @nocollapse */ NumericDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.11", type: NumericDirective, selector: "[lsnNumeric]", inputs: { lsnNumeric: "lsnNumeric" }, outputs: { lsnNumericMessages: "lsnNumericMessages" }, host: { listeners: { "input": "inputHandler($event)", "focus": "focusHandler()", "blur": "blurHandler()", "keydown": "keyDownHandler($event)" } }, providers: [CUSTOM_SELECT_VALUE_ACCESSOR], usesOnChanges: true, ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: NumericDirective, decorators: [{
+/** @nocollapse */ NumericDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: NumericDirective, deps: [{ token: i0.ElementRef }, { token: i1.NumericConfigService }], target: i0.ɵɵFactoryTarget.Directive });
+/** @nocollapse */ NumericDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.2.12", type: NumericDirective, selector: "[lsnNumeric]", inputs: { lsnNumeric: "lsnNumeric" }, outputs: { lsnNumericMessages: "lsnNumericMessages" }, host: { listeners: { "input": "inputHandler($event)", "focus": "focusHandler()", "blur": "blurHandler()", "keydown": "keyDownHandler($event)" } }, providers: [CUSTOM_SELECT_VALUE_ACCESSOR], usesOnChanges: true, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: NumericDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[lsnNumeric]',
