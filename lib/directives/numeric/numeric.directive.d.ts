@@ -48,5 +48,5 @@ export declare class NumericDirective implements OnChanges, ControlValueAccessor
     protected defaultDecimals(value?: string | number, precision?: number): string;
     protected shouldAddDefaultDecimals(decimals: string | number | undefined): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<NumericDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<NumericDirective, "[lsnNumeric]", never, { "lsnNumeric": "lsnNumeric"; }, { "lsnNumericMessages": "lsnNumericMessages"; }, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<NumericDirective, "[lsnNumeric]", never, { "lsnNumeric": "lsnNumeric"; }, { "lsnNumericMessages": "lsnNumericMessages"; }, never, never, false>;
 }

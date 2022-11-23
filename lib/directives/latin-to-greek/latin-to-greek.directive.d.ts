@@ -10,5 +10,5 @@ export declare class LatinToGreekDirective {
     private setCaret;
     onInputChange($event: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<LatinToGreekDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<LatinToGreekDirective, "[ngModel][lsnLatinToGreek]", never, {}, {}, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<LatinToGreekDirective, "[ngModel][lsnLatinToGreek]", never, {}, {}, never, never, false>;
 }
