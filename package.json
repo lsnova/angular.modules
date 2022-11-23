@@ -1,9 +1,9 @@
 {
   "name": "@lsnova/angularmodules",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "peerDependencies": {
-    "@angular/common": "~13.3.11",
-    "@angular/core": "~13.3.11"
+    "@angular/common": "~14.2.10",
+    "@angular/core": "~14.2.10"
   },
   "module": "fesm2015/lsnova-angularmodules.mjs",
   "es2020": "fesm2020/lsnova-angularmodules.mjs",
