@@ -57,5 +57,13 @@
         [(ngModel)]="numeric8"
       /> model value: {{numeric8}}
     </section>
+    <section>
+      <p>React to config changes</p>
+      <input
+        [lsnNumeric]="currentDynamicConfig"
+        [(ngModel)]="numeric9"
+      /> model value: {{numeric9}}
+      <p>current config: {{currentDynamicConfig | json}} <button (click)="toggleDynamicConfig()">toggle</button></p>
+    </section>
   </mat-card-content>
 </mat-card>
