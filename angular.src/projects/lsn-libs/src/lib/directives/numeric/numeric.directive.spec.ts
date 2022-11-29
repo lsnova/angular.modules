@@ -65,7 +65,7 @@ describe('NumericDirective', () => {
         template: `<input [lsnNumeric]="config" [formControl]="control"/>`
       })
       class TestReactiveComponent {
-        control = new FormControl<number | null>(null);
+        control = new FormControl(null);
         config: NumericConfig = {};
       }
 
