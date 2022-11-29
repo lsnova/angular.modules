@@ -1,4 +1,15 @@
-import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges, Output} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
+  HostListener,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import * as keyboard from '@angular/cdk/keycodes';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {NumericConfig, NumericConfigService} from './numeric-config.service';
@@ -13,12 +24,27 @@ export enum NumericMessage {
   ADDITIONAL_DECIMAL_SEPARATOR
 }
 
+const initialConfigValue: NumericConfig = {};
+
 @Directive({
   selector: '[lsnNumeric]',
   providers: [CUSTOM_SELECT_VALUE_ACCESSOR]
 })
-export class NumericDirective implements OnChanges, ControlValueAccessor {
-  @Input() lsnNumeric: NumericConfig = {};
+export class NumericDirective implements ControlValueAccessor {
+  protected _lsnNumeric: NumericConfig = initialConfigValue;
+  @Input()
+  set lsnNumeric(newValue: NumericConfig) {
+    const firstChange = this._lsnNumeric === initialConfigValue;
+    const shouldParseConfig = !firstChange && !this.isConfigEqual(this._lsnNumeric, newValue);
+    this._lsnNumeric = newValue;
+    this.setConfig();
+    if (shouldParseConfig) {
+      this.blurHandler();
+    }
+  }
+  get lsnNumeric() {
+    return this._lsnNumeric;
+  }
   @Output() lsnNumericMessages = new EventEmitter<NumericMessage>();
   element: ElementRef;
   protected config: NumericConfig;
@@ -29,13 +55,9 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
 
   constructor(
     private el: ElementRef,
-    private configService: NumericConfigService
+    private configService: NumericConfigService,
   ) {
     this.element = el;
-    this.setConfig();
-  }
-
-  ngOnChanges() {
     this.setConfig();
   }
 
@@ -383,5 +405,22 @@ export class NumericDirective implements OnChanges, ControlValueAccessor {
 
   protected shouldAddDefaultDecimals(decimals: string | number | undefined): boolean {
     return !decimals || ('' + decimals).length !== this.config.precision;
+  }
+
+  isConfigEqual(config1?: NumericConfig, config2?: NumericConfig): boolean {
+    if ((config1 && !config2) || (!config1 && config2)) {
+      return false;
+    } else if (!config1 && !config2) {
+      return true;
+    } else if (Object.keys(config1).length === Object.keys(config2).length) {
+      for (const key1 in config1) {
+        if (config1.hasOwnProperty(key1) && config1[key1] !== config2[key1]) {
+          return false;
+        }
+      }
+      return true;
+    } else {
+      return false;
+    }
   }
 }
