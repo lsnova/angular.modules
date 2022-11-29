@@ -56,9 +56,9 @@ export class LatinToGreekDirective {
         this.setCaret(start, end);
     }
 }
-/** @nocollapse */ LatinToGreekDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LatinToGreekDirective, deps: [{ token: i1.NgModel }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-/** @nocollapse */ LatinToGreekDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.11", type: LatinToGreekDirective, selector: "[ngModel][lsnLatinToGreek]", host: { listeners: { "ngModelChange": "onInputChange($event)" } }, providers: [NgModel], ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LatinToGreekDirective, decorators: [{
+/** @nocollapse */ LatinToGreekDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LatinToGreekDirective, deps: [{ token: i1.NgModel }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+/** @nocollapse */ LatinToGreekDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.12", type: LatinToGreekDirective, selector: "[ngModel][lsnLatinToGreek]", host: { listeners: { "ngModelChange": "onInputChange($event)" } }, providers: [NgModel], ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LatinToGreekDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[ngModel][lsnLatinToGreek]',

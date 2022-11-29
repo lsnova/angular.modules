@@ -3,10 +3,10 @@ import { ScrollSpyDirective } from './scroll-spy.directive';
 import * as i0 from "@angular/core";
 export class LsnScrollSpyModule {
 }
-/** @nocollapse */ LsnScrollSpyModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnScrollSpyModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-/** @nocollapse */ LsnScrollSpyModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnScrollSpyModule, declarations: [ScrollSpyDirective], exports: [ScrollSpyDirective] });
-/** @nocollapse */ LsnScrollSpyModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnScrollSpyModule, imports: [[]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnScrollSpyModule, decorators: [{
+/** @nocollapse */ LsnScrollSpyModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnScrollSpyModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnScrollSpyModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnScrollSpyModule, declarations: [ScrollSpyDirective], exports: [ScrollSpyDirective] });
+/** @nocollapse */ LsnScrollSpyModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnScrollSpyModule, imports: [[]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnScrollSpyModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [

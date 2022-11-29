@@ -14,12 +14,12 @@ export class LsnAdvChatbotModule {
         };
     }
 }
-/** @nocollapse */ LsnAdvChatbotModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnAdvChatbotModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-/** @nocollapse */ LsnAdvChatbotModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnAdvChatbotModule, imports: [CommonModule] });
-/** @nocollapse */ LsnAdvChatbotModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnAdvChatbotModule, imports: [[
+/** @nocollapse */ LsnAdvChatbotModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnAdvChatbotModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnAdvChatbotModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnAdvChatbotModule, imports: [CommonModule] });
+/** @nocollapse */ LsnAdvChatbotModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnAdvChatbotModule, imports: [[
             CommonModule
         ]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnAdvChatbotModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnAdvChatbotModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

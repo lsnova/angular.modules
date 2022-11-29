@@ -3,10 +3,10 @@ import { NumPadDirective } from './numpad.directive';
 import * as i0 from "@angular/core";
 export class LsnNumpadModule {
 }
-/** @nocollapse */ LsnNumpadModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumpadModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-/** @nocollapse */ LsnNumpadModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumpadModule, declarations: [NumPadDirective], exports: [NumPadDirective] });
-/** @nocollapse */ LsnNumpadModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumpadModule, imports: [[]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumpadModule, decorators: [{
+/** @nocollapse */ LsnNumpadModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnNumpadModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnNumpadModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnNumpadModule, declarations: [NumPadDirective], exports: [NumPadDirective] });
+/** @nocollapse */ LsnNumpadModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnNumpadModule, imports: [[]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnNumpadModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [

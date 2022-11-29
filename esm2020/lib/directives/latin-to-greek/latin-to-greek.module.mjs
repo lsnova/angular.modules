@@ -3,10 +3,10 @@ import { LatinToGreekDirective } from './latin-to-greek.directive';
 import * as i0 from "@angular/core";
 export class LsnLatinToGreekModule {
 }
-/** @nocollapse */ LsnLatinToGreekModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLatinToGreekModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-/** @nocollapse */ LsnLatinToGreekModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLatinToGreekModule, declarations: [LatinToGreekDirective], exports: [LatinToGreekDirective] });
-/** @nocollapse */ LsnLatinToGreekModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLatinToGreekModule, imports: [[]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLatinToGreekModule, decorators: [{
+/** @nocollapse */ LsnLatinToGreekModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnLatinToGreekModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnLatinToGreekModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnLatinToGreekModule, declarations: [LatinToGreekDirective], exports: [LatinToGreekDirective] });
+/** @nocollapse */ LsnLatinToGreekModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnLatinToGreekModule, imports: [[]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnLatinToGreekModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [

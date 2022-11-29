@@ -51,9 +51,9 @@ class NumericConfigService {
         return Object.assign(Object.assign({}, this.getDefaultConfig()), this.config.custom[key]) || this.getDefaultConfig();
     }
 }
-/** @nocollapse */ NumericConfigService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: NumericConfigService, deps: [{ token: CustomNumericConfig }], target: i0.ɵɵFactoryTarget.Injectable });
-/** @nocollapse */ NumericConfigService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: NumericConfigService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: NumericConfigService, decorators: [{
+/** @nocollapse */ NumericConfigService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: NumericConfigService, deps: [{ token: CustomNumericConfig }], target: i0.ɵɵFactoryTarget.Injectable });
+/** @nocollapse */ NumericConfigService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: NumericConfigService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: NumericConfigService, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return [{ type: CustomNumericConfig }]; } });
 
@@ -66,11 +66,12 @@ var NumericMessage;
 (function (NumericMessage) {
     NumericMessage[NumericMessage["ADDITIONAL_DECIMAL_SEPARATOR"] = 0] = "ADDITIONAL_DECIMAL_SEPARATOR";
 })(NumericMessage || (NumericMessage = {}));
+const initialConfigValue = {};
 class NumericDirective {
     constructor(el, configService) {
         this.el = el;
         this.configService = configService;
-        this.lsnNumeric = {};
+        this._lsnNumeric = initialConfigValue;
         this.lsnNumericMessages = new EventEmitter();
         this.onChange = (_) => {
         };
@@ -79,8 +80,17 @@ class NumericDirective {
         this.element = el;
         this.setConfig();
     }
-    ngOnChanges() {
+    set lsnNumeric(newValue) {
+        const firstChange = this._lsnNumeric === initialConfigValue;
+        const shouldParseConfig = !firstChange && !this.isConfigEqual(this._lsnNumeric, newValue);
+        this._lsnNumeric = newValue;
         this.setConfig();
+        if (shouldParseConfig) {
+            this.blurHandler();
+        }
+    }
+    get lsnNumeric() {
+        return this._lsnNumeric;
     }
     inputHandler($event) {
         if ($event.target.value === '-') {
@@ -380,10 +390,29 @@ class NumericDirective {
     shouldAddDefaultDecimals(decimals) {
         return !decimals || ('' + decimals).length !== this.config.precision;
     }
+    isConfigEqual(config1, config2) {
+        if ((config1 && !config2) || (!config1 && config2)) {
+            return false;
+        }
+        else if (!config1 && !config2) {
+            return true;
+        }
+        else if (Object.keys(config1).length === Object.keys(config2).length) {
+            for (const key1 in config1) {
+                if (config1.hasOwnProperty(key1) && config1[key1] !== config2[key1]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
-/** @nocollapse */ NumericDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: NumericDirective, deps: [{ token: i0.ElementRef }, { token: NumericConfigService }], target: i0.ɵɵFactoryTarget.Directive });
-/** @nocollapse */ NumericDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.11", type: NumericDirective, selector: "[lsnNumeric]", inputs: { lsnNumeric: "lsnNumeric" }, outputs: { lsnNumericMessages: "lsnNumericMessages" }, host: { listeners: { "input": "inputHandler($event)", "focus": "focusHandler()", "blur": "blurHandler()", "keydown": "keyDownHandler($event)" } }, providers: [CUSTOM_SELECT_VALUE_ACCESSOR], usesOnChanges: true, ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: NumericDirective, decorators: [{
+/** @nocollapse */ NumericDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: NumericDirective, deps: [{ token: i0.ElementRef }, { token: NumericConfigService }], target: i0.ɵɵFactoryTarget.Directive });
+/** @nocollapse */ NumericDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.12", type: NumericDirective, selector: "[lsnNumeric]", inputs: { lsnNumeric: "lsnNumeric" }, outputs: { lsnNumericMessages: "lsnNumericMessages" }, host: { listeners: { "input": "inputHandler($event)", "focus": "focusHandler()", "blur": "blurHandler()", "keydown": "keyDownHandler($event)" } }, providers: [CUSTOM_SELECT_VALUE_ACCESSOR], ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: NumericDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[lsnNumeric]',
@@ -418,10 +447,10 @@ class LsnNumericModule {
         };
     }
 }
-/** @nocollapse */ LsnNumericModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumericModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-/** @nocollapse */ LsnNumericModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumericModule, declarations: [NumericDirective], exports: [NumericDirective] });
-/** @nocollapse */ LsnNumericModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumericModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumericModule, decorators: [{
+/** @nocollapse */ LsnNumericModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnNumericModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnNumericModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnNumericModule, declarations: [NumericDirective], exports: [NumericDirective] });
+/** @nocollapse */ LsnNumericModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnNumericModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnNumericModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [
@@ -538,9 +567,9 @@ class NumPadDirective {
         }
     }
 }
-/** @nocollapse */ NumPadDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: NumPadDirective, deps: [{ token: i0.ElementRef }, { token: i1.NgControl, optional: true }], target: i0.ɵɵFactoryTarget.Directive });
-/** @nocollapse */ NumPadDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.11", type: NumPadDirective, selector: "[lsnNumPad]", inputs: { lsnNumPad: "lsnNumPad" }, host: { listeners: { "input": "inputHandler($event)", "blur": "blurHandler($event)", "keydown": "keyDownHandler($event)" } }, usesOnChanges: true, ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: NumPadDirective, decorators: [{
+/** @nocollapse */ NumPadDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: NumPadDirective, deps: [{ token: i0.ElementRef }, { token: i1.NgControl, optional: true }], target: i0.ɵɵFactoryTarget.Directive });
+/** @nocollapse */ NumPadDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.12", type: NumPadDirective, selector: "[lsnNumPad]", inputs: { lsnNumPad: "lsnNumPad" }, host: { listeners: { "input": "inputHandler($event)", "blur": "blurHandler($event)", "keydown": "keyDownHandler($event)" } }, usesOnChanges: true, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: NumPadDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[lsnNumPad]'
@@ -564,10 +593,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImpo
 
 class LsnNumpadModule {
 }
-/** @nocollapse */ LsnNumpadModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumpadModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-/** @nocollapse */ LsnNumpadModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumpadModule, declarations: [NumPadDirective], exports: [NumPadDirective] });
-/** @nocollapse */ LsnNumpadModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumpadModule, imports: [[]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnNumpadModule, decorators: [{
+/** @nocollapse */ LsnNumpadModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnNumpadModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnNumpadModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnNumpadModule, declarations: [NumPadDirective], exports: [NumPadDirective] });
+/** @nocollapse */ LsnNumpadModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnNumpadModule, imports: [[]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnNumpadModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [
@@ -634,9 +663,9 @@ class LatinToGreekDirective {
         this.setCaret(start, end);
     }
 }
-/** @nocollapse */ LatinToGreekDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LatinToGreekDirective, deps: [{ token: i1.NgModel }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-/** @nocollapse */ LatinToGreekDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.11", type: LatinToGreekDirective, selector: "[ngModel][lsnLatinToGreek]", host: { listeners: { "ngModelChange": "onInputChange($event)" } }, providers: [NgModel], ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LatinToGreekDirective, decorators: [{
+/** @nocollapse */ LatinToGreekDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LatinToGreekDirective, deps: [{ token: i1.NgModel }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+/** @nocollapse */ LatinToGreekDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.12", type: LatinToGreekDirective, selector: "[ngModel][lsnLatinToGreek]", host: { listeners: { "ngModelChange": "onInputChange($event)" } }, providers: [NgModel], ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LatinToGreekDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[ngModel][lsnLatinToGreek]',
@@ -649,10 +678,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImpo
 
 class LsnLatinToGreekModule {
 }
-/** @nocollapse */ LsnLatinToGreekModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLatinToGreekModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-/** @nocollapse */ LsnLatinToGreekModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLatinToGreekModule, declarations: [LatinToGreekDirective], exports: [LatinToGreekDirective] });
-/** @nocollapse */ LsnLatinToGreekModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLatinToGreekModule, imports: [[]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLatinToGreekModule, decorators: [{
+/** @nocollapse */ LsnLatinToGreekModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnLatinToGreekModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnLatinToGreekModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnLatinToGreekModule, declarations: [LatinToGreekDirective], exports: [LatinToGreekDirective] });
+/** @nocollapse */ LsnLatinToGreekModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnLatinToGreekModule, imports: [[]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnLatinToGreekModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [
@@ -673,9 +702,9 @@ class CapitalizeDirective {
         this.model.valueAccessor.writeValue($event.toLocaleUpperCase());
     }
 }
-/** @nocollapse */ CapitalizeDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: CapitalizeDirective, deps: [{ token: i1.NgModel }], target: i0.ɵɵFactoryTarget.Directive });
-/** @nocollapse */ CapitalizeDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.11", type: CapitalizeDirective, selector: "[ngModel][lsnCapitalize]", host: { listeners: { "ngModelChange": "onInputChange($event)" } }, providers: [NgModel], ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: CapitalizeDirective, decorators: [{
+/** @nocollapse */ CapitalizeDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: CapitalizeDirective, deps: [{ token: i1.NgModel }], target: i0.ɵɵFactoryTarget.Directive });
+/** @nocollapse */ CapitalizeDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.12", type: CapitalizeDirective, selector: "[ngModel][lsnCapitalize]", host: { listeners: { "ngModelChange": "onInputChange($event)" } }, providers: [NgModel], ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: CapitalizeDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[ngModel][lsnCapitalize]',
@@ -688,10 +717,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImpo
 
 class LsnCapitalizeModule {
 }
-/** @nocollapse */ LsnCapitalizeModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCapitalizeModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-/** @nocollapse */ LsnCapitalizeModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCapitalizeModule, declarations: [CapitalizeDirective], exports: [CapitalizeDirective] });
-/** @nocollapse */ LsnCapitalizeModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCapitalizeModule, imports: [[]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCapitalizeModule, decorators: [{
+/** @nocollapse */ LsnCapitalizeModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCapitalizeModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnCapitalizeModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCapitalizeModule, declarations: [CapitalizeDirective], exports: [CapitalizeDirective] });
+/** @nocollapse */ LsnCapitalizeModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCapitalizeModule, imports: [[]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCapitalizeModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [
@@ -773,9 +802,9 @@ class ScrollSpyDirective {
         this.subscriptions.forEach(sub => sub.unsubscribe());
     }
 }
-/** @nocollapse */ ScrollSpyDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: ScrollSpyDirective, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-/** @nocollapse */ ScrollSpyDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.11", type: ScrollSpyDirective, selector: "[lsnScrollSpy]", inputs: { spySelector: "spySelector", scrollToSection: "scrollToSection" }, outputs: { spySectionChange: "spySectionChange" }, host: { listeners: { "scroll": "onScroll()", "window:resize": "onResize()" } }, ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: ScrollSpyDirective, decorators: [{
+/** @nocollapse */ ScrollSpyDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: ScrollSpyDirective, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+/** @nocollapse */ ScrollSpyDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.12", type: ScrollSpyDirective, selector: "[lsnScrollSpy]", inputs: { spySelector: "spySelector", scrollToSection: "scrollToSection" }, outputs: { spySectionChange: "spySectionChange" }, host: { listeners: { "scroll": "onScroll()", "window:resize": "onResize()" } }, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: ScrollSpyDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[lsnScrollSpy]'
@@ -796,10 +825,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImpo
 
 class LsnScrollSpyModule {
 }
-/** @nocollapse */ LsnScrollSpyModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnScrollSpyModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-/** @nocollapse */ LsnScrollSpyModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnScrollSpyModule, declarations: [ScrollSpyDirective], exports: [ScrollSpyDirective] });
-/** @nocollapse */ LsnScrollSpyModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnScrollSpyModule, imports: [[]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnScrollSpyModule, decorators: [{
+/** @nocollapse */ LsnScrollSpyModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnScrollSpyModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnScrollSpyModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnScrollSpyModule, declarations: [ScrollSpyDirective], exports: [ScrollSpyDirective] });
+/** @nocollapse */ LsnScrollSpyModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnScrollSpyModule, imports: [[]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnScrollSpyModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [
@@ -814,12 +843,12 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImpo
 
 class LsnCookieModule {
 }
-/** @nocollapse */ LsnCookieModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-/** @nocollapse */ LsnCookieModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieModule, imports: [CommonModule] });
-/** @nocollapse */ LsnCookieModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieModule, imports: [[
+/** @nocollapse */ LsnCookieModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCookieModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnCookieModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCookieModule, imports: [CommonModule] });
+/** @nocollapse */ LsnCookieModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCookieModule, imports: [[
             CommonModule
         ]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCookieModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [],
@@ -834,14 +863,14 @@ function lsnCrossTabServiceFactory(lsnCrossTabService) {
 }
 class LsnCrossTabModule {
 }
-/** @nocollapse */ LsnCrossTabModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-/** @nocollapse */ LsnCrossTabModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabModule, imports: [CommonModule,
+/** @nocollapse */ LsnCrossTabModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCrossTabModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnCrossTabModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCrossTabModule, imports: [CommonModule,
         LsnCookieModule], exports: [LsnCookieModule] });
-/** @nocollapse */ LsnCrossTabModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabModule, imports: [[
+/** @nocollapse */ LsnCrossTabModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCrossTabModule, imports: [[
             CommonModule,
             LsnCookieModule
         ], LsnCookieModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCrossTabModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -856,8 +885,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImpo
 
 class LsnLibsModule {
 }
-/** @nocollapse */ LsnLibsModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLibsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-/** @nocollapse */ LsnLibsModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLibsModule, imports: [FormsModule,
+/** @nocollapse */ LsnLibsModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnLibsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnLibsModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnLibsModule, imports: [FormsModule,
         LsnCapitalizeModule,
         LsnLatinToGreekModule, LsnNumericModule, LsnNumpadModule,
         LsnCookieModule,
@@ -869,7 +898,7 @@ class LsnLibsModule {
         LsnCookieModule,
         LsnCrossTabModule,
         LsnScrollSpyModule] });
-/** @nocollapse */ LsnLibsModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLibsModule, imports: [[
+/** @nocollapse */ LsnLibsModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnLibsModule, imports: [[
             FormsModule,
             LsnCapitalizeModule,
             LsnLatinToGreekModule,
@@ -897,7 +926,7 @@ class LsnLibsModule {
         LsnCookieModule,
         LsnCrossTabModule,
         LsnScrollSpyModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLibsModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnLibsModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [],
@@ -1070,9 +1099,9 @@ class LsnCookieService {
         }
     }
 }
-/** @nocollapse */ LsnCookieService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieService, deps: [{ token: LSN_COOKIE_CONFIG }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable });
-/** @nocollapse */ LsnCookieService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCookieService, decorators: [{
+/** @nocollapse */ LsnCookieService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCookieService, deps: [{ token: LSN_COOKIE_CONFIG }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable });
+/** @nocollapse */ LsnCookieService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCookieService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCookieService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
@@ -1267,9 +1296,9 @@ class LsnCrossTabService {
         return (cookieMessage) => timestamp - cookieMessage.created <= msgTtl;
     }
 }
-/** @nocollapse */ LsnCrossTabService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabService, deps: [{ token: LsnCookieService }, { token: LSN_CROSS_TAB_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable });
-/** @nocollapse */ LsnCrossTabService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabService, decorators: [{
+/** @nocollapse */ LsnCrossTabService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCrossTabService, deps: [{ token: LsnCookieService }, { token: LSN_CROSS_TAB_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable });
+/** @nocollapse */ LsnCrossTabService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCrossTabService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCrossTabService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'

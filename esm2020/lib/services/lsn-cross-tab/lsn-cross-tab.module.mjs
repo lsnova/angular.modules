@@ -7,14 +7,14 @@ export function lsnCrossTabServiceFactory(lsnCrossTabService) {
 }
 export class LsnCrossTabModule {
 }
-/** @nocollapse */ LsnCrossTabModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-/** @nocollapse */ LsnCrossTabModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabModule, imports: [CommonModule,
+/** @nocollapse */ LsnCrossTabModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCrossTabModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnCrossTabModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCrossTabModule, imports: [CommonModule,
         LsnCookieModule], exports: [LsnCookieModule] });
-/** @nocollapse */ LsnCrossTabModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabModule, imports: [[
+/** @nocollapse */ LsnCrossTabModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCrossTabModule, imports: [[
             CommonModule,
             LsnCookieModule
         ], LsnCookieModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnCrossTabModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnCrossTabModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

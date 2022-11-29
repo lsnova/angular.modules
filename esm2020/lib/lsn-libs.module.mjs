@@ -11,8 +11,8 @@ import * as i0 from "@angular/core";
 import * as i1 from "./directives/numeric/numeric.module";
 export class LsnLibsModule {
 }
-/** @nocollapse */ LsnLibsModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLibsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-/** @nocollapse */ LsnLibsModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLibsModule, imports: [FormsModule,
+/** @nocollapse */ LsnLibsModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnLibsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+/** @nocollapse */ LsnLibsModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnLibsModule, imports: [FormsModule,
         LsnCapitalizeModule,
         LsnLatinToGreekModule, i1.LsnNumericModule, LsnNumpadModule,
         LsnCookieModule,
@@ -24,7 +24,7 @@ export class LsnLibsModule {
         LsnCookieModule,
         LsnCrossTabModule,
         LsnScrollSpyModule] });
-/** @nocollapse */ LsnLibsModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLibsModule, imports: [[
+/** @nocollapse */ LsnLibsModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnLibsModule, imports: [[
             FormsModule,
             LsnCapitalizeModule,
             LsnLatinToGreekModule,
@@ -52,7 +52,7 @@ export class LsnLibsModule {
         LsnCookieModule,
         LsnCrossTabModule,
         LsnScrollSpyModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: LsnLibsModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: LsnLibsModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [],

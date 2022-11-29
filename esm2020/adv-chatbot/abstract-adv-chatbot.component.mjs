@@ -39,9 +39,9 @@ export class AbstractAdvChatbotComponent {
         this.eventsSub?.unsubscribe();
     }
 }
-/** @nocollapse */ AbstractAdvChatbotComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AbstractAdvChatbotComponent, deps: [{ token: i1.AdvChatbotHelper }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
-/** @nocollapse */ AbstractAdvChatbotComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.3.11", type: AbstractAdvChatbotComponent, selector: "ng-component", ngImport: i0, template: '', isInline: true });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AbstractAdvChatbotComponent, decorators: [{
+/** @nocollapse */ AbstractAdvChatbotComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: AbstractAdvChatbotComponent, deps: [{ token: i1.AdvChatbotHelper }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
+/** @nocollapse */ AbstractAdvChatbotComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.3.12", type: AbstractAdvChatbotComponent, selector: "ng-component", ngImport: i0, template: '', isInline: true });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.12", ngImport: i0, type: AbstractAdvChatbotComponent, decorators: [{
             type: Component,
             args: [{
                     template: ''
