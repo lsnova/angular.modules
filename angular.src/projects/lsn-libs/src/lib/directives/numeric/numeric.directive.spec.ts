@@ -4,7 +4,7 @@ import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LsnNumericModule} from './numeric.module';
 import {NumericConfig, NumericConfigService} from './numeric-config.service';
 import {By} from '@angular/platform-browser';
-import {NumericDirective} from './numeric.directive';
+import {NumericDirective, NumericMessage} from './numeric.directive';
 
 describe('NumericDirective', () => {
     describe('TemplateDriven', () => {
@@ -62,11 +62,13 @@ describe('NumericDirective', () => {
 
     describe('Reactive', () => {
       @Component({
-        template: `<input [lsnNumeric]="config" [formControl]="control"/>`
+        template: `<input [lsnNumeric]="config" [formControl]="control"  (lsnNumericMessages)="onMessage($event)"/>`
       })
       class TestReactiveComponent {
         control = new FormControl<number | null>(null);
         config: NumericConfig = {};
+
+        onMessage(event: NumericMessage){}
       }
 
       let component: TestReactiveComponent;
@@ -117,6 +119,36 @@ describe('NumericDirective', () => {
         fixture.detectChanges();
         expect(queryInput().nativeElement.value).toEqual(`${config2.max}`);
       }));
+
+      it('should emit range exceeded message', () => {
+        component.config = {
+          min: 0,
+          max: 10
+        };
+        fixture.detectChanges();
+        const messageEmitSpy = spyOn(component, 'onMessage').and.callThrough();
+        component.control.setValue(6);
+        queryInput().triggerEventHandler('blur', new Event('blur'));
+        fixture.detectChanges();
+        expect(messageEmitSpy).not.toHaveBeenCalled();
+        // test max
+        component.control.setValue(100);
+        queryInput().triggerEventHandler('blur', new Event('blur'));
+        fixture.detectChanges();
+        expect(messageEmitSpy).toHaveBeenCalledWith(NumericMessage.RANGE_EXCEEDED);
+        messageEmitSpy.calls.reset();
+        // test min
+        component.control.setValue(-100);
+        queryInput().triggerEventHandler('blur', new Event('blur'));
+        fixture.detectChanges();
+        expect(messageEmitSpy).toHaveBeenCalledWith(NumericMessage.RANGE_EXCEEDED);
+        // test valid value again
+        messageEmitSpy.calls.reset();
+        component.control.setValue(7);
+        queryInput().triggerEventHandler('blur', new Event('blur'));
+        fixture.detectChanges();
+        expect(messageEmitSpy).not.toHaveBeenCalledWith(NumericMessage.RANGE_EXCEEDED);
+      });
 
       const queryInput = () => fixture.debugElement.query(By.css(`input`));
     });

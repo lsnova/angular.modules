@@ -24,6 +24,10 @@ export class NumericCardComponent {
     switch ($event) {
       case NumericMessage.ADDITIONAL_DECIMAL_SEPARATOR:
         console.log('additional decimal separator!');
+        break;
+      case NumericMessage.RANGE_EXCEEDED:
+        console.log('range exceeded!');
+        break;
     }
   }
 
