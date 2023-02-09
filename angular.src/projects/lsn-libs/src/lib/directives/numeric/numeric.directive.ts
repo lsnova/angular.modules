@@ -1,19 +1,15 @@
 import {
-  ChangeDetectorRef,
   Directive,
   ElementRef,
   EventEmitter,
   forwardRef,
   HostListener,
   Input,
-  OnChanges,
   Output,
-  SimpleChanges
 } from '@angular/core';
 import * as keyboard from '@angular/cdk/keycodes';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {NumericConfig, NumericConfigService} from './numeric-config.service';
-import {parse} from "jasmine-spec-reporter/built/configuration-parser";
 
 const CUSTOM_SELECT_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
