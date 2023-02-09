@@ -64,6 +64,7 @@ const CUSTOM_SELECT_VALUE_ACCESSOR = {
 var NumericMessage;
 (function (NumericMessage) {
     NumericMessage[NumericMessage["ADDITIONAL_DECIMAL_SEPARATOR"] = 0] = "ADDITIONAL_DECIMAL_SEPARATOR";
+    NumericMessage[NumericMessage["RANGE_EXCEEDED"] = 1] = "RANGE_EXCEEDED";
 })(NumericMessage || (NumericMessage = {}));
 const initialConfigValue = {};
 class NumericDirective {
@@ -107,6 +108,9 @@ class NumericDirective {
     blurHandler() {
         const parsedValue = this.parseValue(this.element.nativeElement.value);
         const rangeValue = this.handleRange(parsedValue);
+        if (rangeValue !== parsedValue) {
+            this.lsnNumericMessages.emit(NumericMessage.RANGE_EXCEEDED);
+        }
         // correct entered value on blur to proper range value
         if (parsedValue !== rangeValue) {
             this.displayValue = rangeValue.toString().replace(/[,|.]/, this.config.decimals);

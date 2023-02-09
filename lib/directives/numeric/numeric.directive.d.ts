@@ -3,7 +3,8 @@ import { ControlValueAccessor } from '@angular/forms';
 import { NumericConfig, NumericConfigService } from './numeric-config.service';
 import * as i0 from "@angular/core";
 export declare enum NumericMessage {
-    ADDITIONAL_DECIMAL_SEPARATOR = 0
+    ADDITIONAL_DECIMAL_SEPARATOR = 0,
+    RANGE_EXCEEDED = 1
 }
 export declare class NumericDirective implements ControlValueAccessor {
     private el;
