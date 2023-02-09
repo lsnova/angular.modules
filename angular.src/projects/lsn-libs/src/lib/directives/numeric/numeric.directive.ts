@@ -13,6 +13,7 @@ import {
 import * as keyboard from '@angular/cdk/keycodes';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {NumericConfig, NumericConfigService} from './numeric-config.service';
+import {parse} from "jasmine-spec-reporter/built/configuration-parser";
 
 const CUSTOM_SELECT_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -21,7 +22,8 @@ const CUSTOM_SELECT_VALUE_ACCESSOR: any = {
 };
 
 export enum NumericMessage {
-  ADDITIONAL_DECIMAL_SEPARATOR
+  ADDITIONAL_DECIMAL_SEPARATOR,
+  RANGE_EXCEEDED
 }
 
 const initialConfigValue: NumericConfig = {};
@@ -82,6 +84,9 @@ export class NumericDirective implements ControlValueAccessor {
   blurHandler() {
     const parsedValue: number = this.parseValue(this.element.nativeElement.value);
     const rangeValue = this.handleRange(parsedValue);
+    if (rangeValue !== parsedValue){
+      this.lsnNumericMessages.emit(NumericMessage.RANGE_EXCEEDED);
+    }
     // correct entered value on blur to proper range value
     if (parsedValue !== rangeValue) {
       this.displayValue = rangeValue.toString().replace(/[,|.]/, this.config.decimals);

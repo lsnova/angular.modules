@@ -34,6 +34,7 @@
       <input
         [lsnNumeric]="{min: 500, max: 5000, precision: 2, thousands: ' '}"
         [(ngModel)]="numeric5"
+        (lsnNumericMessages)="message($event)"
       /> model value: {{numeric5}}
     </section>
     <section>
