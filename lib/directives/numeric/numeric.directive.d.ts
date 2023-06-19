@@ -1,21 +1,23 @@
-import { ElementRef, EventEmitter, OnChanges } from '@angular/core';
+import { ElementRef, EventEmitter } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { NumericConfig, NumericConfigService } from './numeric-config.service';
 import * as i0 from "@angular/core";
 export declare enum NumericMessage {
-    ADDITIONAL_DECIMAL_SEPARATOR = 0
+    ADDITIONAL_DECIMAL_SEPARATOR = 0,
+    RANGE_EXCEEDED = 1
 }
-export declare class NumericDirective implements OnChanges, ControlValueAccessor {
+export declare class NumericDirective implements ControlValueAccessor {
     private el;
     private configService;
-    lsnNumeric: NumericConfig;
+    protected _lsnNumeric: NumericConfig;
+    set lsnNumeric(newValue: NumericConfig);
+    get lsnNumeric(): NumericConfig;
     lsnNumericMessages: EventEmitter<NumericMessage>;
     element: ElementRef;
     protected config: NumericConfig;
     onChange: (_: any) => void;
     onTouch: () => void;
     constructor(el: ElementRef, configService: NumericConfigService);
-    ngOnChanges(): void;
     inputHandler($event: any): void;
     focusHandler(): void;
     blurHandler(): void;
@@ -47,6 +49,7 @@ export declare class NumericDirective implements OnChanges, ControlValueAccessor
     protected getWholeAndDecimalParts(value: string | number): Array<number | string>;
     protected defaultDecimals(value?: string | number, precision?: number): string;
     protected shouldAddDefaultDecimals(decimals: string | number | undefined): boolean;
+    isConfigEqual(config1?: NumericConfig, config2?: NumericConfig): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<NumericDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<NumericDirective, "[lsnNumeric]", never, { "lsnNumeric": "lsnNumeric"; }, { "lsnNumericMessages": "lsnNumericMessages"; }, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<NumericDirective, "[lsnNumeric]", never, { "lsnNumeric": { "alias": "lsnNumeric"; "required": false; }; }, { "lsnNumericMessages": "lsnNumericMessages"; }, never, never, false, never>;
 }

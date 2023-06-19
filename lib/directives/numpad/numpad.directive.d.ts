@@ -19,6 +19,6 @@ export declare class NumPadDirective implements OnChanges {
     protected parseNewValue(value: any, blurEvent?: boolean): any;
     keyDownHandler(e: KeyboardEvent): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<NumPadDirective, [null, { optional: true; }]>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<NumPadDirective, "[lsnNumPad]", never, { "lsnNumPad": "lsnNumPad"; }, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<NumPadDirective, "[lsnNumPad]", never, { "lsnNumPad": { "alias": "lsnNumPad"; "required": false; }; }, {}, never, never, false, never>;
 }
 export {};

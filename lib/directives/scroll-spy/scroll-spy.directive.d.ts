@@ -26,5 +26,5 @@ export declare class ScrollSpyDirective implements OnInit, OnDestroy {
     private nativeElement;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ScrollSpyDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ScrollSpyDirective, "[lsnScrollSpy]", never, { "spySelector": "spySelector"; "scrollToSection": "scrollToSection"; }, { "spySectionChange": "spySectionChange"; }, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ScrollSpyDirective, "[lsnScrollSpy]", never, { "spySelector": { "alias": "spySelector"; "required": false; }; "scrollToSection": { "alias": "scrollToSection"; "required": false; }; }, { "spySectionChange": "spySectionChange"; }, never, never, false, never>;
 }

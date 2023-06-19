@@ -1,15 +1,11 @@
 {
   "name": "@lsnova/angularmodules",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "peerDependencies": {
-    "@angular/common": "~14.2.0",
-    "@angular/core": "~14.2.0"
+    "@angular/common": "~16.1.1",
+    "@angular/core": "~16.1.1"
   },
-  "module": "fesm2015/lsnova-angularmodules.mjs",
-  "es2020": "fesm2020/lsnova-angularmodules.mjs",
-  "esm2020": "esm2020/lsnova-angularmodules.mjs",
-  "fesm2020": "fesm2020/lsnova-angularmodules.mjs",
-  "fesm2015": "fesm2015/lsnova-angularmodules.mjs",
+  "module": "fesm2022/lsnova-angularmodules.mjs",
   "typings": "index.d.ts",
   "exports": {
     "./package.json": {
@@ -17,19 +13,15 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2020": "./esm2020/lsnova-angularmodules.mjs",
-      "es2020": "./fesm2020/lsnova-angularmodules.mjs",
-      "es2015": "./fesm2015/lsnova-angularmodules.mjs",
-      "node": "./fesm2015/lsnova-angularmodules.mjs",
-      "default": "./fesm2020/lsnova-angularmodules.mjs"
+      "esm2022": "./esm2022/lsnova-angularmodules.mjs",
+      "esm": "./esm2022/lsnova-angularmodules.mjs",
+      "default": "./fesm2022/lsnova-angularmodules.mjs"
     },
     "./adv-chatbot": {
       "types": "./adv-chatbot/index.d.ts",
-      "esm2020": "./esm2020/adv-chatbot/lsnova-angularmodules-adv-chatbot.mjs",
-      "es2020": "./fesm2020/lsnova-angularmodules-adv-chatbot.mjs",
-      "es2015": "./fesm2015/lsnova-angularmodules-adv-chatbot.mjs",
-      "node": "./fesm2015/lsnova-angularmodules-adv-chatbot.mjs",
-      "default": "./fesm2020/lsnova-angularmodules-adv-chatbot.mjs"
+      "esm2022": "./esm2022/adv-chatbot/lsnova-angularmodules-adv-chatbot.mjs",
+      "esm": "./esm2022/adv-chatbot/lsnova-angularmodules-adv-chatbot.mjs",
+      "default": "./fesm2022/lsnova-angularmodules-adv-chatbot.mjs"
     }
   },
   "sideEffects": false,
