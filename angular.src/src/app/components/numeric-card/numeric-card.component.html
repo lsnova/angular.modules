@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card appearance="outlined">
   <mat-card-title>lsnNumeric</mat-card-title>
   <mat-card-subtitle>directive | selector: 'app-numeric-card'</mat-card-subtitle>
   <mat-card-content>
@@ -64,7 +64,7 @@
         [lsnNumeric]="currentDynamicConfig"
         [(ngModel)]="numeric9"
       /> model value: {{numeric9}}
-      <p>current config: {{currentDynamicConfig | json}} <button (click)="toggleDynamicConfig()">toggle</button></p>
+      <p>current config: {{currentDynamicConfig | json}} <button mat-raised-button (click)="toggleDynamicConfig()">toggle</button></p>
     </section>
   </mat-card-content>
 </mat-card>
