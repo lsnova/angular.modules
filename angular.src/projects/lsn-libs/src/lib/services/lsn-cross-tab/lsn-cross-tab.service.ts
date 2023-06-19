@@ -88,7 +88,7 @@ export class LsnCrossTabService implements OnDestroy {
   private messageToPlainObject = (msg: LsnCrossTabMessage): object => Object.keys(msg)
     .reduce((minifiedObj, key) => {
       const value = msg[key];
-      if (!(key === 'attrs' && (value === null || value === {}))) {
+      if (!(key === 'attrs' && (value === null))) {
         minifiedObj[key] = value;
         return minifiedObj;
       } else {
