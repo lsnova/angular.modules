@@ -213,7 +213,7 @@ export class NumericDirective implements ControlValueAccessor {
       return '';
     }
     const [whole, decimals] = this.getWholeAndDecimalParts(value);
-    const isNegative = whole[0] === '-' || whole < 0;
+    const isNegative = whole[0] === '-' || (whole as number) < 0;
     let result = whole === '-' || !whole
       ? '0'
       : this.getWholeDisplayValue(whole);
