@@ -10,8 +10,8 @@ import { LsnCookieModule } from './services/lsn-cookie/lsn-cookie.module';
 import * as i0 from "@angular/core";
 import * as i1 from "./directives/numeric/numeric.module";
 export class LsnLibsModule {
-    /** @nocollapse */ static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.1", ngImport: i0, type: LsnLibsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    /** @nocollapse */ static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.1.1", ngImport: i0, type: LsnLibsModule, imports: [FormsModule,
+    /** @nocollapse */ static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.2.1", ngImport: i0, type: LsnLibsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    /** @nocollapse */ static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.2.1", ngImport: i0, type: LsnLibsModule, imports: [FormsModule,
             LsnCapitalizeModule,
             LsnLatinToGreekModule, i1.LsnNumericModule, LsnNumpadModule,
             LsnCookieModule,
@@ -23,7 +23,7 @@ export class LsnLibsModule {
             LsnCookieModule,
             LsnCrossTabModule,
             LsnScrollSpyModule] }); }
-    /** @nocollapse */ static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.1.1", ngImport: i0, type: LsnLibsModule, imports: [FormsModule,
+    /** @nocollapse */ static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.2.1", ngImport: i0, type: LsnLibsModule, imports: [FormsModule,
             LsnCapitalizeModule,
             LsnLatinToGreekModule,
             LsnNumericModule.forRoot({
@@ -50,7 +50,7 @@ export class LsnLibsModule {
             LsnCrossTabModule,
             LsnScrollSpyModule] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.1", ngImport: i0, type: LsnLibsModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.2.1", ngImport: i0, type: LsnLibsModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [],
