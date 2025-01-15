@@ -19,7 +19,8 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": {
-              "base": "dist/angularmodules"
+              "base": "dist/angularmodules",
+              "browser": ""
             },
             "index": "src/index.html",
             "polyfills": [
