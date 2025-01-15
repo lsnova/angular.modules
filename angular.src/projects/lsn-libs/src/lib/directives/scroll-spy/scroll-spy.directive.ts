@@ -3,7 +3,8 @@ import { Observable, Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, filter, tap } from 'rxjs/operators';
 
 @Directive({
-  selector: '[lsnScrollSpy]'
+  selector: '[lsnScrollSpy]',
+  standalone: false
 })
 export class ScrollSpyDirective implements OnInit, OnDestroy {
 

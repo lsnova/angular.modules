@@ -4,7 +4,8 @@ import {NgModel} from '@angular/forms';
 
 @Directive({
   selector: '[ngModel][lsnLatinToGreek]',
-  providers: [NgModel]
+  providers: [NgModel],
+  standalone: false
 })
 export class LatinToGreekDirective {
 

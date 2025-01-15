@@ -4,7 +4,8 @@ import {NumericConfig, NumericMessage} from 'lsn-libs';
 @Component({
   selector: 'app-numeric-card',
   templateUrl: './numeric-card.component.html',
-  styles: []
+  styles: [],
+  standalone: false
 })
 export class NumericCardComponent {
   numeric1 = 10;

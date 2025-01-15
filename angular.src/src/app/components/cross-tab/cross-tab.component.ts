@@ -5,7 +5,8 @@ import {FormControl, FormGroup} from '@angular/forms';
 @Component({
   selector: 'app-cross-tab',
   templateUrl: './cross-tab.component.html',
-  styles: []
+  styles: [],
+  standalone: false
 })
 export class CrossTabComponent implements OnInit {
   form = new FormGroup({

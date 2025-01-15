@@ -26,7 +26,8 @@ const initialConfigValue: NumericConfig = {};
 
 @Directive({
   selector: '[lsnNumeric]',
-  providers: [CUSTOM_SELECT_VALUE_ACCESSOR]
+  providers: [CUSTOM_SELECT_VALUE_ACCESSOR],
+  standalone: false
 })
 export class NumericDirective implements ControlValueAccessor {
   protected _lsnNumeric: NumericConfig = initialConfigValue;

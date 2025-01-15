@@ -8,7 +8,8 @@ class NumPadConfig {
 }
 
 @Directive({
-  selector: '[lsnNumPad]'
+  selector: '[lsnNumPad]',
+  standalone: false
 })
 export class NumPadDirective implements OnChanges {
   @Input() lsnNumPad = {};

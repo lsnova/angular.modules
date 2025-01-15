@@ -19,7 +19,8 @@ const SECTIONS: ISection[] = [
 @Component({
   selector: 'app-scroll-spy',
   templateUrl: './scroll-spy.component.html',
-  styleUrls: ['./scroll-spy.component.scss']
+  styleUrls: ['./scroll-spy.component.scss'],
+  standalone: false
 })
 export class ScrollSpyComponent {
   scrollToSection$: Subject<string>;

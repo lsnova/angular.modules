@@ -3,7 +3,8 @@ import {NgModel} from '@angular/forms';
 
 @Directive({
   selector: '[ngModel][lsnCapitalize]',
-  providers: [NgModel]
+  providers: [NgModel],
+  standalone: false
 })
 export class CapitalizeDirective {
   constructor(private model: NgModel) {
