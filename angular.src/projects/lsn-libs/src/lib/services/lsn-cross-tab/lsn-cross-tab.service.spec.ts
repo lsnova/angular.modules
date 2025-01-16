@@ -1,4 +1,4 @@
-import {async, fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {fakeAsync, TestBed, tick} from '@angular/core/testing';
 
 import {LsnCrossTabService} from './lsn-cross-tab.service';
 import {CookieService, LsnCookieOptions, LsnCookieService} from '../lsn-cookie/lsn-cookie.service';
@@ -10,6 +10,7 @@ class MockCookieService implements CookieService {
   get = (cookieKey?: string): any => this.cookie;
 
   remove(cookieKey: string, cookieOptions: LsnCookieOptions): void {
+    this.cookie = [];
   }
 
   set(cookieKey: string, cookieValue, cookieOptions: LsnCookieOptions): void {
@@ -22,7 +23,7 @@ describe('LsnCrossTabService', () => {
   const mockCookieService = new MockCookieService();
   let crossTabService: LsnCrossTabService;
 
-  beforeEach(async(() => TestBed.configureTestingModule({
+  beforeEach(() => TestBed.configureTestingModule({
     providers: [
       LsnCrossTabService,
       {
@@ -39,15 +40,15 @@ describe('LsnCrossTabService', () => {
         })
       }
     ]
-  })));
+  }));
 
   beforeEach(() => {
-    crossTabService = TestBed.get(LsnCrossTabService);
+    crossTabService = TestBed.inject(LsnCrossTabService);
     mockCookieService.cookie = [];
   });
 
   it('should be created', () => {
-    const service: LsnCrossTabService = TestBed.get(LsnCrossTabService);
+    const service: LsnCrossTabService = TestBed.inject(LsnCrossTabService);
     expect(service).toBeTruthy();
   });
 
@@ -124,13 +125,15 @@ describe('LsnCrossTabService', () => {
 
   it('should read and clean messages after specified intervals', fakeAsync(() => {
     crossTabService.run();
-    const crossTabMessageConfig: LsnCrossTabConfig = TestBed.get(LSN_CROSS_TAB_CONFIG);
+    const crossTabMessageConfig: LsnCrossTabConfig = TestBed.inject(LSN_CROSS_TAB_CONFIG);
     // spies
     // NOTE: without and.callThrough(), functions inside these spies will not be invoked
     const readMessageSpy = spyOn<any>(crossTabService, 'readMessages').and.callThrough();
     const cleanCookieSpy = spyOn<any>(crossTabService, 'cleanCookie').and.callThrough();
     const areCookiesEqualSpy = spyOn<any>(crossTabService, 'areCookiesEqual').and.callThrough();
     const messageWasReadSpy = spyOn<any>(crossTabService, 'messageWasRead').and.callThrough();
+    // pass some time
+    tick(1);
     // model
     const message = new LsnCrossTabMessage({code: 'message one', created: Date.now(), tabId: crossTabService.tabId});
     mockCookieService.set('mock key', [message], null);

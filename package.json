@@ -1,9 +1,9 @@
 {
   "name": "@lsnova/angularmodules",
-  "version": "0.9.0",
+  "version": "19.0.0",
   "peerDependencies": {
-    "@angular/common": "^17.2.1",
-    "@angular/core": "^17.2.1"
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0"
   },
   "module": "fesm2022/lsnova-angularmodules.mjs",
   "typings": "index.d.ts",
@@ -13,14 +13,10 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2022": "./esm2022/lsnova-angularmodules.mjs",
-      "esm": "./esm2022/lsnova-angularmodules.mjs",
       "default": "./fesm2022/lsnova-angularmodules.mjs"
     },
     "./adv-chatbot": {
       "types": "./adv-chatbot/index.d.ts",
-      "esm2022": "./esm2022/adv-chatbot/lsnova-angularmodules-adv-chatbot.mjs",
-      "esm": "./esm2022/adv-chatbot/lsnova-angularmodules-adv-chatbot.mjs",
       "default": "./fesm2022/lsnova-angularmodules-adv-chatbot.mjs"
     }
   },

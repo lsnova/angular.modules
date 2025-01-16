@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 import { AdvChatbotHelper } from './adv-chatbot.helper';
 import { Subscription } from 'rxjs';
-import { AdvChatbotEvent, AdvChatbotWidgetConfig } from "./adv-chatbot.model";
+import { AdvChatbotEvent, AdvChatbotWidgetConfig } from './adv-chatbot.model';
 import * as i0 from "@angular/core";
 export declare abstract class AbstractAdvChatbotComponent implements OnInit, OnDestroy {
     protected chatBotHelper: AdvChatbotHelper;

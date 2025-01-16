@@ -1,10 +1,11 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {AdvChatbotHelper} from './adv-chatbot.helper';
 import {Subscription} from 'rxjs';
-import {AdvChatbotEvent, AdvChatbotEvents, AdvChatbotWidgetConfig} from "./adv-chatbot.model";
+import {AdvChatbotEvent, AdvChatbotEvents, AdvChatbotWidgetConfig} from './adv-chatbot.model';
 
 @Component({
-  template: ''
+  template: '',
+  standalone: false
 })
 export abstract class AbstractAdvChatbotComponent implements OnInit, OnDestroy {
 

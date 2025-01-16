@@ -9,7 +9,8 @@ import {NumericDirective, NumericMessage} from './numeric.directive';
 describe('NumericDirective', () => {
     describe('TemplateDriven', () => {
       @Component({
-        template: `<input [lsnNumeric]="config" [(ngModel)]='value'/>`
+        template: `<input [lsnNumeric]="config" [(ngModel)]='value'/>`,
+        standalone: false
       })
       class TestComponent {
         value = 0;
@@ -62,7 +63,8 @@ describe('NumericDirective', () => {
 
     describe('Reactive', () => {
       @Component({
-        template: `<input [lsnNumeric]="config" [formControl]="control"  (lsnNumericMessages)="onMessage($event)"/>`
+        template: `<input [lsnNumeric]="config" [formControl]="control"  (lsnNumericMessages)="onMessage($event)"/>`,
+        standalone: false
       })
       class TestReactiveComponent {
         control = new FormControl<number | null>(null);
