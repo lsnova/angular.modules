@@ -110,10 +110,10 @@ class AdvChatbotHelper {
         const obs$ = this.dataProviders?.map(provider => provider.getData(chatbotConfig));
         return forkJoin(obs$).pipe(map(outputs => Object.assign({}, ...outputs)));
     }
-    /** @nocollapse */ static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.2.1", ngImport: i0, type: AdvChatbotHelper, deps: [{ token: DOCUMENT }, { token: i0.RendererFactory2 }, { token: ADV_CHATBOT_CONFIG, optional: true }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    /** @nocollapse */ static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.2.1", ngImport: i0, type: AdvChatbotHelper }); }
+    /** @nocollapse */ static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.2.14", ngImport: i0, type: AdvChatbotHelper, deps: [{ token: DOCUMENT }, { token: i0.RendererFactory2 }, { token: ADV_CHATBOT_CONFIG, optional: true }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    /** @nocollapse */ static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "18.2.14", ngImport: i0, type: AdvChatbotHelper }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.2.1", ngImport: i0, type: AdvChatbotHelper, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.2.14", ngImport: i0, type: AdvChatbotHelper, decorators: [{
             type: Injectable
         }], ctorParameters: () => [{ type: undefined, decorators: [{
                     type: Inject,
@@ -135,11 +135,11 @@ class LsnAdvChatbotModule {
             ]
         };
     }
-    /** @nocollapse */ static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.2.1", ngImport: i0, type: LsnAdvChatbotModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    /** @nocollapse */ static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.2.1", ngImport: i0, type: LsnAdvChatbotModule, imports: [CommonModule] }); }
-    /** @nocollapse */ static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.2.1", ngImport: i0, type: LsnAdvChatbotModule, imports: [CommonModule] }); }
+    /** @nocollapse */ static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.2.14", ngImport: i0, type: LsnAdvChatbotModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    /** @nocollapse */ static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "18.2.14", ngImport: i0, type: LsnAdvChatbotModule, imports: [CommonModule] }); }
+    /** @nocollapse */ static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "18.2.14", ngImport: i0, type: LsnAdvChatbotModule, imports: [CommonModule] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.2.1", ngImport: i0, type: LsnAdvChatbotModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.2.14", ngImport: i0, type: LsnAdvChatbotModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -183,10 +183,10 @@ class AbstractAdvChatbotComponent {
     ngOnDestroy() {
         this.eventsSub?.unsubscribe();
     }
-    /** @nocollapse */ static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.2.1", ngImport: i0, type: AbstractAdvChatbotComponent, deps: [{ token: AdvChatbotHelper }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
-    /** @nocollapse */ static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.2.1", type: AbstractAdvChatbotComponent, selector: "ng-component", ngImport: i0, template: '', isInline: true }); }
+    /** @nocollapse */ static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.2.14", ngImport: i0, type: AbstractAdvChatbotComponent, deps: [{ token: AdvChatbotHelper }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
+    /** @nocollapse */ static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "18.2.14", type: AbstractAdvChatbotComponent, selector: "ng-component", ngImport: i0, template: '', isInline: true }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.2.1", ngImport: i0, type: AbstractAdvChatbotComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.2.14", ngImport: i0, type: AbstractAdvChatbotComponent, decorators: [{
             type: Component,
             args: [{
                     template: ''

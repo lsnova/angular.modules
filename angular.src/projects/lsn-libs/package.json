@@ -1,8 +1,8 @@
 {
   "name": "@lsnova/angularmodules",
-  "version": "0.9.0",
+  "version": "18.0.0",
   "peerDependencies": {
-    "@angular/common": "^17.2.1",
-    "@angular/core": "^17.2.1"
+    "@angular/common": "^18.2.13",
+    "@angular/core": "^18.2.13"
   }
 }
