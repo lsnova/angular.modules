@@ -107,7 +107,7 @@ describe('LsnCrossTabService', () => {
 
   it('should filter message older than given msgTtl', () => {
     const now = Date.now();
-    const crossTabConfig: LsnCrossTabConfig = TestBed.get(LSN_CROSS_TAB_CONFIG);
+    const crossTabConfig: LsnCrossTabConfig = TestBed.inject(LSN_CROSS_TAB_CONFIG);
     const cleanCookieFilter: (timestamp: number, msgTtl: number) => (LsnCrossTabMessage) => boolean = crossTabService['cleanCookieFilter'];
     const messages = [
       new LsnCrossTabMessage({

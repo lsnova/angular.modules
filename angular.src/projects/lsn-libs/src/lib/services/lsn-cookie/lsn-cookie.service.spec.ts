@@ -27,12 +27,12 @@ describe('LsnCookieService', () => {
   });
 
   it('should be created', () => {
-    const service: LsnCookieService = TestBed.get(LsnCookieService);
+    const service: LsnCookieService = TestBed.inject(LsnCookieService);
     expect(service).toBeTruthy();
   });
 
   it('should properly set cookie and retrieve cookie', () => {
-    const service: LsnCookieService = TestBed.get(LsnCookieService);
+    const service: LsnCookieService = TestBed.inject(LsnCookieService);
     service.set(testCookie.name, testCookie.value, testCookie.options);
     expect(service.document.cookie).toBeDefined();
 
@@ -41,7 +41,7 @@ describe('LsnCookieService', () => {
   });
 
   it('should retrieve list of all cookies', () => {
-    const service: LsnCookieService = TestBed.get(LsnCookieService);
+    const service: LsnCookieService = TestBed.inject(LsnCookieService);
     service.set(testCookie.name, testCookie.value, testCookie.options);
     const testCookie2 = {...testCookie, name: 'test cookie two'};
     service.set(testCookie2.name, testCookie2.value, testCookie2.options);
