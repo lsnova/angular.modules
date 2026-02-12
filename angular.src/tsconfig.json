@@ -1,3 +1,5 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": true,
   "compilerOptions": {
@@ -6,16 +8,18 @@
     "sourceMap": true,
     "declaration": false,
     "esModuleInterop": true,
-    "module": "es2015",
     "moduleResolution": "bundler",
-    "emitDecoratorMetadata": true,
+    "strict": false,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
     "experimentalDecorators": true,
-    "resolveJsonModule": true,
     "importHelpers": true,
     "target": "ES2022",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "module": "preserve",
     "paths": {
       "lsn-libs": [
         "dist/lsn-libs"
@@ -23,20 +27,27 @@
       "lsn-libs/*": [
         "dist/lsn-libs/*"
       ],
-      "@angular/*": [
-        "./node_modules/@angular/*"
+      "lsn-libs/adv-chatbot": [
+        "dist/lsn-libs/adv-chatbot"
       ],
       "@lsnova/angularmodules": [
         "dist/lsn-libs"
-      ],
-      "lsn-libs/adv-chatbot": [
-        "dist/lsn-libs/adv-chatbot"
       ]
-    },
-    "useDefineForClassFields": false
+    }
   },
   "angularCompilerOptions": {
-    "fullTemplateTypeCheck": false,
-    "strictInjectionParameters": true
-  }
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./src/tsconfig.app.json"
+    },
+    {
+      "path": "./src/tsconfig.spec.json"
+    }
+  ]
 }

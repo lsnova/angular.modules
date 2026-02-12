@@ -63,6 +63,11 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
           },
           "defaultConfiguration": ""
@@ -85,20 +90,11 @@
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "browsers": ["chromium"],
+            "providersFile": "src/test-providers.ts"
           }
         }
       }
@@ -122,11 +118,11 @@
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "projects/lsn-libs/test.ts",
+            "buildTarget": "::production",
             "tsConfig": "projects/lsn-libs/tsconfig.spec.json",
-            "karmaConfig": "projects/lsn-libs/karma.conf.js"
+            "providersFile": "projects/lsn-libs/test-providers.ts"
           }
         }
       }

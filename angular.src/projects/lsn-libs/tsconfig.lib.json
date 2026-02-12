@@ -24,12 +24,12 @@
     "annotateForClosureCompiler": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
-    "fullTemplateTypeCheck": false,
+    "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
     "enableResourceInlining": true
   },
   "exclude": [
-    "test.ts",
+    "test-providers.ts",
     "**/*.spec.ts"
   ]
 }
