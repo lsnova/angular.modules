@@ -11,8 +11,7 @@
     "libs:build": "cd projects/lsn-libs && ng build lsn-libs --configuration production",
     "libs:build-watch": "cd projects/lsn-libs && ng build lsn-libs --watch",
     "libs:test": "ng test lsn-libs",
-    "package": "npm run libs:build && rsync -a dist/lsn-libs/* ../",
-    "postinstall": "npm run libs:build && npm install -S file:dist/lsn-libs"
+    "package": "npm run libs:build && rsync -a dist/lsn-libs/* ../"
   },
   "private": true,
   "dependencies": {
