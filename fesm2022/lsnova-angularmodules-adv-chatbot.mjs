@@ -10,9 +10,24 @@ var AdvChatbotEvents;
     AdvChatbotEvents["newMessage"] = "newMessage";
 })(AdvChatbotEvents || (AdvChatbotEvents = {}));
 class AdvChatbotWidgetConfig {
+    enabled;
+    sdkUrl;
+    cid;
+    baseUrl;
+    audioFile;
+    layout;
+    theme;
+    translations;
 }
 
 class AdvChatbotHelper {
+    document;
+    moduleConfig;
+    injector;
+    renderer;
+    widget;
+    events$ = new Subject();
+    dataProviders = [];
     get events() {
         return this.events$.asObservable();
     }
@@ -23,8 +38,6 @@ class AdvChatbotHelper {
         this.document = document;
         this.moduleConfig = moduleConfig;
         this.injector = injector;
-        this.events$ = new Subject();
-        this.dataProviders = [];
         this.renderer = rendererFactory2.createRenderer(document, null);
         if (this.moduleConfig?.dataProviders?.length) {
             for (const providerClass of this.moduleConfig.dataProviders) {
@@ -110,8 +123,8 @@ class AdvChatbotHelper {
         const obs$ = this.dataProviders?.map(provider => provider.getData(chatbotConfig));
         return forkJoin(obs$).pipe(map(outputs => Object.assign({}, ...outputs)));
     }
-    /** @nocollapse */ static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.4", ngImport: i0, type: AdvChatbotHelper, deps: [{ token: DOCUMENT }, { token: i0.RendererFactory2 }, { token: ADV_CHATBOT_CONFIG, optional: true }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    /** @nocollapse */ static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.4", ngImport: i0, type: AdvChatbotHelper }); }
+    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.4", ngImport: i0, type: AdvChatbotHelper, deps: [{ token: DOCUMENT }, { token: i0.RendererFactory2 }, { token: ADV_CHATBOT_CONFIG, optional: true }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable });
+    /** @nocollapse */ static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.4", ngImport: i0, type: AdvChatbotHelper });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.4", ngImport: i0, type: AdvChatbotHelper, decorators: [{
             type: Injectable
@@ -135,9 +148,9 @@ class LsnAdvChatbotModule {
             ]
         };
     }
-    /** @nocollapse */ static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.4", ngImport: i0, type: LsnAdvChatbotModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    /** @nocollapse */ static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.1.4", ngImport: i0, type: LsnAdvChatbotModule, imports: [CommonModule] }); }
-    /** @nocollapse */ static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.1.4", ngImport: i0, type: LsnAdvChatbotModule, imports: [CommonModule] }); }
+    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.4", ngImport: i0, type: LsnAdvChatbotModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    /** @nocollapse */ static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.1.4", ngImport: i0, type: LsnAdvChatbotModule, imports: [CommonModule] });
+    /** @nocollapse */ static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.1.4", ngImport: i0, type: LsnAdvChatbotModule, imports: [CommonModule] });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.4", ngImport: i0, type: LsnAdvChatbotModule, decorators: [{
             type: NgModule,
@@ -149,10 +162,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.4", ngImpor
         }] });
 
 class AbstractAdvChatbotComponent {
+    chatBotHelper;
+    cd;
+    eventsSub;
+    unreadMessages = false;
+    audio;
     constructor(chatBotHelper, cd) {
         this.chatBotHelper = chatBotHelper;
         this.cd = cd;
-        this.unreadMessages = false;
     }
     ngOnInit() {
         this.audio = new Audio(this.audioSrc);
@@ -183,8 +200,8 @@ class AbstractAdvChatbotComponent {
     ngOnDestroy() {
         this.eventsSub?.unsubscribe();
     }
-    /** @nocollapse */ static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.4", ngImport: i0, type: AbstractAdvChatbotComponent, deps: [{ token: AdvChatbotHelper }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
-    /** @nocollapse */ static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "21.1.4", type: AbstractAdvChatbotComponent, isStandalone: false, selector: "ng-component", ngImport: i0, template: '', isInline: true }); }
+    /** @nocollapse */ static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.4", ngImport: i0, type: AbstractAdvChatbotComponent, deps: [{ token: AdvChatbotHelper }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
+    /** @nocollapse */ static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "21.1.4", type: AbstractAdvChatbotComponent, isStandalone: false, selector: "ng-component", ngImport: i0, template: '', isInline: true });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.4", ngImport: i0, type: AbstractAdvChatbotComponent, decorators: [{
             type: Component,
