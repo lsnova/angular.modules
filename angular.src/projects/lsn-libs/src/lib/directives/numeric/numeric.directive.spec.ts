@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {vi} from 'vitest';
 import { LsnNumericModule } from './numeric.module';
 import { NumericConfig, NumericConfigService } from './numeric-config.service';
 import { By } from '@angular/platform-browser';

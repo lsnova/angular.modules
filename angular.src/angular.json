@@ -118,11 +118,11 @@
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "projects/lsn-libs/test.ts",
+            "buildTarget": "::production",
             "tsConfig": "projects/lsn-libs/tsconfig.spec.json",
-            "karmaConfig": "projects/lsn-libs/karma.conf.js"
+            "providersFile": "projects/lsn-libs/test-providers.ts"
           }
         }
       }

@@ -1,5 +1,5 @@
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-
+import {vi} from 'vitest';
 import { LsnCrossTabService } from './lsn-cross-tab.service';
 import { CookieService, LsnCookieOptions, LsnCookieService } from '../lsn-cookie/lsn-cookie.service';
 import { LSN_CROSS_TAB_CONFIG, LsnCrossTabConfig } from './models/lsnCrossTabConfig';
@@ -96,7 +96,7 @@ describe('LsnCrossTabService', () => {
             tabId: crossTabService.tabId,
         };
         // cleanCookieFilter has private access, so it must be casted to 'any'
-        vi.spyOn<any>(crossTabService, 'cleanCookieFilter').mockReturnValue((cookieMessage) => cookieMessage.code !== messageOne.code);
+        vi.spyOn<any, any>(crossTabService, 'cleanCookieFilter').mockReturnValue((cookieMessage) => cookieMessage.code !== messageOne.code);
         crossTabService.sendMessage(messageOne);
         crossTabService.sendMessage(messageTwo);
         expect(mockCookieService.cookie.length).toEqual(2);
@@ -129,10 +129,10 @@ describe('LsnCrossTabService', () => {
         const crossTabMessageConfig: LsnCrossTabConfig = TestBed.inject(LSN_CROSS_TAB_CONFIG);
         // spies
         // NOTE: without and.callThrough(), functions inside these spies will not be invoked
-        const readMessageSpy = vi.spyOn<any>(crossTabService, 'readMessages');
-        const cleanCookieSpy = vi.spyOn<any>(crossTabService, 'cleanCookie');
-        const areCookiesEqualSpy = vi.spyOn<any>(crossTabService, 'areCookiesEqual');
-        const messageWasReadSpy = vi.spyOn<any>(crossTabService, 'messageWasRead');
+        const readMessageSpy = vi.spyOn<any, any>(crossTabService, 'readMessages');
+        const cleanCookieSpy = vi.spyOn<any, any>(crossTabService, 'cleanCookie');
+        const areCookiesEqualSpy = vi.spyOn<any, any>(crossTabService, 'areCookiesEqual');
+        const messageWasReadSpy = vi.spyOn<any, any>(crossTabService, 'messageWasRead');
         // pass some time
         tick(1);
         // model
@@ -172,8 +172,8 @@ describe('LsnCrossTabService', () => {
             code: 'code',
             created: Date.now()
         });
-        const messageWasReadSpy = vi.spyOn<any>(crossTabService, 'messageWasRead');
-        const readMessagesSpy = vi.spyOn<any>(crossTabService, 'readMessages');
+        const messageWasReadSpy = vi.spyOn<any, any>(crossTabService, 'messageWasRead');
+        const readMessagesSpy = vi.spyOn<any, any>(crossTabService, 'readMessages');
 
         // when
         crossTabService.sendMessage(oldMesssage);

@@ -9,7 +9,7 @@
     "skipLibCheck": true,
   },
   "files": [
-    "test.ts"
+    "test-providers.ts"
   ],
   "include": [
     "**/*.spec.ts",
