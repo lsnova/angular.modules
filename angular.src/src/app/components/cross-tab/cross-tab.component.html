@@ -7,10 +7,8 @@
     </mat-card-actions>
     <mat-card-content>
       <form action="#" [formGroup]="form" (ngSubmit)="sendMessage()">
-        <mat-form-field>
           <input matInput type="text" formControlName="message" autocomplete="off">
-        </mat-form-field>
-        <button mat-button>Send</button>
+          <button mat-button>Send</button>
       </form>
     </mat-card-content>
   </mat-card>

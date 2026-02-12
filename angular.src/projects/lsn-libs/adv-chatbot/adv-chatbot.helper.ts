@@ -6,9 +6,9 @@ import {
   AdvChatbotEvent,
   AdvChatbotEvents,
   AdvChatbotGlobal,
-  AdvChatbotModuleConfig,
+  type AdvChatbotModuleConfig,
   AdvChatbotWidget,
-  AdvChatbotWidgetConfig
+  type AdvChatbotWidgetConfig
 } from './adv-chatbot.model';
 import {forkJoin, Observable, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';

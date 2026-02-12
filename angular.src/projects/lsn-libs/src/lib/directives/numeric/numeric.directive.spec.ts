@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {vi} from 'vitest';
 import { LsnNumericModule } from './numeric.module';
@@ -11,7 +11,11 @@ describe('NumericDirective', () => {
     describe('TemplateDriven', () => {
         @Component({
             template: `<input [lsnNumeric]="config" [(ngModel)]='value'/>`,
-            standalone: false
+            standalone: true,
+            imports: [
+                LsnNumericModule,
+                FormsModule
+            ]
         })
         class TestComponent {
             value = 0;
@@ -25,10 +29,9 @@ describe('NumericDirective', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                declarations: [
-                    TestComponent
-                ],
                 imports: [
+                    TestComponent,
+                    ReactiveFormsModule,
                     FormsModule,
                     LsnNumericModule.forRoot(),
                 ]
@@ -64,8 +67,12 @@ describe('NumericDirective', () => {
 
     describe('Reactive', () => {
         @Component({
-            template: `<input [lsnNumeric]="config" [formControl]="control"  (lsnNumericMessages)="onMessage($event)"/>`,
-            standalone: false
+            template: `<input [lsnNumeric]="config" [formControl]="control" (lsnNumericMessages)="onMessage($event)"/>`,
+            imports: [
+                LsnNumericModule,
+                ReactiveFormsModule
+            ],
+            standalone: true
         })
         class TestReactiveComponent {
             control = new FormControl<number | null>(null);
@@ -79,10 +86,8 @@ describe('NumericDirective', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                declarations: [
-                    TestReactiveComponent
-                ],
                 imports: [
+                    TestReactiveComponent,
                     FormsModule,
                     ReactiveFormsModule,
                     LsnNumericModule.forRoot(),
@@ -105,7 +110,7 @@ describe('NumericDirective', () => {
             expect(directive.isConfigEqual({ min: 1 }, { min: 1, max: 3 })).toBeFalsy();
         });
 
-        it('should properly react to config changes', fakeAsync(() => {
+        it('should properly react to config changes', () => {
             const config1: NumericConfig = {
                 min: 0,
                 max: 10
@@ -121,7 +126,7 @@ describe('NumericDirective', () => {
             component.config = config2;
             fixture.detectChanges();
             expect(queryInput().nativeElement.value).toEqual(`${config2.max}`);
-        }));
+        });
 
         it('should emit range exceeded message', () => {
             component.config = {

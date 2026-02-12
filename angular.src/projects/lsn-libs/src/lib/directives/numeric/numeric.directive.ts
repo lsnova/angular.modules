@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import * as keyboard from '@angular/cdk/keycodes';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {NumericConfig, NumericConfigService} from './numeric-config.service';
+import {type NumericConfig, NumericConfigService} from './numeric-config.service';
 
 const CUSTOM_SELECT_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,

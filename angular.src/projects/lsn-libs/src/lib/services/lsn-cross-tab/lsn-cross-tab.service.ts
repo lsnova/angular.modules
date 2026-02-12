@@ -12,8 +12,8 @@ export class LsnCrossTabService implements OnDestroy {
   readonly tabId: string;
   private readonly messagesReadSet: Set<string>;
   private readonly tabOpenTime: number;
-  private cookieReadSubscription: Subscription;
-  private cookieCleanSubscription: Subscription;
+  private cookieReadSubscription?: Subscription;
+  private cookieCleanSubscription?: Subscription;
   private crossTabConfig: LsnCrossTabConfig;
 
   private get crossTabCookieName(): string {
@@ -158,8 +158,8 @@ export class LsnCrossTabService implements OnDestroy {
    * Removes all subscriptions that this service is subscribe to (intervals are cleared)
    */
   unsubscribe() {
-    this.cookieReadSubscription.unsubscribe();
-    this.cookieCleanSubscription.unsubscribe();
+    this.cookieReadSubscription?.unsubscribe();
+    this.cookieCleanSubscription?.unsubscribe();
   }
 
   ngOnDestroy(): void {

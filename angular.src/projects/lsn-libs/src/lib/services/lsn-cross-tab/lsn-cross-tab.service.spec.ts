@@ -1,4 +1,4 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import {vi} from 'vitest';
 import { LsnCrossTabService } from './lsn-cross-tab.service';
 import { CookieService, LsnCookieOptions, LsnCookieService } from '../lsn-cookie/lsn-cookie.service';
@@ -124,7 +124,8 @@ describe('LsnCrossTabService', () => {
         expect(filteredMessages.length).toEqual(1);
     });
 
-    it('should read and clean messages after specified intervals', fakeAsync(() => {
+    it('should read and clean messages after specified intervals', () => {
+        vi.useFakeTimers();
         crossTabService.run();
         const crossTabMessageConfig: LsnCrossTabConfig = TestBed.inject(LSN_CROSS_TAB_CONFIG);
         // spies
@@ -134,20 +135,20 @@ describe('LsnCrossTabService', () => {
         const areCookiesEqualSpy = vi.spyOn<any, any>(crossTabService, 'areCookiesEqual');
         const messageWasReadSpy = vi.spyOn<any, any>(crossTabService, 'messageWasRead');
         // pass some time
-        tick(1);
+        vi.advanceTimersByTime(1);
         // model
         const message = new LsnCrossTabMessage({ code: 'message one', created: Date.now(), tabId: crossTabService.tabId });
         mockCookieService.set('mock key', [message], null);
         // read message tick
-        tick(crossTabMessageConfig.cookieReadFreq + 1);
+        vi.advanceTimersByTime(crossTabMessageConfig.cookieReadFreq + 1);
         expect(readMessageSpy).toHaveBeenCalled();
         expect(messageWasReadSpy).toHaveBeenCalled();
         // clean message tick
-        tick(crossTabMessageConfig.cookieCleanFreq + 1);
+        vi.advanceTimersByTime(crossTabMessageConfig.cookieCleanFreq + 1);
         expect(cleanCookieSpy).toHaveBeenCalled();
         expect(areCookiesEqualSpy).toHaveBeenCalled();
         crossTabService.unsubscribe();
-    }));
+    });
 
     it('should correctly save and retrieve cookie value', () => {
         const message = new LsnCrossTabMessage<{
@@ -166,7 +167,7 @@ describe('LsnCrossTabService', () => {
         console.log(crossTabService.getCookie());
     });
 
-    it('should only read messages newer than tabOpenTime', fakeAsync(() => {
+    it('should only read messages newer than tabOpenTime', () => {
         // given
         const oldMesssage = new LsnCrossTabMessage({
             code: 'code',
@@ -189,6 +190,6 @@ describe('LsnCrossTabService', () => {
         expect(readMessagesSpy).toHaveBeenCalled();
         expect(messageWasReadSpy).not.toHaveBeenCalled();
         crossTabService.unsubscribe();
-    }));
+    });
 
 });
