@@ -17,7 +17,9 @@
   <mat-card appearance="outlined" style="width: 100%">
     <mat-card-content>
       <mat-list>
-        <mat-list-item *ngFor="let message of messagesReceived">{{message | json}}</mat-list-item>
+        @for (message of messagesReceived; track message) {
+          <mat-list-item>{{message | json}}</mat-list-item>
+        }
       </mat-list>
     </mat-card-content>
   </mat-card>
