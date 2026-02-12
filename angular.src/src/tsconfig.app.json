@@ -15,7 +15,9 @@
       ]
     }
   },
+  "include": ["**/*.ts"],
   "exclude": [
+    "test-providers.ts",
     "**/*.spec.ts"
   ],
   "angularCompilerOptions": {

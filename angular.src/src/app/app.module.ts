@@ -14,7 +14,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     NumericCardComponent,
     NumpadCardComponent,
     ScrollSpyComponent
@@ -27,7 +26,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     LsnLibsModule,
     CrossTabModule,
     LsnScrollSpyModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NavbarComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
