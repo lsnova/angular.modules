@@ -1,22 +1,22 @@
 {
   "name": "@lsnova/angularmodules",
-  "version": "20.0.0",
+  "version": "21.0.0",
   "peerDependencies": {
-    "@angular/common": "^20.0.0",
-    "@angular/core": "^20.0.0"
+    "@angular/common": "^21.0.0",
+    "@angular/core": "^21.0.0"
   },
   "module": "fesm2022/lsnova-angularmodules.mjs",
-  "typings": "index.d.ts",
+  "typings": "types/lsnova-angularmodules.d.ts",
   "exports": {
     "./package.json": {
       "default": "./package.json"
     },
     ".": {
-      "types": "./index.d.ts",
+      "types": "./types/lsnova-angularmodules.d.ts",
       "default": "./fesm2022/lsnova-angularmodules.mjs"
     },
     "./adv-chatbot": {
-      "types": "./adv-chatbot/index.d.ts",
+      "types": "./types/lsnova-angularmodules-adv-chatbot.d.ts",
       "default": "./fesm2022/lsnova-angularmodules-adv-chatbot.mjs"
     }
   },
