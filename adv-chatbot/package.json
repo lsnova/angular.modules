@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/lsnova-angularmodules-adv-chatbot.mjs"
+  "module": "../fesm2022/lsnova-angularmodules-adv-chatbot.mjs",
+  "typings": "../types/lsnova-angularmodules-adv-chatbot.d.ts"
 }

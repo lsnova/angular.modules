@@ -92,12 +92,8 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "buildTarget": "::development",
             "tsConfig": "src/tsconfig.spec.json",
             "browsers": ["chromium"],
-            "reporters": [
-              "default"
-            ],
             "providersFile": "src/test-providers.ts"
           }
         }
