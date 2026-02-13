@@ -39,6 +39,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^20.19.33",
     "@vitest/browser-playwright": "^4.0.18",
+    "@vitest/coverage-v8": "^4.0.18",
     "codelyzer": "~6.0.1",
     "jasmine-core": "~4.3.0",
     "jasmine-spec-reporter": "~5.0.0",
